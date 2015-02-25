@@ -27,85 +27,108 @@
 #import "ChooseExerciseViewController.h"
 #import "Exercise.h"
 #import <MDCSwipeToChoose/MDCSwipeToChoose.h>
+#import "CBZSplashView.h"
+#import "UIColor+HexString.h"
+#import "UIBezierPath+Shapes.h"
 
 static const CGFloat ChoosePersonButtonHorizontalPadding = 80.f;
 static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 @interface ChooseExerciseViewController ()
 @property (nonatomic, strong) NSMutableArray *exercises;
+@property (nonatomic, strong) UIButton *likeButton;
+@property (nonatomic, strong) UIButton *nopeButton;
+@property (nonatomic, strong) CBZSplashView *splashView;
+
 @end
 
 @implementation ChooseExerciseViewController
 
 #pragma mark - Object Lifecycle
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        // This view controller maintains a list of ChoosePersonView
-        // instances to display.
-        _exercises = [[self defaultPeople] mutableCopy];
-    }
-    return self;
-}
+//- (instancetype)init {
+//    self = [super init];
+//    if (self) {
+//        // This view controller maintains a list of ChoosePersonView
+//        // instances to display.
+//        _exercises = [[self defaultPeople] mutableCopy];
+//    }
+//    return self;
+//}
 
 #pragma mark - UIViewController Overrides
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self loadDeck];
+    
+    
+    // Add buttons to programmatically swipe the view left or right.
+    // See the `nopeFrontCardView` and `likeFrontCardView` methods.
+//    [self constructNopeButton];
+//    [self constructLikedButton];
+    
 
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [self animateButton];
+}
+
+// Constructs splash that splashes green check button that grows across screen
+- (void) constructSplashScreen {
+    UIImage *icon = [UIImage imageNamed:@"checkButton"];
+    UIColor *color = [UIColor greenColor];
+    CBZSplashView *splashView = [CBZSplashView splashViewWithIcon:icon backgroundColor:color];
+    
+    splashView.animationDuration = 1.4;
+    
+    [self.view addSubview:splashView];
+    
+    self.splashView = splashView;
+
+}
+
+// Make the reload button pulse
+- (void)animateButton {
+    CABasicAnimation *pulseAnimation;
+    
+    pulseAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+    pulseAnimation.duration=1.0;
+    pulseAnimation.repeatCount=HUGE_VALF;
+    pulseAnimation.autoreverses=YES;
+    pulseAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+    pulseAnimation.toValue=[NSNumber numberWithFloat:0.7];
+    [self.reloadButton.layer addAnimation:pulseAnimation forKey:@"animateOpacity"];
+}
+
+- (void)loadDeck {
+    // This view controller maintains a list of ChoosePersonView
+    // instances to display.
+    _exercises = [[self defaultPeople] mutableCopy];
+    
     // Display the first ChoosePersonView in front. Users can swipe to indicate
     // whether they like or dislike the person displayed.
     self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
     [self.view addSubview:self.frontCardView];
-
+    
     // Display the second ChoosePersonView in back. This view controller uses
     // the MDCSwipeToChooseDelegate protocol methods to update the front and
     // back views after each user swipe.
     self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
     [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
-
-    // Add buttons to programmatically swipe the view left or right.
-    // See the `nopeFrontCardView` and `likeFrontCardView` methods.
-    [self constructNopeButton];
-    [self constructLikedButton];
+    
 }
 
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    self.gradient = [CAGradientLayer layer];
-//    self.gradient.frame = self.view.bounds;
-//    self.gradient.colors = @[(id)[UIColor lightGrayColor].CGColor,
-//                             (id)[UIColor whiteColor].CGColor];
-//    
-//    [self.view.layer insertSublayer:self.gradient atIndex:0];
-//    
-//    [self animateLayer];
-//}
-//
-//-(void)animateLayer
-//{
-//    
-//    NSArray *fromColors = self.gradient.colors;
-//    NSArray *toColors = @[(id)[UIColor lightGrayColor].CGColor,
-//                          (id)[UIColor whiteColor].CGColor];
-//    
-//    [self.gradient setColors:toColors];
-//    
-//    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
-//    
-//    animation.fromValue             = fromColors;
-//    animation.toValue               = toColors;
-//    animation.duration              = 7.00;
-//    animation.removedOnCompletion   = YES;
-//    animation.fillMode              = kCAFillModeForwards;
-//    animation.timingFunction        = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-//    animation.delegate              = self;
-//    
-//    // Add the animation to our layer
-//    
-//    [self.gradient addAnimation:animation forKey:@"animateGradient"];
-//}
+- (void) endOfDeck {
+    [self constructSplashScreen];
+    
+    [self.splashView startAnimation];
+    
+    self.view.backgroundColor = [UIColor greenColor];
+}
+
 
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -116,7 +139,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 // This is called when a user didn't fully swipe left or right.
 - (void)viewDidCancelSwipe:(UIView *)view {
-    NSLog(@"You couldn't decide on %@.", self.currentPerson.name);
+    NSLog(@"You couldn't decide on %@.", self.currentExercise.name);
 }
 
 // This is called then a user swipes the view fully left or right.
@@ -124,9 +147,18 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // MDCSwipeToChooseView shows "NOPE" on swipes to the left,
     // and "LIKED" on swipes to the right.
     if (direction == MDCSwipeDirectionLeft) {
-        NSLog(@"You noped %@.", self.currentPerson.name);
+        NSLog(@"You noped %@.", self.currentExercise.name);
+        
+        // No more backcard so after completing this swipe is the end of the deck
+        if (self.backCardView == nil) {
+            [self endOfDeck];
+        }
     } else {
-        NSLog(@"You liked %@.", self.currentPerson.name);
+        NSLog(@"You liked %@.", self.currentExercise.name);
+        // No more backcard so after completing this swipe is the end of the deck
+        if (self.backCardView == nil) {
+            [self endOfDeck];
+        }
     }
 
     // MDCSwipeToChooseView removes the view from the view hierarchy
@@ -153,7 +185,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // Keep track of the person currently being chosen.
     // Quick and dirty, just for the purposes of this sample app.
     _frontCardView = frontCardView;
-    self.currentPerson = frontCardView.exercise;
+    self.currentExercise = frontCardView.exercise;
 }
 
 - (NSArray *)defaultPeople {
@@ -185,6 +217,34 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                numberOfSharedFriends:1
              numberOfSharedInterests:1
                       timeRequired:2],
+        [[Exercise alloc] initWithName:@"Hip Abduction"
+                                 image:[UIImage imageNamed:@"hip_abduction"]
+                                 count:15
+                 numberOfSharedFriends:3
+               numberOfSharedInterests:2
+                          timeRequired:1],
+
+        [[Exercise alloc] initWithName:@"Hip Adduction"
+                                 image:[UIImage imageNamed:@"hip_adduction"]
+                                 count:15
+                 numberOfSharedFriends:3
+               numberOfSharedInterests:2
+                          timeRequired:1],
+
+        [[Exercise alloc] initWithName:@"Leg Extensions"
+                                 image:[UIImage imageNamed:@"leg_extensions"]
+                                 count:15
+                 numberOfSharedFriends:3
+               numberOfSharedInterests:2
+                          timeRequired:1],
+
+        [[Exercise alloc] initWithName:@"Leg Presses"
+                                 image:[UIImage imageNamed:@"leg_presses"]
+                                 count:15
+                 numberOfSharedFriends:3
+               numberOfSharedInterests:2
+                          timeRequired:1],
+
     ];
 }
 
@@ -221,8 +281,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 - (CGRect)frontCardViewFrame {
     CGFloat horizontalPadding = 20.f;
-    CGFloat topPadding = 60.f;
-    CGFloat bottomPadding = 200.f;
+    CGFloat topPadding = 100.f;
+    CGFloat bottomPadding = 180.f;
     return CGRectMake(horizontalPadding,
                       topPadding,
                       CGRectGetWidth(self.view.frame) - (horizontalPadding * 2),
@@ -239,40 +299,40 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 // Create and add the "nope" button.
 - (void)constructNopeButton {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *nopeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     UIImage *image = [UIImage imageNamed:@"xButton"];
-    button.frame = CGRectMake(ChoosePersonButtonHorizontalPadding,
+    nopeButton.frame = CGRectMake(ChoosePersonButtonHorizontalPadding,
                               CGRectGetMaxY(self.backCardView.frame) + ChoosePersonButtonVerticalPadding,
                               image.size.width,
                               image.size.height);
-    [button setImage:image forState:UIControlStateNormal];
-    [button setTintColor:[UIColor colorWithRed:247.f/255.f
+    [nopeButton setImage:image forState:UIControlStateNormal];
+    [nopeButton setTintColor:[UIColor colorWithRed:247.f/255.f
                                          green:91.f/255.f
                                           blue:37.f/255.f
                                          alpha:1.f]];
-    [button addTarget:self
+    [nopeButton addTarget:self
                action:@selector(nopeFrontCardView)
      forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    [self.view addSubview:nopeButton];
 }
 
 // Create and add the "OK" button.
 - (void)constructLikedButton {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     UIImage *image = [UIImage imageNamed:@"checkButton"];
-    button.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - image.size.width - ChoosePersonButtonHorizontalPadding,
+    likeButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - image.size.width - ChoosePersonButtonHorizontalPadding,
                               CGRectGetMaxY(self.backCardView.frame) + ChoosePersonButtonVerticalPadding,
                               image.size.width,
                               image.size.height);
-    [button setImage:image forState:UIControlStateNormal];
-    [button setTintColor:[UIColor colorWithRed:29.f/255.f
+    [likeButton setImage:image forState:UIControlStateNormal];
+    [likeButton setTintColor:[UIColor colorWithRed:29.f/255.f
                                          green:245.f/255.f
                                           blue:106.f/255.f
                                          alpha:1.f]];
-    [button addTarget:self
+    [likeButton addTarget:self
                action:@selector(likeFrontCardView)
      forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    [self.view addSubview:likeButton];
 }
 
 #pragma mark Control Events
@@ -281,8 +341,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)nopeFrontCardView {
     if(self.exercises.count != 0)
         [self.frontCardView mdc_swipe:MDCSwipeDirectionLeft];
-    else
+    else {
         NSLog(@"All done!");
+    }
 
 }
 
@@ -290,9 +351,59 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)likeFrontCardView {
     if(self.exercises.count != 0)
         [self.frontCardView mdc_swipe:MDCSwipeDirectionRight];
-    else
+    else {
         NSLog(@"All done!");
-
+    }
 }
+
+
+
+- (IBAction)pressedReloadButton:(UIButton *)sender {
+//    /* wait a beat before animating in */
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    });
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self loadDeck];
+}
+
+
+
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    self.gradient = [CAGradientLayer layer];
+//    self.gradient.frame = self.view.bounds;
+//    self.gradient.colors = @[(id)[UIColor lightGrayColor].CGColor,
+//                             (id)[UIColor whiteColor].CGColor];
+//
+//    [self.view.layer insertSublayer:self.gradient atIndex:0];
+//
+//    [self animateLayer];
+//}
+//
+//-(void)animateLayer
+//{
+//
+//    NSArray *fromColors = self.gradient.colors;
+//    NSArray *toColors = @[(id)[UIColor lightGrayColor].CGColor,
+//                          (id)[UIColor whiteColor].CGColor];
+//
+//    [self.gradient setColors:toColors];
+//
+//    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
+//
+//    animation.fromValue             = fromColors;
+//    animation.toValue               = toColors;
+//    animation.duration              = 7.00;
+//    animation.removedOnCompletion   = YES;
+//    animation.fillMode              = kCAFillModeForwards;
+//    animation.timingFunction        = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+//    animation.delegate              = self;
+//
+//    // Add the animation to our layer
+//
+//    [self.gradient addAnimation:animation forKey:@"animateGradient"];
+//}
+
 
 @end

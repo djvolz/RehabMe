@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dKd-vA-a2t">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Choose Exercise View Controller-->
+        <scene sceneID="Gcv-ZH-mg9">
+            <objects>
+                <viewController id="dKd-vA-a2t" customClass="ChooseExerciseViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KPe-ew-9kL"/>
+                        <viewControllerLayoutGuide type="bottom" id="kDL-cW-hVY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HUX-de-enZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss0-zD-oVb">
+                                <rect key="frame" x="89" y="308" width="236" height="120"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="45"/>
+                                <state key="normal" title="Again?">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedReloadButton:" destination="dKd-vA-a2t" eventType="touchUpInside" id="vvz-KN-mhj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="waP-RZ-D7f">
+                                <rect key="frame" x="16" y="37" width="95" height="29"/>
+                                <state key="normal" image="menuButton">
+                                    <attributedString key="attributedTitle"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="centerX" secondItem="HUX-de-enZ" secondAttribute="centerX" id="4SQ-83-XLm"/>
+                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="centerY" secondItem="HUX-de-enZ" secondAttribute="centerY" id="HvR-Kv-kSa"/>
+                            <constraint firstItem="waP-RZ-D7f" firstAttribute="top" secondItem="KPe-ew-9kL" secondAttribute="bottom" constant="17" id="aRX-ld-jWc"/>
+                            <constraint firstItem="waP-RZ-D7f" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leadingMargin" id="you-4V-Ttb"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="reloadButton" destination="Ss0-zD-oVb" id="upe-Yy-hLq"/>
+                        <outlet property="view" destination="HUX-de-enZ" id="8fK-Ig-3ir"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q9d-9g-BYv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="797" y="582"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="menuButton" width="46" height="29"/>
+    </resources>
+</document>

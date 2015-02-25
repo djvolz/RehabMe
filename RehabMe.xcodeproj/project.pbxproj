@@ -18,7 +18,15 @@
 		307F83781A9BC12400B1CEFF /* ImageLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 307F836F1A9BC12400B1CEFF /* ImageLabelView.m */; };
 		307F837E1A9BC18A00B1CEFF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 307F837B1A9BC18A00B1CEFF /* InfoPlist.strings */; };
 		307F837F1A9BC18A00B1CEFF /* RehabMeTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 307F837D1A9BC18A00B1CEFF /* RehabMeTests-Info.plist */; };
+		3083120A1A9E65AC00CC2A5C /* CBZSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308312011A9E65AC00CC2A5C /* CBZSplashView.m */; };
+		3083120B1A9E65AC00CC2A5C /* CBZRasterSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308312031A9E65AC00CC2A5C /* CBZRasterSplashView.m */; };
+		3083120C1A9E65AC00CC2A5C /* CBZVectorSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308312051A9E65AC00CC2A5C /* CBZVectorSplashView.m */; };
+		3083120D1A9E65AC00CC2A5C /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 308312071A9E65AC00CC2A5C /* UIColor+HexString.m */; };
+		3083120E1A9E65AC00CC2A5C /* UIBezierPath+Shapes.m in Sources */ = {isa = PBXBuildFile; fileRef = 308312091A9E65AC00CC2A5C /* UIBezierPath+Shapes.m */; };
 		3099B2FC1A9BC6CE00DB2B92 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */; };
+		30BFD6561A9D49F3007C187F /* snapchatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 30BFD6551A9D49F3007C187F /* snapchatIcon.png */; };
+		30C30BDF1A9D4FDE006194BA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C30BDE1A9D4FDE006194BA /* MainStoryboard.storyboard */; };
+		30C30BE11A9D5257006194BA /* twitterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 30C30BE01A9D5257006194BA /* twitterIcon.png */; };
 		49A483B402C049E28055919D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 374A6AE5BCA048DDAD2A8A49 /* libPods.a */; };
 		DA5B73E918F233EF00BB5F8E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5B73E818F233EF00BB5F8E /* Foundation.framework */; };
 		DA5B73EB18F233EF00BB5F8E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5B73EA18F233EF00BB5F8E /* CoreGraphics.framework */; };
@@ -39,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		303500341A9E5F3700EA1C5C /* RehabMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RehabMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		307F835D1A9BC12300B1CEFF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		307F835E1A9BC12300B1CEFF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		307F83601A9BC12300B1CEFF /* ChooseExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseExerciseViewController.h; sourceTree = "<group>"; };
@@ -56,7 +65,20 @@
 		307F836F1A9BC12400B1CEFF /* ImageLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLabelView.m; sourceTree = "<group>"; };
 		307F837C1A9BC18A00B1CEFF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		307F837D1A9BC18A00B1CEFF /* RehabMeTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RehabMeTests-Info.plist"; sourceTree = "<group>"; };
+		308312001A9E65AC00CC2A5C /* CBZSplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBZSplashView.h; sourceTree = "<group>"; };
+		308312011A9E65AC00CC2A5C /* CBZSplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBZSplashView.m; sourceTree = "<group>"; };
+		308312021A9E65AC00CC2A5C /* CBZRasterSplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBZRasterSplashView.h; sourceTree = "<group>"; };
+		308312031A9E65AC00CC2A5C /* CBZRasterSplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBZRasterSplashView.m; sourceTree = "<group>"; };
+		308312041A9E65AC00CC2A5C /* CBZVectorSplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBZVectorSplashView.h; sourceTree = "<group>"; };
+		308312051A9E65AC00CC2A5C /* CBZVectorSplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBZVectorSplashView.m; sourceTree = "<group>"; };
+		308312061A9E65AC00CC2A5C /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
+		308312071A9E65AC00CC2A5C /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
+		308312081A9E65AC00CC2A5C /* UIBezierPath+Shapes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+Shapes.h"; sourceTree = "<group>"; };
+		308312091A9E65AC00CC2A5C /* UIBezierPath+Shapes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Shapes.m"; sourceTree = "<group>"; };
 		3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		30BFD6551A9D49F3007C187F /* snapchatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snapchatIcon.png; sourceTree = "<group>"; };
+		30C30BDE1A9D4FDE006194BA /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		30C30BE01A9D5257006194BA /* twitterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterIcon.png; sourceTree = "<group>"; };
 		374A6AE5BCA048DDAD2A8A49 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E4EF73308FF633B9337CDCD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D1955B705E49BA9F925DB603 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +123,7 @@
 				307F83661A9BC12400B1CEFF /* Models */,
 				307F836B1A9BC12400B1CEFF /* Views */,
 				307F83791A9BC13900B1CEFF /* Supporting Files */,
+				303500341A9E5F3700EA1C5C /* RehabMe-Bridging-Header.h */,
 			);
 			path = RehabMe;
 			sourceTree = "<group>";
@@ -137,6 +160,7 @@
 		307F83791A9BC13900B1CEFF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3083120F1A9E67AC00CC2A5C /* CBZSplashView */,
 				3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */,
 				307F835D1A9BC12300B1CEFF /* AppDelegate.h */,
 				307F835E1A9BC12300B1CEFF /* AppDelegate.m */,
@@ -144,6 +168,7 @@
 				307F83651A9BC12400B1CEFF /* main.m */,
 				307F83691A9BC12400B1CEFF /* RehabMe-Info.plist */,
 				307F836A1A9BC12400B1CEFF /* RehabMe-Prefix.pch */,
+				30C30BDE1A9D4FDE006194BA /* MainStoryboard.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -163,6 +188,25 @@
 				307F837D1A9BC18A00B1CEFF /* RehabMeTests-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3083120F1A9E67AC00CC2A5C /* CBZSplashView */ = {
+			isa = PBXGroup;
+			children = (
+				308312001A9E65AC00CC2A5C /* CBZSplashView.h */,
+				308312011A9E65AC00CC2A5C /* CBZSplashView.m */,
+				308312021A9E65AC00CC2A5C /* CBZRasterSplashView.h */,
+				308312031A9E65AC00CC2A5C /* CBZRasterSplashView.m */,
+				308312041A9E65AC00CC2A5C /* CBZVectorSplashView.h */,
+				308312051A9E65AC00CC2A5C /* CBZVectorSplashView.m */,
+				308312061A9E65AC00CC2A5C /* UIColor+HexString.h */,
+				308312071A9E65AC00CC2A5C /* UIColor+HexString.m */,
+				308312081A9E65AC00CC2A5C /* UIBezierPath+Shapes.h */,
+				308312091A9E65AC00CC2A5C /* UIBezierPath+Shapes.m */,
+				30BFD6551A9D49F3007C187F /* snapchatIcon.png */,
+				30C30BE01A9D5257006194BA /* twitterIcon.png */,
+			);
+			name = CBZSplashView;
 			sourceTree = "<group>";
 		};
 		DA5B73DC18F233EF00BB5F8E = {
@@ -253,7 +297,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = modocache;
+				ORGANIZATIONNAME = "Dan Volz";
 				TargetAttributes = {
 					DA5B73E418F233EF00BB5F8E = {
 						DevelopmentTeam = D6L3F5Z883;
@@ -288,9 +332,12 @@
 			files = (
 				307F83761A9BC12400B1CEFF /* RehabMe-Info.plist in Resources */,
 				307F837E1A9BC18A00B1CEFF /* InfoPlist.strings in Resources */,
+				30C30BE11A9D5257006194BA /* twitterIcon.png in Resources */,
 				307F83721A9BC12400B1CEFF /* InfoPlist.strings in Resources */,
 				307F837F1A9BC18A00B1CEFF /* RehabMeTests-Info.plist in Resources */,
 				3099B2FC1A9BC6CE00DB2B92 /* LaunchScreen.xib in Resources */,
+				30BFD6561A9D49F3007C187F /* snapchatIcon.png in Resources */,
+				30C30BDF1A9D4FDE006194BA /* MainStoryboard.storyboard in Resources */,
 				307F83731A9BC12400B1CEFF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,11 +389,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3083120D1A9E65AC00CC2A5C /* UIColor+HexString.m in Sources */,
 				307F83711A9BC12400B1CEFF /* ChooseExerciseViewController.m in Sources */,
 				307F83741A9BC12400B1CEFF /* main.m in Sources */,
 				307F83751A9BC12400B1CEFF /* Exercise.m in Sources */,
+				3083120A1A9E65AC00CC2A5C /* CBZSplashView.m in Sources */,
+				3083120E1A9E65AC00CC2A5C /* UIBezierPath+Shapes.m in Sources */,
 				307F83771A9BC12400B1CEFF /* ChooseExerciseView.m in Sources */,
+				3083120C1A9E65AC00CC2A5C /* CBZVectorSplashView.m in Sources */,
 				307F83701A9BC12400B1CEFF /* AppDelegate.m in Sources */,
+				3083120B1A9E65AC00CC2A5C /* CBZRasterSplashView.m in Sources */,
 				307F83781A9BC12400B1CEFF /* ImageLabelView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,12 +517,15 @@
 			baseConfigurationReference = 9E4EF73308FF633B9337CDCD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RehabMe/RehabMe-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/RehabMe/RehabMe-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = RehabMe;
+				SWIFT_OBJC_BRIDGING_HEADER = "RehabMe/RehabMe-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -481,12 +536,14 @@
 			baseConfigurationReference = D1955B705E49BA9F925DB603 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RehabMe/RehabMe-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/RehabMe/RehabMe-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = RehabMe;
+				SWIFT_OBJC_BRIDGING_HEADER = "RehabMe/RehabMe-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

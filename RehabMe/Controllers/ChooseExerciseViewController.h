@@ -29,10 +29,11 @@
 
 @interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate>
 
-@property (nonatomic, strong) Exercise *currentPerson;
+@property (nonatomic, strong) Exercise *currentExercise;
 @property (nonatomic, strong) ChooseExerciseView *frontCardView;
 @property (nonatomic, strong) ChooseExerciseView *backCardView;
-@property (strong, nonatomic) CAGradientLayer *gradient;
+@property (strong, nonatomic) IBOutlet UIView *view;
+@property (strong, nonatomic) IBOutlet UIButton *reloadButton;
 
 
 @end
