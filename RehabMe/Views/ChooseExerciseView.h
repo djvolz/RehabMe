@@ -25,13 +25,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MDCSwipeToChoose/MDCSwipeToChoose.h>
+#import "MDCSwipeToChoose.h"
 
 @class Exercise;
 
 @interface ChooseExerciseView : MDCSwipeToChooseView
 
 @property (nonatomic, strong, readonly) Exercise *exercise;
+
 
 - (instancetype)initWithFrame:(CGRect)frame
                        person:(Exercise *)exercise

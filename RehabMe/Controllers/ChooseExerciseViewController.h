@@ -25,7 +25,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import "Exercise.h"
 #import "ChooseExerciseView.h"
+#import "MDCSwipeToChoose.h"
+#import "CBZSplashView.h"
+#import "UIColor+HexString.h"
+#import "UIBezierPath+Shapes.h"
 
 @interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate>
 

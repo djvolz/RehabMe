@@ -25,6 +25,8 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
+
 //#import "ChooseExerciseViewController.h"
 
 @implementation AppDelegate
@@ -35,6 +37,18 @@
 //    [self.window makeKeyAndVisible];
 //
 //    self.window.rootViewController = [ChooseExerciseViewController new];
+    
+//     [Optional] Power your app with Local Datastore. For more info, go to
+//     https://parse.com/docs/ios_guide#localdatastore/iOS
+    [Parse enableLocalDatastore];
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"jix4a7ziO3LTyuL4PZ3IyyRUA7DmnwRO0zvka2z5"
+                  clientKey:@"OTzCw43KgIQDE6LvPC3ffycj95V1EAunMTmEtHcI"];
+    
+    // [Optional] Track statistics around application opens.
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
 
     return YES;
 }

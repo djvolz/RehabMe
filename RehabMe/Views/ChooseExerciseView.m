@@ -36,6 +36,8 @@ static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
 @property (nonatomic, strong) ImageLabelView *cameraImageLabelView;
 @property (nonatomic, strong) ImageLabelView *interestsImageLabelView;
 @property (nonatomic, strong) ImageLabelView *friendsImageLabelView;
+@property (nonatomic, strong) UITextView *instructionsView;
+
 @end
 
 @implementation ChooseExerciseView
@@ -62,7 +64,14 @@ static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
         self.imageView.frame = CGRectMake(self.imageView.frame.origin.x,
                                           self.imageView.frame.origin.y,
                                           self.imageView.frame.size.width,
+                                          
+                                          // The information bottomHeight is 60.0
                                           self.imageView.frame.size.height - 60.f);
+        
+        UITapGestureRecognizer *cardTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showInstuctions:)];
+        
+        [self addGestureRecognizer:cardTapRecognizer];
+
         
     }
     return self;
@@ -87,6 +96,7 @@ static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
     [self constructCameraImageLabelView];
     [self constructInterestsImageLabelView];
     [self constructFriendsImageLabelView];
+    [self constructInformationTextViewView];
 }
 
 - (void)constructNameLabel {
@@ -97,7 +107,7 @@ static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
                               floorf(CGRectGetWidth(_informationView.frame)/2),
                               CGRectGetHeight(_informationView.frame) - topPadding);
     _nameLabel = [[UILabel alloc] initWithFrame:frame];
-    _nameLabel.text = [NSString stringWithFormat:@"%@, %@", _exercise.name, @(_exercise.count)];
+    _nameLabel.text = [NSString stringWithFormat:@"%@   Count: %@", _exercise.name, @(_exercise.count)];
     [_informationView addSubview:_nameLabel];
 }
 
@@ -124,6 +134,30 @@ static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
                                                       image:image
                                                        text:[@(_exercise.numberOfSharedFriends) stringValue]];
     [_informationView addSubview:_friendsImageLabelView];
+}
+
+- (void)constructInformationTextViewView {
+    CGRect frame = CGRectMake(0,
+                              0,
+                              CGRectGetWidth(self.frame),
+                              CGRectGetHeight(self.frame));
+    self.instructionsView = [[UITextView alloc] initWithFrame:frame];
+    [self.instructionsView setBackgroundColor: [UIColor colorWithRed:200.0 green:200.0 blue:200.0 alpha:0.9]];
+    [self.instructionsView setTextColor: [UIColor blackColor]];
+    [self.instructionsView setFont:[UIFont fontWithName:@"Helvetica Neue" size:24.0f]];
+    self.instructionsView.text = _exercise.instructions;
+    self.instructionsView.editable = NO;
+    self.instructionsView.hidden = YES;
+    [self addSubview:self.instructionsView];
+
+}
+
+- (void)showInstuctions:(UITapGestureRecognizer*)sender {
+    if (self.instructionsView.hidden) {
+        self.instructionsView.hidden = NO;
+    } else {
+        self.instructionsView.hidden = YES;
+    }
 }
 
 - (ImageLabelView *)buildImageLabelViewLeftOf:(CGFloat)x image:(UIImage *)image text:(NSString *)text {

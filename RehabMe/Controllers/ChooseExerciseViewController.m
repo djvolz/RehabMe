@@ -25,11 +25,7 @@
 //
 
 #import "ChooseExerciseViewController.h"
-#import "Exercise.h"
-#import <MDCSwipeToChoose/MDCSwipeToChoose.h>
-#import "CBZSplashView.h"
-#import "UIColor+HexString.h"
-#import "UIBezierPath+Shapes.h"
+
 
 static const CGFloat ChoosePersonButtonHorizontalPadding = 80.f;
 static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
@@ -39,6 +35,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 @property (nonatomic, strong) UIButton *likeButton;
 @property (nonatomic, strong) UIButton *nopeButton;
 @property (nonatomic, strong) CBZSplashView *splashView;
+
+@property (nonatomic, strong) PFObject *exerciseObject;
 
 @end
 
@@ -63,6 +61,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     [self loadDeck];
     
+//    [self loginExampleMethod];
+    
     
     // Add buttons to programmatically swipe the view left or right.
     // See the `nopeFrontCardView` and `likeFrontCardView` methods.
@@ -71,6 +71,28 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
 
 }
+
+
+- (void)loginExampleMethod {
+    PFUser *user = [PFUser user];
+    user.username = @"Yize";
+    user.password = @"Zhao";
+    user.email = @"contact@rehabme.com";
+
+    // other fields can be set just like with PFObject
+    user[@"phone"] = @"415-392-0202";
+    
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            // Hooray! Let them use the app now.
+        } else {
+            NSString *errorString = [error userInfo][@"error"];
+            // Show the errorString somewhere and let the user try again.
+        }
+    }];
+}
+
+
 
 - (void) viewDidAppear:(BOOL)animated {
     [self animateButton];
@@ -95,12 +117,13 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     CABasicAnimation *pulseAnimation;
     
     pulseAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
-    pulseAnimation.duration=1.0;
-    pulseAnimation.repeatCount=HUGE_VALF;
-    pulseAnimation.autoreverses=YES;
-    pulseAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-    pulseAnimation.toValue=[NSNumber numberWithFloat:0.7];
+    pulseAnimation.duration = 1.0;
+    pulseAnimation.repeatCount = HUGE_VALF;
+    pulseAnimation.autoreverses = YES;
+    pulseAnimation.fromValue =[NSNumber numberWithFloat:1.0];
+    pulseAnimation.toValue = [NSNumber numberWithFloat:0.7];
     [self.reloadButton.layer addAnimation:pulseAnimation forKey:@"animateOpacity"];
+    
 }
 
 - (void)loadDeck {
@@ -149,12 +172,28 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     if (direction == MDCSwipeDirectionLeft) {
         NSLog(@"You noped %@.", self.currentExercise.name);
         
+        self.exerciseObject = [PFObject objectWithClassName:@"ExerciseObject"];
+        self.exerciseObject[@"skipped"] = self.currentExercise.name;
+        self.exerciseObject[self.currentExercise.name] = @"skipped";
+
+        [self.exerciseObject saveInBackground];
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         // No more backcard so after completing this swipe is the end of the deck
         if (self.backCardView == nil) {
             [self endOfDeck];
         }
     } else {
         NSLog(@"You liked %@.", self.currentExercise.name);
+
+        
+        self.exerciseObject = [PFObject objectWithClassName:@"ExerciseObject"];
+        self.exerciseObject[@"performed"] = self.currentExercise.name;
+        self.exerciseObject[self.currentExercise.name] = @"performed";
+
+        [self.exerciseObject saveInBackground];
+        
         // No more backcard so after completing this swipe is the end of the deck
         if (self.backCardView == nil) {
             [self endOfDeck];
@@ -193,57 +232,72 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // as needed, but for the purposes of this sample app we'll
     // simply store them in memory.
     return @[
-        [[Exercise alloc] initWithName:@"Calf Raises"
+        [[Exercise alloc] initWithName:@"CalfRaises"
                                image:[UIImage imageNamed:@"calf_raises"]
                                  count:15
                numberOfSharedFriends:3
              numberOfSharedInterests:2
-                      timeRequired:1],
-        [[Exercise alloc] initWithName:@"Half Squats"
+                      timeRequired:1
+                          instructions:@"Bacon ipsum dolor amet chuck elit incididunt alcatra nostrud brisket. Shankle landjaeger beef ribs chicken dolor reprehenderit hamburger cow ham hock jerky pork pork belly in meatball consequat. Leberkas irure in, chicken adipisicing cupim fatback ground round quis frankfurter hamburger. Boudin tenderloin occaecat jowl, tail rump picanha ut alcatra flank esse proident. Prosciutto ut mollit et ground round proident labore kielbasa bacon ipsum tenderloin beef ribs."],
+
+        [[Exercise alloc] initWithName:@"HalfSquats"
                                image:[UIImage imageNamed:@"half_squats"]
                                  count:28
                numberOfSharedFriends:2
              numberOfSharedInterests:6
-                      timeRequired:8],
-        [[Exercise alloc] initWithName:@"Hamstring Curls"
+                      timeRequired:8
+                          instructions:@"do your stuff"],
+
+        [[Exercise alloc] initWithName:@"HamstringCurls"
                                image:[UIImage imageNamed:@"hamstring_curls"]
                                  count:14
                numberOfSharedFriends:1
              numberOfSharedInterests:3
-                      timeRequired:5],
-        [[Exercise alloc] initWithName:@"Heel Cord Stretch"
+                      timeRequired:5
+                          instructions:@"do your stuff"],
+
+        [[Exercise alloc] initWithName:@"HeelCordStretch"
                                image:[UIImage imageNamed:@"heel_cord_stretch"]
                                  count:18
                numberOfSharedFriends:1
              numberOfSharedInterests:1
-                      timeRequired:2],
-        [[Exercise alloc] initWithName:@"Hip Abduction"
+                      timeRequired:2
+                          instructions:@"do your stuff"],
+
+        [[Exercise alloc] initWithName:@"HipAbduction"
                                  image:[UIImage imageNamed:@"hip_abduction"]
                                  count:15
                  numberOfSharedFriends:3
                numberOfSharedInterests:2
-                          timeRequired:1],
+                          timeRequired:1
+                          instructions:@"do your stuff"],
 
-        [[Exercise alloc] initWithName:@"Hip Adduction"
+
+        [[Exercise alloc] initWithName:@"HipAdduction"
                                  image:[UIImage imageNamed:@"hip_adduction"]
                                  count:15
                  numberOfSharedFriends:3
                numberOfSharedInterests:2
-                          timeRequired:1],
+                          timeRequired:1
+                          instructions:@"do your stuff"],
 
-        [[Exercise alloc] initWithName:@"Leg Extensions"
+
+        [[Exercise alloc] initWithName:@"LegExtensions"
                                  image:[UIImage imageNamed:@"leg_extensions"]
                                  count:15
                  numberOfSharedFriends:3
                numberOfSharedInterests:2
-                          timeRequired:1],
+                          timeRequired:1
+                          instructions:@"do your stuff"],
 
-        [[Exercise alloc] initWithName:@"Leg Presses"
+
+        [[Exercise alloc] initWithName:@"LegPresses"
                                  image:[UIImage imageNamed:@"leg_presses"]
                                  count:15
                  numberOfSharedFriends:3
                numberOfSharedInterests:2
-                          timeRequired:1],
+                          timeRequired:1
+                          instructions:@"do your stuff"],
 
     ];
 }
@@ -283,6 +337,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     CGFloat horizontalPadding = 20.f;
     CGFloat topPadding = 100.f;
     CGFloat bottomPadding = 180.f;
+//    CGContextSetShadow(<#CGContextRef context#>, <#CGSize offset#>, <#CGFloat blur#>)
     return CGRectMake(horizontalPadding,
                       topPadding,
                       CGRectGetWidth(self.view.frame) - (horizontalPadding * 2),
@@ -365,6 +420,14 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadDeck];
+}
+
+- (void) likedExercise {
+    
+}
+
+- (void) nopedExercise {
+    
 }
 
 

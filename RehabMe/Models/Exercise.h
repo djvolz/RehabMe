@@ -34,12 +34,14 @@
 @property (nonatomic, assign) NSUInteger numberOfSharedFriends;
 @property (nonatomic, assign) NSUInteger numberOfSharedInterests;
 @property (nonatomic, assign) NSUInteger timeRequired;
+@property (nonatomic, assign) NSString *instructions;
 
 - (instancetype)initWithName:(NSString *)name
                        image:(UIImage *)image
                          count:(NSUInteger)count
        numberOfSharedFriends:(NSUInteger)numberOfSharedFriends
      numberOfSharedInterests:(NSUInteger)numberOfSharedInterests
-              timeRequired:(NSUInteger)timeRequired;
+              timeRequired:(NSUInteger)timeRequired
+                instructions:(NSString *)instructions;
 
 @end
