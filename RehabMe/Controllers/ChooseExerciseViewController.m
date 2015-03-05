@@ -35,12 +35,19 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 @property (nonatomic, strong) UIButton *likeButton;
 @property (nonatomic, strong) UIButton *nopeButton;
 @property (nonatomic, strong) CBZSplashView *splashView;
+@property (weak, nonatomic) IBOutlet EDStarRating *starRating;
+
 
 @property (nonatomic, strong) PFObject *exerciseObject;
+@property (nonatomic, strong) PFObject *exerciseRatingObject;
+
 
 @end
 
 @implementation ChooseExerciseViewController
+
+@synthesize starRating=_starRating;
+
 
 #pragma mark - Object Lifecycle
 
@@ -60,6 +67,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [super viewDidLoad];
     
     [self loadDeck];
+    
+    [self setupRatingStars];
     
     
     
@@ -131,6 +140,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 }
 
+
+
 // Make the reload button pulse
 - (void)animateButton {
     CABasicAnimation *pulseAnimation;
@@ -146,6 +157,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 }
 
 - (void)loadDeck {
+    self.starRating.hidden = YES;
+
+    
     // This view controller maintains a list of ChooseExerciseView
     // instances to display.
     _exercises = [[self defaultPeople] mutableCopy];
@@ -168,6 +182,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     [self.splashView startAnimation];
     
+    self.starRating.hidden = NO;
     self.view.backgroundColor = [UIColor greenColor];
 }
 
@@ -456,6 +471,39 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 }
 
 
+#pragma mark - Rating System
+
+- (void)setupRatingStars {
+    // Setup control using iOS7 tint Color
+    _starRating.backgroundColor  = [UIColor clearColor];
+    _starRating.starImage = [[UIImage imageNamed:@"star-template"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    _starRating.starHighlightedImage = [[UIImage imageNamed:@"star-highlighted-template"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    _starRating.maxRating = 5.0;
+    _starRating.delegate = self;
+    _starRating.horizontalMargin = 15.0;
+    _starRating.editable = YES;
+    _starRating.rating = 2.5;
+    _starRating.displayMode = EDStarRatingDisplayAccurate;
+    [_starRating  setNeedsDisplay];
+    _starRating.tintColor = [UIColor whiteColor];
+    _starRating.hidden = YES;
+    [self starsSelectionChanged:_starRating rating:2.5];
+    
+}
+
+-(void)starsSelectionChanged:(EDStarRating *)control rating:(float)rating
+{
+    if (self.starRating.hidden == NO) {
+        NSString *ratingString = [NSString stringWithFormat:@"%.1f", rating];
+        NSLog(@"You rated the exercise as %@.", ratingString);
+
+        
+        self.exerciseRatingObject = [PFObject objectWithClassName:@"ExerciseRatingObject"];
+        self.exerciseRatingObject[@"Rating"] = ratingString;
+        
+        [self.exerciseRatingObject saveInBackground];
+    }
+}
 
 
 

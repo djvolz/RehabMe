@@ -71,6 +71,15 @@
 		30880E711AA8023D006746C4 /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E561AA8023D006746C4 /* TSBlurView.m */; };
 		30880E721AA8023D006746C4 /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E581AA8023D006746C4 /* TSMessage.m */; };
 		30880E731AA8023D006746C4 /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E5A1AA8023D006746C4 /* TSMessageView.m */; };
+		30880EEE1AA82F5B006746C4 /* EDStarRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880EED1AA82F5B006746C4 /* EDStarRating.m */; };
+		30880EF81AA83590006746C4 /* star-highlighted-template.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF01AA83590006746C4 /* star-highlighted-template.png */; };
+		30880EF91AA83590006746C4 /* star-highlighted-template@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF11AA83590006746C4 /* star-highlighted-template@2x.png */; };
+		30880EFA1AA83590006746C4 /* star-template.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF21AA83590006746C4 /* star-template.png */; };
+		30880EFB1AA83590006746C4 /* star-template@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF31AA83590006746C4 /* star-template@2x.png */; };
+		30880EFC1AA83590006746C4 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF41AA83590006746C4 /* star.png */; };
+		30880EFD1AA83590006746C4 /* starhighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF51AA83590006746C4 /* starhighlighted.png */; };
+		30880EFE1AA83590006746C4 /* starsbackground iOS.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF61AA83590006746C4 /* starsbackground iOS.png */; };
+		30880EFF1AA83590006746C4 /* starsbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF71AA83590006746C4 /* starsbackground.png */; };
 		3099B2FC1A9BC6CE00DB2B92 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */; };
 		30BFD6561A9D49F3007C187F /* snapchatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 30BFD6551A9D49F3007C187F /* snapchatIcon.png */; };
 		30C30BDF1A9D4FDE006194BA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C30BDE1A9D4FDE006194BA /* MainStoryboard.storyboard */; };
@@ -188,6 +197,16 @@
 		30880E581AA8023D006746C4 /* TSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessage.m; sourceTree = "<group>"; };
 		30880E591AA8023D006746C4 /* TSMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMessageView.h; sourceTree = "<group>"; };
 		30880E5A1AA8023D006746C4 /* TSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessageView.m; sourceTree = "<group>"; };
+		30880EEC1AA82F5B006746C4 /* EDStarRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDStarRating.h; sourceTree = "<group>"; };
+		30880EED1AA82F5B006746C4 /* EDStarRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDStarRating.m; sourceTree = "<group>"; };
+		30880EF01AA83590006746C4 /* star-highlighted-template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-highlighted-template.png"; sourceTree = "<group>"; };
+		30880EF11AA83590006746C4 /* star-highlighted-template@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-highlighted-template@2x.png"; sourceTree = "<group>"; };
+		30880EF21AA83590006746C4 /* star-template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-template.png"; sourceTree = "<group>"; };
+		30880EF31AA83590006746C4 /* star-template@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-template@2x.png"; sourceTree = "<group>"; };
+		30880EF41AA83590006746C4 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		30880EF51AA83590006746C4 /* starhighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starhighlighted.png; sourceTree = "<group>"; };
+		30880EF61AA83590006746C4 /* starsbackground iOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starsbackground iOS.png"; sourceTree = "<group>"; };
+		30880EF71AA83590006746C4 /* starsbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starsbackground.png; sourceTree = "<group>"; };
 		3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		30BFD6551A9D49F3007C187F /* snapchatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snapchatIcon.png; sourceTree = "<group>"; };
 		30C30BDE1A9D4FDE006194BA /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -384,6 +403,7 @@
 		307F83791A9BC13900B1CEFF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				30880EEB1AA82F5B006746C4 /* EDStarRating */,
 				30880E391AA8023D006746C4 /* HexColors */,
 				30880E3F1AA8023D006746C4 /* TSMessages */,
 				303C063A1A9FE0EB001D9B78 /* MDCSwipeToChoose */,
@@ -499,6 +519,31 @@
 				30880E5A1AA8023D006746C4 /* TSMessageView.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		30880EEB1AA82F5B006746C4 /* EDStarRating */ = {
+			isa = PBXGroup;
+			children = (
+				30880EEF1AA83590006746C4 /* Assets */,
+				30880EEC1AA82F5B006746C4 /* EDStarRating.h */,
+				30880EED1AA82F5B006746C4 /* EDStarRating.m */,
+			);
+			path = EDStarRating;
+			sourceTree = "<group>";
+		};
+		30880EEF1AA83590006746C4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				30880EF01AA83590006746C4 /* star-highlighted-template.png */,
+				30880EF11AA83590006746C4 /* star-highlighted-template@2x.png */,
+				30880EF21AA83590006746C4 /* star-template.png */,
+				30880EF31AA83590006746C4 /* star-template@2x.png */,
+				30880EF41AA83590006746C4 /* star.png */,
+				30880EF51AA83590006746C4 /* starhighlighted.png */,
+				30880EF61AA83590006746C4 /* starsbackground iOS.png */,
+				30880EF71AA83590006746C4 /* starsbackground.png */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		DA5B73DC18F233EF00BB5F8E = {
@@ -623,12 +668,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				30880E5C1AA8023D006746C4 /* LICENCE in Resources */,
+				30880EFD1AA83590006746C4 /* starhighlighted.png in Resources */,
+				30880EF81AA83590006746C4 /* star-highlighted-template.png in Resources */,
 				30880E621AA8023D006746C4 /* NotificationBackgroundErrorIcon@2x.png in Resources */,
+				30880EFE1AA83590006746C4 /* starsbackground iOS.png in Resources */,
 				30880E6D1AA8023D006746C4 /* NotificationButtonBackground.png in Resources */,
 				30880E6A1AA8023D006746C4 /* NotificationBackgroundWarning@2x.png in Resources */,
+				30880EFC1AA83590006746C4 /* star.png in Resources */,
 				30880E6C1AA8023D006746C4 /* NotificationBackgroundWarningIcon@2x.png in Resources */,
 				30880E651AA8023D006746C4 /* NotificationBackgroundSuccess.png in Resources */,
 				307F837E1A9BC18A00B1CEFF /* InfoPlist.strings in Resources */,
+				30880EF91AA83590006746C4 /* star-highlighted-template@2x.png in Resources */,
 				30C30BE11A9D5257006194BA /* twitterIcon.png in Resources */,
 				307F83721A9BC12400B1CEFF /* InfoPlist.strings in Resources */,
 				30880E601AA8023D006746C4 /* NotificationBackgroundError@2x.png in Resources */,
@@ -636,11 +686,14 @@
 				30880E611AA8023D006746C4 /* NotificationBackgroundErrorIcon.png in Resources */,
 				30880E661AA8023D006746C4 /* NotificationBackgroundSuccess@2x.png in Resources */,
 				30880E6E1AA8023D006746C4 /* NotificationButtonBackground@2x.png in Resources */,
+				30880EFA1AA83590006746C4 /* star-template.png in Resources */,
 				30880E6B1AA8023D006746C4 /* NotificationBackgroundWarningIcon.png in Resources */,
 				30880E631AA8023D006746C4 /* NotificationBackgroundMessage.png in Resources */,
 				30880E6F1AA8023D006746C4 /* TSMessagesDefaultDesign.json in Resources */,
 				3099B2FC1A9BC6CE00DB2B92 /* LaunchScreen.xib in Resources */,
 				30BFD6561A9D49F3007C187F /* snapchatIcon.png in Resources */,
+				30880EFF1AA83590006746C4 /* starsbackground.png in Resources */,
+				30880EFB1AA83590006746C4 /* star-template@2x.png in Resources */,
 				30880E5F1AA8023D006746C4 /* NotificationBackgroundError.png in Resources */,
 				30880E681AA8023D006746C4 /* NotificationBackgroundSuccessIcon@2x.png in Resources */,
 				30880E641AA8023D006746C4 /* NotificationBackgroundMessage@2x.png in Resources */,
@@ -686,6 +739,7 @@
 				307F83771A9BC12400B1CEFF /* ChooseExerciseView.m in Sources */,
 				3083120C1A9E65AC00CC2A5C /* CBZVectorSplashView.m in Sources */,
 				303C06301A9FDFDE001D9B78 /* MDCGeometry.m in Sources */,
+				30880EEE1AA82F5B006746C4 /* EDStarRating.m in Sources */,
 				307F83701A9BC12400B1CEFF /* AppDelegate.m in Sources */,
 				3083120B1A9E65AC00CC2A5C /* CBZRasterSplashView.m in Sources */,
 				307F83781A9BC12400B1CEFF /* ImageLabelView.m in Sources */,

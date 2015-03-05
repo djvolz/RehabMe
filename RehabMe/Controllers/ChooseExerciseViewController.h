@@ -33,8 +33,10 @@
 #import "TSMessageView.h"
 #import "UIColor+HexString.h"
 #import "UIBezierPath+Shapes.h"
+#import "EDStarRating.h"
 
-@interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol>
+
+@interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol, EDStarRatingProtocol>
 
 @property (nonatomic, strong) Exercise *currentExercise;
 @property (nonatomic, strong) ChooseExerciseView *frontCardView;
