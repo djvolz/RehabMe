@@ -47,7 +47,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 //- (instancetype)init {
 //    self = [super init];
 //    if (self) {
-//        // This view controller maintains a list of ChoosePersonView
+//        // This view controller maintains a list of ChooseExerciseView
 //        // instances to display.
 //        _exercises = [[self defaultPeople] mutableCopy];
 //    }
@@ -146,16 +146,16 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 }
 
 - (void)loadDeck {
-    // This view controller maintains a list of ChoosePersonView
+    // This view controller maintains a list of ChooseExerciseView
     // instances to display.
     _exercises = [[self defaultPeople] mutableCopy];
     
-    // Display the first ChoosePersonView in front. Users can swipe to indicate
+    // Display the first ChooseExerciseView in front. Users can swipe to indicate
     // whether they like or dislike the person displayed.
     self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
     [self.view addSubview:self.frontCardView];
     
-    // Display the second ChoosePersonView in back. This view controller uses
+    // Display the second ChooseExerciseView in back. This view controller uses
     // the MDCSwipeToChooseDelegate protocol methods to update the front and
     // back views after each user swipe.
     self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
@@ -177,6 +177,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     return UIInterfaceOrientationMaskPortrait;
 }
 
+
 #pragma mark - MDCSwipeToChooseDelegate Protocol Methods
 
 // This is called when a user didn't fully swipe left or right.
@@ -189,35 +190,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // MDCSwipeToChooseView shows "NOPE" on swipes to the left,
     // and "LIKED" on swipes to the right.
     if (direction == MDCSwipeDirectionLeft) {
-        NSLog(@"You noped %@.", self.currentExercise.name);
-        
-        self.exerciseObject = [PFObject objectWithClassName:@"ExerciseObject"];
-        self.exerciseObject[@"skipped"] = self.currentExercise.name;
-        self.exerciseObject[self.currentExercise.name] = @"skipped";
-
-        [self.exerciseObject saveInBackground];
-        
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        // No more backcard so after completing this swipe is the end of the deck
-        if (self.backCardView == nil) {
-            [self endOfDeck];
-        }
+        [self viewDidSwipeLeft];
     } else {
-        NSLog(@"You liked %@.", self.currentExercise.name);
-
-        
-        self.exerciseObject = [PFObject objectWithClassName:@"ExerciseObject"];
-        self.exerciseObject[@"performed"] = self.currentExercise.name;
-        self.exerciseObject[self.currentExercise.name] = @"performed";
-
-        [self.exerciseObject saveInBackground];
-
-        
-        // No more backcard so after completing this swipe is the end of the deck
-        if (self.backCardView == nil) {
-            [self endOfDeck];
-        }
+        [self viewDidSwipeRight];
     }
 
     // MDCSwipeToChooseView removes the view from the view hierarchy
@@ -442,51 +417,47 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self loadDeck];
 }
 
-- (void) likedExercise {
+
+
+
+#pragma mark - Swipe Actions
+
+- (void)updateParseWithSwipeDecision:(NSString *)decision {
+    self.exerciseObject = [PFObject objectWithClassName:@"ExerciseObject"];
+    self.exerciseObject[decision] = self.currentExercise.name;
+    self.exerciseObject[self.currentExercise.name] = decision;
+    
+    [self.exerciseObject saveInBackground];
+}
+
+- (void)viewDidSwipeRight {
+    NSLog(@"You selected %@.", self.currentExercise.name);
+    
+    [self updateParseWithSwipeDecision:@"performed"];
+    
+    [self checkforEndOfDeck];
     
 }
 
-- (void) nopedExercise {
+- (void)viewDidSwipeLeft {
+    NSLog(@"You noped %@.", self.currentExercise.name);
     
+    [self updateParseWithSwipeDecision:@"skipped"];
+    
+    [self checkforEndOfDeck];
+    
+}
+
+- (void) checkforEndOfDeck {
+    // No more backcard so after completing this swipe is the end of the deck
+    if (self.backCardView == nil) {
+        [self endOfDeck];
+    }
 }
 
 
 
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    self.gradient = [CAGradientLayer layer];
-//    self.gradient.frame = self.view.bounds;
-//    self.gradient.colors = @[(id)[UIColor lightGrayColor].CGColor,
-//                             (id)[UIColor whiteColor].CGColor];
-//
-//    [self.view.layer insertSublayer:self.gradient atIndex:0];
-//
-//    [self animateLayer];
-//}
-//
-//-(void)animateLayer
-//{
-//
-//    NSArray *fromColors = self.gradient.colors;
-//    NSArray *toColors = @[(id)[UIColor lightGrayColor].CGColor,
-//                          (id)[UIColor whiteColor].CGColor];
-//
-//    [self.gradient setColors:toColors];
-//
-//    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
-//
-//    animation.fromValue             = fromColors;
-//    animation.toValue               = toColors;
-//    animation.duration              = 7.00;
-//    animation.removedOnCompletion   = YES;
-//    animation.fillMode              = kCAFillModeForwards;
-//    animation.timingFunction        = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-//    animation.delegate              = self;
-//
-//    // Add the animation to our layer
-//
-//    [self.gradient addAnimation:animation forKey:@"animateGradient"];
-//}
+
 
 
 @end

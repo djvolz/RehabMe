@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss0-zD-oVb">
-                                <rect key="frame" x="89" y="308" width="236" height="120"/>
+                                <rect key="frame" x="0.0" y="125" width="414" height="458"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="45"/>
                                 <state key="normal" title="Again?">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -31,7 +31,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="waP-RZ-D7f">
                                 <rect key="frame" x="16" y="37" width="95" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="95" id="equ-6N-HZt"/>
+                                    <constraint firstAttribute="width" constant="95" id="cww-A4-ILt"/>
+                                    <constraint firstAttribute="height" constant="29" id="u3M-e1-JQY"/>
                                 </constraints>
                                 <state key="normal" image="menuButton">
                                     <attributedString key="attributedTitle"/>
@@ -41,12 +42,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leadingMargin" constant="73" id="CNO-lm-PPx"/>
-                            <constraint firstItem="kDL-cW-hVY" firstAttribute="top" secondItem="Ss0-zD-oVb" secondAttribute="bottom" constant="308" id="HiN-Jy-lon"/>
-                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="centerY" secondItem="HUX-de-enZ" secondAttribute="centerY" id="LBu-rv-4md"/>
-                            <constraint firstItem="waP-RZ-D7f" firstAttribute="top" secondItem="KPe-ew-9kL" secondAttribute="bottom" constant="17" id="Qge-c3-gAZ"/>
-                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="centerX" secondItem="HUX-de-enZ" secondAttribute="centerX" id="d4S-4b-rop"/>
-                            <constraint firstItem="waP-RZ-D7f" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leadingMargin" id="mvE-BE-tRh"/>
+                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="top" secondItem="waP-RZ-D7f" secondAttribute="bottom" constant="59" id="G8e-I1-KQ8"/>
+                            <constraint firstItem="waP-RZ-D7f" firstAttribute="top" secondItem="KPe-ew-9kL" secondAttribute="bottom" constant="17" id="ZwG-u3-dtc"/>
+                            <constraint firstItem="waP-RZ-D7f" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leadingMargin" id="b4E-fF-dvq"/>
+                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leading" id="jfn-tS-ews"/>
+                            <constraint firstItem="kDL-cW-hVY" firstAttribute="top" secondItem="Ss0-zD-oVb" secondAttribute="bottom" constant="153" id="n2b-PH-vIb"/>
+                            <constraint firstAttribute="trailing" secondItem="Ss0-zD-oVb" secondAttribute="trailing" id="vA2-Gv-ILC"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
