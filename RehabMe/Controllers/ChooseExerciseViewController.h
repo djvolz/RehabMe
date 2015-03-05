@@ -30,10 +30,11 @@
 #import "ChooseExerciseView.h"
 #import "MDCSwipeToChoose.h"
 #import "CBZSplashView.h"
+#import "TSMessageView.h"
 #import "UIColor+HexString.h"
 #import "UIBezierPath+Shapes.h"
 
-@interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate>
+@interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol>
 
 @property (nonatomic, strong) Exercise *currentExercise;
 @property (nonatomic, strong) ChooseExerciseView *frontCardView;

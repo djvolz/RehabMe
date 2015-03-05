@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss0-zD-oVb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss0-zD-oVb">
                                 <rect key="frame" x="89" y="308" width="236" height="120"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="45"/>
                                 <state key="normal" title="Again?">
@@ -28,8 +28,11 @@
                                     <action selector="pressedReloadButton:" destination="dKd-vA-a2t" eventType="touchUpInside" id="vvz-KN-mhj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="waP-RZ-D7f">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="waP-RZ-D7f">
                                 <rect key="frame" x="16" y="37" width="95" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="95" id="equ-6N-HZt"/>
+                                </constraints>
                                 <state key="normal" image="menuButton">
                                     <attributedString key="attributedTitle"/>
                                 </state>
@@ -38,10 +41,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="centerX" secondItem="HUX-de-enZ" secondAttribute="centerX" id="4SQ-83-XLm"/>
-                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="centerY" secondItem="HUX-de-enZ" secondAttribute="centerY" id="HvR-Kv-kSa"/>
-                            <constraint firstItem="waP-RZ-D7f" firstAttribute="top" secondItem="KPe-ew-9kL" secondAttribute="bottom" constant="17" id="aRX-ld-jWc"/>
-                            <constraint firstItem="waP-RZ-D7f" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leadingMargin" id="you-4V-Ttb"/>
+                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leadingMargin" constant="73" id="CNO-lm-PPx"/>
+                            <constraint firstItem="kDL-cW-hVY" firstAttribute="top" secondItem="Ss0-zD-oVb" secondAttribute="bottom" constant="308" id="HiN-Jy-lon"/>
+                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="centerY" secondItem="HUX-de-enZ" secondAttribute="centerY" id="LBu-rv-4md"/>
+                            <constraint firstItem="waP-RZ-D7f" firstAttribute="top" secondItem="KPe-ew-9kL" secondAttribute="bottom" constant="17" id="Qge-c3-gAZ"/>
+                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="centerX" secondItem="HUX-de-enZ" secondAttribute="centerX" id="d4S-4b-rop"/>
+                            <constraint firstItem="waP-RZ-D7f" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leadingMargin" id="mvE-BE-tRh"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>

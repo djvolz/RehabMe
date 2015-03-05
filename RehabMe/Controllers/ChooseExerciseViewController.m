@@ -61,6 +61,10 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     [self loadDeck];
     
+    
+    
+    
+    
 //    [self loginExampleMethod];
     
     
@@ -73,29 +77,44 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 }
 
 
-- (void)loginExampleMethod {
-    PFUser *user = [PFUser user];
-    user.username = @"Yize";
-    user.password = @"Zhao";
-    user.email = @"contact@rehabme.com";
-
-    // other fields can be set just like with PFObject
-    user[@"phone"] = @"415-392-0202";
-    
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            // Hooray! Let them use the app now.
-        } else {
-            NSString *errorString = [error userInfo][@"error"];
-            // Show the errorString somewhere and let the user try again.
-        }
-    }];
-}
+//- (void)loginExampleMethod {
+//    PFUser *user = [PFUser user];
+//    user.username = @"Yize";
+//    user.password = @"Zhao";
+//    user.email = @"contact@rehabme.com";
+//
+//    // other fields can be set just like with PFObject
+//    user[@"phone"] = @"415-392-0202";
+//    
+//    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (!error) {
+//            // Hooray! Let them use the app now.
+//        } else {
+//            NSString *errorString = [error userInfo][@"error"];
+//            // Show the errorString somewhere and let the user try again.
+//        }
+//    }];
+//}
 
 
 
 - (void) viewDidAppear:(BOOL)animated {
     [self animateButton];
+    
+    
+    // Show welcome badge notification
+    [TSMessage showNotificationInViewController:self
+                                           title:NSLocalizedString(@"Welcome back!", nil)
+                                        subtitle:NSLocalizedString(@"This uses an image you can define", nil)
+                                           image:[UIImage imageNamed:@"NotificationBackgroundSuccessIcon"]
+                                            type:TSMessageNotificationTypeSuccess
+                                        duration:TSMessageNotificationDurationAutomatic
+                                        callback:nil
+                                     buttonTitle:nil
+                                  buttonCallback:nil
+                                      atPosition:TSMessageNotificationPositionTop
+                            canBeDismissedByUser:YES];
+
 }
 
 // Constructs splash that splashes green check button that grows across screen
@@ -193,6 +212,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         self.exerciseObject[self.currentExercise.name] = @"performed";
 
         [self.exerciseObject saveInBackground];
+
         
         // No more backcard so after completing this swipe is the end of the deck
         if (self.backCardView == nil) {
