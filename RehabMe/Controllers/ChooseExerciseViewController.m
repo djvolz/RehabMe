@@ -49,6 +49,41 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 @synthesize starRating=_starRating;
 
 
+///////////////////////////////////////////////////////////////////////////////
+//////////////////////      TODO        ///////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+//
+//
+// MVP:
+// Instructions card goes full screen on swipe right
+// Timer if applicable
+// DONE: Parse data reading from OK and NOPE
+// DONE: Text when card is tapped
+// DONE: Notification welcome back
+// DONE: Rating system after done with cards
+//
+//
+// Features:
+// HUD with number of exercises and number of sets left for day
+// Gif pictorial instruction instead of still picture
+// Custom videos/pictures
+// Badges
+// Push notifications
+// Menu with exercises sets
+// Edit text
+// Progress over the a period of time
+//
+//
+// Other:
+// Talk to therapist
+// Therapist select custom exercises
+// Pull from my VHI
+// Spanish version
+// Reading out loud
+//
+///////////////////////////////////////////////////////////////////////////////
+
+
 #pragma mark - Object Lifecycle
 
 //- (instancetype)init {
