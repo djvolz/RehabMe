@@ -37,7 +37,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 @property (nonatomic, strong) CBZSplashView *splashView;
 @property (weak, nonatomic) IBOutlet EDStarRating *starRating;
 
-
 @property (nonatomic, strong) PFObject *exerciseObject;
 @property (nonatomic, strong) PFObject *exerciseRatingObject;
 
@@ -46,42 +45,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 @implementation ChooseExerciseViewController
 
-@synthesize starRating=_starRating;
+@synthesize starRating = _starRating;
 
 
-///////////////////////////////////////////////////////////////////////////////
-//////////////////////      TODO        ///////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-//
-//
-// MVP:
-// Instructions card goes full screen on swipe right
-// Timer if applicable
-// DONE: Parse data reading from OK and NOPE
-// DONE: Text when card is tapped
-// DONE: Notification welcome back
-// DONE: Rating system after done with cards
-//
-//
-// Features:
-// HUD with number of exercises and number of sets left for day
-// Gif pictorial instruction instead of still picture
-// Custom videos/pictures
-// Badges
-// Push notifications
-// Menu with exercises sets
-// Edit text
-// Progress over the a period of time
-//
-//
-// Other:
-// Talk to therapist
-// Therapist select custom exercises
-// Pull from my VHI
-// Spanish version
-// Reading out loud
-//
-///////////////////////////////////////////////////////////////////////////////
 
 
 #pragma mark - Object Lifecycle
@@ -105,20 +71,14 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     [self setupRatingStars];
     
-    
-    
-    
-    
-//    [self loginExampleMethod];
-    
-    
     // Add buttons to programmatically swipe the view left or right.
     // See the `nopeFrontCardView` and `likeFrontCardView` methods.
 //    [self constructNopeButton];
 //    [self constructLikedButton];
-    
+//    [self loginExampleMethod];
 
 }
+
 
 
 //- (void)loginExampleMethod {
@@ -267,10 +227,11 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 - (void)setFrontCardView:(ChooseExerciseView *)frontCardView {
     // Keep track of the person currently being chosen.
-    // Quick and dirty, just for the purposes of this sample app.
+    // Quick and dirty.
     _frontCardView = frontCardView;
     self.currentExercise = frontCardView.exercise;
 }
+
 
 - (NSArray *)defaultPeople {
     // It would be trivial to download these from a web service
@@ -282,7 +243,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                                  count:15
                numberOfSharedFriends:3
              numberOfSharedInterests:2
-                      timeRequired:1
+                      timeRequired:10
                           instructions:@"Bacon ipsum dolor amet chuck elit incididunt alcatra nostrud brisket. Shankle landjaeger beef ribs chicken dolor reprehenderit hamburger cow ham hock jerky pork pork belly in meatball consequat. Leberkas irure in, chicken adipisicing cupim fatback ground round quis frankfurter hamburger. Boudin tenderloin occaecat jowl, tail rump picanha ut alcatra flank esse proident. Prosciutto ut mollit et ground round proident labore kielbasa bacon ipsum tenderloin beef ribs."],
 
         [[Exercise alloc] initWithName:@"HalfSquats"
@@ -291,7 +252,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                numberOfSharedFriends:2
              numberOfSharedInterests:6
                       timeRequired:8
-                          instructions:@"do your stuff"],
+                          instructions:@"Lie on back or stomach\nLegs should be straight\n"],
 
         [[Exercise alloc] initWithName:@"HamstringCurls"
                                image:[UIImage imageNamed:@"hamstring_curls"]
@@ -306,7 +267,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                                  count:18
                numberOfSharedFriends:1
              numberOfSharedInterests:1
-                      timeRequired:2
+                      timeRequired:20
                           instructions:@"do your stuff"],
 
         [[Exercise alloc] initWithName:@"HipAbduction"
@@ -314,7 +275,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                                  count:15
                  numberOfSharedFriends:3
                numberOfSharedInterests:2
-                          timeRequired:1
+                          timeRequired:10
                           instructions:@"do your stuff"],
 
 
@@ -323,7 +284,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                                  count:15
                  numberOfSharedFriends:3
                numberOfSharedInterests:2
-                          timeRequired:1
+                          timeRequired:15
                           instructions:@"do your stuff"],
 
 
@@ -332,7 +293,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                                  count:15
                  numberOfSharedFriends:3
                numberOfSharedInterests:2
-                          timeRequired:1
+                          timeRequired:12
                           instructions:@"do your stuff"],
 
 
@@ -341,7 +302,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                                  count:15
                  numberOfSharedFriends:3
                numberOfSharedInterests:2
-                          timeRequired:1
+                          timeRequired:7
                           instructions:@"do your stuff"],
 
     ];
@@ -480,8 +441,26 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self.exerciseObject saveInBackground];
 }
 
+
 - (void)viewDidSwipeRight {
     NSLog(@"You selected %@.", self.currentExercise.name);
+    
+    double delayInSeconds = 5.0;
+
+    
+    //First allow setup and waiting time to get ready
+    [self setupCircularProgressTimerView:(NSInteger)delayInSeconds + 1 withColor:[UIColor yellowColor]];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        //code to be executed on the main queue after delay
+        //Then actually show the exercise timer
+        [self setupCircularProgressTimerView:self.currentExercise.timeRequired withColor:[UIColor greenColor]];
+    });
+    
+
+    
+
     
     [self updateParseWithSwipeDecision:@"performed"];
     
@@ -540,6 +519,26 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     }
 }
 
+
+#pragma mark - Circle Timer Progress Bar System
+
+- (void)setupCircularProgressTimerView:(NSInteger)seconds withColor:(UIColor *)color{
+    
+    CircularProgressTimerView *circleProgressTimerView = [[CircularProgressTimerView alloc] init];
+    
+    self.circleProgressTimerView = circleProgressTimerView;
+    
+    
+    [self.view insertSubview:circleProgressTimerView aboveSubview:self.frontCardView];
+    
+    // Set the circleProgressTimerView with the intial time in seconds.
+    [self.circleProgressTimerView setTimer:seconds];
+    
+    [self.circleProgressTimerView setCircleColor:color];
+    
+    [self.circleProgressTimerView startTimer];
+    
+}
 
 
 

@@ -24,6 +24,40 @@
 // THE SOFTWARE.
 //
 
+///////////////////////////////////////////////////////////////////////////////
+//////////////////////      TODO        ///////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+//
+//
+// MVP:
+// Make exercise instructions available while timer is going.
+// DONE: Timer if applicable
+// DONE: Parse data reading from OK and NOPE
+// DONE: Text when button is tapped
+// DONE: Notification welcome back
+// DONE: Rating system after done with cards
+// (MAYBE just do a timer instead) Instructions card goes full screen on swipe right
+//
+// Features:
+// HUD with number of exercises and number of sets left for day
+// Gif pictorial instruction instead of still picture
+// Custom videos/pictures
+// Badges
+// Push notifications
+// Menu with exercises sets
+// Edit text
+// Progress over the a period of time
+//
+//
+// Other:
+// Talk to therapist
+// Therapist select custom exercises
+// Pull from my VHI
+// Spanish version
+// Reading out loud
+//
+///////////////////////////////////////////////////////////////////////////////
+
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "Exercise.h"
@@ -34,15 +68,24 @@
 #import "UIColor+HexString.h"
 #import "UIBezierPath+Shapes.h"
 #import "EDStarRating.h"
+#import "CircularProgressTimerView.h"
+
 
 
 @interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol, EDStarRatingProtocol>
 
+
 @property (nonatomic, strong) Exercise *currentExercise;
+@property (nonatomic, strong) CircularProgressTimerView *circleProgressTimerView;
 @property (nonatomic, strong) ChooseExerciseView *frontCardView;
 @property (nonatomic, strong) ChooseExerciseView *backCardView;
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (strong, nonatomic) IBOutlet UIButton *reloadButton;
 
 
+
+
 @end
+
+
+

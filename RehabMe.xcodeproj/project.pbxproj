@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		303C06111A9FDF88001D9B78 /* libMDCSwipeToChoose.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 303C06101A9FDF88001D9B78 /* libMDCSwipeToChoose.a */; };
 		303C06301A9FDFDE001D9B78 /* MDCGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 303C06141A9FDFDE001D9B78 /* MDCGeometry.m */; };
 		303C06311A9FDFDE001D9B78 /* MDCViewState.m in Sources */ = {isa = PBXBuildFile; fileRef = 303C06171A9FDFDE001D9B78 /* MDCViewState.m */; };
 		303C06321A9FDFDE001D9B78 /* UIColor+MDCRGB8Bit.m in Sources */ = {isa = PBXBuildFile; fileRef = 303C06191A9FDFDE001D9B78 /* UIColor+MDCRGB8Bit.m */; };
@@ -50,7 +49,6 @@
 		3083120E1A9E65AC00CC2A5C /* UIBezierPath+Shapes.m in Sources */ = {isa = PBXBuildFile; fileRef = 308312091A9E65AC00CC2A5C /* UIBezierPath+Shapes.m */; };
 		30880E5B1AA8023D006746C4 /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E3C1AA8023D006746C4 /* HexColor.m */; };
 		30880E5C1AA8023D006746C4 /* LICENCE in Resources */ = {isa = PBXBuildFile; fileRef = 30880E3D1AA8023D006746C4 /* LICENCE */; };
-		30880E5D1AA8023D006746C4 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 30880E3E1AA8023D006746C4 /* README.md */; };
 		30880E5F1AA8023D006746C4 /* NotificationBackgroundError.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880E421AA8023D006746C4 /* NotificationBackgroundError.png */; };
 		30880E601AA8023D006746C4 /* NotificationBackgroundError@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880E431AA8023D006746C4 /* NotificationBackgroundError@2x.png */; };
 		30880E611AA8023D006746C4 /* NotificationBackgroundErrorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880E441AA8023D006746C4 /* NotificationBackgroundErrorIcon.png */; };
@@ -80,6 +78,8 @@
 		30880EFD1AA83590006746C4 /* starhighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF51AA83590006746C4 /* starhighlighted.png */; };
 		30880EFE1AA83590006746C4 /* starsbackground iOS.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF61AA83590006746C4 /* starsbackground iOS.png */; };
 		30880EFF1AA83590006746C4 /* starsbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF71AA83590006746C4 /* starsbackground.png */; };
+		308C09411AAA15DA00754C66 /* CircularProgressTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 308C09401AAA15DA00754C66 /* CircularProgressTimer.m */; };
+		308C09451AAA175700754C66 /* CircularProgressTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308C09441AAA175700754C66 /* CircularProgressTimerView.m */; };
 		3099B2FC1A9BC6CE00DB2B92 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */; };
 		30BFD6561A9D49F3007C187F /* snapchatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 30BFD6551A9D49F3007C187F /* snapchatIcon.png */; };
 		30C30BDF1A9D4FDE006194BA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C30BDE1A9D4FDE006194BA /* MainStoryboard.storyboard */; };
@@ -104,7 +104,6 @@
 
 /* Begin PBXFileReference section */
 		303500341A9E5F3700EA1C5C /* RehabMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RehabMe-Bridging-Header.h"; sourceTree = "<group>"; };
-		303C06101A9FDF88001D9B78 /* libMDCSwipeToChoose.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMDCSwipeToChoose.a; sourceTree = "<group>"; };
 		303C06131A9FDFDE001D9B78 /* MDCGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCGeometry.h; sourceTree = "<group>"; };
 		303C06141A9FDFDE001D9B78 /* MDCGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCGeometry.m; sourceTree = "<group>"; };
 		303C06161A9FDFDE001D9B78 /* MDCViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCViewState.h; sourceTree = "<group>"; };
@@ -173,7 +172,6 @@
 		30880E3B1AA8023D006746C4 /* HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexColor.h; sourceTree = "<group>"; };
 		30880E3C1AA8023D006746C4 /* HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexColor.m; sourceTree = "<group>"; };
 		30880E3D1AA8023D006746C4 /* LICENCE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE; sourceTree = "<group>"; };
-		30880E3E1AA8023D006746C4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		30880E421AA8023D006746C4 /* NotificationBackgroundError.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotificationBackgroundError.png; sourceTree = "<group>"; };
 		30880E431AA8023D006746C4 /* NotificationBackgroundError@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotificationBackgroundError@2x.png"; sourceTree = "<group>"; };
 		30880E441AA8023D006746C4 /* NotificationBackgroundErrorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotificationBackgroundErrorIcon.png; sourceTree = "<group>"; };
@@ -207,6 +205,10 @@
 		30880EF51AA83590006746C4 /* starhighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starhighlighted.png; sourceTree = "<group>"; };
 		30880EF61AA83590006746C4 /* starsbackground iOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starsbackground iOS.png"; sourceTree = "<group>"; };
 		30880EF71AA83590006746C4 /* starsbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starsbackground.png; sourceTree = "<group>"; };
+		308C093F1AAA15DA00754C66 /* CircularProgressTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularProgressTimer.h; sourceTree = "<group>"; };
+		308C09401AAA15DA00754C66 /* CircularProgressTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularProgressTimer.m; sourceTree = "<group>"; };
+		308C09431AAA175700754C66 /* CircularProgressTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularProgressTimerView.h; sourceTree = "<group>"; };
+		308C09441AAA175700754C66 /* CircularProgressTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularProgressTimerView.m; sourceTree = "<group>"; };
 		3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		30BFD6551A9D49F3007C187F /* snapchatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snapchatIcon.png; sourceTree = "<group>"; };
 		30C30BDE1A9D4FDE006194BA /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -234,7 +236,6 @@
 				306093B11A9FDA360027BAAF /* StoreKit.framework in Frameworks */,
 				306093AF1A9FDA2E0027BAAF /* Security.framework in Frameworks */,
 				303C064C1A9FE13A001D9B78 /* Parse.framework in Frameworks */,
-				303C06111A9FDF88001D9B78 /* libMDCSwipeToChoose.a in Frameworks */,
 				303C064F1A9FE13A001D9B78 /* ParseUI.framework in Frameworks */,
 				306093AD1A9FDA270027BAAF /* QuartzCore.framework in Frameworks */,
 				306093AB1A9FDA1E0027BAAF /* MobileCoreServices.framework in Frameworks */,
@@ -392,6 +393,8 @@
 		307F836B1A9BC12400B1CEFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				308C09431AAA175700754C66 /* CircularProgressTimerView.h */,
+				308C09441AAA175700754C66 /* CircularProgressTimerView.m */,
 				307F836C1A9BC12400B1CEFF /* ChooseExerciseView.h */,
 				307F836D1A9BC12400B1CEFF /* ChooseExerciseView.m */,
 				307F836E1A9BC12400B1CEFF /* ImageLabelView.h */,
@@ -403,6 +406,7 @@
 		307F83791A9BC13900B1CEFF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				308C093E1AAA15DA00754C66 /* CircularProgress */,
 				30880EEB1AA82F5B006746C4 /* EDStarRating */,
 				30880E391AA8023D006746C4 /* HexColors */,
 				30880E3F1AA8023D006746C4 /* TSMessages */,
@@ -461,7 +465,6 @@
 			children = (
 				30880E3A1AA8023D006746C4 /* Classes */,
 				30880E3D1AA8023D006746C4 /* LICENCE */,
-				30880E3E1AA8023D006746C4 /* README.md */,
 			);
 			path = HexColors;
 			sourceTree = "<group>";
@@ -546,6 +549,15 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		308C093E1AAA15DA00754C66 /* CircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				308C093F1AAA15DA00754C66 /* CircularProgressTimer.h */,
+				308C09401AAA15DA00754C66 /* CircularProgressTimer.m */,
+			);
+			path = CircularProgress;
+			sourceTree = "<group>";
+		};
 		DA5B73DC18F233EF00BB5F8E = {
 			isa = PBXGroup;
 			children = (
@@ -571,7 +583,6 @@
 				303C06451A9FE139001D9B78 /* Parse */,
 				306093B61A9FDA520027BAAF /* libsqlite3.dylib */,
 				306093B41A9FDA480027BAAF /* libz.dylib */,
-				303C06101A9FDF88001D9B78 /* libMDCSwipeToChoose.a */,
 				306093B21A9FDA3E0027BAAF /* SystemConfiguration.framework */,
 				306093B01A9FDA360027BAAF /* StoreKit.framework */,
 				306093AE1A9FDA2E0027BAAF /* Security.framework */,
@@ -727,10 +738,10 @@
 				307F83741A9BC12400B1CEFF /* main.m in Sources */,
 				303C06391A9FDFDE001D9B78 /* UIView+MDCSwipeToChoose.m in Sources */,
 				303C06341A9FDFDE001D9B78 /* MDCSwipeOptions.m in Sources */,
-				30880E5D1AA8023D006746C4 /* README.md in Sources */,
 				307F83751A9BC12400B1CEFF /* Exercise.m in Sources */,
 				30880E731AA8023D006746C4 /* TSMessageView.m in Sources */,
 				30880E5B1AA8023D006746C4 /* HexColor.m in Sources */,
+				308C09411AAA15DA00754C66 /* CircularProgressTimer.m in Sources */,
 				303C06321A9FDFDE001D9B78 /* UIColor+MDCRGB8Bit.m in Sources */,
 				3083120A1A9E65AC00CC2A5C /* CBZSplashView.m in Sources */,
 				303C06331A9FDFDE001D9B78 /* UIView+MDCBorderedLabel.m in Sources */,
@@ -738,6 +749,7 @@
 				303C06381A9FDFDE001D9B78 /* MDCSwipeToChooseView.m in Sources */,
 				307F83771A9BC12400B1CEFF /* ChooseExerciseView.m in Sources */,
 				3083120C1A9E65AC00CC2A5C /* CBZVectorSplashView.m in Sources */,
+				308C09451AAA175700754C66 /* CircularProgressTimerView.m in Sources */,
 				303C06301A9FDFDE001D9B78 /* MDCGeometry.m in Sources */,
 				30880EEE1AA82F5B006746C4 /* EDStarRating.m in Sources */,
 				307F83701A9BC12400B1CEFF /* AppDelegate.m in Sources */,
