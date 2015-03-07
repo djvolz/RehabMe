@@ -29,13 +29,14 @@
 #import "Exercise.h"
 
 static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
+static const CGFloat bottomHeight = 70.f;
+
 
 @interface ChooseExerciseView ()
 @property (nonatomic, strong) UIView *informationView;
 @property (nonatomic, strong) UILabel *nameLabel;
-@property (nonatomic, strong) ImageLabelView *cameraImageLabelView;
-@property (nonatomic, strong) ImageLabelView *interestsImageLabelView;
-@property (nonatomic, strong) ImageLabelView *friendsImageLabelView;
+@property (nonatomic, strong) ImageLabelView *clockImageLabelView;
+@property (nonatomic, strong) ImageLabelView *barbellImageLabelView;
 @property (nonatomic, strong) UITextView *instructionsView;
 
 @end
@@ -62,11 +63,11 @@ static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
         /* This resizes the imageView after the image has been loaded to ensure the
          * informationView doesn't cover up the image. */
         self.imageView.frame = CGRectMake(self.imageView.frame.origin.x,
-                                          self.imageView.frame.origin.y,
+                                          bottomHeight,//self.imageView.frame.origin.y,
                                           self.imageView.frame.size.width,
                                           
-                                          // The information bottomHeight is 60.0
-                                          self.imageView.frame.size.height - 60.f);
+                                          // The information bottomHeight
+                                          self.imageView.frame.size.height - bottomHeight);
         
         UITapGestureRecognizer *cardTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showInstuctions:)];
         
@@ -80,9 +81,8 @@ static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
 #pragma mark - Internal Methods
 
 - (void)constructInformationView {
-    CGFloat bottomHeight = 60.f;
     CGRect bottomFrame = CGRectMake(0,
-                                    CGRectGetHeight(self.bounds) - bottomHeight,
+                                    0,//CGRectGetHeight(self.bounds) - bottomHeight,
                                     CGRectGetWidth(self.bounds),
                                     bottomHeight);
     _informationView = [[UIView alloc] initWithFrame:bottomFrame];
@@ -93,48 +93,43 @@ static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
     [self addSubview:_informationView];
 
     [self constructNameLabel];
-    [self constructCameraImageLabelView];
-    [self constructInterestsImageLabelView];
-    [self constructFriendsImageLabelView];
+    [self constructClockImageLabelView];
+    [self constructBarbellImageLabelView];
+//    [self constructFriendsImageLabelView];
     [self constructInformationTextViewView];
 }
 
 - (void)constructNameLabel {
-    CGFloat leftPadding = 12.f;
+    CGFloat leftPadding = 17.f;
     CGFloat topPadding = 17.f;
     CGRect frame = CGRectMake(leftPadding,
                               topPadding,
                               floorf(CGRectGetWidth(_informationView.frame)/2),
                               CGRectGetHeight(_informationView.frame) - topPadding);
     _nameLabel = [[UILabel alloc] initWithFrame:frame];
-    _nameLabel.text = [NSString stringWithFormat:@"%@   Count: %@", _exercise.name, @(_exercise.count)];
+    _nameLabel.text = [NSString stringWithFormat:@"%@", _exercise.name];
+    [_nameLabel setFont:[UIFont systemFontOfSize:32]];
     [_informationView addSubview:_nameLabel];
 }
 
-- (void)constructCameraImageLabelView {
+- (void)constructClockImageLabelView {
     CGFloat rightPadding = 10.f;
-    UIImage *image = [UIImage imageNamed:@"camera"];
-    _cameraImageLabelView = [self buildImageLabelViewLeftOf:CGRectGetWidth(_informationView.bounds) - rightPadding
+    UIImage *image = [UIImage imageNamed:@"clock"];
+    _clockImageLabelView = [self buildImageLabelViewLeftOf:CGRectGetWidth(_informationView.bounds) - rightPadding
                                                       image:image
-                                                       text:[@(_exercise.timeRequired) stringValue]];
-    [_informationView addSubview:_cameraImageLabelView];
+                                                       text:[NSString stringWithFormat:@"%@", @(_exercise.timeRequired)]];
+    [_informationView addSubview:_clockImageLabelView];
 }
 
-- (void)constructInterestsImageLabelView {
-    UIImage *image = [UIImage imageNamed:@"book"];
-    _interestsImageLabelView = [self buildImageLabelViewLeftOf:CGRectGetMinX(_cameraImageLabelView.frame)
+- (void)constructBarbellImageLabelView {
+    UIImage *image = [UIImage imageNamed:@"barbell"];
+    _barbellImageLabelView = [self buildImageLabelViewLeftOf:CGRectGetMinX(_clockImageLabelView.frame)
                                                          image:image
-                                                          text:[@(_exercise.timeRequired) stringValue]];
-    [_informationView addSubview:_interestsImageLabelView];
+                                                          text:[NSString stringWithFormat:@"%@", @(_exercise.count)]];
+    [_informationView addSubview:_barbellImageLabelView];
 }
 
-- (void)constructFriendsImageLabelView {
-    UIImage *image = [UIImage imageNamed:@"group"];
-    _friendsImageLabelView = [self buildImageLabelViewLeftOf:CGRectGetMinX(_interestsImageLabelView.frame)
-                                                      image:image
-                                                       text:[@(_exercise.numberOfSharedFriends) stringValue]];
-    [_informationView addSubview:_friendsImageLabelView];
-}
+
 
 - (void)constructInformationTextViewView {
     CGRect frame = CGRectMake(0,

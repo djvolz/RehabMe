@@ -58,13 +58,14 @@
 }
 
 - (void)constructLabel:(NSString *)text {
-    CGFloat height = 18.f;
+    CGFloat height = 24.f;
     CGRect frame = CGRectMake(0,
                               CGRectGetMaxY(self.imageView.frame),
                               CGRectGetWidth(self.bounds),
                               height);
     self.label = [[UILabel alloc] initWithFrame:frame];
     self.label.text = text;
+    [self.label setFont:[UIFont systemFontOfSize:20]];
     self.label.textAlignment = NSTextAlignmentCenter;
     [self addSubview:self.label];
 }

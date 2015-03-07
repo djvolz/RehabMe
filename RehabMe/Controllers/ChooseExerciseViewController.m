@@ -262,48 +262,48 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                       timeRequired:5
                           instructions:@"do your stuff"],
 
-        [[Exercise alloc] initWithName:@"HeelCordStretch"
-                               image:[UIImage imageNamed:@"heel_cord_stretch"]
-                                 count:18
-               numberOfSharedFriends:1
-             numberOfSharedInterests:1
-                      timeRequired:20
-                          instructions:@"do your stuff"],
-
-        [[Exercise alloc] initWithName:@"HipAbduction"
-                                 image:[UIImage imageNamed:@"hip_abduction"]
-                                 count:15
-                 numberOfSharedFriends:3
-               numberOfSharedInterests:2
-                          timeRequired:10
-                          instructions:@"do your stuff"],
-
-
-        [[Exercise alloc] initWithName:@"HipAdduction"
-                                 image:[UIImage imageNamed:@"hip_adduction"]
-                                 count:15
-                 numberOfSharedFriends:3
-               numberOfSharedInterests:2
-                          timeRequired:15
-                          instructions:@"do your stuff"],
-
-
-        [[Exercise alloc] initWithName:@"LegExtensions"
-                                 image:[UIImage imageNamed:@"leg_extensions"]
-                                 count:15
-                 numberOfSharedFriends:3
-               numberOfSharedInterests:2
-                          timeRequired:12
-                          instructions:@"do your stuff"],
-
-
-        [[Exercise alloc] initWithName:@"LegPresses"
-                                 image:[UIImage imageNamed:@"leg_presses"]
-                                 count:15
-                 numberOfSharedFriends:3
-               numberOfSharedInterests:2
-                          timeRequired:7
-                          instructions:@"do your stuff"],
+//        [[Exercise alloc] initWithName:@"HeelCordStretch"
+//                               image:[UIImage imageNamed:@"heel_cord_stretch"]
+//                                 count:18
+//               numberOfSharedFriends:1
+//             numberOfSharedInterests:1
+//                      timeRequired:20
+//                          instructions:@"do your stuff"],
+//
+//        [[Exercise alloc] initWithName:@"HipAbduction"
+//                                 image:[UIImage imageNamed:@"hip_abduction"]
+//                                 count:15
+//                 numberOfSharedFriends:3
+//               numberOfSharedInterests:2
+//                          timeRequired:10
+//                          instructions:@"do your stuff"],
+//
+//
+//        [[Exercise alloc] initWithName:@"HipAdduction"
+//                                 image:[UIImage imageNamed:@"hip_adduction"]
+//                                 count:15
+//                 numberOfSharedFriends:3
+//               numberOfSharedInterests:2
+//                          timeRequired:15
+//                          instructions:@"do your stuff"],
+//
+//
+//        [[Exercise alloc] initWithName:@"LegExtensions"
+//                                 image:[UIImage imageNamed:@"leg_extensions"]
+//                                 count:15
+//                 numberOfSharedFriends:3
+//               numberOfSharedInterests:2
+//                          timeRequired:12
+//                          instructions:@"do your stuff"],
+//
+//
+//        [[Exercise alloc] initWithName:@"LegPresses"
+//                                 image:[UIImage imageNamed:@"leg_presses"]
+//                                 count:15
+//                 numberOfSharedFriends:3
+//               numberOfSharedInterests:2
+//                          timeRequired:7
+//                          instructions:@"do your stuff"],
 
     ];
 }
@@ -343,7 +343,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     CGFloat horizontalPadding = 20.f;
     CGFloat topPadding = 100.f;
     CGFloat bottomPadding = 180.f;
-//    CGContextSetShadow(<#CGContextRef context#>, <#CGSize offset#>, <#CGFloat blur#>)
     return CGRectMake(horizontalPadding,
                       topPadding,
                       CGRectGetWidth(self.view.frame) - (horizontalPadding * 2),
@@ -447,6 +446,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     double delayInSeconds = 5.0;
 
+    // ignore touch events
+    [[UIApplication sharedApplication]beginIgnoringInteractionEvents];
     
     //First allow setup and waiting time to get ready
     [self setupCircularProgressTimerView:(NSInteger)delayInSeconds + 1 withColor:[UIColor yellowColor]];
@@ -458,9 +459,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         [self setupCircularProgressTimerView:self.currentExercise.timeRequired withColor:[UIColor greenColor]];
     });
     
-
-    
-
+    // accept user input again
+    [[UIApplication sharedApplication]endIgnoringInteractionEvents];
     
     [self updateParseWithSwipeDecision:@"performed"];
     
