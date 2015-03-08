@@ -72,7 +72,6 @@
 #import "UIColor+HexString.h"
 #import "UIBezierPath+Shapes.h"
 #import "EDStarRating.h"
-#import "CircularProgressTimerView.h"
 #import "CurrentExerciseViewController.h"
 
 
@@ -81,7 +80,6 @@
 
 
 @property (nonatomic, strong) Exercise *currentExercise;
-@property (nonatomic, strong) CircularProgressTimerView *circleProgressTimerView;
 @property (nonatomic, strong) ChooseExerciseView *frontCardView;
 @property (nonatomic, strong) ChooseExerciseView *backCardView;
 

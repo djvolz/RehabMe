@@ -106,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/CurrentExerciseViewController.m"
-            timestampString = "447464294.552604"
+            timestampString = "447543661.167417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "-dismissPhoto:"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "-prefersStatusBarHidden"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,12 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/CurrentExerciseViewController.m"
-            timestampString = "447464294.552604"
+            timestampString = "447543661.167417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-dismissPhoto:"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "-prefersStatusBarHidden"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/ChooseExerciseViewController.m"
-            timestampString = "447465665.176922"
+            timestampString = "447543759.336241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "-popPersonViewWithFrame:"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/ChooseExerciseViewController.m"
-            timestampString = "447465665.176922"
+            timestampString = "447543759.336241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "-popPersonViewWithFrame:"
             landmarkType = "5">
          </BreakpointContent>

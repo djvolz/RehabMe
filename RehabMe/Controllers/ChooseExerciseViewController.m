@@ -34,6 +34,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 @property (nonatomic, strong) NSMutableArray *exercises;
 @property (nonatomic, strong) UIButton *likeButton;
 @property (nonatomic, strong) UIButton *nopeButton;
+@property (strong, nonatomic) IBOutlet UIButton *beginButton;
 @property (nonatomic, strong) CBZSplashView *splashView;
 @property (weak, nonatomic) IBOutlet EDStarRating *starRating;
 
@@ -54,12 +55,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Load the deck when the VC loads.
     [self loadDeck];
     
-    [self setupRatingStars];
     
-    // Add buttons to programmatically swipe the view left or right.
-    // See the `nopeFrontCardView` and `likeFrontCardView` methods.
+// Add buttons to programmatically swipe the view left or right.
+// See the `nopeFrontCardView` and `likeFrontCardView` methods.
 //    [self constructNopeButton];
 //    [self constructLikedButton];
 //    [self loginExampleMethod];
@@ -68,7 +69,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // Show welcome badge notification
     [TSMessage showNotificationInViewController:self
                                           title:NSLocalizedString(@"Welcome back!", nil)
-                                       subtitle:NSLocalizedString(@"This uses an image you can define", nil)
+                                       subtitle:NSLocalizedString(@"Let's do this!", nil)
                                           image:[UIImage imageNamed:@"NotificationBackgroundSuccessIcon"]
                                            type:TSMessageNotificationTypeSuccess
                                        duration:TSMessageNotificationDurationAutomatic
@@ -83,13 +84,10 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    
-    // Check for the end of the deck when returning to this viewcontroller.
-    [self checkforEndOfDeck];
 }
 
-// Constructs splash that splashes green check button that grows across screen
+
+/* Constructs splash that splashes green check button that grows across screen */
 - (void) constructSplashScreen {
     UIImage *icon = [UIImage imageNamed:@"checkButton"];
 
@@ -106,7 +104,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 
 
-// Make the reload button pulse
+/* Make the reload button pulse */
 - (void)animateButton {
     CABasicAnimation *pulseAnimation;
     
@@ -117,14 +115,14 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     pulseAnimation.fromValue =[NSNumber numberWithFloat:1.0];
     pulseAnimation.toValue = [NSNumber numberWithFloat:0.7];
     [self.reloadButton.layer addAnimation:pulseAnimation forKey:@"animateOpacity"];
-    
 }
 
+/* Show the menu */
 - (IBAction)didTouchMenuButton:(UIButton *)sender {
     [self constructCurrentExerciseViewController];
 }
 
-
+/* Load up the deck from the exercises array */
 - (void)loadDeck {
     self.starRating.hidden = YES;
 
@@ -145,13 +143,23 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
 }
 
+/* Perform the events that occur when you've swiped away all cards in the deck. */
 - (void) endOfDeck {
+    
+    // Make the reward splash screen
     [self constructSplashScreen];
     
+    // Make the reload button pulse
     [self animateButton];
     
+    // Execute the reward splash screen
     [self.splashView startAnimation];
     
+    // Setup the rating stars
+    [self setupRatingStars];
+    
+    // Hide the begin button and display the starRatings
+    self.beginButton.hidden = YES;
     self.starRating.hidden = NO;
     
     //#44DB5E iOS 7 green
@@ -184,11 +192,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         [self viewDidSwipeRight];
     }
     
-//    PhotoVCDefault *photoVC = [[PhotoVCDefault alloc] initWithStartingFrame:self.frontCardView];
-//    
-//    [self presentViewController:photoVC animated:YES completion:nil];
-
-
     
     // MDCSwipeToChooseView removes the view from the view hierarchy
     // after it is swiped (this behavior can be customized via the
@@ -412,14 +415,41 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //    });
     
+    // Switch back to white background from the completion screen background
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    // Show the begin button again since we're reloading the deck.
+    self.beginButton.hidden = NO;
+    
+    // Hide the star ratings while the deck is present.
+    self.starRating.hidden = YES;
+    
+    // Reload the deck
     [self loadDeck];
+}
+
+- (IBAction)didPressBeginButton:(UIButton *)sender {
+
+    [self constructCurrentExerciseViewController];
+    
+    //    double delayInSeconds = 5.0;
+    
+    //    //First allow setup and waiting time to get ready
+    //    [self setupCircularProgressTimerView:(NSInteger)delayInSeconds + 1 withColor:[UIColor yellowColor]];
+    //
+    //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    //    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    //        //code to be executed on the main queue after delay
+    //        //Then actually show the exercise timer
+    //        [self setupCircularProgressTimerView:self.currentExercise.timeRequired withColor:[UIColor greenColor]];
+    //    });
+
 }
 
 
 
-
 #pragma mark - Swipe Actions
+
 
 - (void)updateParseWithSwipeDecision:(NSString *)decision {
     self.exerciseObject = [PFObject objectWithClassName:@"ExerciseObject"];
@@ -433,25 +463,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)viewDidSwipeRight {
     NSLog(@"You selected %@.", self.currentExercise.name);
     
-//    double delayInSeconds = 5.0;
 
-//    //First allow setup and waiting time to get ready
-//    [self setupCircularProgressTimerView:(NSInteger)delayInSeconds + 1 withColor:[UIColor yellowColor]];
-//    
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//        //code to be executed on the main queue after delay
-//        //Then actually show the exercise timer
-//        [self setupCircularProgressTimerView:self.currentExercise.timeRequired withColor:[UIColor greenColor]];
-//    });
     
     [self updateParseWithSwipeDecision:@"performed"];
 
     
-    [self constructCurrentExerciseViewController];
-    
-    
-//    [self checkforEndOfDeck];
+    [self checkforEndOfDeck];
     
 }
 
@@ -461,20 +478,14 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self updateParseWithSwipeDecision:@"skipped"];
     
     // The animation should trigger after backCardView is nil if the last frontcard was noped.
-    [self checkforEndOfDeckFromANope];
+    [self checkforEndOfDeck];
     
 }
 
-- (void) checkforEndOfDeckFromANope {
-    // No more backcard so after completing this swipe is the end of the deck
-    if (self.backCardView == nil) {
-        [self endOfDeck];
-    }
-}
 
 - (void) checkforEndOfDeck {
-    // No more backcard so after completing this swipe is the end of the deck
-    if (self.frontCardView == nil) {
+    // No more last card so after completing this swipe is the end of the deck
+    if (self.backCardView == nil) {
         [self endOfDeck];
     }
 }
@@ -515,25 +526,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 }
 
 
-#pragma mark - Circle Timer Progress Bar System
 
-- (void)setupCircularProgressTimerView:(NSInteger)seconds withColor:(UIColor *)color{
-    
-    CircularProgressTimerView *circleProgressTimerView = [[CircularProgressTimerView alloc] init];
-    
-    self.circleProgressTimerView = circleProgressTimerView;
-    
-    
-    [self.view insertSubview:circleProgressTimerView aboveSubview:self.frontCardView];
-    
-    // Set the circleProgressTimerView with the intial time in seconds.
-    [self.circleProgressTimerView setTimer:seconds];
-    
-    [self.circleProgressTimerView setCircleColor:color];
-    
-    [self.circleProgressTimerView startTimer];
-    
-}
 
 #pragma mark - Current Exercise View System
 
