@@ -49,19 +49,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 
 
-
-#pragma mark - Object Lifecycle
-
-//- (instancetype)init {
-//    self = [super init];
-//    if (self) {
-//        // This view controller maintains a list of ChooseExerciseView
-//        // instances to display.
-//        _exercises = [[self defaultPeople] mutableCopy];
-//    }
-//    return self;
-//}
-
 #pragma mark - UIViewController Overrides
 
 - (void)viewDidLoad {
@@ -77,54 +64,36 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 //    [self constructLikedButton];
 //    [self loginExampleMethod];
 
-}
-
-
-
-//- (void)loginExampleMethod {
-//    PFUser *user = [PFUser user];
-//    user.username = @"Yize";
-//    user.password = @"Zhao";
-//    user.email = @"contact@rehabme.com";
-//
-//    // other fields can be set just like with PFObject
-//    user[@"phone"] = @"415-392-0202";
-//    
-//    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (!error) {
-//            // Hooray! Let them use the app now.
-//        } else {
-//            NSString *errorString = [error userInfo][@"error"];
-//            // Show the errorString somewhere and let the user try again.
-//        }
-//    }];
-//}
-
-
-
-- (void) viewDidAppear:(BOOL)animated {
-    [self animateButton];
-    
     
     // Show welcome badge notification
     [TSMessage showNotificationInViewController:self
-                                           title:NSLocalizedString(@"Welcome back!", nil)
-                                        subtitle:NSLocalizedString(@"This uses an image you can define", nil)
-                                           image:[UIImage imageNamed:@"NotificationBackgroundSuccessIcon"]
-                                            type:TSMessageNotificationTypeSuccess
-                                        duration:TSMessageNotificationDurationAutomatic
-                                        callback:nil
-                                     buttonTitle:nil
-                                  buttonCallback:nil
-                                      atPosition:TSMessageNotificationPositionTop
-                            canBeDismissedByUser:YES];
+                                          title:NSLocalizedString(@"Welcome back!", nil)
+                                       subtitle:NSLocalizedString(@"This uses an image you can define", nil)
+                                          image:[UIImage imageNamed:@"NotificationBackgroundSuccessIcon"]
+                                           type:TSMessageNotificationTypeSuccess
+                                       duration:TSMessageNotificationDurationAutomatic
+                                       callback:nil
+                                    buttonTitle:nil
+                                 buttonCallback:nil
+                                     atPosition:TSMessageNotificationPositionTop
+                           canBeDismissedByUser:YES];
 
+    
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    
+    // Check for the end of the deck when returning to this viewcontroller.
+    [self checkforEndOfDeck];
 }
 
 // Constructs splash that splashes green check button that grows across screen
 - (void) constructSplashScreen {
     UIImage *icon = [UIImage imageNamed:@"checkButton"];
-    UIColor *color = [UIColor greenColor];
+
+    UIColor *color = [UIColor colorWithHexString:@"44DB5E"]; //[UIColor greenColor];
     CBZSplashView *splashView = [CBZSplashView splashViewWithIcon:icon backgroundColor:color];
     
     splashView.animationDuration = 1.4;
@@ -141,7 +110,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)animateButton {
     CABasicAnimation *pulseAnimation;
     
-    pulseAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+    pulseAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     pulseAnimation.duration = 1.0;
     pulseAnimation.repeatCount = HUGE_VALF;
     pulseAnimation.autoreverses = YES;
@@ -150,6 +119,11 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self.reloadButton.layer addAnimation:pulseAnimation forKey:@"animateOpacity"];
     
 }
+
+- (IBAction)didTouchMenuButton:(UIButton *)sender {
+    [self constructCurrentExerciseViewController];
+}
+
 
 - (void)loadDeck {
     self.starRating.hidden = YES;
@@ -169,16 +143,20 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // back views after each user swipe.
     self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
     [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
-    
 }
 
 - (void) endOfDeck {
     [self constructSplashScreen];
     
+    [self animateButton];
+    
     [self.splashView startAnimation];
     
     self.starRating.hidden = NO;
-    self.view.backgroundColor = [UIColor greenColor];
+    
+    //#44DB5E iOS 7 green
+    //http://iosdesign.ivomynttinen.com
+    self.view.backgroundColor = [UIColor colorWithHexString:@"44DB5E"];//[UIColor greenColor];
 }
 
 
@@ -195,6 +173,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     NSLog(@"You couldn't decide on %@.", self.currentExercise.name);
 }
 
+
 // This is called then a user swipes the view fully left or right.
 - (void)view:(UIView *)view wasChosenWithDirection:(MDCSwipeDirection)direction {
     // MDCSwipeToChooseView shows "NOPE" on swipes to the left,
@@ -204,12 +183,19 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     } else {
         [self viewDidSwipeRight];
     }
+    
+//    PhotoVCDefault *photoVC = [[PhotoVCDefault alloc] initWithStartingFrame:self.frontCardView];
+//    
+//    [self presentViewController:photoVC animated:YES completion:nil];
 
+
+    
     // MDCSwipeToChooseView removes the view from the view hierarchy
     // after it is swiped (this behavior can be customized via the
     // MDCSwipeOptions class). Since the front card view is gone, we
     // move the back card to the front, and create a new back card.
     self.frontCardView = self.backCardView;
+
     if ((self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]])) {
         // Fade the back card into view.
         self.backCardView.alpha = 0.f;
@@ -333,6 +319,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     ChooseExerciseView *personView = [[ChooseExerciseView alloc] initWithFrame:frame
                                                                     person:self.exercises[0]
                                                                    options:options];
+    
+    
+    
     [self.exercises removeObjectAtIndex:0];
     return personView;
 }
@@ -444,27 +433,25 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)viewDidSwipeRight {
     NSLog(@"You selected %@.", self.currentExercise.name);
     
-    double delayInSeconds = 5.0;
+//    double delayInSeconds = 5.0;
 
-    // ignore touch events
-    [[UIApplication sharedApplication]beginIgnoringInteractionEvents];
-    
-    //First allow setup and waiting time to get ready
-    [self setupCircularProgressTimerView:(NSInteger)delayInSeconds + 1 withColor:[UIColor yellowColor]];
-    
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        //code to be executed on the main queue after delay
-        //Then actually show the exercise timer
-        [self setupCircularProgressTimerView:self.currentExercise.timeRequired withColor:[UIColor greenColor]];
-    });
-    
-    // accept user input again
-    [[UIApplication sharedApplication]endIgnoringInteractionEvents];
+//    //First allow setup and waiting time to get ready
+//    [self setupCircularProgressTimerView:(NSInteger)delayInSeconds + 1 withColor:[UIColor yellowColor]];
+//    
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        //code to be executed on the main queue after delay
+//        //Then actually show the exercise timer
+//        [self setupCircularProgressTimerView:self.currentExercise.timeRequired withColor:[UIColor greenColor]];
+//    });
     
     [self updateParseWithSwipeDecision:@"performed"];
+
     
-    [self checkforEndOfDeck];
+    [self constructCurrentExerciseViewController];
+    
+    
+//    [self checkforEndOfDeck];
     
 }
 
@@ -473,13 +460,21 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     [self updateParseWithSwipeDecision:@"skipped"];
     
-    [self checkforEndOfDeck];
+    // The animation should trigger after backCardView is nil if the last frontcard was noped.
+    [self checkforEndOfDeckFromANope];
     
+}
+
+- (void) checkforEndOfDeckFromANope {
+    // No more backcard so after completing this swipe is the end of the deck
+    if (self.backCardView == nil) {
+        [self endOfDeck];
+    }
 }
 
 - (void) checkforEndOfDeck {
     // No more backcard so after completing this swipe is the end of the deck
-    if (self.backCardView == nil) {
+    if (self.frontCardView == nil) {
         [self endOfDeck];
     }
 }
@@ -540,6 +535,36 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
 }
 
+#pragma mark - Current Exercise View System
+
+- (void)constructCurrentExerciseViewController {
+    CurrentExerciseViewController *currentExerciseViewController = [[CurrentExerciseViewController alloc] initWithExercise:self.currentExercise];
+    
+    [self presentViewController:currentExerciseViewController
+                       animated:YES
+                     completion:^{}];
+}
+
+
+
+//- (void)loginExampleMethod {
+//    PFUser *user = [PFUser user];
+//    user.username = @"Yize";
+//    user.password = @"Zhao";
+//    user.email = @"contact@rehabme.com";
+//
+//    // other fields can be set just like with PFObject
+//    user[@"phone"] = @"415-392-0202";
+//
+//    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (!error) {
+//            // Hooray! Let them use the app now.
+//        } else {
+//            NSString *errorString = [error userInfo][@"error"];
+//            // Show the errorString somewhere and let the user try again.
+//        }
+//    }];
+//}
 
 
 @end

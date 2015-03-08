@@ -22,6 +22,8 @@
 		303C064D1A9FE13A001D9B78 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303C06481A9FE139001D9B78 /* ParseCrashReporting.framework */; };
 		303C064E1A9FE13A001D9B78 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303C06491A9FE139001D9B78 /* ParseFacebookUtils.framework */; };
 		303C064F1A9FE13A001D9B78 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303C064A1A9FE139001D9B78 /* ParseUI.framework */; };
+		305EBB421AAB9219008C2E17 /* CurrentExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EBB411AAB9219008C2E17 /* CurrentExerciseViewController.m */; };
+		305EBB4A1AAB952A008C2E17 /* CurrentExerciseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 305EBB491AAB952A008C2E17 /* CurrentExerciseViewController.xib */; };
 		306093A51A9FD9FF0027BAAF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306093A41A9FD9FF0027BAAF /* AudioToolbox.framework */; };
 		306093A71A9FDA060027BAAF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306093A61A9FDA060027BAAF /* CFNetwork.framework */; };
 		306093A91A9FDA160027BAAF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306093A81A9FDA160027BAAF /* CoreLocation.framework */; };
@@ -132,6 +134,9 @@
 		303C06481A9FE139001D9B78 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
 		303C06491A9FE139001D9B78 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		303C064A1A9FE139001D9B78 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		305EBB401AAB9219008C2E17 /* CurrentExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentExerciseViewController.h; sourceTree = "<group>"; };
+		305EBB411AAB9219008C2E17 /* CurrentExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentExerciseViewController.m; sourceTree = "<group>"; };
+		305EBB491AAB952A008C2E17 /* CurrentExerciseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrentExerciseViewController.xib; sourceTree = "<group>"; };
 		306093A41A9FD9FF0027BAAF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		306093A61A9FDA060027BAAF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		306093A81A9FDA160027BAAF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -375,6 +380,9 @@
 		307F835F1A9BC12300B1CEFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				305EBB401AAB9219008C2E17 /* CurrentExerciseViewController.h */,
+				305EBB411AAB9219008C2E17 /* CurrentExerciseViewController.m */,
+				305EBB491AAB952A008C2E17 /* CurrentExerciseViewController.xib */,
 				307F83601A9BC12300B1CEFF /* ChooseExerciseViewController.h */,
 				307F83611A9BC12300B1CEFF /* ChooseExerciseViewController.m */,
 			);
@@ -693,6 +701,7 @@
 				30C30BE11A9D5257006194BA /* twitterIcon.png in Resources */,
 				307F83721A9BC12400B1CEFF /* InfoPlist.strings in Resources */,
 				30880E601AA8023D006746C4 /* NotificationBackgroundError@2x.png in Resources */,
+				305EBB4A1AAB952A008C2E17 /* CurrentExerciseViewController.xib in Resources */,
 				307F837F1A9BC18A00B1CEFF /* RehabMeTests-Info.plist in Resources */,
 				30880E611AA8023D006746C4 /* NotificationBackgroundErrorIcon.png in Resources */,
 				30880E661AA8023D006746C4 /* NotificationBackgroundSuccess@2x.png in Resources */,
@@ -748,6 +757,7 @@
 				3083120E1A9E65AC00CC2A5C /* UIBezierPath+Shapes.m in Sources */,
 				303C06381A9FDFDE001D9B78 /* MDCSwipeToChooseView.m in Sources */,
 				307F83771A9BC12400B1CEFF /* ChooseExerciseView.m in Sources */,
+				305EBB421AAB9219008C2E17 /* CurrentExerciseViewController.m in Sources */,
 				3083120C1A9E65AC00CC2A5C /* CBZVectorSplashView.m in Sources */,
 				308C09451AAA175700754C66 /* CircularProgressTimerView.m in Sources */,
 				303C06301A9FDFDE001D9B78 /* MDCGeometry.m in Sources */,

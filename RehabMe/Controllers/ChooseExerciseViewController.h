@@ -30,7 +30,11 @@
 //
 //
 // MVP:
+//
 // Make exercise instructions available while timer is going.
+// Disable touch interaction with hidden views during timer
+//
+//
 // DONE: Timer if applicable
 // DONE: Parse data reading from OK and NOPE
 // DONE: Text when button is tapped
@@ -69,6 +73,7 @@
 #import "UIBezierPath+Shapes.h"
 #import "EDStarRating.h"
 #import "CircularProgressTimerView.h"
+#import "CurrentExerciseViewController.h"
 
 
 
@@ -79,6 +84,7 @@
 @property (nonatomic, strong) CircularProgressTimerView *circleProgressTimerView;
 @property (nonatomic, strong) ChooseExerciseView *frontCardView;
 @property (nonatomic, strong) ChooseExerciseView *backCardView;
+
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (strong, nonatomic) IBOutlet UIButton *reloadButton;
 
