@@ -33,6 +33,7 @@
 //
 //
 // Ability to login
+// Menu with view for logging in.
 //
 // DONE: Disable swipe touch interaction during focus exercise
 // DONE: Timer if applicable
@@ -40,7 +41,7 @@
 // DONE: Text when button is tapped
 // DONE: Notification welcome back
 // DONE: Rating system after done with cards
-//
+// DONE: Fix display of name on cards
 //
 // Maybe:
 // Make exercise instructions available while timer is going.

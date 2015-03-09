@@ -31,17 +31,15 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, assign) NSUInteger count;
-@property (nonatomic, assign) NSUInteger numberOfSharedFriends;
-@property (nonatomic, assign) NSUInteger numberOfSharedInterests;
+@property (nonatomic, copy) NSString *displayName;
 @property (nonatomic, assign) NSUInteger timeRequired;
 @property (nonatomic, assign) NSString *instructions;
 
 - (instancetype)initWithName:(NSString *)name
                        image:(UIImage *)image
-                         count:(NSUInteger)count
-       numberOfSharedFriends:(NSUInteger)numberOfSharedFriends
-     numberOfSharedInterests:(NSUInteger)numberOfSharedInterests
-              timeRequired:(NSUInteger)timeRequired
+                       count:(NSUInteger)count
+                 displayName:(NSString *)displayName
+                timeRequired:(NSUInteger)timeRequired
                 instructions:(NSString *)instructions;
 
 @end

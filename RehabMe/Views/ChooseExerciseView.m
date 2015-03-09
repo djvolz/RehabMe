@@ -107,7 +107,7 @@ static const CGFloat bottomHeight = 70.f;
                               floorf(CGRectGetWidth(_informationView.frame)/2),
                               CGRectGetHeight(_informationView.frame) - topPadding);
     _nameLabel = [[UILabel alloc] initWithFrame:frame];
-    _nameLabel.text = [NSString stringWithFormat:@"%@", _exercise.name];
+    _nameLabel.text = [NSString stringWithFormat:@"%@", _exercise.displayName];
     [_nameLabel setFont:[UIFont systemFontOfSize:24]];
     [_informationView addSubview:_nameLabel];
 }

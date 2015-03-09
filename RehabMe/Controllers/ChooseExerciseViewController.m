@@ -59,12 +59,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self loadDeck];
     
     
-// Add buttons to programmatically swipe the view left or right.
-// See the `nopeFrontCardView` and `likeFrontCardView` methods.
-//    [self constructNopeButton];
-//    [self constructLikedButton];
-//    [self loginExampleMethod];
-
+    // Add buttons to programmatically swipe the view left or right.
+    // See the `nopeFrontCardView` and `likeFrontCardView` methods.
+    //    [self constructNopeButton];
+    //    [self constructLikedButton];
+    //    [self loginExampleMethod];
+    
     
     // Show welcome badge notification
     [TSMessage showNotificationInViewController:self
@@ -78,7 +78,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                                  buttonCallback:nil
                                      atPosition:TSMessageNotificationPositionTop
                            canBeDismissedByUser:YES];
-
+    
     
 }
 
@@ -90,7 +90,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 /* Constructs splash that splashes green check button that grows across screen */
 - (void) constructSplashScreen {
     UIImage *icon = [UIImage imageNamed:@"checkButton"];
-
+    
     UIColor *color = [UIColor colorWithHexString:REHABME_GREEN]; //[UIColor greenColor];
     CBZSplashView *splashView = [CBZSplashView splashViewWithIcon:icon backgroundColor:color];
     
@@ -99,7 +99,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self.view addSubview:splashView];
     
     self.splashView = splashView;
-
+    
 }
 
 
@@ -119,13 +119,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 /* Show the menu */
 - (IBAction)didTouchMenuButton:(UIButton *)sender {
-    [self constructCurrentExerciseViewController];
+    //    [self constructCurrentExerciseViewController];
 }
 
 /* Load up the deck from the exercises array */
 - (void)loadDeck {
-    self.starRating.hidden = YES;
-
+    [self shouldHideCongratsScreenElements:YES];
     
     // This view controller maintains a list of ChooseExerciseView
     // instances to display.
@@ -159,12 +158,18 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self setupRatingStars];
     
     // Hide the begin button and display the starRatings
-    self.beginButton.hidden = YES;
-    self.starRating.hidden = NO;
+    [self shouldHideCongratsScreenElements:NO];
     
     //#44DB5E iOS 7 green defined as REHABME_GREEN
     //http://iosdesign.ivomynttinen.com
     self.view.backgroundColor = [UIColor colorWithHexString:REHABME_GREEN];//[UIColor greenColor];
+}
+
+- (void) shouldHideCongratsScreenElements:(BOOL)hide{
+    self.beginButton.hidden = !hide;
+    
+    self.reloadButton.hidden = hide;
+    self.starRating.hidden = hide;
 }
 
 
@@ -198,7 +203,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // MDCSwipeOptions class). Since the front card view is gone, we
     // move the back card to the front, and create a new back card.
     self.frontCardView = self.backCardView;
-
+    
     if ((self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]])) {
         // Fade the back card into view.
         self.backCardView.alpha = 0.f;
@@ -227,81 +232,68 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // as needed, but for the purposes of this sample app we'll
     // simply store them in memory.
     return @[
-        [[Exercise alloc] initWithName:@"CalfRaises"
-                               image:[UIImage imageNamed:@"calf_raises"]
-                                 count:15
-               numberOfSharedFriends:3
-             numberOfSharedInterests:2
-                      timeRequired:10
-                          instructions:@"Bacon ipsum dolor amet chuck elit incididunt alcatra nostrud brisket. Shankle landjaeger beef ribs chicken dolor reprehenderit hamburger cow ham hock jerky pork pork belly in meatball consequat. Leberkas irure in, chicken adipisicing cupim fatback ground round quis frankfurter hamburger. Boudin tenderloin occaecat jowl, tail rump picanha ut alcatra flank esse proident. Prosciutto ut mollit et ground round proident labore kielbasa bacon ipsum tenderloin beef ribs."],
-
-        [[Exercise alloc] initWithName:@"HalfSquats"
-                               image:[UIImage imageNamed:@"half_squats"]
-                                 count:28
-               numberOfSharedFriends:2
-             numberOfSharedInterests:6
-                      timeRequired:8
-                          instructions:@"Lie on back or stomach\nLegs should be straight\n"],
-
-        [[Exercise alloc] initWithName:@"HamstringCurls"
-                               image:[UIImage imageNamed:@"hamstring_curls"]
-                                 count:14
-               numberOfSharedFriends:1
-             numberOfSharedInterests:3
-                      timeRequired:5
-                          instructions:@"do your stuff"],
-
-//        [[Exercise alloc] initWithName:@"HeelCordStretch"
-//                               image:[UIImage imageNamed:@"heel_cord_stretch"]
-//                                 count:18
-//               numberOfSharedFriends:1
-//             numberOfSharedInterests:1
-//                      timeRequired:20
-//                          instructions:@"do your stuff"],
-//
-//        [[Exercise alloc] initWithName:@"HipAbduction"
-//                                 image:[UIImage imageNamed:@"hip_abduction"]
-//                                 count:15
-//                 numberOfSharedFriends:3
-//               numberOfSharedInterests:2
-//                          timeRequired:10
-//                          instructions:@"do your stuff"],
-//
-//
-//        [[Exercise alloc] initWithName:@"HipAdduction"
-//                                 image:[UIImage imageNamed:@"hip_adduction"]
-//                                 count:15
-//                 numberOfSharedFriends:3
-//               numberOfSharedInterests:2
-//                          timeRequired:15
-//                          instructions:@"do your stuff"],
-//
-//
-//        [[Exercise alloc] initWithName:@"LegExtensions"
-//                                 image:[UIImage imageNamed:@"leg_extensions"]
-//                                 count:15
-//                 numberOfSharedFriends:3
-//               numberOfSharedInterests:2
-//                          timeRequired:12
-//                          instructions:@"do your stuff"],
-//
-//
-//        [[Exercise alloc] initWithName:@"LegPresses"
-//                                 image:[UIImage imageNamed:@"leg_presses"]
-//                                 count:15
-//                 numberOfSharedFriends:3
-//               numberOfSharedInterests:2
-//                          timeRequired:7
-//                          instructions:@"do your stuff"],
-
-    ];
+             [[Exercise alloc] initWithName:@"CalfRaises"
+                                      image:[UIImage imageNamed:@"calf_raises"]
+                                      count:15
+                                displayName:@"Calf Raises"
+                               timeRequired:10
+                               instructions:@"Bacon ipsum dolor amet chuck elit incididunt alcatra nostrud brisket. Shankle landjaeger beef ribs chicken dolor reprehenderit hamburger cow ham hock jerky pork pork belly in meatball consequat. Leberkas irure in, chicken adipisicing cupim fatback ground round quis frankfurter hamburger. Boudin tenderloin occaecat jowl, tail rump picanha ut alcatra flank esse proident. Prosciutto ut mollit et ground round proident labore kielbasa bacon ipsum tenderloin beef ribs."],
+             
+             [[Exercise alloc] initWithName:@"HalfSquats"
+                                      image:[UIImage imageNamed:@"half_squats"]
+                                      count:28
+                                displayName:@"Half Squats"
+                               timeRequired:8
+                               instructions:@"Lie on back or stomach\nLegs should be straight\n"],
+             
+             [[Exercise alloc] initWithName:@"HamstringCurls"
+                                      image:[UIImage imageNamed:@"hamstring_curls"]
+                                      count:14
+                                displayName:@"Hamstring Curls"
+                               timeRequired:5
+                               instructions:@"do your stuff"],
+             
+             //        [[Exercise alloc] initWithName:@"HeelCordStretch"
+             //                               image:[UIImage imageNamed:@"heel_cord_stretch"]
+             //                                 count:18
+             //                      timeRequired:20
+             //                          instructions:@"do your stuff"],
+             //
+             //        [[Exercise alloc] initWithName:@"HipAbduction"
+             //                                 image:[UIImage imageNamed:@"hip_abduction"]
+             //                                 count:15
+             //                          timeRequired:10
+             //                          instructions:@"do your stuff"],
+             //
+             //
+             //        [[Exercise alloc] initWithName:@"HipAdduction"
+             //                                 image:[UIImage imageNamed:@"hip_adduction"]
+             //                                 count:15
+             //                          timeRequired:15
+             //                          instructions:@"do your stuff"],
+             //
+             //
+             //        [[Exercise alloc] initWithName:@"LegExtensions"
+             //                                 image:[UIImage imageNamed:@"leg_extensions"]
+             //                                 count:15
+             //                          timeRequired:12
+             //                          instructions:@"do your stuff"],
+             //
+             //
+             //        [[Exercise alloc] initWithName:@"LegPresses"
+             //                                 image:[UIImage imageNamed:@"leg_presses"]
+             //                                 count:15
+             //                          timeRequired:7
+             //                          instructions:@"do your stuff"],
+             
+             ];
 }
 
 - (ChooseExerciseView *)popPersonViewWithFrame:(CGRect)frame {
     if ([self.exercises count] == 0) {
         return nil;
     }
-
+    
     // UIView+MDCSwipeToChoose and MDCSwipeToChooseView are heavily customizable.
     // Each take an "options" argument. Here, we specify the view controller as
     // a delegate, and provide a custom callback that moves the back card view
@@ -316,12 +308,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                                              CGRectGetWidth(frame),
                                              CGRectGetHeight(frame));
     };
-
+    
     // Create a personView with the top person in the people array, then pop
     // that person off the stack.
     ChooseExerciseView *personView = [[ChooseExerciseView alloc] initWithFrame:frame
-                                                                    person:self.exercises[0]
-                                                                   options:options];
+                                                                        person:self.exercises[0]
+                                                                       options:options];
     
     
     
@@ -354,17 +346,17 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     UIButton *nopeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     UIImage *image = [UIImage imageNamed:@"xButton"];
     nopeButton.frame = CGRectMake(ChoosePersonButtonHorizontalPadding,
-                              CGRectGetMaxY(self.backCardView.frame) + ChoosePersonButtonVerticalPadding,
-                              image.size.width,
-                              image.size.height);
+                                  CGRectGetMaxY(self.backCardView.frame) + ChoosePersonButtonVerticalPadding,
+                                  image.size.width,
+                                  image.size.height);
     [nopeButton setImage:image forState:UIControlStateNormal];
     [nopeButton setTintColor:[UIColor colorWithRed:247.f/255.f
-                                         green:91.f/255.f
-                                          blue:37.f/255.f
-                                         alpha:1.f]];
+                                             green:91.f/255.f
+                                              blue:37.f/255.f
+                                             alpha:1.f]];
     [nopeButton addTarget:self
-               action:@selector(nopeFrontCardView)
-     forControlEvents:UIControlEventTouchUpInside];
+                   action:@selector(nopeFrontCardView)
+         forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nopeButton];
 }
 
@@ -373,17 +365,17 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     UIImage *image = [UIImage imageNamed:@"checkButton"];
     likeButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - image.size.width - ChoosePersonButtonHorizontalPadding,
-                              CGRectGetMaxY(self.backCardView.frame) + ChoosePersonButtonVerticalPadding,
-                              image.size.width,
-                              image.size.height);
+                                  CGRectGetMaxY(self.backCardView.frame) + ChoosePersonButtonVerticalPadding,
+                                  image.size.width,
+                                  image.size.height);
     [likeButton setImage:image forState:UIControlStateNormal];
     [likeButton setTintColor:[UIColor colorWithRed:29.f/255.f
-                                         green:245.f/255.f
-                                          blue:106.f/255.f
-                                         alpha:1.f]];
+                                             green:245.f/255.f
+                                              blue:106.f/255.f
+                                             alpha:1.f]];
     [likeButton addTarget:self
-               action:@selector(likeFrontCardView)
-     forControlEvents:UIControlEventTouchUpInside];
+                   action:@selector(likeFrontCardView)
+         forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:likeButton];
 }
 
@@ -396,7 +388,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     else {
         NSLog(@"All done!");
     }
-
+    
 }
 
 // Programmatically "likes" the front card view.
@@ -411,39 +403,22 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 
 - (IBAction)pressedReloadButton:(UIButton *)sender {
-//    /* wait a beat before animating in */
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//    });
+    //    /* wait a beat before animating in */
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //    });
     
     // Switch back to white background from the completion screen background
     self.view.backgroundColor = [UIColor whiteColor];
     
-    // Show the begin button again since we're reloading the deck.
-    self.beginButton.hidden = NO;
-    
-    // Hide the star ratings while the deck is present.
-    self.starRating.hidden = YES;
+    [self shouldHideCongratsScreenElements:YES];
     
     // Reload the deck
     [self loadDeck];
 }
 
 - (IBAction)didPressBeginButton:(UIButton *)sender {
-
+    
     [self constructCurrentExerciseViewController];
-    
-    //    double delayInSeconds = 5.0;
-    
-    //    //First allow setup and waiting time to get ready
-    //    [self setupCircularProgressTimerView:(NSInteger)delayInSeconds + 1 withColor:[UIColor yellowColor]];
-    //
-    //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    //    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    //        //code to be executed on the main queue after delay
-    //        //Then actually show the exercise timer
-    //        [self setupCircularProgressTimerView:self.currentExercise.timeRequired withColor:[UIColor greenColor]];
-    //    });
-
 }
 
 
@@ -455,7 +430,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)updateParseWithSwipeDecision:(NSString *)decision {
     self.exerciseObject = [PFObject objectWithClassName:@"ExerciseObject"];
     self.exerciseObject[decision] = self.currentExercise.name;
-//    self.exerciseObject[self.currentExercise.name] = decision;
+    //    self.exerciseObject[self.currentExercise.name] = decision;
     
     [self.exerciseObject saveInBackground];
 }
@@ -464,10 +439,10 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)viewDidSwipeRight {
     NSLog(@"You selected %@.", self.currentExercise.name);
     
-
+    
     
     [self updateParseWithSwipeDecision:@"performed"];
-
+    
     
     [self checkforEndOfDeck];
     
@@ -514,16 +489,14 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 -(void)starsSelectionChanged:(EDStarRating *)control rating:(float)rating
 {
-    if (self.starRating.hidden == NO) {
-        NSString *ratingString = [NSString stringWithFormat:@"%.1f", rating];
-        NSLog(@"You rated the exercise as %@.", ratingString);
-
-        
-        self.exerciseRatingObject = [PFObject objectWithClassName:@"ExerciseRatingObject"];
-        self.exerciseRatingObject[@"Rating"] = ratingString;
-        
-        [self.exerciseRatingObject saveInBackground];
-    }
+    NSString *ratingString = [NSString stringWithFormat:@"%.1f", rating];
+    NSLog(@"You rated the exercise as %@.", ratingString);
+    
+    
+    self.exerciseRatingObject = [PFObject objectWithClassName:@"ExerciseRatingObject"];
+    self.exerciseRatingObject[@"Rating"] = ratingString;
+    
+    [self.exerciseRatingObject saveInBackground];
 }
 
 

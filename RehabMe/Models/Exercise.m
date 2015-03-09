@@ -32,18 +32,16 @@
 
 - (instancetype)initWithName:(NSString *)name
                        image:(UIImage *)image
-                         count:(NSUInteger)count
-       numberOfSharedFriends:(NSUInteger)numberOfSharedFriends
-     numberOfSharedInterests:(NSUInteger)numberOfSharedInterests
-              timeRequired:(NSUInteger)timeRequired
+                       count:(NSUInteger)count
+                 displayName:(NSString *)displayName
+                timeRequired:(NSUInteger)timeRequired
                 instructions:(NSString *)instructions{
     self = [super init];
     if (self) {
         _name = name;
         _image = image;
         _count = count;
-        _numberOfSharedFriends = numberOfSharedFriends;
-        _numberOfSharedInterests = numberOfSharedInterests;
+        _displayName  = displayName;
         _timeRequired = timeRequired;
         _instructions = instructions;
     }

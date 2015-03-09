@@ -92,7 +92,7 @@
     });
 }
 
-- (IBAction)dismissPhoto:(UIBarButtonItem *)sender
+- (IBAction)didPressDoneButton:(UIBarButtonItem *)sender
 {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }

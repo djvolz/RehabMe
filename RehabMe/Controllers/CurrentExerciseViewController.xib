@@ -20,7 +20,7 @@
                     <items>
                         <barButtonItem title="Done" id="d7k-AE-3T4">
                             <connections>
-                                <action selector="dismissPhoto:" destination="-1" id="MSF-MN-6uM"/>
+                                <action selector="didPressDoneButton:" destination="-1" id="yQG-xS-k8m"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="5ic-0t-yHP"/>
