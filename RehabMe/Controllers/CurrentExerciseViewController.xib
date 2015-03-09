@@ -24,7 +24,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="5ic-0t-yHP"/>
-                        <barButtonItem title="Begin" id="g7L-TE-wjG">
+                        <barButtonItem title="Start Timer" id="g7L-TE-wjG">
                             <connections>
                                 <action selector="didTouchBeginButton:" destination="-1" id="ddn-CQ-Jnt"/>
                             </connections>
@@ -45,7 +45,7 @@
                 <constraint firstAttribute="bottom" secondItem="P8z-xi-BcI" secondAttribute="bottom" id="kim-cd-eni"/>
                 <constraint firstItem="P8z-xi-BcI" firstAttribute="top" secondItem="Zc7-zp-hKv" secondAttribute="bottom" id="vwx-xk-8L0"/>
             </constraints>
-            <point key="canvasLocation" x="200" y="319"/>
+            <point key="canvasLocation" x="203" y="355"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

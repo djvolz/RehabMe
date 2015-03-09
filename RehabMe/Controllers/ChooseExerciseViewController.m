@@ -91,7 +91,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void) constructSplashScreen {
     UIImage *icon = [UIImage imageNamed:@"checkButton"];
 
-    UIColor *color = [UIColor colorWithHexString:@"44DB5E"]; //[UIColor greenColor];
+    UIColor *color = [UIColor colorWithHexString:REHABME_GREEN]; //[UIColor greenColor];
     CBZSplashView *splashView = [CBZSplashView splashViewWithIcon:icon backgroundColor:color];
     
     splashView.animationDuration = 1.4;
@@ -162,9 +162,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     self.beginButton.hidden = YES;
     self.starRating.hidden = NO;
     
-    //#44DB5E iOS 7 green
+    //#44DB5E iOS 7 green defined as REHABME_GREEN
     //http://iosdesign.ivomynttinen.com
-    self.view.backgroundColor = [UIColor colorWithHexString:@"44DB5E"];//[UIColor greenColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:REHABME_GREEN];//[UIColor greenColor];
 }
 
 
@@ -451,10 +451,11 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 #pragma mark - Swipe Actions
 
 
+
 - (void)updateParseWithSwipeDecision:(NSString *)decision {
     self.exerciseObject = [PFObject objectWithClassName:@"ExerciseObject"];
     self.exerciseObject[decision] = self.currentExercise.name;
-    self.exerciseObject[self.currentExercise.name] = decision;
+//    self.exerciseObject[self.currentExercise.name] = decision;
     
     [self.exerciseObject saveInBackground];
 }

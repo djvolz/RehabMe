@@ -37,5 +37,6 @@
 - (instancetype)initWithFrame:(CGRect)frame
                        person:(Exercise *)exercise
                       options:(MDCSwipeToChooseViewOptions *)options;
+- (void)showInstuctions:(UITapGestureRecognizer*)sender;
 
 @end

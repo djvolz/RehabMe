@@ -31,26 +31,29 @@
 //
 // MVP:
 //
-// Make exercise instructions available while timer is going.
-// Disable touch interaction with hidden views during timer
 //
+// Ability to login
 //
+// DONE: Disable swipe touch interaction during focus exercise
 // DONE: Timer if applicable
 // DONE: Parse data reading from OK and NOPE
 // DONE: Text when button is tapped
 // DONE: Notification welcome back
 // DONE: Rating system after done with cards
-// (MAYBE just do a timer instead) Instructions card goes full screen on swipe right
+//
+//
+// Maybe:
+// Make exercise instructions available while timer is going.
 //
 // Features:
+// Push notifications
+// Badges
+// Edit text
 // HUD with number of exercises and number of sets left for day
 // Gif pictorial instruction instead of still picture
-// Custom videos/pictures
-// Badges
-// Push notifications
 // Menu with exercises sets
-// Edit text
 // Progress over the a period of time
+// Custom videos/pictures
 //
 //
 // Other:

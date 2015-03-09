@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define REHABME_GREEN @"44DB5E"
+
 @interface UIColor (HexString)
 
 + (UIColor *) colorWithHexString: (NSString *) hexString;
