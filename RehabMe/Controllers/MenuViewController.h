@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "EAIntroView.h"
 
 
-@interface MenuViewController : UIViewController
+@interface MenuViewController : UIViewController <EAIntroDelegate>
 
 @end

@@ -76,11 +76,12 @@
 #import "UIColor+HexString.h"
 #import "UIBezierPath+Shapes.h"
 #import "EDStarRating.h"
+#import "EAIntroView.h"
 #import "CurrentExerciseViewController.h"
 
 
 
-@interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol, EDStarRatingProtocol>
+@interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol, EDStarRatingProtocol, EAIntroDelegate>
 
 
 @property (nonatomic, strong) Exercise *currentExercise;

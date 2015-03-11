@@ -87,6 +87,16 @@
 		30BFD6561A9D49F3007C187F /* snapchatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 30BFD6551A9D49F3007C187F /* snapchatIcon.png */; };
 		30C30BDF1A9D4FDE006194BA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C30BDE1A9D4FDE006194BA /* MainStoryboard.storyboard */; };
 		30C30BE11A9D5257006194BA /* twitterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 30C30BE01A9D5257006194BA /* twitterIcon.png */; };
+		30D9352E1AB0D5B70024B03E /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D9352B1AB0D5B70024B03E /* EAIntroPage.m */; };
+		30D9352F1AB0D5B70024B03E /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D9352D1AB0D5B70024B03E /* EAIntroView.m */; };
+		30D935361AB0D5F10024B03E /* EARestrictedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D935331AB0D5F10024B03E /* EARestrictedScrollView.m */; };
+		30D935371AB0D5F10024B03E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 30D935341AB0D5F10024B03E /* LICENSE */; };
+		30D935381AB0D5F10024B03E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 30D935351AB0D5F10024B03E /* README.md */; };
+		30D9353F1AB0D7700024B03E /* bg1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30D9353A1AB0D7700024B03E /* bg1@2x.jpg */; };
+		30D935401AB0D7700024B03E /* bg2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30D9353B1AB0D7700024B03E /* bg2@2x.jpg */; };
+		30D935411AB0D7700024B03E /* bg3@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30D9353C1AB0D7700024B03E /* bg3@2x.jpg */; };
+		30D935421AB0D7700024B03E /* bg4@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30D9353D1AB0D7700024B03E /* bg4@2x.jpg */; };
+		30D935431AB0D7700024B03E /* bg5@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30D9353E1AB0D7700024B03E /* bg5@2x.jpg */; };
 		DA5B73E918F233EF00BB5F8E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5B73E818F233EF00BB5F8E /* Foundation.framework */; };
 		DA5B73EB18F233EF00BB5F8E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5B73EA18F233EF00BB5F8E /* CoreGraphics.framework */; };
 		DA5B73ED18F233EF00BB5F8E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5B73EC18F233EF00BB5F8E /* UIKit.framework */; };
@@ -221,6 +231,19 @@
 		30BFD6551A9D49F3007C187F /* snapchatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snapchatIcon.png; sourceTree = "<group>"; };
 		30C30BDE1A9D4FDE006194BA /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		30C30BE01A9D5257006194BA /* twitterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterIcon.png; sourceTree = "<group>"; };
+		30D9352A1AB0D5B70024B03E /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
+		30D9352B1AB0D5B70024B03E /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
+		30D9352C1AB0D5B70024B03E /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
+		30D9352D1AB0D5B70024B03E /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
+		30D935321AB0D5F10024B03E /* EARestrictedScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EARestrictedScrollView.h; sourceTree = "<group>"; };
+		30D935331AB0D5F10024B03E /* EARestrictedScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EARestrictedScrollView.m; sourceTree = "<group>"; };
+		30D935341AB0D5F10024B03E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		30D935351AB0D5F10024B03E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		30D9353A1AB0D7700024B03E /* bg1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg1@2x.jpg"; sourceTree = "<group>"; };
+		30D9353B1AB0D7700024B03E /* bg2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg2@2x.jpg"; sourceTree = "<group>"; };
+		30D9353C1AB0D7700024B03E /* bg3@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg3@2x.jpg"; sourceTree = "<group>"; };
+		30D9353D1AB0D7700024B03E /* bg4@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg4@2x.jpg"; sourceTree = "<group>"; };
+		30D9353E1AB0D7700024B03E /* bg5@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg5@2x.jpg"; sourceTree = "<group>"; };
 		374A6AE5BCA048DDAD2A8A49 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5B73E518F233EF00BB5F8E /* RehabMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RehabMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5B73E818F233EF00BB5F8E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -417,6 +440,9 @@
 		307F83791A9BC13900B1CEFF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				30D935391AB0D7700024B03E /* intro */,
+				30D935301AB0D5F10024B03E /* EARestrictedScrollView */,
+				30D935291AB0D5B70024B03E /* EAIntroView */,
 				308C093E1AAA15DA00754C66 /* CircularProgress */,
 				30880EEB1AA82F5B006746C4 /* EDStarRating */,
 				30880E391AA8023D006746C4 /* HexColors */,
@@ -571,6 +597,48 @@
 			path = CircularProgress;
 			sourceTree = "<group>";
 		};
+		30D935291AB0D5B70024B03E /* EAIntroView */ = {
+			isa = PBXGroup;
+			children = (
+				30D9352A1AB0D5B70024B03E /* EAIntroPage.h */,
+				30D9352B1AB0D5B70024B03E /* EAIntroPage.m */,
+				30D9352C1AB0D5B70024B03E /* EAIntroView.h */,
+				30D9352D1AB0D5B70024B03E /* EAIntroView.m */,
+			);
+			path = EAIntroView;
+			sourceTree = "<group>";
+		};
+		30D935301AB0D5F10024B03E /* EARestrictedScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				30D935311AB0D5F10024B03E /* EARestrictedScrollView */,
+				30D935341AB0D5F10024B03E /* LICENSE */,
+				30D935351AB0D5F10024B03E /* README.md */,
+			);
+			path = EARestrictedScrollView;
+			sourceTree = "<group>";
+		};
+		30D935311AB0D5F10024B03E /* EARestrictedScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				30D935321AB0D5F10024B03E /* EARestrictedScrollView.h */,
+				30D935331AB0D5F10024B03E /* EARestrictedScrollView.m */,
+			);
+			path = EARestrictedScrollView;
+			sourceTree = "<group>";
+		};
+		30D935391AB0D7700024B03E /* intro */ = {
+			isa = PBXGroup;
+			children = (
+				30D9353A1AB0D7700024B03E /* bg1@2x.jpg */,
+				30D9353B1AB0D7700024B03E /* bg2@2x.jpg */,
+				30D9353C1AB0D7700024B03E /* bg3@2x.jpg */,
+				30D9353D1AB0D7700024B03E /* bg4@2x.jpg */,
+				30D9353E1AB0D7700024B03E /* bg5@2x.jpg */,
+			);
+			path = intro;
+			sourceTree = "<group>";
+		};
 		DA5B73DC18F233EF00BB5F8E = {
 			isa = PBXGroup;
 			children = (
@@ -691,13 +759,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30D935411AB0D7700024B03E /* bg3@2x.jpg in Resources */,
 				30880E5C1AA8023D006746C4 /* LICENCE in Resources */,
 				30880EFD1AA83590006746C4 /* starhighlighted.png in Resources */,
 				30880EF81AA83590006746C4 /* star-highlighted-template.png in Resources */,
 				30880E621AA8023D006746C4 /* NotificationBackgroundErrorIcon@2x.png in Resources */,
 				30880EFE1AA83590006746C4 /* starsbackground iOS.png in Resources */,
+				30D9353F1AB0D7700024B03E /* bg1@2x.jpg in Resources */,
 				30880E6D1AA8023D006746C4 /* NotificationButtonBackground.png in Resources */,
+				30D935371AB0D5F10024B03E /* LICENSE in Resources */,
 				30880E6A1AA8023D006746C4 /* NotificationBackgroundWarning@2x.png in Resources */,
+				30D935431AB0D7700024B03E /* bg5@2x.jpg in Resources */,
 				30880EFC1AA83590006746C4 /* star.png in Resources */,
 				30880E6C1AA8023D006746C4 /* NotificationBackgroundWarningIcon@2x.png in Resources */,
 				30880E651AA8023D006746C4 /* NotificationBackgroundSuccess.png in Resources */,
@@ -712,6 +784,7 @@
 				30880E661AA8023D006746C4 /* NotificationBackgroundSuccess@2x.png in Resources */,
 				30880E6E1AA8023D006746C4 /* NotificationButtonBackground@2x.png in Resources */,
 				30880EFA1AA83590006746C4 /* star-template.png in Resources */,
+				30D935421AB0D7700024B03E /* bg4@2x.jpg in Resources */,
 				30880E6B1AA8023D006746C4 /* NotificationBackgroundWarningIcon.png in Resources */,
 				30880E631AA8023D006746C4 /* NotificationBackgroundMessage.png in Resources */,
 				30880E6F1AA8023D006746C4 /* TSMessagesDefaultDesign.json in Resources */,
@@ -719,6 +792,7 @@
 				30BFD6561A9D49F3007C187F /* snapchatIcon.png in Resources */,
 				30880EFF1AA83590006746C4 /* starsbackground.png in Resources */,
 				30880EFB1AA83590006746C4 /* star-template@2x.png in Resources */,
+				30D935401AB0D7700024B03E /* bg2@2x.jpg in Resources */,
 				30880E5F1AA8023D006746C4 /* NotificationBackgroundError.png in Resources */,
 				30880E681AA8023D006746C4 /* NotificationBackgroundSuccessIcon@2x.png in Resources */,
 				30880E641AA8023D006746C4 /* NotificationBackgroundMessage@2x.png in Resources */,
@@ -764,10 +838,14 @@
 				303C06381A9FDFDE001D9B78 /* MDCSwipeToChooseView.m in Sources */,
 				307F83771A9BC12400B1CEFF /* ChooseExerciseView.m in Sources */,
 				305EBB421AAB9219008C2E17 /* CurrentExerciseViewController.m in Sources */,
+				30D9352F1AB0D5B70024B03E /* EAIntroView.m in Sources */,
 				3083120C1A9E65AC00CC2A5C /* CBZVectorSplashView.m in Sources */,
 				308C09451AAA175700754C66 /* CircularProgressTimerView.m in Sources */,
 				303C06301A9FDFDE001D9B78 /* MDCGeometry.m in Sources */,
+				30D935361AB0D5F10024B03E /* EARestrictedScrollView.m in Sources */,
+				30D9352E1AB0D5B70024B03E /* EAIntroPage.m in Sources */,
 				30880EEE1AA82F5B006746C4 /* EDStarRating.m in Sources */,
+				30D935381AB0D5F10024B03E /* README.md in Sources */,
 				307F83701A9BC12400B1CEFF /* AppDelegate.m in Sources */,
 				3083120B1A9E65AC00CC2A5C /* CBZRasterSplashView.m in Sources */,
 				307F83781A9BC12400B1CEFF /* ImageLabelView.m in Sources */,
