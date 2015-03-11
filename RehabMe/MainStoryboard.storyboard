@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dKd-vA-a2t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D87p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mPp-8j-3GS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Choose Exercise View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="TWI-te-unQ">
+            <objects>
+                <navigationController hidesBarsWhenKeyboardAppears="YES" id="mPp-8j-3GS" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8f5-tW-d2F">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dKd-vA-a2t" kind="relationship" relationship="rootViewController" id="Ofa-eE-VC0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xh4-9J-89Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2" y="579"/>
+        </scene>
+        <!--RehabMe-->
         <scene sceneID="Gcv-ZH-mg9">
             <objects>
                 <viewController id="dKd-vA-a2t" customClass="ChooseExerciseViewController" sceneMemberID="viewController">
@@ -14,11 +31,41 @@
                         <viewControllerLayoutGuide type="bottom" id="kDL-cW-hVY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HUX-de-enZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="94" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDW-IL-vDB" customClass="EDStarRating">
+                                <rect key="frame" x="92" y="54" width="230" height="38"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qi-f9-fEO">
+                                <rect key="frame" x="49" y="100" width="316" height="87"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="87" id="y2p-tQ-Dr2"/>
+                                </constraints>
+                                <string key="text">How was the work out? 
+(Hard 1 – 5 Easy)</string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmu-2q-QZF">
+                                <rect key="frame" x="169" y="666" width="77" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="C0j-Eo-fu7"/>
+                                    <constraint firstAttribute="height" constant="50" id="YUg-Bf-BAS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                <state key="normal" title="Begin"/>
+                                <connections>
+                                    <action selector="didPressBeginButton:" destination="dKd-vA-a2t" eventType="touchUpInside" id="3rq-uH-ZJV"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss0-zD-oVb">
-                                <rect key="frame" x="0.0" y="145" width="414" height="503"/>
+                                <rect key="frame" x="0.0" y="134" width="414" height="582"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="582" id="YUd-GW-sMm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="45"/>
                                 <state key="normal" title="Again?">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,8 +74,29 @@
                                     <action selector="pressedReloadButton:" destination="dKd-vA-a2t" eventType="touchUpInside" id="vvz-KN-mhj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="waP-RZ-D7f">
-                                <rect key="frame" x="-3" y="37" width="95" height="29"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.91000000000000003" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="2Qi-f9-fEO" firstAttribute="top" secondItem="qDW-IL-vDB" secondAttribute="bottom" constant="8" symbolic="YES" id="35T-xh-598"/>
+                            <constraint firstAttribute="trailing" secondItem="Ss0-zD-oVb" secondAttribute="trailing" id="3rM-dt-PQD"/>
+                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="centerX" secondItem="2Qi-f9-fEO" secondAttribute="centerX" id="FQ0-nV-FLz"/>
+                            <constraint firstItem="qDW-IL-vDB" firstAttribute="top" secondItem="HUX-de-enZ" secondAttribute="topMargin" constant="54" id="Iaj-B9-ChZ"/>
+                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="top" secondItem="qDW-IL-vDB" secondAttribute="bottom" constant="42" id="Kw6-CP-q31"/>
+                            <constraint firstItem="qDW-IL-vDB" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leadingMargin" constant="76" id="OoM-ny-U1J"/>
+                            <constraint firstAttribute="bottom" secondItem="Ss0-zD-oVb" secondAttribute="bottom" constant="20" symbolic="YES" id="ZPD-zn-cjF"/>
+                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="centerX" secondItem="dmu-2q-QZF" secondAttribute="centerX" id="Zli-ZU-yi8"/>
+                            <constraint firstItem="2Qi-f9-fEO" firstAttribute="centerX" secondItem="qDW-IL-vDB" secondAttribute="centerX" id="erR-6F-kyS"/>
+                            <constraint firstItem="2Qi-f9-fEO" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leadingMargin" constant="33" id="hPD-to-f6k"/>
+                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leading" id="lyE-nZ-SCl"/>
+                            <constraint firstItem="dmu-2q-QZF" firstAttribute="bottom" secondItem="Ss0-zD-oVb" secondAttribute="bottom" id="mEv-MB-bNW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="RehabMe" id="zdh-O4-3Z3">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="ERa-wy-RlS">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="waP-RZ-D7f">
+                                <rect key="frame" x="16" y="5" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="XNu-WN-0VZ"/>
                                     <constraint firstAttribute="width" constant="95" id="hcV-X5-iDZ"/>
@@ -41,65 +109,35 @@
                                     <segue destination="k6I-4h-h7K" kind="presentation" id="TCy-kx-pr5"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDW-IL-vDB" customClass="EDStarRating">
-                                <rect key="frame" x="100" y="33" width="230" height="38"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qi-f9-fEO">
-                                <rect key="frame" x="49" y="74" width="316" height="87"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="87" id="Zej-dz-QnJ"/>
-                                </constraints>
-                                <string key="text">How was the work out? 
-(Hard 1 – 5 Easy)</string>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmu-2q-QZF">
-                                <rect key="frame" x="169" y="666" width="77" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="77" id="VIm-s3-GeD"/>
-                                    <constraint firstAttribute="height" constant="50" id="nyM-w8-gKX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
-                                <state key="normal" title="Begin"/>
-                                <connections>
-                                    <action selector="didPressBeginButton:" destination="dKd-vA-a2t" eventType="touchUpInside" id="3rq-uH-ZJV"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="2Qi-f9-fEO" firstAttribute="top" secondItem="qDW-IL-vDB" secondAttribute="bottom" constant="3" id="0BJ-FF-7Bo"/>
-                            <constraint firstItem="waP-RZ-D7f" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leadingMargin" constant="-19" id="3LR-Ug-0PE"/>
-                            <constraint firstItem="2Qi-f9-fEO" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leadingMargin" constant="33" id="3kt-B0-lBi"/>
-                            <constraint firstItem="dmu-2q-QZF" firstAttribute="top" secondItem="Ss0-zD-oVb" secondAttribute="bottom" constant="18" id="67H-aa-Pz4"/>
-                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="leading" secondItem="HUX-de-enZ" secondAttribute="leading" id="HWa-Gg-IzX"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qDW-IL-vDB" secondAttribute="trailing" constant="68" id="Hwr-Cr-acL"/>
-                            <constraint firstItem="2Qi-f9-fEO" firstAttribute="top" secondItem="waP-RZ-D7f" secondAttribute="bottom" constant="8" symbolic="YES" id="QzJ-JI-Pds"/>
-                            <constraint firstItem="qDW-IL-vDB" firstAttribute="leading" secondItem="waP-RZ-D7f" secondAttribute="trailing" constant="8" symbolic="YES" id="RDb-q2-TfE"/>
-                            <constraint firstItem="Ss0-zD-oVb" firstAttribute="top" secondItem="qDW-IL-vDB" secondAttribute="bottom" constant="74" id="YQv-v4-0Fp"/>
-                            <constraint firstAttribute="trailing" secondItem="Ss0-zD-oVb" secondAttribute="trailing" id="bbm-gt-hxS"/>
-                            <constraint firstItem="2Qi-f9-fEO" firstAttribute="centerX" secondItem="Ss0-zD-oVb" secondAttribute="centerX" id="hnp-81-Ehq"/>
-                            <constraint firstAttribute="bottom" secondItem="dmu-2q-QZF" secondAttribute="bottom" constant="20" symbolic="YES" id="syU-dw-ysX"/>
-                            <constraint firstItem="qDW-IL-vDB" firstAttribute="top" secondItem="KPe-ew-9kL" secondAttribute="bottom" constant="13" id="unq-N2-myJ"/>
-                            <constraint firstItem="waP-RZ-D7f" firstAttribute="top" secondItem="KPe-ew-9kL" secondAttribute="bottom" constant="17" id="uqT-1J-eHX"/>
-                            <constraint firstItem="dmu-2q-QZF" firstAttribute="centerX" secondItem="Ss0-zD-oVb" secondAttribute="centerX" id="zbe-Qe-pn6"/>
-                        </constraints>
-                    </view>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="beginButton" destination="dmu-2q-QZF" id="dZ8-BA-2Sb"/>
+                        <outlet property="howHardWasWorkoutLabel" destination="2Qi-f9-fEO" id="bXw-2I-5D2"/>
+                        <outlet property="navigationBarItem" destination="zdh-O4-3Z3" id="UUQ-al-n8p"/>
+                        <outlet property="navigationItem" destination="zdh-O4-3Z3" id="wge-m9-2vK"/>
                         <outlet property="reloadButton" destination="Ss0-zD-oVb" id="upe-Yy-hLq"/>
                         <outlet property="starRating" destination="qDW-IL-vDB" id="Ipi-9c-SZP"/>
                         <outlet property="view" destination="HUX-de-enZ" id="8fK-Ig-3ir"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q9d-9g-BYv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="lK6-cI-iLz">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="cEy-AC-Roa"/>
+                        <barButtonItem title="Done" id="BrO-ep-SRw">
+                            <connections>
+                                <action selector="didPressDoneButton:" destination="k6I-4h-h7K" id="mA6-yu-ffo"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
             </objects>
-            <point key="canvasLocation" x="797" y="582"/>
+            <point key="canvasLocation" x="651" y="564"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="tEF-63-g04">

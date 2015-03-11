@@ -25,4 +25,24 @@
     return YES;
 }
 
+
+//- (void)loginExampleMethod {
+//    PFUser *user = [PFUser user];
+//    user.username = @"Yize";
+//    user.password = @"Zhao";
+//    user.email = @"contact@rehabme.com";
+//
+//    // other fields can be set just like with PFObject
+//    user[@"phone"] = @"415-392-0202";
+//
+//    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (!error) {
+//            // Hooray! Let them use the app now.
+//        } else {
+//            NSString *errorString = [error userInfo][@"error"];
+//            // Show the errorString somewhere and let the user try again.
+//        }
+//    }];
+//}
+
 @end

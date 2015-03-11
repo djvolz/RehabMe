@@ -10,6 +10,7 @@
 
 @property (nonatomic, strong) Exercise *currentExercise;
 @property (strong, nonatomic) IBOutlet UIView *cardView;
+@property (nonatomic) NSInteger test;
 
 @end
 
@@ -60,9 +61,9 @@
     // Remove the pan gesture from the exerciseView.
     //  (It's confusing to new users to have it be available but unused)
     for (UIGestureRecognizer *gesture in exerciseView.gestureRecognizers) {
-        if ([gesture isKindOfClass:UIPanGestureRecognizer.class]) {
+//        if ([gesture isKindOfClass:UIPanGestureRecognizer.class]) {
             [exerciseView removeGestureRecognizer:gesture];
-        }
+//        }
     }
     
     
@@ -75,21 +76,22 @@
     //    [self setupCircularProgressTimerView:self.currentExercise.timeRequired
     //                               withColor:[UIColor colorWithHexString:REHABME_GREEN]];
     
-    double delayInSeconds = 4.0;
+//    double delayInSeconds = 4.0;
     
     //First allow setup and waiting time to get ready
-    [self setupCircularProgressTimerView:(NSInteger)delayInSeconds
-                               withColor:[UIColor yellowColor]];
+//    [self setupCircularProgressTimerView:(NSInteger)delayInSeconds
+//                               withColor:[UIColor yellowColor]];
     
     // Put up a delay so the exercise timer happens after the get ready timer
     // Subtracting one second from the delay allows for the view loading to overlap
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW,
-                                            (delayInSeconds - 1) * NSEC_PER_SEC);
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW,
+//                                            (delayInSeconds - 1) * NSEC_PER_SEC);
     
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        
-        [self setupCircularProgressTimerView:self.currentExercise.timeRequired withColor:[UIColor colorWithHexString:REHABME_GREEN]];
-    });
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    
+        [self setupCircularProgressTimerView:self.currentExercise.timeRequired
+                                   withColor:[UIColor colorWithHexString:REHABME_GREEN]];
+//    });
 }
 
 - (IBAction)didPressDoneButton:(UIBarButtonItem *)sender

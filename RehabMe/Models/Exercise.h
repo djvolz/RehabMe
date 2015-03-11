@@ -42,4 +42,12 @@
                 timeRequired:(NSUInteger)timeRequired
                 instructions:(NSString *)instructions;
 
+//Repititions
+//Number of sets
+//Days per week
+//Main muscles worked
+//Equipment needed
+//directions
+//tip
+
 @end

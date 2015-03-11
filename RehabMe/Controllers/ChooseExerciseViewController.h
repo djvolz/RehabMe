@@ -32,7 +32,7 @@
 // MVP:
 //
 //
-// Ability to login
+// Ability to login (possibly automatic user login)
 // Menu with view for logging in.
 //
 // DONE: Disable swipe touch interaction during focus exercise

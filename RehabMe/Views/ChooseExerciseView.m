@@ -60,6 +60,9 @@ static const CGFloat bottomHeight = 70.f;
 
         [self constructInformationView];
         
+        // Make the imageView background white.
+        self.imageView.backgroundColor = [UIColor whiteColor];
+        
         /* This resizes the imageView after the image has been loaded to ensure the
          * informationView doesn't cover up the image. */
         self.imageView.frame = CGRectMake(self.imageView.frame.origin.x,
@@ -69,8 +72,14 @@ static const CGFloat bottomHeight = 70.f;
                                           // The information bottomHeight
                                           self.imageView.frame.size.height - bottomHeight);
         
-        UITapGestureRecognizer *cardTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showInstuctions:)];
+        // Make sure we don't stretch out the image and so it scales correctly.
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         
+        
+        // A tap gesture so you can see the instructions if you tap the card.
+        UITapGestureRecognizer *cardTapRecognizer = [[UITapGestureRecognizer alloc]
+                                                     initWithTarget:self
+                                                     action:@selector(showInstuctions:)];
         [self addGestureRecognizer:cardTapRecognizer];
 
         
@@ -108,7 +117,9 @@ static const CGFloat bottomHeight = 70.f;
                               CGRectGetHeight(_informationView.frame) - topPadding);
     _nameLabel = [[UILabel alloc] initWithFrame:frame];
     _nameLabel.text = [NSString stringWithFormat:@"%@", _exercise.displayName];
-    [_nameLabel setFont:[UIFont systemFontOfSize:24]];
+//    _nameLabel.lineBreakMode = YES;
+    _nameLabel.numberOfLines = 2;
+    [_nameLabel setFont:[UIFont systemFontOfSize:22]];
     [_informationView addSubview:_nameLabel];
 }
 
@@ -137,7 +148,7 @@ static const CGFloat bottomHeight = 70.f;
                               CGRectGetWidth(self.frame),
                               CGRectGetHeight(self.frame));
     self.instructionsView = [[UITextView alloc] initWithFrame:frame];
-    [self.instructionsView setBackgroundColor: [UIColor colorWithRed:200.0 green:200.0 blue:200.0 alpha:0.9]];
+    [self.instructionsView setBackgroundColor: [UIColor colorWithRed:200.0 green:200.0 blue:200.0 alpha:0.95]];
     [self.instructionsView setTextColor: [UIColor blackColor]];
     [self.instructionsView setFont:[UIFont fontWithName:@"Helvetica Neue" size:24.0f]];
     self.instructionsView.text = _exercise.instructions;

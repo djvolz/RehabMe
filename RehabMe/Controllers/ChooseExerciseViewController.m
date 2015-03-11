@@ -34,13 +34,17 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 @property (nonatomic, strong) NSMutableArray *exercises;
 @property (nonatomic, strong) UIButton *likeButton;
 @property (nonatomic, strong) UIButton *nopeButton;
-@property (strong, nonatomic) IBOutlet UIButton *beginButton;
 @property (nonatomic, strong) CBZSplashView *splashView;
-@property (weak, nonatomic) IBOutlet EDStarRating *starRating;
 
 @property (nonatomic, strong) PFObject *exerciseObject;
 @property (nonatomic, strong) PFObject *exerciseRatingObject;
 
+@property (strong, nonatomic) IBOutlet UILabel *howHardWasWorkoutLabel;
+
+@property (weak, nonatomic) IBOutlet EDStarRating *starRating;
+@property (strong, nonatomic) IBOutlet UIButton *beginButton;
+
+@property (strong, nonatomic) IBOutlet UINavigationItem *navigationBarItem;
 
 @end
 
@@ -49,14 +53,22 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 @synthesize starRating = _starRating;
 
 
-
 #pragma mark - UIViewController Overrides
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Load the deck when the VC loads.
-    [self loadDeck];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:REHABME_GREEN]];
+    [self.navigationController.navigationBar setTranslucent:NO];
+    
+    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               [UIColor whiteColor],
+                                               NSForegroundColorAttributeName,
+                                               [UIFont fontWithName:@"Helvetica" size:20.0],
+                                               NSFontAttributeName,
+                                               nil];
+    [self.navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
     
     
     // Add buttons to programmatically swipe the view left or right.
@@ -69,10 +81,10 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // Show welcome badge notification
     [TSMessage showNotificationInViewController:self
                                           title:NSLocalizedString(@"Welcome back!", nil)
-                                       subtitle:NSLocalizedString(@"Let's do this!", nil)
+                                       subtitle:NSLocalizedString(@"", nil)
                                           image:[UIImage imageNamed:@"NotificationBackgroundSuccessIcon"]
                                            type:TSMessageNotificationTypeSuccess
-                                       duration:TSMessageNotificationDurationAutomatic
+                                       duration:3.0//TSMessageNotificationDurationAutomatic
                                        callback:nil
                                     buttonTitle:nil
                                  buttonCallback:nil
@@ -80,6 +92,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                            canBeDismissedByUser:YES];
     
     
+    // Load the deck when the VC loads.
+    /* wait a beat before animating in */
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self loadDeck];
+        
+    });
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -170,6 +188,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     self.reloadButton.hidden = hide;
     self.starRating.hidden = hide;
+    self.howHardWasWorkoutLabel.hidden = hide;
+    
+    self.navigationController.navigationBarHidden = !hide;
 }
 
 
@@ -234,57 +255,96 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     return @[
              [[Exercise alloc] initWithName:@"CalfRaises"
                                       image:[UIImage imageNamed:@"calf_raises"]
-                                      count:15
+                                      count:4
                                 displayName:@"Calf Raises"
-                               timeRequired:10
-                               instructions:@"Bacon ipsum dolor amet chuck elit incididunt alcatra nostrud brisket. Shankle landjaeger beef ribs chicken dolor reprehenderit hamburger cow ham hock jerky pork pork belly in meatball consequat. Leberkas irure in, chicken adipisicing cupim fatback ground round quis frankfurter hamburger. Boudin tenderloin occaecat jowl, tail rump picanha ut alcatra flank esse proident. Prosciutto ut mollit et ground round proident labore kielbasa bacon ipsum tenderloin beef ribs."],
+                               timeRequired:30
+                               instructions:@"Main muscles worked:\nGastrocnemius-soleus complex\n\nYou should feel this stretch in your calf and into your heel\n\n• Stand facing a wall with your unaffected leg forward with a slight bend at the knee. Your affected leg is straight and behind you, with the heel flat and the toes pointed in slightly.\n\n• Keep both heels flat on the floor and press your hips forward toward the wall.\n\n• Hold this stretch for 30 seconds and then relax for 30 seconds. Repeat."],
+             
+             [[Exercise alloc] initWithName:@"StandingQuadricepsStretch"
+                                      image:[UIImage imageNamed:@"standing_quadriceps_stretch"]
+                                      count:2
+                                displayName:@"Standing Quadriceps Stretch"
+                               timeRequired:30
+                               instructions:@"Main muscles worked:\nQuadriceps\n\nYou should feel this stretch in the front of your thigh\n\n• Hold on to the back of a chair or a wall for balance.\n\n• Bend your knee and bring your heel up toward your buttock.\n\n• Grasp your ankle with your hand and gently pull your heel closer to your body.\n\n• Hold this position for 30 to 60 seconds.\n\n• Repeat with the opposite leg."],
+             
+             [[Exercise alloc] initWithName:@"SupineHamstringStretch"
+                                      image:[UIImage imageNamed:@"supine_hamstring_stretch"]
+                                      count:2
+                                displayName:@"Supine Hamstring Stretch"
+                               timeRequired:30
+                               instructions:@"Main muscles worked:\nHamstrings\n\nYou should feel this stretch at the back of your thigh and behind your knee\n\n• Lie on the floor with both legs bent.\n\n• Lift one leg off of the floor and bring the knee toward your chest. Clasp your hands behind your thigh below your knee.\n\n• Straighten your leg and then pull it gently toward your head, until you feel a stretch. (If you have difficulty clasping your hands behind your leg, loop a towel around your thigh. Grasp the ends of the towel and pull your leg toward you.)\n\n• Hold this position for 30 to 60 seconds.\n\n• Repeat with the opposite leg."],
              
              [[Exercise alloc] initWithName:@"HalfSquats"
                                       image:[UIImage imageNamed:@"half_squats"]
-                                      count:28
+                                      count:10
                                 displayName:@"Half Squats"
-                               timeRequired:8
-                               instructions:@"Lie on back or stomach\nLegs should be straight\n"],
+                               timeRequired:5
+                               instructions:@"Main muscles worked:\nQuadriceps, gluteus, hamstrings\n\nYou should feel this exercise at the front and back of your thighs, and your buttocks\n\n• Stand with your feet shoulder distance apart. Your hands can rest on the front of your thighs or reach in front of you. If needed, hold on to the back of a chair or wall for balance.\n\n• Keep your chest lifted and slowly lower your hips about 10 inches, as if you are sitting down into a chair.\n\n• Plant your weight in your heels and hold the squat for 5 seconds.\n\n• Push through your heels and bring your body back up to standing."],
              
              [[Exercise alloc] initWithName:@"HamstringCurls"
                                       image:[UIImage imageNamed:@"hamstring_curls"]
-                                      count:14
+                                      count:10
                                 displayName:@"Hamstring Curls"
                                timeRequired:5
-                               instructions:@"do your stuff"],
+                               instructions:@"Main muscles worked:\nHamstrings\n\nYou should feel this exercise at the back of your thigh\n\n• Hold onto the back of a chair or a wall for balance.\n\n• Bend your affected knee and raise your heel toward the ceiling as far as possible without pain.\n\n• Hold this position for 5 seconds and then relax. Repeat."],
+             // [[Exercise alloc] initWithName:@"CalfRaises"
+             //                          image:[UIImage imageNamed:@"calf_raises"]
+             //                          count:4
+             //                    displayName:@"Calf Raises"
+             //                   timeRequired:30
+             //                   instructions:@"Main muscles worked: Gastrocnemius-soleus complex You should feel this stretch in your calf and into your heel\n\n• Stand facing a wall with your unaffected leg forward with a slight bend at the knee. Your affected leg is straight and behind you, with the heel flat and the toes pointed in slightly.\n\n• Keep both heels flat on the floor and press your hips forward toward the wall.\n\n• Hold this stretch for 30 seconds and then relax for 30 seconds. Repeat."],
              
-             //        [[Exercise alloc] initWithName:@"HeelCordStretch"
-             //                               image:[UIImage imageNamed:@"heel_cord_stretch"]
-             //                                 count:18
-             //                      timeRequired:20
-             //                          instructions:@"do your stuff"],
-             //
-             //        [[Exercise alloc] initWithName:@"HipAbduction"
-             //                                 image:[UIImage imageNamed:@"hip_abduction"]
-             //                                 count:15
-             //                          timeRequired:10
-             //                          instructions:@"do your stuff"],
-             //
-             //
-             //        [[Exercise alloc] initWithName:@"HipAdduction"
-             //                                 image:[UIImage imageNamed:@"hip_adduction"]
-             //                                 count:15
-             //                          timeRequired:15
-             //                          instructions:@"do your stuff"],
-             //
-             //
-             //        [[Exercise alloc] initWithName:@"LegExtensions"
-             //                                 image:[UIImage imageNamed:@"leg_extensions"]
-             //                                 count:15
-             //                          timeRequired:12
-             //                          instructions:@"do your stuff"],
-             //
-             //
-             //        [[Exercise alloc] initWithName:@"LegPresses"
-             //                                 image:[UIImage imageNamed:@"leg_presses"]
-             //                                 count:15
-             //                          timeRequired:7
-             //                          instructions:@"do your stuff"],
+             //  [[Exercise alloc] initWithName:@"HalfSquats"
+             //                           image:[UIImage imageNamed:@"half_squats"]
+             //                           count:28
+             //                     displayName:@"Half Squats"
+             //                    timeRequired:8
+             //                    instructions:@"Lie on back or stomach\nLegs should be straight\n"],
+             
+             //  [[Exercise alloc] initWithName:@"HamstringCurls"
+             //                           image:[UIImage imageNamed:@"hamstring_curls"]
+             //                           count:14
+             //                     displayName:@"Hamstring Curls"
+             //                    timeRequired:5
+             //                    instructions:@"do your stuff"],
+             
+             //  [[Exercise alloc] initWithName:@"HeelCordStretch"
+             //                           image:[UIImage imageNamed:@"heel_cord_stretch"]
+             //                           count:18
+             //                     displayName:@"Heel Cord Stretch"
+             
+             //                    timeRequired:20
+             //                    instructions:@"do your stuff"],
+             
+             //  [[Exercise alloc] initWithName:@"HipAdduction"
+             //                           image:[UIImage imageNamed:@"hip_adduction"]
+             //                           count:15
+             //                     displayName:@"Hip Adduction"
+             //                    timeRequired:15
+             //                    instructions:@"do your stuff"],
+             //  //
+             //  //        [[Exercise alloc] initWithName:@"HipAbduction"
+             //  //                                 image:[UIImage imageNamed:@"hip_abduction"]
+             //  //                                 count:15
+             //  //                          timeRequired:10
+             //  //                          instructions:@"do your stuff"],
+             //  //
+             //  //
+             
+             //  //
+             //  //
+             //  //        [[Exercise alloc] initWithName:@"LegExtensions"
+             //  //                                 image:[UIImage imageNamed:@"leg_extensions"]
+             //  //                                 count:15
+             //  //                          timeRequired:12
+             //  //                          instructions:@"do your stuff"],
+             //  //
+             //  //
+             //  //        [[Exercise alloc] initWithName:@"LegPresses"
+             //  //                                 image:[UIImage imageNamed:@"leg_presses"]
+             //  //                                 count:15
+             //  //                          timeRequired:7
+             //  //                          instructions:@"do your stuff"],
              
              ];
 }
@@ -325,8 +385,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 - (CGRect)frontCardViewFrame {
     CGFloat horizontalPadding = 20.f;
-    CGFloat topPadding = 100.f;
-    CGFloat bottomPadding = 180.f;
+    CGFloat topPadding = 40.f;
+    CGFloat bottomPadding = 140.f;
     return CGRectMake(horizontalPadding,
                       topPadding,
                       CGRectGetWidth(self.view.frame) - (horizontalPadding * 2),
@@ -403,12 +463,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 
 - (IBAction)pressedReloadButton:(UIButton *)sender {
-    //    /* wait a beat before animating in */
-    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //    });
-    
     // Switch back to white background from the completion screen background
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.91];
     
     [self shouldHideCongratsScreenElements:YES];
     
@@ -478,12 +534,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     _starRating.delegate = self;
     _starRating.horizontalMargin = 15.0;
     _starRating.editable = YES;
-    _starRating.rating = 2.5;
+    _starRating.rating = 0.0;
     _starRating.displayMode = EDStarRatingDisplayAccurate;
     [_starRating  setNeedsDisplay];
     _starRating.tintColor = [UIColor whiteColor];
     _starRating.hidden = YES;
-    [self starsSelectionChanged:_starRating rating:2.5];
+    [self starsSelectionChanged:_starRating rating:0.0];
     
 }
 
@@ -512,26 +568,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                      completion:^{}];
 }
 
-
-
-//- (void)loginExampleMethod {
-//    PFUser *user = [PFUser user];
-//    user.username = @"Yize";
-//    user.password = @"Zhao";
-//    user.email = @"contact@rehabme.com";
-//
-//    // other fields can be set just like with PFObject
-//    user[@"phone"] = @"415-392-0202";
-//
-//    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (!error) {
-//            // Hooray! Let them use the app now.
-//        } else {
-//            NSString *errorString = [error userInfo][@"error"];
-//            // Show the errorString somewhere and let the user try again.
-//        }
-//    }];
-//}
 
 
 @end
