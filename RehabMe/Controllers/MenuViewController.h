@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Parse/Parse.h>
-#import "EAIntroView.h"
 
 
-@interface MenuViewController : UIViewController <EAIntroDelegate>
+
+@interface MenuViewController : UIViewController
+
+
+
+
 
 @end

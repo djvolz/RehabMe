@@ -29,32 +29,26 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
 //
-// MVP:
-//
-//
+// see image on instructions screen
+// create way to cancel out of timer screen
 // Ability to login (possibly automatic user login)
 // Menu with view for logging in.
+// Make sure tutorial only appears once
+// fix skip button for tutorial
+// daily motivational quotes
 //
-// DONE: Disable swipe touch interaction during focus exercise
-// DONE: Timer if applicable
-// DONE: Parse data reading from OK and NOPE
-// DONE: Text when button is tapped
-// DONE: Notification welcome back
-// DONE: Rating system after done with cards
-// DONE: Fix display of name on cards
 //
-// Maybe:
-// Make exercise instructions available while timer is going.
+//
 //
 // Features:
 // Push notifications
 // Badges
+// Progress over the a period of time
 // Edit text
 // HUD with number of exercises and number of sets left for day
 // Gif pictorial instruction instead of still picture
-// Menu with exercises sets
-// Progress over the a period of time
 // Custom videos/pictures
+// Menu with exercises sets
 //
 //
 // Other:
@@ -63,6 +57,21 @@
 // Pull from my VHI
 // Spanish version
 // Reading out loud
+//
+// Maybe:
+// Make exercise instructions available while timer is going.
+//
+// DONE: Add congrats screen
+// DONE: redo congrats screen as seperate viewcontroller
+// DONE: slider instead of stars
+// DONE: Disable swipe touch interaction during focus exercise
+// DONE: Timer if applicable
+// DONE: Parse data reading from OK and NOPE
+// DONE: Text when button is tapped
+// DONE: Notification welcome back
+// DONE: Rating system after done with cards
+// DONE: Fix display of name on cards
+// DONE: Tutorial opening screen
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -78,10 +87,11 @@
 #import "EDStarRating.h"
 #import "EAIntroView.h"
 #import "CurrentExerciseViewController.h"
+#import "CompletionViewContoller.h"
 
 
 
-@interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol, EDStarRatingProtocol, EAIntroDelegate>
+@interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol, EAIntroDelegate>
 
 
 @property (nonatomic, strong) Exercise *currentExercise;
@@ -89,10 +99,8 @@
 @property (nonatomic, strong) ChooseExerciseView *backCardView;
 
 @property (strong, nonatomic) IBOutlet UIView *view;
-@property (strong, nonatomic) IBOutlet UIButton *reloadButton;
 
-
-
+- (void)loadDeck;
 
 @end
 

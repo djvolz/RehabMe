@@ -40,20 +40,19 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 @property (nonatomic, strong) CBZSplashView *splashView;
 
 @property (nonatomic, strong) PFObject *exerciseObject;
-@property (nonatomic, strong) PFObject *exerciseRatingObject;
 
-@property (strong, nonatomic) IBOutlet UILabel *howHardWasWorkoutLabel;
-
-@property (weak, nonatomic) IBOutlet EDStarRating *starRating;
 @property (strong, nonatomic) IBOutlet UIButton *beginButton;
+
+@property (nonatomic, strong) PFObject *exerciseRatingObject;
+@property (strong, nonatomic) NSString *rating;
+@property (strong, nonatomic) IBOutlet UISlider *ratingSlider;
+@property (weak, nonatomic) IBOutlet UIView *ratingView;
 
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationBarItem;
 
 @end
 
 @implementation ChooseExerciseViewController
-
-@synthesize starRating = _starRating;
 
 
 #pragma mark - UIViewController Overrides
@@ -104,11 +103,15 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     rootView = self.navigationController.view;
     
-    [self showIntroWithCrossDissolve];
+//    [self showIntroWithCrossDissolve];
+    
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    self.ratingView.hidden = YES;
+    self.beginButton.hidden = NO;
 }
 
 
@@ -127,30 +130,14 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
 }
 
-
-
-/* Make the reload button pulse */
-- (void)animateButton {
-    CABasicAnimation *pulseAnimation;
-    
-    pulseAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    pulseAnimation.duration = 1.0;
-    pulseAnimation.repeatCount = HUGE_VALF;
-    pulseAnimation.autoreverses = YES;
-    pulseAnimation.fromValue =[NSNumber numberWithFloat:1.0];
-    pulseAnimation.toValue = [NSNumber numberWithFloat:0.7];
-    [self.reloadButton.layer addAnimation:pulseAnimation forKey:@"animateOpacity"];
-}
-
 /* Show the menu */
 - (IBAction)didTouchMenuButton:(UIButton *)sender {
     //    [self constructCurrentExerciseViewController];
+//    [self constructCompletionViewController];
 }
 
 /* Load up the deck from the exercises array */
 - (void)loadDeck {
-    [self shouldHideCongratsScreenElements:YES];
-    
     // This view controller maintains a list of ChooseExerciseView
     // instances to display.
     _exercises = [[self defaultPeople] mutableCopy];
@@ -165,42 +152,59 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // back views after each user swipe.
     self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
     [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
+    
+    
+    
+    
+    
+    
+//    PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
+//    
+//    
+//    gameScore[@"score"] = 0;
+////    gameScore[@"playerName"] = @"Sean Plott";
+////    gameScore[@"cheatMode"] = @NO;
+//    [gameScore pinInBackground];
+    
+    
 }
 
 /* Perform the events that occur when you've swiped away all cards in the deck. */
 - (void) endOfDeck {
     
+    self.ratingView.hidden = NO;
+    self.beginButton.hidden = YES;
+}
+
+- (IBAction)didPressSubmitButton:(UIButton *)sender {
     // Make the reward splash screen
     [self constructSplashScreen];
     
-    // Make the reload button pulse
-    [self animateButton];
+    self.ratingView.hidden = YES;
+    self.view.backgroundColor = [UIColor colorWithHexString:REHABME_GREEN];
+    
+    
     
     // Execute the reward splash screen
-    [self.splashView startAnimation];
+    [self.splashView startAnimationWithCompletionHandler:
     
-    // Setup the rating stars
-    [self setupRatingStars];
+     ^{
+          // Present congrats screen
+          [self performSegueWithIdentifier: @"showCompletionViewController" sender: self];
+         
+         //    [self updateParseWithRatingDecision:self.rating];
+
+
+          /* wait a beat before animating in */
+          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+              [self loadDeck];
+              self.view.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.91];
+          });
+         
+     }];
+
     
-    // Hide the begin button and display the starRatings
-    [self shouldHideCongratsScreenElements:NO];
-    
-    //#44DB5E iOS 7 green defined as REHABME_GREEN
-    //http://iosdesign.ivomynttinen.com
-    self.view.backgroundColor = [UIColor colorWithHexString:REHABME_GREEN];//[UIColor greenColor];
 }
-
-- (void) shouldHideCongratsScreenElements:(BOOL)hide{
-    self.beginButton.hidden = !hide;
-    
-    self.reloadButton.hidden = hide;
-    self.starRating.hidden = hide;
-    self.howHardWasWorkoutLabel.hidden = hide;
-    
-    self.navigationController.navigationBarHidden = !hide;
-}
-
-
 
 - (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
@@ -469,18 +473,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 
 
-- (IBAction)pressedReloadButton:(UIButton *)sender {
-    // Switch back to white background from the completion screen background
-    self.view.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.91];
-    
-    [self shouldHideCongratsScreenElements:YES];
-    
-    // Reload the deck
-    [self loadDeck];
-}
 
 - (IBAction)didPressBeginButton:(UIButton *)sender {
-    
     [self constructCurrentExerciseViewController];
 }
 
@@ -530,39 +524,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 }
 
 
-#pragma mark - Rating System
-
-- (void)setupRatingStars {
-    // Setup control using iOS7 tint Color
-    _starRating.backgroundColor  = [UIColor clearColor];
-    _starRating.starImage = [[UIImage imageNamed:@"star-template"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    _starRating.starHighlightedImage = [[UIImage imageNamed:@"star-highlighted-template"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    _starRating.maxRating = 5.0;
-    _starRating.delegate = self;
-    _starRating.horizontalMargin = 15.0;
-    _starRating.editable = YES;
-    _starRating.rating = 0.0;
-    _starRating.displayMode = EDStarRatingDisplayAccurate;
-    [_starRating  setNeedsDisplay];
-    _starRating.tintColor = [UIColor whiteColor];
-    _starRating.hidden = YES;
-    [self starsSelectionChanged:_starRating rating:0.0];
-    
-}
-
--(void)starsSelectionChanged:(EDStarRating *)control rating:(float)rating
-{
-    NSString *ratingString = [NSString stringWithFormat:@"%.1f", rating];
-    NSLog(@"You rated the exercise as %@.", ratingString);
-    
-    
-    self.exerciseRatingObject = [PFObject objectWithClassName:@"ExerciseRatingObject"];
-    self.exerciseRatingObject[@"Rating"] = ratingString;
-    
-    [self.exerciseRatingObject saveInBackground];
-}
-
-
 
 
 #pragma mark - Current Exercise View System
@@ -582,7 +543,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     //    page1.title = @"Hello world";
     //    page1.desc = @"Hello world";
     page1.bgImage = [UIImage imageNamed:@"bg1"];
-//        page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg1"]];
+    //        page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg1"]];
     
     EAIntroPage *page2 = [EAIntroPage page];
     //    page2.title = @"This is page 2";
@@ -608,10 +569,39 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     page5.bgImage = [UIImage imageNamed:@"bg5"];
     //    page4.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg4"]];
     
-    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4,page5]];
+    EAIntroPage *page6 = [EAIntroPage page];
+    page6.title = @"Welcome to RehabMe";
+    page6.desc = @"Let's get healing!";
+    page6.bgImage = [UIImage imageNamed:@"bg0"];
+    page6.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"rehabme"]];
+    
+    
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4,page5,page6]];
     [intro setDelegate:self];
     
     [intro showInView:rootView animateDuration:0.3];
+}
+
+#pragma mark - Rating System
+- (IBAction)itemSlider:(UISlider *)itemSlider withEvent:(UIEvent*)e;
+{
+    UITouch * touch = [e.allTouches anyObject];
+    
+    if( touch.phase != UITouchPhaseMoved &&
+       touch.phase != UITouchPhaseBegan) {
+        self.rating = [NSString stringWithFormat:@"Rating: %d",
+                       (int)self.ratingSlider.value];
+    }
+    
+}
+
+- (void)updateParseWithRatingDecision:(NSString *)rating {
+    NSLog(@"%@", rating);
+    
+    self.exerciseRatingObject = [PFObject objectWithClassName:@"ExerciseRatingObject"];
+    self.exerciseRatingObject[@"Rating"] = rating;
+    
+    [self.exerciseRatingObject saveInBackground];
 }
 
 

@@ -141,47 +141,47 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark Push Notifications
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation saveInBackground];
-    
-    [PFPush subscribeToChannelInBackground:@"" block:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            NSLog(@"ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
-        } else {
-            NSLog(@"ParseStarterProject failed to subscribe to push notifications on the broadcast channel.");
-        }
-    }];
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    if (error.code == 3010) {
-        NSLog(@"Push notifications are not supported in the iOS Simulator.");
-    } else {
-        // show some alert or otherwise handle the failure to register.
-        NSLog(@"application:didFailToRegisterForRemoteNotificationsWithError: %@", error);
-    }
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
-    
-    if (application.applicationState == UIApplicationStateInactive) {
-        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
-    }
-}
-
-///////////////////////////////////////////////////////////
-// Push Notifications with Background App Refresh
-///////////////////////////////////////////////////////////
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    if (application.applicationState == UIApplicationStateInactive) {
-        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
-    }
-}
+//#pragma mark Push Notifications
+//
+//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+//    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+//    [currentInstallation setDeviceTokenFromData:deviceToken];
+//    [currentInstallation saveInBackground];
+//    
+//    [PFPush subscribeToChannelInBackground:@"" block:^(BOOL succeeded, NSError *error) {
+//        if (succeeded) {
+//            NSLog(@"ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
+//        } else {
+//            NSLog(@"ParseStarterProject failed to subscribe to push notifications on the broadcast channel.");
+//        }
+//    }];
+//}
+//
+//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+//    if (error.code == 3010) {
+//        NSLog(@"Push notifications are not supported in the iOS Simulator.");
+//    } else {
+//        // show some alert or otherwise handle the failure to register.
+//        NSLog(@"application:didFailToRegisterForRemoteNotificationsWithError: %@", error);
+//    }
+//}
+//
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+//    [PFPush handlePush:userInfo];
+//    
+//    if (application.applicationState == UIApplicationStateInactive) {
+//        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+//    }
+//}
+//
+/////////////////////////////////////////////////////////////
+//// Push Notifications with Background App Refresh
+/////////////////////////////////////////////////////////////
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+//    if (application.applicationState == UIApplicationStateInactive) {
+//        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+//    }
+//}
 
 
 @end
