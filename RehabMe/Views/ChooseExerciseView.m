@@ -29,7 +29,7 @@
 #import "Exercise.h"
 
 static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
-static const CGFloat bottomHeight = 70.f;
+static const CGFloat infoHeight = 75.f;
 
 
 @interface ChooseExerciseView ()
@@ -66,11 +66,11 @@ static const CGFloat bottomHeight = 70.f;
         /* This resizes the imageView after the image has been loaded to ensure the
          * informationView doesn't cover up the image. */
         self.imageView.frame = CGRectMake(self.imageView.frame.origin.x,
-                                          bottomHeight,//self.imageView.frame.origin.y,
+                                          infoHeight,//self.imageView.frame.origin.y,
                                           self.imageView.frame.size.width,
                                           
                                           // The information bottomHeight
-                                          self.imageView.frame.size.height - bottomHeight);
+                                          self.imageView.frame.size.height - infoHeight);
         
         // Make sure we don't stretch out the image and so it scales correctly.
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -90,11 +90,11 @@ static const CGFloat bottomHeight = 70.f;
 #pragma mark - Internal Methods
 
 - (void)constructInformationView {
-    CGRect bottomFrame = CGRectMake(0,
+    CGRect topFrame = CGRectMake(0,
                                     0,//CGRectGetHeight(self.bounds) - bottomHeight,
                                     CGRectGetWidth(self.bounds),
-                                    bottomHeight);
-    _informationView = [[UIView alloc] initWithFrame:bottomFrame];
+                                    infoHeight);
+    _informationView = [[UIView alloc] initWithFrame:topFrame];
     _informationView.backgroundColor = [UIColor whiteColor];
     _informationView.clipsToBounds = YES;
     _informationView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
@@ -119,7 +119,7 @@ static const CGFloat bottomHeight = 70.f;
     _nameLabel.text = [NSString stringWithFormat:@"%@", _exercise.displayName];
 //    _nameLabel.lineBreakMode = YES;
     _nameLabel.numberOfLines = 2;
-    [_nameLabel setFont:[UIFont systemFontOfSize:22]];
+    [_nameLabel setFont:[UIFont systemFontOfSize:20]];
     [_informationView addSubview:_nameLabel];
 }
 
@@ -151,7 +151,11 @@ static const CGFloat bottomHeight = 70.f;
     [self.instructionsView setBackgroundColor: [UIColor colorWithRed:200.0 green:200.0 blue:200.0 alpha:0.95]];
     [self.instructionsView setTextColor: [UIColor blackColor]];
     [self.instructionsView setFont:[UIFont fontWithName:@"Helvetica Neue" size:24.0f]];
-    self.instructionsView.text = _exercise.instructions;
+    self.instructionsView.text = [NSString stringWithFormat:@"%@\n\nSets: %i\nTime: %i s\n\n%@",
+                                  _exercise.displayName,
+                                  (int)_exercise.count,
+                                  (int)_exercise.timeRequired,
+                                  _exercise.instructions];
     self.instructionsView.editable = NO;
     self.instructionsView.hidden = YES;
     [self addSubview:self.instructionsView];
