@@ -78,14 +78,15 @@
     self.graphView.gradientBottom = CGGradientCreateWithColorComponents(colorspace, components, locations, num_locations);
     self.graphView.enableTouchReport = YES;
     self.graphView.enablePopUpReport = YES;
-    self.graphView.enableYAxisLabel = YES;
+    self.graphView.enableYAxisLabel = NO;
     self.graphView.autoScaleYAxis = YES;
     self.graphView.alwaysDisplayDots = NO;
     self.graphView.enableReferenceXAxisLines = YES;
-    self.graphView.enableReferenceYAxisLines = YES;
+    self.graphView.enableReferenceYAxisLines = NO;
     self.graphView.enableReferenceAxisFrame = YES;
     self.graphView.animationGraphStyle = BEMLineAnimationDraw;
-    
+    self.graphView.enableBezierCurve = NO;
+  
     // Dash the y reference lines
     self.graphView.lineDashPatternForReferenceYAxisLines = @[@(2),@(2)];
     
@@ -93,7 +94,7 @@
     self.graphView.formatStringForValues = @"%.1f";
     
     // Setup initial curve selection segment
-    //    self.curveChoice.selectedSegmentIndex = self.graphView.enableBezierCurve;
+//        self.curveChoice.selectedSegmentIndex = self.graphView.enableBezierCurve;
     
     // The labels to report the values of the graph when the user touches it
     self.labelValues.text = [NSString stringWithFormat:@"%i", [[self.graphView calculatePointValueSum] intValue]];
@@ -111,36 +112,66 @@
     [self.graphView reloadGraph];
 }
 
+
 - (void)hydrateDatasets {
-    if(!self.arrayOfValues) self.arrayOfValues = [[NSMutableArray alloc] init];
-    if(!self.arrayOfDates) self.arrayOfDates = [[NSMutableArray alloc] init];
-    [self.arrayOfValues removeAllObjects];
-    [self.arrayOfDates removeAllObjects];
+    PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
+//    [query orderByDescending:@"createdAt"];
+//    query.limit = 9;
+    NSArray* scoreArray = [query findObjects];
     
     totalNumber = 0;
     NSDate *baseDate = [NSDate date];
     BOOL showNullValue = true;
     
     
+    if(!self.arrayOfValues) self.arrayOfValues = [[NSMutableArray alloc] init];
+    if(!self.arrayOfDates) self.arrayOfDates = [[NSMutableArray alloc] init];
+    [self.arrayOfValues removeAllObjects];
+    [self.arrayOfDates removeAllObjects];
+    
     for (int i = 0; i < 9; i++) {
-        [self.arrayOfValues addObject:@([self getRandomFloat])]; // Random values for the graph
+        [self.arrayOfValues addObject:@(0)]; // Random values for the graph
         if (i == 0) {
-            [self.arrayOfDates addObject:baseDate]; // Dates for the X-Axis of the graph
+            [self.arrayOfDates addObject:[self dateForGraphBeforeDate:baseDate byTwelveHourIncrements:9-i]]; // Dates for the X-Axis of the graph
         } else if (showNullValue && i == 4) {
-            [self.arrayOfDates addObject:[self dateForGraphAfterDate:self.arrayOfDates[i-1]]]; // Dates for the X-Axis of the graph
+            [self.arrayOfDates addObject:[self dateForGraphBeforeDateTwelveHours:self.arrayOfDates[i-1]]]; // Dates for the X-Axis of the graph
             self.arrayOfValues[i] = @(BEMNullGraphValue);
         } else {
-            [self.arrayOfDates addObject:[self dateForGraphAfterDate:self.arrayOfDates[i-1]]]; // Dates for the X-Axis of the graph
+            [self.arrayOfDates addObject:[self dateForGraphBeforeDateTwelveHours:self.arrayOfDates[i-1]]]; // Dates for the X-Axis of the graph
         }
-        
-        
-        totalNumber = totalNumber + [[self.arrayOfValues objectAtIndex:i] intValue]; // All of the values added together
     }
+    
+    
+    for (int i = 0; i < [scoreArray count]; i++) {
+        PFObject *gameScore = scoreArray[i];
+        
+        totalNumber = totalNumber + [gameScore[@"score"] intValue]; // All of the values added together
+
+        
+        NSTimeInterval timeInterval = [gameScore.createdAt timeIntervalSinceDate:baseDate];
+
+        
+        if (abs(timeInterval) < (SECONDS_IN_A_DAY * 4)) {
+            for (int index = 0; index < [self.arrayOfDates count]; index++) {
+                NSTimeInterval withinLastTwelveHours = [gameScore.createdAt timeIntervalSinceDate:self.arrayOfDates[index]];
+                if (abs(withinLastTwelveHours) < SECONDS_IN_A_DAY/2) {
+                    [self.arrayOfValues replaceObjectAtIndex:index withObject:gameScore[@"score"]];
+                }
+            }
+        }
+    }
+    
+
+
 }
 
-- (NSDate *)dateForGraphAfterDate:(NSDate *)date {
-    NSTimeInterval secondsInTwelveHours = 12 * 60 * 60;
-    NSDate *newDate = [date dateByAddingTimeInterval:secondsInTwelveHours];
+- (NSDate *)dateForGraphBeforeDateTwelveHours:(NSDate *)date {
+    NSDate *newDate = [date dateByAddingTimeInterval:SECONDS_IN_A_DAY/2];
+    return newDate;
+}
+
+- (NSDate *)dateForGraphBeforeDate:(NSDate *)date byTwelveHourIncrements:(int)increments {
+    NSDate *newDate = [date dateByAddingTimeInterval:-SECONDS_IN_A_DAY/2 * increments];
     return newDate;
 }
 
@@ -152,10 +183,10 @@
     return label;
 }
 
-- (float)getRandomFloat {
-    float i1 = (float)(arc4random() % 1000000) / 100 ;
-    return i1;
-}
+//- (float)getRandomFloat {
+//    float i1 = (float)(arc4random() % 1000000) / 100 ;
+//    return 0;
+//}
 
 
 #pragma mark - SimpleLineGraph Data Source

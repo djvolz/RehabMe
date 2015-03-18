@@ -28,7 +28,9 @@
 //////////////////////      TODO        ///////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 //
-//
+// Fix double date thing on graph view
+// Progress over the a period of time
+// HUD with number of exercises and number of sets left for day
 // see image on instructions screen
 // create way to cancel out of timer screen
 // Ability to login (possibly automatic user login)
@@ -43,15 +45,13 @@
 // Features:
 // Push notifications
 // Badges
-// Progress over the a period of time
 // Edit text
-// HUD with number of exercises and number of sets left for day
 // Gif pictorial instruction instead of still picture
 // Custom videos/pictures
-// Menu with exercises sets
 //
 //
 // Other:
+// Menu with exercises sets
 // Talk to therapist
 // Therapist select custom exercises
 // Pull from my VHI
@@ -72,7 +72,7 @@
 // DONE: Rating system after done with cards
 // DONE: Fix display of name on cards
 // DONE: Tutorial opening screen
-//
+// DONE: UPDATE TOTAL SCORE PARAMETER AS UNIVERSAL PARAMETER
 ///////////////////////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
@@ -88,6 +88,11 @@
 #import "EAIntroView.h"
 #import "CurrentExerciseViewController.h"
 #import "CompletionViewContoller.h"
+
+#define SECONDS_IN_A_DAY    86400
+#define SECONDS_IN_AN_HOUR  3600
+#define SECONDS_IN_A_MINUTE 60
+
 
 
 

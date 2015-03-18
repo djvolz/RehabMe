@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import <Parse/Parse.h>
+#import <Bolts/Bolts.h>
+
 
 
 

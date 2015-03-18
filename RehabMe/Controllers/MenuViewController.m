@@ -9,6 +9,9 @@
 #import "MenuViewController.h"
 
 @interface MenuViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *parseLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *stepper;
+@property (weak, nonatomic) IBOutlet UILabel *stepperLabel;
 
 @end
 
@@ -17,8 +20,14 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.parseLabel.text = @"MENU SCREEN";
+}
 
 - (IBAction)didPressDoneButton:(UIBarButtonItem *)sender {
     // Dismiss this viewcontroller
@@ -31,7 +40,41 @@
     return YES;
 }
 
+- (void)retrieveFromLocalDatastore{
+    [[PFUser currentUser] incrementKey:@"testCount"];
+    [[PFUser currentUser] saveInBackground];
+    
+    
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
+   
+    [query getObjectInBackgroundWithId:@"jBDRU2d4zF" block:^(PFObject *gameScore, NSError *error) {
+        // Do something with the returned PFObject in the gameScore variable.
+        NSLog(@"%@", gameScore);
+        
+        int score = [[gameScore objectForKey:@"score"] intValue];
+        
+        [gameScore incrementKey:@"score"];
+        [gameScore saveInBackground];
 
+        self.parseLabel.text = [NSString stringWithFormat:@"%d", (int)score];
+
+    }];
+    // The InBackground methods are asynchronous, so any code after this will run
+    // immediately.  Any code that depends on the query result should be moved
+    // inside the completion block above.
+    
+    
+}
+
+
+- (IBAction)didPressStepper:(UIStepper *)sender {
+    self.stepperLabel.text = [NSString stringWithFormat:@"%d", (int)self.stepper.value];
+    
+    
+    
+//    [self retrieveFromLocalDatastore];
+}
 
 //- (void)loginExampleMethod {
 //    PFUser *user = [PFUser user];

@@ -271,8 +271,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				303C064B1A9FE139001D9B78 /* Bolts.framework in Frameworks */,
 				306093B71A9FDA520027BAAF /* libsqlite3.dylib in Frameworks */,
+				303C064B1A9FE139001D9B78 /* Bolts.framework in Frameworks */,
 				303C064E1A9FE13A001D9B78 /* ParseFacebookUtils.framework in Frameworks */,
 				306093B51A9FDA480027BAAF /* libz.dylib in Frameworks */,
 				303C064D1A9FE13A001D9B78 /* ParseCrashReporting.framework in Frameworks */,

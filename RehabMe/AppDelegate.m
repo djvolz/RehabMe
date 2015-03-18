@@ -68,6 +68,7 @@
     
     
     [PFUser enableAutomaticUser];
+  
 //
 //    PFACL *defaultACL = [PFACL ACL];
 //    

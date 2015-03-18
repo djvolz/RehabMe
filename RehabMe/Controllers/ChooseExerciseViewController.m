@@ -77,7 +77,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // See the `nopeFrontCardView` and `likeFrontCardView` methods.
     //    [self constructNopeButton];
     //    [self constructLikedButton];
-    //    [self loginExampleMethod];
     
     
     // Show welcome badge notification
@@ -105,13 +104,21 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
 //    [self showIntroWithCrossDissolve];
     
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.ratingView.hidden = YES;
+    self.beginButton.hidden = NO;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.ratingView.hidden = YES;
-    self.beginButton.hidden = NO;
+
 }
 
 
@@ -487,6 +494,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)updateParseWithSwipeDecision:(NSString *)decision {
     self.exerciseObject = [PFObject objectWithClassName:@"ExerciseObject"];
     self.exerciseObject[decision] = self.currentExercise.name;
+    self.exerciseObject.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+
     //    self.exerciseObject[self.currentExercise.name] = decision;
     
     [self.exerciseObject saveInBackground];
@@ -500,6 +509,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     [self updateParseWithSwipeDecision:@"performed"];
     
+    [self updateGameScore];
     
     [self checkforEndOfDeck];
     
@@ -523,6 +533,84 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     }
 }
 
+- (void) updateGameScore{
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
+    [query orderByDescending:@"createdAt"];
+
+    
+    //TODO: There has got to be a better way to organize this section. */
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *gameScore, NSError *error) {
+        if (!error) {
+            // Do something with the returned PFObject in the gameScore variable.
+
+            NSTimeInterval timeSinceCreation   = [gameScore.createdAt timeIntervalSinceDate:[NSDate date]];
+            NSTimeInterval timeSinceLastUpdate = [gameScore.updatedAt timeIntervalSinceDate:[NSDate date]];
+
+            
+            /* Create a new score every day. */
+            if (abs(timeSinceCreation) > SECONDS_IN_A_DAY) {
+                NSLog(@"Created a new GameScore");
+                PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
+                gameScore[@"score"] = @1;
+                //        gameScore[@"choice"] = @YES;
+                //        gameScore[@"exercise"] = self.currentExercise.name;
+                
+                gameScore.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+                
+                [gameScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+    //                        NSLog(@"%@",gameScore.objectId);
+                    } else {
+                        // There was a problem, check error.description
+                    }
+                }];
+                
+                return;
+            }
+
+
+            
+            /* Scores can only be updated once every 30 seconds. Troll protection */
+            if (abs(timeSinceLastUpdate) > SECONDS_IN_A_MINUTE/2) {
+                NSLog(@"Incrementing GameScore");
+                [gameScore incrementKey:@"score"];
+                [gameScore saveInBackground];
+            } else {
+                NSLog(@"Scores can only be updated after an exercise has been performed.");
+            }
+            
+        
+        /* This is the first time so setup the gameScore object. */
+        } else {
+            
+            PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
+            gameScore[@"score"] = @1;
+            //        gameScore[@"choice"] = @YES;
+            //        gameScore[@"exercise"] = self.currentExercise.name;
+            
+            gameScore.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+            
+            [gameScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    NSLog(@"%@",gameScore.objectId);
+                } else {
+                    // There was a problem, check error.description
+                }
+            }];
+            
+        }
+        
+    }];
+    // The InBackground methods are asynchronous, so any code after this will run
+    // immediately.  Any code that depends on the query result should be moved
+    // inside the completion block above.
+
+        
+
+
+}
 
 
 
