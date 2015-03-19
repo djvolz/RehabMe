@@ -105,6 +105,11 @@
         minutesTextLabel = @"minute";
     }
     
+    // Singular only for "1 second"
+    if (_secondsLeft > 0 && _secondsLeft < 2) {
+        minutesTextLabel = @"second";
+    }
+    
     [minutesLabel setText:minutesTextLabel];
     [minutesLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:minutesLabel];
