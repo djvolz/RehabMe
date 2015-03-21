@@ -60,11 +60,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-     if(![PFUser currentUser]) {
-         [self checkIfUserIsLoggedIn];
-     } else {
-         [self initializeRehabMe];
-     }
+     [self checkIfUserIsLoggedIn];
+     [self initializeRehabMe];
     
 //    [self showIntroWithCrossDissolve];
     
@@ -161,7 +158,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         
         // Present the log in view controller
         [self presentViewController:logInViewController animated:NO completion:^{
-            [self initializeRehabMe];
         }];
     }
 }
@@ -256,8 +252,17 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 //    [self constructCompletionViewController];
 }
 
+- (void)clearDeck {
+    self.frontCardView = nil;
+    self.backCardView = nil;
+    [self.exercises removeAllObjects];
+    [_exercises removeAllObjects];
+}
+
 /* Load up the deck from the exercises array */
 - (void)loadDeck {
+    [self clearDeck];
+    
     // This view controller maintains a list of ChooseExerciseView
     // instances to display.
     _exercises = [[self defaultPeople] mutableCopy];

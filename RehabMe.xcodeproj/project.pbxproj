@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		3000BE9F1AAD538800C6EA5C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3000BE9E1AAD538800C6EA5C /* MenuViewController.m */; };
 		3001DD381ABA742200ED0F7E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3001DD371ABA742200ED0F7E /* Social.framework */; };
-		3001DE5C1ABA876500ED0F7E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3001DD411ABA876400ED0F7E /* FacebookSDK.framework */; };
-		3001DE5D1ABA876500ED0F7E /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3001DD421ABA876400ED0F7E /* FBAudienceNetwork.framework */; };
+		30184F311ABDEF3900DEA527 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30184F2F1ABDEF3900DEA527 /* FacebookSDK.framework */; };
+		30184F321ABDEF3900DEA527 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30184F301ABDEF3900DEA527 /* FBAudienceNetwork.framework */; };
 		302FEE081ABD2733009FD58A /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 302FEE071ABD2733009FD58A /* libstdc++.6.0.9.dylib */; };
 		303C06301A9FDFDE001D9B78 /* MDCGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 303C06141A9FDFDE001D9B78 /* MDCGeometry.m */; };
 		303C06311A9FDFDE001D9B78 /* MDCViewState.m in Sources */ = {isa = PBXBuildFile; fileRef = 303C06171A9FDFDE001D9B78 /* MDCViewState.m */; };
@@ -108,7 +108,6 @@
 		DA5B73E918F233EF00BB5F8E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5B73E818F233EF00BB5F8E /* Foundation.framework */; };
 		DA5B73EB18F233EF00BB5F8E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5B73EA18F233EF00BB5F8E /* CoreGraphics.framework */; };
 		DA5B73ED18F233EF00BB5F8E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5B73EC18F233EF00BB5F8E /* UIKit.framework */; };
-		DA5B740218F233EF00BB5F8E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5B740118F233EF00BB5F8E /* XCTest.framework */; };
 		DA5B740318F233EF00BB5F8E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5B73E818F233EF00BB5F8E /* Foundation.framework */; };
 		DA5B740418F233EF00BB5F8E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5B73EC18F233EF00BB5F8E /* UIKit.framework */; };
 /* End PBXBuildFile section */
@@ -127,8 +126,8 @@
 		3000BE9D1AAD538800C6EA5C /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		3000BE9E1AAD538800C6EA5C /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		3001DD371ABA742200ED0F7E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		3001DD411ABA876400ED0F7E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		3001DD421ABA876400ED0F7E /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		30184F2F1ABDEF3900DEA527 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		30184F301ABDEF3900DEA527 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		302FEE071ABD2733009FD58A /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		303500341A9E5F3700EA1C5C /* RehabMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RehabMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		303C06131A9FDFDE001D9B78 /* MDCGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCGeometry.h; sourceTree = "<group>"; };
@@ -265,13 +264,11 @@
 		30D9353E1AB0D7700024B03E /* bg5@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg5@2x.jpg"; sourceTree = "<group>"; };
 		30EEBBA41AB11A7B001BB5AB /* CompletionViewContoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionViewContoller.h; sourceTree = "<group>"; };
 		30EEBBA51AB11A7B001BB5AB /* CompletionViewContoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionViewContoller.m; sourceTree = "<group>"; };
-		374A6AE5BCA048DDAD2A8A49 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5B73E518F233EF00BB5F8E /* RehabMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RehabMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5B73E818F233EF00BB5F8E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DA5B73EA18F233EF00BB5F8E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DA5B73EC18F233EF00BB5F8E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DA5B740018F233EF00BB5F8E /* RehabMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RehabMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA5B740118F233EF00BB5F8E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,8 +283,8 @@
 				303C064E1A9FE13A001D9B78 /* ParseFacebookUtils.framework in Frameworks */,
 				306093B51A9FDA480027BAAF /* libz.dylib in Frameworks */,
 				303C064D1A9FE13A001D9B78 /* ParseCrashReporting.framework in Frameworks */,
+				30184F321ABDEF3900DEA527 /* FBAudienceNetwork.framework in Frameworks */,
 				306093B31A9FDA3E0027BAAF /* SystemConfiguration.framework in Frameworks */,
-				3001DE5D1ABA876500ED0F7E /* FBAudienceNetwork.framework in Frameworks */,
 				306093B11A9FDA360027BAAF /* StoreKit.framework in Frameworks */,
 				306093AF1A9FDA2E0027BAAF /* Security.framework in Frameworks */,
 				303C064C1A9FE13A001D9B78 /* Parse.framework in Frameworks */,
@@ -300,7 +297,7 @@
 				306093A51A9FD9FF0027BAAF /* AudioToolbox.framework in Frameworks */,
 				DA5B73ED18F233EF00BB5F8E /* UIKit.framework in Frameworks */,
 				DA5B73E918F233EF00BB5F8E /* Foundation.framework in Frameworks */,
-				3001DE5C1ABA876500ED0F7E /* FacebookSDK.framework in Frameworks */,
+				30184F311ABDEF3900DEA527 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +305,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA5B740218F233EF00BB5F8E /* XCTest.framework in Frameworks */,
 				DA5B740418F233EF00BB5F8E /* UIKit.framework in Frameworks */,
 				DA5B740318F233EF00BB5F8E /* Foundation.framework in Frameworks */,
 			);
@@ -317,14 +313,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3001DD3F1ABA876400ED0F7E /* FacebookSDK */ = {
+		30184F2E1ABDEF3900DEA527 /* FacebookSDK */ = {
 			isa = PBXGroup;
 			children = (
-				3001DD411ABA876400ED0F7E /* FacebookSDK.framework */,
-				3001DD421ABA876400ED0F7E /* FBAudienceNetwork.framework */,
+				30184F2F1ABDEF3900DEA527 /* FacebookSDK.framework */,
+				30184F301ABDEF3900DEA527 /* FBAudienceNetwork.framework */,
 			);
-			name = FacebookSDK;
-			path = ../../../../../../Documents/FacebookSDK;
+			path = FacebookSDK;
 			sourceTree = "<group>";
 		};
 		303C06121A9FDFDE001D9B78 /* Internal */ = {
@@ -713,10 +708,10 @@
 		DA5B73E718F233EF00BB5F8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				302FEE071ABD2733009FD58A /* libstdc++.6.0.9.dylib */,
-				3001DD3F1ABA876400ED0F7E /* FacebookSDK */,
+				30184F2E1ABDEF3900DEA527 /* FacebookSDK */,
 				303C06451A9FE139001D9B78 /* Parse */,
 				306093B61A9FDA520027BAAF /* libsqlite3.dylib */,
+				302FEE071ABD2733009FD58A /* libstdc++.6.0.9.dylib */,
 				306093B41A9FDA480027BAAF /* libz.dylib */,
 				3001DD371ABA742200ED0F7E /* Social.framework */,
 				306093B21A9FDA3E0027BAAF /* SystemConfiguration.framework */,
@@ -730,8 +725,6 @@
 				DA5B73E818F233EF00BB5F8E /* Foundation.framework */,
 				DA5B73EA18F233EF00BB5F8E /* CoreGraphics.framework */,
 				DA5B73EC18F233EF00BB5F8E /* UIKit.framework */,
-				DA5B740118F233EF00BB5F8E /* XCTest.framework */,
-				374A6AE5BCA048DDAD2A8A49 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1054,6 +1047,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Parse",
 					/Users/Danny/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/FacebookSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RehabMe/RehabMe-Prefix.pch";
@@ -1086,6 +1080,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Parse",
 					/Users/Danny/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/FacebookSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RehabMe/RehabMe-Prefix.pch";
