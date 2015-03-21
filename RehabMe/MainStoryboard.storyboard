@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mPp-8j-3GS">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -71,7 +72,7 @@
                                             <constraint firstAttribute="height" constant="40" id="MgV-nx-ZOd"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -299,44 +300,37 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="EFZ-Z7-Edn">
-                                <rect key="frame" x="113" y="454" width="94" height="29"/>
-                                <connections>
-                                    <action selector="didPressStepper:" destination="k6I-4h-h7K" eventType="valueChanged" id="P2J-De-ai4"/>
-                                </connections>
-                            </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OeE-1C-FhN">
                                 <rect key="frame" x="139" y="273" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sux-yZ-bs6">
-                                <rect key="frame" x="139" y="527" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOx-t0-yv4">
+                                <rect key="frame" x="132" y="302" width="56" height="30"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutButtonTapAction:" destination="k6I-4h-h7K" eventType="touchUpInside" id="gjG-gf-TW9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="OeE-1C-FhN" firstAttribute="leading" secondItem="sux-yZ-bs6" secondAttribute="leading" id="5kH-w7-KMg"/>
-                            <constraint firstItem="OeE-1C-FhN" firstAttribute="top" secondItem="hRb-7r-PVX" secondAttribute="top" constant="273" id="EDF-tl-OWy"/>
-                            <constraint firstAttribute="bottom" secondItem="sux-yZ-bs6" secondAttribute="bottom" constant="20" symbolic="YES" id="PQ5-fx-xw2"/>
-                            <constraint firstAttribute="trailing" secondItem="p53-3v-nI8" secondAttribute="trailing" id="Tzm-tY-SLX"/>
-                            <constraint firstItem="EFZ-Z7-Edn" firstAttribute="centerX" secondItem="sux-yZ-bs6" secondAttribute="centerX" id="VDS-c0-WFB"/>
-                            <constraint firstItem="p53-3v-nI8" firstAttribute="centerX" secondItem="OeE-1C-FhN" secondAttribute="centerX" id="XCm-wV-k8L"/>
-                            <constraint firstItem="sux-yZ-bs6" firstAttribute="top" secondItem="EFZ-Z7-Edn" secondAttribute="bottom" constant="44" id="lIG-57-YfX"/>
-                            <constraint firstItem="p53-3v-nI8" firstAttribute="leading" secondItem="hRb-7r-PVX" secondAttribute="leading" id="s17-Cy-ayu"/>
-                            <constraint firstItem="p53-3v-nI8" firstAttribute="top" secondItem="F4h-EN-DsM" secondAttribute="bottom" id="vbZ-Kk-5pe"/>
+                            <constraint firstItem="p53-3v-nI8" firstAttribute="centerX" secondItem="OeE-1C-FhN" secondAttribute="centerX" id="J8v-ON-0OD"/>
+                            <constraint firstAttribute="trailing" secondItem="p53-3v-nI8" secondAttribute="trailing" id="Ngv-li-e0q"/>
+                            <constraint firstItem="mOx-t0-yv4" firstAttribute="centerX" secondItem="OeE-1C-FhN" secondAttribute="centerX" id="PlP-bQ-erO"/>
+                            <constraint firstItem="p53-3v-nI8" firstAttribute="top" secondItem="F4h-EN-DsM" secondAttribute="bottom" id="d6m-zt-RKa"/>
+                            <constraint firstItem="mOx-t0-yv4" firstAttribute="top" secondItem="OeE-1C-FhN" secondAttribute="bottom" constant="8" symbolic="YES" id="f9a-Vm-ocC"/>
+                            <constraint firstItem="p53-3v-nI8" firstAttribute="leading" secondItem="hRb-7r-PVX" secondAttribute="leading" id="vcT-hr-8Qe"/>
+                            <constraint firstItem="lEY-df-Qc8" firstAttribute="top" secondItem="mOx-t0-yv4" secondAttribute="bottom" constant="236" id="vsv-15-xDB"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="parseLabel" destination="OeE-1C-FhN" id="Ajo-A6-d09"/>
-                        <outlet property="stepper" destination="EFZ-Z7-Edn" id="TFD-uy-o22"/>
-                        <outlet property="stepperLabel" destination="sux-yZ-bs6" id="CdU-l6-shL"/>
+                        <outlet property="welcomeLabel" destination="OeE-1C-FhN" id="yXb-kT-svq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K26-9A-pNv" userLabel="First Responder" sceneMemberID="firstResponder"/>

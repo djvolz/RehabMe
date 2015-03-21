@@ -28,7 +28,8 @@
 #import <ParseUI/ParseUI.h>
 
 // If you are using Facebook, uncomment this line
-// #import <ParseFacebookUtils/PFFacebookUtils.h>
+ #import <ParseFacebookUtils/PFFacebookUtils.h>
+
 
 // If you want to use Crash Reporting - uncomment this line
 #import <ParseCrashReporting/ParseCrashReporting.h>
@@ -44,15 +45,10 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
-//
-//    self.window.rootViewController = [ChooseExerciseViewController new];
+
     
     
-    
-//     [Optional] Power your app with Local Datastore. For more info, go to
+//    Power your app with Local Datastore. For more info, go to
 //     https://parse.com/docs/ios_guide#localdatastore/iOS
     [Parse enableLocalDatastore];
     
@@ -60,15 +56,27 @@
     [Parse setApplicationId:@"jix4a7ziO3LTyuL4PZ3IyyRUA7DmnwRO0zvka2z5"
                   clientKey:@"OTzCw43KgIQDE6LvPC3ffycj95V1EAunMTmEtHcI"];
     
-    // [Optional] Track statistics around application opens.
+
+    
+    // Set default ACLs
+    PFACL *defaultACL = [PFACL ACL];
+    [defaultACL setPublicReadAccess:YES];
+    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    
+    // Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    // Logs 'install' and 'app activate' App Events.
+    [FBAppEvents activateApp];
+    
+    [PFFacebookUtils initializeFacebook];
+
 
 //    [ParseCrashReporting enable];
     
     
     
-    [PFUser enableAutomaticUser];
-  
+
 //
 //    PFACL *defaultACL = [PFACL ACL];
 //    
@@ -114,6 +122,13 @@
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    // attempt to extract a token from the url
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -135,11 +150,19 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    /*
+     Called when the application is about to terminate.
+     Save data if appropriate.
+     See also applicationDidEnterBackground:.
+     */
+    [[PFFacebookUtils session] close];
 }
 
 //#pragma mark Push Notifications

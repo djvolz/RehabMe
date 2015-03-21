@@ -9,9 +9,8 @@
 #import "MenuViewController.h"
 
 @interface MenuViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *parseLabel;
-@property (weak, nonatomic) IBOutlet UIStepper *stepper;
-@property (weak, nonatomic) IBOutlet UILabel *stepperLabel;
+@property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
+
 
 @end
 
@@ -26,8 +25,45 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.parseLabel.text = @"MENU SCREEN";
+    [self updateLabelWithUserInfo];
 }
+
+
+- (void)updateLabelWithUserInfo {
+    if ([PFUser currentUser]) {
+        // If the user is logged in, show their name in the welcome label.
+        
+        if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
+            // If user is linked to Twitter, we'll use their Twitter screen name
+            self.welcomeLabel.text =[NSString stringWithFormat:NSLocalizedString(@"Welcome @%@!", nil), [PFTwitterUtils twitter].screenName];
+            
+        } else if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+            // If user is linked to Facebook, we'll use the Facebook Graph API to fetch their full name. But first, show a generic Welcome label.
+            self.welcomeLabel.text =[NSString stringWithFormat:NSLocalizedString(@"Welcome!", nil)];
+            
+            // Create Facebook Request for user's details
+            FBRequest *request = [FBRequest requestForMe];
+            [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                // This is an asynchronous method. When Facebook responds, if there are no errors, we'll update the Welcome label.
+                if (!error) {
+                    NSString *displayName = result[@"name"];
+                    if (displayName) {
+                        self.welcomeLabel.text =[NSString stringWithFormat:NSLocalizedString(@"Welcome %@!", nil), displayName];
+                    }
+                }
+            }];
+            
+        } else {
+            // If user is linked to neither, let's use their username for the Welcome label.
+            self.welcomeLabel.text =[NSString stringWithFormat:NSLocalizedString(@"Welcome %@!", nil), [PFUser currentUser].username];
+            
+        }
+        
+    } else {
+        self.welcomeLabel.text = NSLocalizedString(@"Not logged in", nil);
+    }
+}
+
 
 - (IBAction)didPressDoneButton:(UIBarButtonItem *)sender {
     // Dismiss this viewcontroller
@@ -40,41 +76,12 @@
     return YES;
 }
 
-- (void)retrieveFromLocalDatastore{
-    [[PFUser currentUser] incrementKey:@"testCount"];
-    [[PFUser currentUser] saveInBackground];
-    
-    
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
-   
-    [query getObjectInBackgroundWithId:@"jBDRU2d4zF" block:^(PFObject *gameScore, NSError *error) {
-        // Do something with the returned PFObject in the gameScore variable.
-        NSLog(@"%@", gameScore);
-        
-        int score = [[gameScore objectForKey:@"score"] intValue];
-        
-        [gameScore incrementKey:@"score"];
-        [gameScore saveInBackground];
-
-        self.parseLabel.text = [NSString stringWithFormat:@"%d", (int)score];
-
-    }];
-    // The InBackground methods are asynchronous, so any code after this will run
-    // immediately.  Any code that depends on the query result should be moved
-    // inside the completion block above.
-    
-    
+- (IBAction)logOutButtonTapAction:(id)sender {
+    [PFUser logOut];
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
 }
 
 
-- (IBAction)didPressStepper:(UIStepper *)sender {
-    self.stepperLabel.text = [NSString stringWithFormat:@"%d", (int)self.stepper.value];
-    
-    
-    
-//    [self retrieveFromLocalDatastore];
-}
 
 //- (void)loginExampleMethod {
 //    PFUser *user = [PFUser user];

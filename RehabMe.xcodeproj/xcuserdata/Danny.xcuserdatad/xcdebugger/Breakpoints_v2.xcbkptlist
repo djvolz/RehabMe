@@ -22,7 +22,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/EAIntroView/EAIntroView.m"
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/ChooseExerciseViewController.m"
-            timestampString = "448397127.500115"
+            timestampString = "448599579.390498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "-constructSplashScreen"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/MenuViewController.m"
-            timestampString = "448393269.636542"
+            timestampString = "448427558.137295"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/ChooseExerciseViewController.m"
-            timestampString = "448397127.500115"
+            timestampString = "448599579.390498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
             landmarkName = "-didPressSubmitButton:"
             landmarkType = "5">
          </BreakpointContent>
@@ -89,28 +89,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RehabMe/Controllers/MenuViewController.m"
-            timestampString = "448409683.144495"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-retrieveFromLocalDatastore"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/ChooseExerciseViewController.m"
-            timestampString = "448408682.55392"
+            timestampString = "448599579.390498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "588"
-            endingLineNumber = "588"
+            startingLineNumber = "702"
+            endingLineNumber = "702"
             landmarkName = "-updateGameScore"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/ChooseExerciseViewController.m"
-            timestampString = "448403173.190097"
+            timestampString = "448599579.390498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "546"
-            endingLineNumber = "546"
+            startingLineNumber = "660"
+            endingLineNumber = "660"
             landmarkName = "-updateGameScore"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/ChooseExerciseViewController.m"
-            timestampString = "448408682.55392"
+            timestampString = "448599579.390498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "554"
-            endingLineNumber = "554"
+            startingLineNumber = "668"
+            endingLineNumber = "668"
             landmarkName = "-updateGameScore"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/ChooseExerciseViewController.m"
-            timestampString = "448408682.55392"
+            timestampString = "448599579.390498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "577"
-            endingLineNumber = "577"
+            startingLineNumber = "691"
+            endingLineNumber = "691"
             landmarkName = "-updateGameScore"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/ChooseExerciseViewController.m"
-            timestampString = "448408787.834192"
+            timestampString = "448599579.390498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "540"
-            endingLineNumber = "540"
+            startingLineNumber = "654"
+            endingLineNumber = "654"
             landmarkName = "-updateGameScore"
             landmarkType = "5">
             <Locations>
@@ -280,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RehabMe/Controllers/ChooseExerciseViewController.m"
-            timestampString = "448408801.812073"
+            timestampString = "448599579.390498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "541"
-            endingLineNumber = "541"
+            startingLineNumber = "655"
+            endingLineNumber = "655"
             landmarkName = "-updateGameScore"
             landmarkType = "5">
             <Locations>

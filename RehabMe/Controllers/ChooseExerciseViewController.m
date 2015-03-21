@@ -61,6 +61,31 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [super viewDidLoad];
     
     
+     if(![PFUser currentUser]) {
+         [self checkIfUserIsLoggedIn];
+     } else {
+         [self initializeRehabMe];
+     }
+    
+//    [self showIntroWithCrossDissolve];
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [self checkIfUserIsLoggedIn];
+    
+
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
+- (void)initializeRehabMe {
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:REHABME_GREEN]];
     [self.navigationController.navigationBar setTranslucent:NO];
     
@@ -72,11 +97,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                                                nil];
     [self.navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
     
-    
-    // Add buttons to programmatically swipe the view left or right.
-    // See the `nopeFrontCardView` and `likeFrontCardView` methods.
-    //    [self constructNopeButton];
-    //    [self constructLikedButton];
     
     
     // Show welcome badge notification
@@ -102,24 +122,118 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     rootView = self.navigationController.view;
     
-//    [self showIntroWithCrossDissolve];
-    
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
     self.ratingView.hidden = YES;
     self.beginButton.hidden = NO;
+
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+#pragma mark - Log In
+
+
+- (void)checkIfUserIsLoggedIn {
+    if (![PFUser currentUser]) { // No user logged in
+                                 // Create the log in view controller
+        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        [logInViewController setDelegate:self]; // Set ourselves as the delegate
+
+        logInViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsFacebook | PFLogInFieldsSignUpButton;
+ 
+        
+        [logInViewController.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"rehabme_logo"]]];
+        // Make sure we don't stretch out the image and so it scales correctly.
+        logInViewController.logInView.logo.contentMode = UIViewContentModeScaleAspectFit;
+        logInViewController.logInView.backgroundColor = [UIColor colorWithHexString:REHABME_GREEN];
+        
+        [logInViewController.logInView.passwordForgottenButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                
+        // Create the sign up view controller
+        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+        signUpViewController.fields = PFSignUpFieldsDefault;
+        
+        [signUpViewController.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"rehabme_logo"]]];
+        // Make sure we don't stretch out the image and so it scales correctly.
+        signUpViewController.signUpView.logo.contentMode = UIViewContentModeScaleAspectFit;
+        signUpViewController.signUpView.backgroundColor = [UIColor colorWithHexString:REHABME_GREEN];
+        
+        
+        // Assign our sign up controller to be displayed from the login controller
+        [logInViewController setSignUpController:signUpViewController];
+        
+        // Present the log in view controller
+        [self presentViewController:logInViewController animated:NO completion:^{
+            [self initializeRehabMe];
+        }];
+    }
+}
+
+#pragma mark - PFLogInViewControllerDelegate
+
+// Sent to the delegate to determine whether the log in request should be submitted to the server.
+- (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
+    // Check if both fields are completed
+    if (username && password && username.length && password.length) {
+        return YES; // Begin login process
+    }
     
-
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+    return NO; // Interrupt login process
 }
+
+// Sent to the delegate when a PFUser is logged in.
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+// Sent to the delegate when the log in attempt fails.
+- (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
+    NSLog(@"Failed to log in...");
+}
+
+// Sent to the delegate when the log in screen is dismissed.
+- (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
+    NSLog(@"User dismissed the logInViewController");
+}
+
+
+#pragma mark - PFSignUpViewControllerDelegate
+
+// Sent to the delegate to determine whether the sign up request should be submitted to the server.
+- (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
+    BOOL informationComplete = YES;
+    
+    // loop through all of the submitted data
+    for (id key in info) {
+        NSString *field = [info objectForKey:key];
+        if (!field || !field.length) { // check completion
+            informationComplete = NO;
+            break;
+        }
+    }
+    
+    // Display an alert if a field wasn't completed
+    if (!informationComplete) {
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+    }
+    
+    return informationComplete;
+}
+
+// Sent to the delegate when a PFUser is signed up.
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+// Sent to the delegate when the sign up attempt fails.
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
+    NSLog(@"Failed to sign up...");
+}
+
+// Sent to the delegate when the sign up screen is dismissed.
+- (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
+    NSLog(@"User dismissed the signUpViewController");
+}
+
 
 
 /* Constructs splash that splashes green check button that grows across screen */

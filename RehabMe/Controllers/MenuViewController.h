@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 #import <Parse/Parse.h>
 #import <Bolts/Bolts.h>
+#import <ParseUI/ParseUI.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "UIColor+HexString.h"
 
 
 
-
-@interface MenuViewController : UIViewController
+@interface MenuViewController : UIViewController <PFLogInViewControllerDelegate>
 
 
 

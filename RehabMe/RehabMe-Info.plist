@@ -27,12 +27,18 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleURLName</key>
-			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb612719192206515</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>5</string>
+	<key>FacebookAppID</key>
+	<string>612719192206515</string>
+	<key>FacebookDisplayName</key>
+	<string>RehabMe</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

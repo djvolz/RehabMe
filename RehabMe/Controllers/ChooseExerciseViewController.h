@@ -77,6 +77,8 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+
 #import "Exercise.h"
 #import "ChooseExerciseView.h"
 #import "MDCSwipeToChoose.h"
@@ -84,10 +86,11 @@
 #import "TSMessageView.h"
 #import "UIColor+HexString.h"
 #import "UIBezierPath+Shapes.h"
-#import "EDStarRating.h"
 #import "EAIntroView.h"
 #import "CurrentExerciseViewController.h"
 #import "CompletionViewContoller.h"
+#import "MenuViewController.h"
+
 
 #define SECONDS_IN_A_DAY    86400
 #define SECONDS_IN_AN_HOUR  3600
@@ -96,7 +99,7 @@
 
 
 
-@interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol, EAIntroDelegate>
+@interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol, EAIntroDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 
 @property (nonatomic, strong) Exercise *currentExercise;
