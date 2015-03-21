@@ -45,7 +45,7 @@ $( document ).ready(function() {
 			      // If we did not get results, then say so on the table
 			      if( myExercises == '' ) {
 			      	var noResults = undefined;
-			        	noResults = "<tr><td>No entires</td></tr>";
+			        	noResults = "<tr><td>No entries</td></tr>";
 			        // append it to the empty row
 				    $( '#wordData' ).html( noResults );
 				  } else {
