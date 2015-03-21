@@ -60,7 +60,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
      if(![PFUser currentUser]) {
          [self checkIfUserIsLoggedIn];
      } else {

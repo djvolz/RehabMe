@@ -11,6 +11,7 @@
 		3001DD381ABA742200ED0F7E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3001DD371ABA742200ED0F7E /* Social.framework */; };
 		3001DE5C1ABA876500ED0F7E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3001DD411ABA876400ED0F7E /* FacebookSDK.framework */; };
 		3001DE5D1ABA876500ED0F7E /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3001DD421ABA876400ED0F7E /* FBAudienceNetwork.framework */; };
+		302FEE081ABD2733009FD58A /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 302FEE071ABD2733009FD58A /* libstdc++.6.0.9.dylib */; };
 		303C06301A9FDFDE001D9B78 /* MDCGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 303C06141A9FDFDE001D9B78 /* MDCGeometry.m */; };
 		303C06311A9FDFDE001D9B78 /* MDCViewState.m in Sources */ = {isa = PBXBuildFile; fileRef = 303C06171A9FDFDE001D9B78 /* MDCViewState.m */; };
 		303C06321A9FDFDE001D9B78 /* UIColor+MDCRGB8Bit.m in Sources */ = {isa = PBXBuildFile; fileRef = 303C06191A9FDFDE001D9B78 /* UIColor+MDCRGB8Bit.m */; };
@@ -128,6 +129,7 @@
 		3001DD371ABA742200ED0F7E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3001DD411ABA876400ED0F7E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		3001DD421ABA876400ED0F7E /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		302FEE071ABD2733009FD58A /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		303500341A9E5F3700EA1C5C /* RehabMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RehabMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		303C06131A9FDFDE001D9B78 /* MDCGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCGeometry.h; sourceTree = "<group>"; };
 		303C06141A9FDFDE001D9B78 /* MDCGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCGeometry.m; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				302FEE081ABD2733009FD58A /* libstdc++.6.0.9.dylib in Frameworks */,
 				3001DD381ABA742200ED0F7E /* Social.framework in Frameworks */,
 				306093B71A9FDA520027BAAF /* libsqlite3.dylib in Frameworks */,
 				303C064B1A9FE139001D9B78 /* Bolts.framework in Frameworks */,
@@ -710,6 +713,7 @@
 		DA5B73E718F233EF00BB5F8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				302FEE071ABD2733009FD58A /* libstdc++.6.0.9.dylib */,
 				3001DD3F1ABA876400ED0F7E /* FacebookSDK */,
 				303C06451A9FE139001D9B78 /* Parse */,
 				306093B61A9FDA520027BAAF /* libsqlite3.dylib */,
@@ -742,6 +746,7 @@
 				DA5B73E118F233EF00BB5F8E /* Sources */,
 				DA5B73E218F233EF00BB5F8E /* Frameworks */,
 				DA5B73E318F233EF00BB5F8E /* Resources */,
+				302FEE091ABD27F3009FD58A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -864,6 +869,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		302FEE091ABD27F3009FD58A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=/usr/local/bin:$PATH\ncd /Users/Danny/Dropbox/School/Rice/5\\ -\\ Graduate\\ Year/elec419/RehabMe/Parse/\n\nparse symbols \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DA5B73E118F233EF00BB5F8E /* Sources */ = {

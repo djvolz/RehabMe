@@ -37,7 +37,6 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 
-//#import "ChooseExerciseViewController.h"
 
 #pragma mark -
 #pragma mark UIApplicationDelegate
@@ -47,10 +46,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     
+    [ParseCrashReporting enable];
+
     
 //    Power your app with Local Datastore. For more info, go to
 //     https://parse.com/docs/ios_guide#localdatastore/iOS
     [Parse enableLocalDatastore];
+    
     
     // Initialize Parse.
     [Parse setApplicationId:@"jix4a7ziO3LTyuL4PZ3IyyRUA7DmnwRO0zvka2z5"
@@ -72,7 +74,6 @@
     [PFFacebookUtils initializeFacebook];
 
 
-//    [ParseCrashReporting enable];
     
     
     
