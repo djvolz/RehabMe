@@ -57,6 +57,7 @@
 // Maybe:
 // Make exercise instructions available while timer is going.
 //
+// DONE: File management needs to filter by file type (only look for .mov)
 // DONE: Custom video instructions
 // DONE: Ability to login (possibly automatic user login)
 // DONE: Progress over a period of time

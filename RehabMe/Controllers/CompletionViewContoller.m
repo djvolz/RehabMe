@@ -196,7 +196,7 @@
 }
 
 - (void)lineGraph:(BEMSimpleLineGraphView *)graph didTouchGraphWithClosestIndex:(NSInteger)index {
-    self.labelValues.text = [NSString stringWithFormat:@"%@", [self.arrayOfValues objectAtIndex:index]];
+    self.labelValues.text = [NSString stringWithFormat:@"%@ XP", [self.arrayOfValues objectAtIndex:index]];
     self.labelDates.text = [NSString stringWithFormat:@"on %@", [self labelForDateAtIndex:index]];
 }
 

@@ -20,7 +20,7 @@
 }
 
 - (void)reloadData {
-    tableData = [self getFiles];
+    tableData = [self getMovFiles];
 }
 
 
@@ -36,7 +36,7 @@
 }
 
 
-- (NSArray *)getFiles {
+- (NSArray *)getMovFiles {
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     NSString  *filePath = documentsURL.path;
     
@@ -44,8 +44,9 @@
     NSFileManager* fileManager = [[NSFileManager alloc] init];
 
     NSArray *files = [fileManager contentsOfDirectoryAtPath:filePath error:nil];
+    NSArray *movFiles = [files filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.mov'"]];
     
-    return files;
+    return movFiles;
 }
 
 

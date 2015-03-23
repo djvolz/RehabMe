@@ -748,7 +748,6 @@
 				DA5B73E118F233EF00BB5F8E /* Sources */,
 				DA5B73E218F233EF00BB5F8E /* Frameworks */,
 				DA5B73E318F233EF00BB5F8E /* Resources */,
-				302FEE091ABD27F3009FD58A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -871,22 +870,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		302FEE091ABD27F3009FD58A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export PATH=/usr/local/bin:$PATH\ncd /Users/Danny/Dropbox/School/Rice/5\\ -\\ Graduate\\ Year/elec419/RehabMe/Parse/\n\nparse symbols \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DA5B73E118F233EF00BB5F8E /* Sources */ = {
