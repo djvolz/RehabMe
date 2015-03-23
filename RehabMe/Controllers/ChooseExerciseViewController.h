@@ -28,12 +28,10 @@
 //////////////////////      TODO        ///////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 //
+// Ability to delete videos
 // Fix double date thing on graph view
-// Progress over the a period of time
 // HUD with number of exercises and number of sets left for day
-// see image on instructions screen
 // create way to cancel out of timer screen
-// Ability to login (possibly automatic user login)
 // Menu with view for logging in.
 // Make sure tutorial only appears once
 // fix skip button for tutorial
@@ -46,8 +44,6 @@
 // Push notifications
 // Badges
 // Edit text
-// Gif pictorial instruction instead of still picture
-// Custom videos/pictures
 //
 //
 // Other:
@@ -61,6 +57,9 @@
 // Maybe:
 // Make exercise instructions available while timer is going.
 //
+// DONE: Custom video instructions
+// DONE: Ability to login (possibly automatic user login)
+// DONE: Progress over a period of time
 // DONE: Add congrats screen
 // DONE: redo congrats screen as seperate viewcontroller
 // DONE: slider instead of stars

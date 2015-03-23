@@ -1,6 +1,8 @@
 //
 // UIView+MDCBorderedLabel.m
 //
+// Copyright (c) 2015 to present, Dan Volz @djvolz
+//
 // Copyright (c) 2014 to present, Brian Gesiak @modocache
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -42,7 +44,7 @@
                                  size:48.f];
     label.textColor = color;
     [self addSubview:label];
-
+    
     self.transform = CGAffineTransformRotate(CGAffineTransformIdentity,
                                              MDCDegreesToRadians(angle));
 }

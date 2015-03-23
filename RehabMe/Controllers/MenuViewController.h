@@ -14,9 +14,7 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "UIColor+HexString.h"
 
-
-
-@interface MenuViewController : UIViewController <PFLogInViewControllerDelegate>
+@interface MenuViewController : UIViewController <PFLogInViewControllerDelegate, UIAlertViewDelegate>
 
 
 

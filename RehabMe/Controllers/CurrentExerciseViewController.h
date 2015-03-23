@@ -9,8 +9,12 @@
 #import "ChooseExerciseView.h"
 #import "CircularProgressTimerView.h"
 #import "UIColor+HexString.h"
+#import <MobileCoreServices/UTCoreTypes.h>
 
-@interface CurrentExerciseViewController : UIViewController <MDCSwipeToChooseDelegate>
+@import MediaPlayer;
+
+
+@interface CurrentExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate, UINavigationControllerDelegate>
 
 
 - (instancetype)initWithExercise:(Exercise *)exercise;

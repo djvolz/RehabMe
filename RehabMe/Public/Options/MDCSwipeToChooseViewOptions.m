@@ -1,6 +1,8 @@
 //
 // MDCSwipeToChooseViewOptions.m
 //
+// Copyright (c) 2015 to present, Dan Volz @djvolz
+//
 // Copyright (c) 2014 to present, Brian Gesiak @modocache
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy

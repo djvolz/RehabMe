@@ -115,13 +115,10 @@
 //                                                         UIRemoteNotificationTypeAlert |
 //                                                         UIRemoteNotificationTypeSound)];
 //    }
-
-    
-    [application setStatusBarStyle:UIStatusBarStyleLightContent];
-    
     
     return YES;
 }
+
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url

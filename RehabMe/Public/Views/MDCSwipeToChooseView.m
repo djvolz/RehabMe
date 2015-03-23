@@ -1,6 +1,8 @@
 //
 // MDCSwipeToChooseView.m
 //
+// Copyright (c) 2015 , Dan Volz @djvolz
+//
 // Copyright (c) 2014 to present, Brian Gesiak @modocache
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,8 +31,13 @@
 #import "UIColor+MDCRGB8Bit.h"
 #import <QuartzCore/QuartzCore.h>
 
+
 static CGFloat const MDCSwipeToChooseViewHorizontalPadding = 10.f;
-static CGFloat const MDCSwipeToChooseViewTopPadding = 20.f;
+
+#define IS_IPAD    (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MDCSwipeToChooseViewTopPadding (IS_IPAD ? 80.f : 25.f)
+
+//static CGFloat const MDCSwipeToChooseViewTopPadding = 20.f;
 static CGFloat const MDCSwipeToChooseViewLabelWidth = 65.f;
 
 @interface MDCSwipeToChooseView ()

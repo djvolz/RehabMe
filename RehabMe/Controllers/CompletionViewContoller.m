@@ -17,9 +17,6 @@
 @property (strong, nonatomic) NSMutableArray *arrayOfDates;
 
 
-@property (strong, nonatomic) IBOutlet UIButton *reloadButton;
-
-
 @property (weak, nonatomic) IBOutlet BEMSimpleLineGraphView *graphView;
 @property (weak, nonatomic) IBOutlet UILabel *labelValues;
 @property (weak, nonatomic) IBOutlet UILabel *labelDates;
@@ -32,6 +29,11 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     [self hydrateDatasets];
     
     [self setupGraph];
@@ -41,20 +43,6 @@
     // Dismiss this viewcontroller
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-///* Make the reload button pulse */
-//- (void)animateButton {
-//    CABasicAnimation *pulseAnimation;
-//    
-//    pulseAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-//    pulseAnimation.duration = 1.0;
-//    pulseAnimation.repeatCount = HUGE_VALF;
-//    pulseAnimation.autoreverses = YES;
-//    pulseAnimation.fromValue =[NSNumber numberWithFloat:1.0];
-//    pulseAnimation.toValue = [NSNumber numberWithFloat:0.3];
-//    [self.reloadButton.layer addAnimation:pulseAnimation forKey:@"animateOpacity"];
-//}
 
 
 
@@ -183,10 +171,6 @@
     return label;
 }
 
-//- (float)getRandomFloat {
-//    float i1 = (float)(arc4random() % 1000000) / 100 ;
-//    return 0;
-//}
 
 
 #pragma mark - SimpleLineGraph Data Source
@@ -221,7 +205,7 @@
         self.labelValues.alpha = 0.0;
         self.labelDates.alpha = 0.0;
     } completion:^(BOOL finished) {
-        self.labelValues.text = [NSString stringWithFormat:@"%i", (int)[[self.graphView calculatePointValueSum] intValue]];
+        self.labelValues.text = [NSString stringWithFormat:@"%i XP", totalNumber];
         self.labelDates.text = [NSString stringWithFormat:@"%@ to %@", [self labelForDateAtIndex:0], [self labelForDateAtIndex:self.arrayOfDates.count - 1]];
         
         [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -232,7 +216,7 @@
 }
 
 - (void)lineGraphDidFinishLoading:(BEMSimpleLineGraphView *)graph {
-    self.labelValues.text = [NSString stringWithFormat:@"%i", (int)[[self.graphView calculatePointValueSum] intValue]];
+    self.labelValues.text = [NSString stringWithFormat:@"%i XP", totalNumber];
     self.labelDates.text = [NSString stringWithFormat:@"between %@ and %@", [self labelForDateAtIndex:0], [self labelForDateAtIndex:self.arrayOfDates.count - 1]];
 }
 

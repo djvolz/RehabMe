@@ -74,6 +74,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
     [self checkIfUserIsLoggedIn];
     
+    [self cardViewIsBeingShown:YES];
+    
 
 }
 
@@ -117,10 +119,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     });
     
     rootView = self.navigationController.view;
-    
-    self.ratingView.hidden = YES;
-    self.beginButton.hidden = NO;
-
 }
 
 #pragma mark - Log In
@@ -295,17 +293,20 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 }
 
 /* Perform the events that occur when you've swiped away all cards in the deck. */
-- (void) endOfDeck {
+- (void) cardViewIsBeingShown:(BOOL)hideView {
     
-    self.ratingView.hidden = NO;
-    self.beginButton.hidden = YES;
+    self.ratingView.hidden = hideView;
+    self.beginButton.hidden = !hideView;
 }
 
 - (IBAction)didPressSubmitButton:(UIButton *)sender {
+    [self cardViewIsBeingShown:YES];
+    self.beginButton.hidden = YES;
+
+    
     // Make the reward splash screen
     [self constructSplashScreen];
     
-    self.ratingView.hidden = YES;
     self.view.backgroundColor = [UIColor colorWithHexString:REHABME_GREEN];
     
     
@@ -647,7 +648,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void) checkforEndOfDeck {
     // No more last card so after completing this swipe is the end of the deck
     if (self.backCardView == nil) {
-        [self endOfDeck];
+        [self cardViewIsBeingShown:NO];
     }
 }
 
@@ -679,7 +680,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                 
                 [gameScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
-    //                        NSLog(@"%@",gameScore.objectId);
+                            NSLog(@"%@",gameScore.objectId);
                     } else {
                         // There was a problem, check error.description
                     }

@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
 
 
+
+
 @end
 
 @implementation MenuViewController
@@ -26,6 +28,27 @@
     [super viewWillAppear:animated];
     
     [self updateLabelWithUserInfo];
+}
+
+- (void)clearStorage {
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSString  *filePath = documentsURL.path;
+
+    
+    NSFileManager* fileManager = [[NSFileManager alloc] init];
+    NSDirectoryEnumerator* directoryEnumberator = [fileManager enumeratorAtPath:filePath];
+    NSError* error = nil;
+    BOOL result;
+    
+    NSString* file;
+    while (file = [directoryEnumberator nextObject]) {
+        result = [fileManager removeItemAtPath:[filePath stringByAppendingPathComponent:file] error:&error];
+        if (!result && error) {
+            NSLog(@"oops: %@", error);
+        }
+    }
+    
+    [self showSuccessfulDeleteAlert];
 }
 
 
@@ -69,6 +92,9 @@
     // Dismiss this viewcontroller
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
+- (IBAction)didPressDeleteVideosButton:(UIButton *)sender {
+    [self clearStorage];
+}
 
 // Hide the status bar in the menu vie
 - (BOOL)prefersStatusBarHidden
@@ -82,24 +108,23 @@
 }
 
 
+#pragma mark - Alert View
 
-//- (void)loginExampleMethod {
-//    PFUser *user = [PFUser user];
-//    user.username = @"Yize";
-//    user.password = @"Zhao";
-//    user.email = @"contact@rehabme.com";
-//
-//    // other fields can be set just like with PFObject
-//    user[@"phone"] = @"415-392-0202";
-//
-//    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (!error) {
-//            // Hooray! Let them use the app now.
-//        } else {
-//            NSString *errorString = [error userInfo][@"error"];
-//            // Show the errorString somewhere and let the user try again.
-//        }
-//    }];
-//}
+- (void) showSuccessfulDeleteAlert {
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Videos Deleted" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+    
+    [alertView show];
+}
+
+// Offer to record video if one hasn't already been created
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == [alertView cancelButtonIndex]){
+        //cancel clicked ...do your action
+    } else {
+        //other action
+    }
+}
+
+
 
 @end
