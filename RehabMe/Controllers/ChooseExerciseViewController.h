@@ -107,6 +107,13 @@
 @property (nonatomic, strong) ChooseExerciseView *frontCardView;
 @property (nonatomic, strong) ChooseExerciseView *backCardView;
 
+@property (strong, nonatomic) NSArray *paths;
+@property (strong, nonatomic) NSString *documentsDirectory;
+@property (strong, nonatomic) NSString *path;
+@property (strong, nonatomic) NSFileManager *fileManager;
+@property (strong, nonatomic) NSMutableDictionary *data;
+@property (strong, nonatomic) NSMutableDictionary *savedInfo;
+
 @property (strong, nonatomic) IBOutlet UIView *view;
 
 - (void)loadDeck;
