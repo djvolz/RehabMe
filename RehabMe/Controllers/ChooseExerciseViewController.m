@@ -64,9 +64,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     rootView = self.navigationController.view;
 
-    [self showIntroWithCrossDissolve];
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -74,6 +71,13 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [super viewWillAppear:animated];
 
     [self checkIfUserIsLoggedIn];
+    
+    if ([PFUser currentUser]) {
+        if ([self shouldShowIntro]) {
+            [self showIntroWithCrossDissolve];
+            [self updatePLIST];
+        }
+    }
     
     [self cardViewIsBeingShown:YES];
     
