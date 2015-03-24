@@ -37,6 +37,7 @@ static const CGFloat infoHeight = 75.f;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) ImageLabelView *clockImageLabelView;
 @property (nonatomic, strong) ImageLabelView *barbellImageLabelView;
+@property (nonatomic, strong) ImageLabelView *cameraImageLabelView;
 @property (nonatomic, strong) UITextView *instructionsView;
 
 @end
@@ -89,6 +90,17 @@ static const CGFloat infoHeight = 75.f;
 
 #pragma mark - Internal Methods
 
+- (NSURL*)grabFileURL:(NSString *)fileName {
+    
+    // find Documents directory
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    // append a file name to it
+    documentsURL = [documentsURL URLByAppendingPathComponent:fileName];
+    
+    return documentsURL;
+}
+
 - (void)constructInformationView {
     CGRect topFrame = CGRectMake(0,
                                     0,//CGRectGetHeight(self.bounds) - bottomHeight,
@@ -104,8 +116,17 @@ static const CGFloat infoHeight = 75.f;
     [self constructNameLabel];
     [self constructClockImageLabelView];
     [self constructBarbellImageLabelView];
-//    [self constructFriendsImageLabelView];
     [self constructInformationTextViewView];
+    
+    // pick a video from the documents directory
+    NSURL *video = [self grabFileURL:[NSString stringWithFormat:@"%@.mov", self.exercise.name]];
+    
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:video.path];
+    
+    if (fileExists) {
+        [self constructCameraImageLabelView];
+    }
+
 }
 
 - (void)constructNameLabel {
@@ -138,6 +159,14 @@ static const CGFloat infoHeight = 75.f;
                                                          image:image
                                                           text:[NSString stringWithFormat:@"%@", @(_exercise.count)]];
     [_informationView addSubview:_barbellImageLabelView];
+}
+
+- (void)constructCameraImageLabelView {
+    UIImage *image = [UIImage imageNamed:@"camera"];
+    _cameraImageLabelView = [self buildImageLabelViewLeftOf:CGRectGetMinX(_barbellImageLabelView.frame)
+                                                       image:image
+                                                        text:[NSString stringWithFormat:@""]];
+    [_informationView addSubview:_cameraImageLabelView];
 }
 
 

@@ -687,9 +687,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // immediately.  Any code that depends on the query result should be moved
     // inside the completion block above.
 
-        
-
-
 }
 
 
