@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StorageManagementViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface StorageManagementViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

@@ -29,6 +29,9 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)didPressTrashButton:(UIBarButtonItem *)sender {
+    [self showDeleteWarningAlert];
+}
 
 // Hide the status bar in the menu vie
 - (BOOL)prefersStatusBarHidden {
@@ -98,10 +101,6 @@
         // reload the table to show any changes to datasource from above deletion
         [tableView reloadRowsAtIndexPaths:[tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
     }
-    
-    
-    
-
 }
 
 - (void)deleteFileAtFilePath:(NSString *)filePath {
@@ -116,16 +115,65 @@
     
 }
 
-         
-         - (NSURL*)grabFileURL:(NSString *)fileName {
-             
-             // find Documents directory
-             NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-             
-             // append a file name to it
-             documentsURL = [documentsURL URLByAppendingPathComponent:fileName];
-             
-             return documentsURL;
-         }
+
+- (NSURL*)grabFileURL:(NSString *)fileName {
+ 
+ // find Documents directory
+ NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+ 
+ // append a file name to it
+ documentsURL = [documentsURL URLByAppendingPathComponent:fileName];
+ 
+ return documentsURL;
+}
+
+
+- (void)clearStorage {
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSString  *filePath = documentsURL.path;
+    
+    
+    NSFileManager* fileManager = [[NSFileManager alloc] init];
+    NSDirectoryEnumerator* directoryEnumberator = [fileManager enumeratorAtPath:filePath];
+    NSError* error = nil;
+    BOOL result;
+    
+    NSString* file;
+    while (file = [directoryEnumberator nextObject]) {
+        result = [fileManager removeItemAtPath:[filePath stringByAppendingPathComponent:file] error:&error];
+        if (!result && error) {
+            NSLog(@"oops: %@", error);
+        }
+    }
+    
+    [self reloadData];
+    
+    [self.tableView reloadData];
+    
+    [self showSuccessfulDeleteAlert];
+}
+
+#pragma mark - Alert View
+
+- (void) showSuccessfulDeleteAlert {
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Videos Deleted" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+    
+    [alertView show];
+}
+
+- (void) showDeleteWarningAlert {
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"Delete All Files?" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Delete", nil];
+    
+    [alertView show];
+}
+
+// Offer to record video if one hasn't already been created
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == [alertView cancelButtonIndex]){
+        //cancel clicked ...do your action
+    } else {
+        [self clearStorage];
+    }
+}
 
 @end

@@ -34,13 +34,16 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.cardView.hidden = NO;
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
     [self constructChooseExerciseView];
-    
-    
-    
 }
 
 - (void)constructChooseExerciseView {
@@ -78,6 +81,7 @@
     
     [self setupCircularProgressTimerView:self.currentExercise.timeRequired
                                withColor:[UIColor colorWithHexString:REHABME_GREEN]];
+    self.cardView.hidden = YES;
 }
 
 - (IBAction)didPressDoneButton:(UIBarButtonItem *)sender

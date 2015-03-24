@@ -75,11 +75,11 @@
     
 }
 
-//- (void)setupTapGestureRecognizer{
-//    UITapGestureRecognizer *timerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeCircleProgressTimerView)];
-//    
-//    [self addGestureRecognizer:timerTapRecognizer];
-//}
+- (void)setupTapGestureRecognizer{
+    UITapGestureRecognizer *timerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeCircleProgressTimerView)];
+    
+    [self addGestureRecognizer:timerTapRecognizer];
+}
 
 - (void)updateCircularProgressBar
 {
@@ -100,6 +100,8 @@
 }
 
 - (void)removeCircleProgressTimerView {
+    /* Cancel the timer and remove the view. */
+    [timer invalidate];
     [self removeFromSuperview];
 }
 

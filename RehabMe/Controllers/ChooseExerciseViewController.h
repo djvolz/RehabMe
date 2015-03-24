@@ -28,7 +28,6 @@
 //////////////////////      TODO        ///////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 //
-// Ability to delete videos
 // Fix double date thing on graph view
 // HUD with number of exercises and number of sets left for day
 // create way to cancel out of timer screen
@@ -57,6 +56,8 @@
 // Maybe:
 // Make exercise instructions available while timer is going.
 //
+//
+// DONE: Ability to delete videos
 // DONE: File management needs to filter by file type (only look for .mov)
 // DONE: Custom video instructions
 // DONE: Ability to login (possibly automatic user login)
