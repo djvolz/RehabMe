@@ -118,17 +118,17 @@
 
 - (NSURL*)grabFileURL:(NSString *)fileName {
  
- // find Documents directory
- NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
- 
- // append a file name to it
- documentsURL = [documentsURL URLByAppendingPathComponent:fileName];
- 
- return documentsURL;
+    // find Documents directory
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+
+    // append a file name to it
+    documentsURL = [documentsURL URLByAppendingPathComponent:fileName];
+
+    return documentsURL;
 }
 
 
-- (void)clearStorage {
+- (void)clearMovsFromStorage {
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     NSString  *filePath = documentsURL.path;
     
@@ -140,9 +140,11 @@
     
     NSString* file;
     while (file = [directoryEnumberator nextObject]) {
-        result = [fileManager removeItemAtPath:[filePath stringByAppendingPathComponent:file] error:&error];
-        if (!result && error) {
-            NSLog(@"oops: %@", error);
+        if ([[file pathExtension] isEqualToString:@"mov"]) {
+            result = [fileManager removeItemAtPath:[filePath stringByAppendingPathComponent:file] error:&error];
+            if (!result && error) {
+                NSLog(@"oops: %@", error);
+            }
         }
     }
     
@@ -172,7 +174,7 @@
     if (buttonIndex == [alertView cancelButtonIndex]){
         //cancel clicked ...do your action
     } else {
-        [self clearStorage];
+        [self clearMovsFromStorage];
     }
 }
 
