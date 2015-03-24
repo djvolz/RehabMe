@@ -116,6 +116,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                            canBeDismissedByUser:YES];
     
     
+    // Run the PLIST code checking/making
+    [self checkOrCreatePLIST];
+    
     // Load the deck when the VC loads.
     /* wait a beat before animating in */
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -124,6 +127,61 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     });
     
 }
+
+#pragma mark - Handling PLIST Creation/Existence Check
+
+- (void)checkOrCreatePLIST {
+    //PLIST Variables
+    _paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    _documentsDirectory = [_paths objectAtIndex:0];
+    _path = [_documentsDirectory stringByAppendingPathComponent:@"RehabMePreferences.plist"];
+    _fileManager = [NSFileManager defaultManager];
+    _savedInfo = [[NSMutableDictionary alloc] initWithContentsOfFile: _path];
+    
+    // PLIST exists
+    if ([_fileManager fileExistsAtPath: _path])
+    {
+        _data = [[NSMutableDictionary alloc] initWithContentsOfFile: _path];
+    }
+    // PLIST does not exist
+    else {
+        _data = [[NSMutableDictionary alloc] init];
+        [_data setObject: [NSNumber numberWithInt: 0] forKey:@"seenIntro"];
+        [_data writeToFile: _path atomically:YES];
+    }
+}
+
+#pragma mark - Checking If Intro Seen
+
+- (BOOL)shouldShowIntro {
+    //PLIST Variables
+    _paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    _documentsDirectory = [_paths objectAtIndex: 0];
+    _path = [_documentsDirectory stringByAppendingPathComponent:@"RehabMePreferences.plist"];
+    _savedInfo = [[NSMutableDictionary alloc] initWithContentsOfFile: _path];
+    
+    if ([[_savedInfo objectForKey:@"seenIntro"] intValue] == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+#pragma mark - Update PLIST
+
+- (void)updatePLIST {
+    //PLIST Variables
+    _paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    _documentsDirectory = [_paths objectAtIndex:0];
+    _path = [_documentsDirectory stringByAppendingPathComponent:@"RehabMePreferences.plist"];
+    _savedInfo = [[NSMutableDictionary alloc] initWithContentsOfFile: _path];
+    
+    _data = [[NSMutableDictionary alloc] init];
+    [_data setObject: [NSNumber numberWithInt: 1] forKey:@"seenIntro"];
+    [_data writeToFile: _path atomically:YES];
+}
+
 
 #pragma mark - Log In
 
