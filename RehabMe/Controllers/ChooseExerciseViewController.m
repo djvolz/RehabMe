@@ -75,7 +75,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     if ([PFUser currentUser]) {
         if ([self shouldShowIntro]) {
             [self showIntroWithCrossDissolve];
-            [self updatePLIST];
         }
     }
     
@@ -167,21 +166,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         return false;
     }
 }
-
-#pragma mark - Update PLIST
-
-- (void)updatePLIST {
-    //PLIST Variables
-    _paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    _documentsDirectory = [_paths objectAtIndex:0];
-    _path = [_documentsDirectory stringByAppendingPathComponent:@"RehabMePreferences.plist"];
-    _savedInfo = [[NSMutableDictionary alloc] initWithContentsOfFile: _path];
-    
-    _data = [[NSMutableDictionary alloc] init];
-    [_data setObject: [NSNumber numberWithInt: 1] forKey:@"seenIntro"];
-    [_data writeToFile: _path atomically:YES];
-}
-
 
 #pragma mark - Log In
 

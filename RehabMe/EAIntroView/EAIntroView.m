@@ -153,6 +153,7 @@
         //to be safe, set to the biggest index
         _currentPageIndex = _pages.count - 1;
         
+        [self updatePLIST];
         [self finishIntroductionAndRemoveSelf];
     }
 }
@@ -174,6 +175,7 @@
 }
 
 - (void)skipIntroduction {
+    [self updatePLIST];
     [self hideWithFadeOutDuration:0.3];
 }
 
@@ -634,6 +636,20 @@ CGFloat easeOutValue(CGFloat value) {
         self.scrollView.contentSize = CGSizeMake(contentXIndex, self.scrollView.frame.size.height);
     }
     _swipeToExit = swipeToExit;
+}
+
+#pragma mark - Update PLIST
+
+- (void)updatePLIST {
+    //PLIST Variables
+    _paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    _documentsDirectory = [_paths objectAtIndex:0];
+    _path = [_documentsDirectory stringByAppendingPathComponent:@"RehabMePreferences.plist"];
+    _savedInfo = [[NSMutableDictionary alloc] initWithContentsOfFile: _path];
+    
+    _data = [[NSMutableDictionary alloc] init];
+    [_data setObject: [NSNumber numberWithInt: 1] forKey:@"seenIntro"];
+    [_data writeToFile: _path atomically:YES];
 }
 
 - (void)setTitleView:(UIView *)titleView {
