@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3000BE9F1AAD538800C6EA5C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3000BE9E1AAD538800C6EA5C /* MenuViewController.m */; };
 		3001DD381ABA742200ED0F7E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3001DD371ABA742200ED0F7E /* Social.framework */; };
+		300408331AC372A6009B6A84 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300408321AC372A6009B6A84 /* AVFoundation.framework */; };
 		30184F311ABDEF3900DEA527 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30184F2F1ABDEF3900DEA527 /* FacebookSDK.framework */; };
 		30184F321ABDEF3900DEA527 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30184F301ABDEF3900DEA527 /* FBAudienceNetwork.framework */; };
 		30184F381ABDF40500DEA527 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30184F371ABDF40500DEA527 /* Bolts.framework */; };
@@ -128,6 +129,7 @@
 		3000BE9D1AAD538800C6EA5C /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		3000BE9E1AAD538800C6EA5C /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		3001DD371ABA742200ED0F7E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		300408321AC372A6009B6A84 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		30184F2F1ABDEF3900DEA527 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		30184F301ABDEF3900DEA527 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		30184F371ABDF40500DEA527 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				300408331AC372A6009B6A84 /* AVFoundation.framework in Frameworks */,
 				3066D8791ABF7835005218C8 /* MediaPlayer.framework in Frameworks */,
 				302FEE081ABD2733009FD58A /* libstdc++.6.0.9.dylib in Frameworks */,
 				3001DD381ABA742200ED0F7E /* Social.framework in Frameworks */,
@@ -716,6 +719,7 @@
 		DA5B73E718F233EF00BB5F8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				300408321AC372A6009B6A84 /* AVFoundation.framework */,
 				3066D8781ABF7835005218C8 /* MediaPlayer.framework */,
 				30184F2E1ABDEF3900DEA527 /* FacebookSDK */,
 				303C06451A9FE139001D9B78 /* Parse */,

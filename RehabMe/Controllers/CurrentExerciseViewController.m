@@ -151,20 +151,48 @@
     return documentsURL;
 }
 
-
 - (void)recordVideo {
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    picker.delegate = self;
+    picker.allowsEditing = NO;
+
+    NSArray *mediaTypes = [[NSArray alloc]initWithObjects:(NSString *)kUTTypeMovie, nil];
+
+    picker.mediaTypes = mediaTypes;
+
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+
+- (void)checkVideoAvailability {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
-        UIImagePickerController *picker = [[UIImagePickerController alloc]init];
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        picker.delegate = self;
-        picker.allowsEditing = NO;
-        
-        NSArray *mediaTypes = [[NSArray alloc]initWithObjects:(NSString *)kUTTypeMovie, nil];
-        
-        picker.mediaTypes = mediaTypes;
-        
-        [self presentViewController:picker animated:YES completion:nil];
+        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        if(authStatus == AVAuthorizationStatusAuthorized) {
+            NSLog(@"AVAuthorizationStatusAuthorized");
+            [self recordVideo];
+        } else if(authStatus == AVAuthorizationStatusDenied){
+            NSLog(@"AVAuthorizationStatusDenied");
+            [self showVideoPermissionDeniedAlert];
+        } else if(authStatus == AVAuthorizationStatusRestricted){
+            NSLog(@"AVAuthorizationStatusRestricted");
+            [self showVideoPermissionDeniedAlert];
+        } else if(authStatus == AVAuthorizationStatusNotDetermined){
+            NSLog(@"AVAuthorizationStatusNotDetermined");
+            [self showVideoPermissionDeniedAlert];
+
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                if(granted){
+                    NSLog(@"Granted access to %@", AVMediaTypeVideo);
+                } else {
+                    NSLog(@"Not granted access to %@", AVMediaTypeVideo);
+                }
+            }];
+        } else {
+            [self showVideoPermissionDeniedAlert];
+        }
+
         
     } else {
         
@@ -202,16 +230,35 @@
 - (void) showNoFileAlert {
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:@"No video found" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Record Video", nil];
     
+    alertView.tag = RECORD_ALERT; //alert tag
+    
     [alertView show];
 }
+
+- (void) showVideoPermissionDeniedAlert {
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Change Camera Permissions" message:@"Settings -> Privacy -> Camera -> RehabMe" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Settings", nil];
+    
+    alertView.tag = SETTINGS_ALERT; //alert tag
+
+    [alertView show];
+    
+    
+}
+
 
 // Offer to record video if one hasn't already been created
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == [alertView cancelButtonIndex]){
         //cancel clicked ...do your action
     } else {
-        //record video pressed
-        [self recordVideo];
+        if(alertView.tag == RECORD_ALERT)     // check alert by tag
+        {
+            //record video pressed
+            [self checkVideoAvailability];
+        } else if (alertView.tag == SETTINGS_ALERT) {
+            /* Open settings app. */
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        }
     }
 }
 
