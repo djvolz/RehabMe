@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "528"
             endingLineNumber = "528"
-            landmarkName = "-viewDidSwipeRight"
+            landmarkName = "-nopeFrontCardView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

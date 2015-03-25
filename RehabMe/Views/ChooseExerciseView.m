@@ -162,10 +162,10 @@ static const CGFloat infoHeight = 75.f;
 }
 
 - (void)constructCameraImageLabelView {
-    UIImage *image = [UIImage imageNamed:@"camera"];
+    UIImage *image = [UIImage imageNamed:@"video_camera"];
     _cameraImageLabelView = [self buildImageLabelViewLeftOf:CGRectGetMinX(_barbellImageLabelView.frame)
                                                        image:image
-                                                        text:[NSString stringWithFormat:@""]];
+                                                        text:[NSString stringWithFormat:@"1"]];
     [_informationView addSubview:_cameraImageLabelView];
 }
 
