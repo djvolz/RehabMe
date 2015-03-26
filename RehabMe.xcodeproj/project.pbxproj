@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3000BE9F1AAD538800C6EA5C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3000BE9E1AAD538800C6EA5C /* MenuViewController.m */; };
 		3001DD381ABA742200ED0F7E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3001DD371ABA742200ED0F7E /* Social.framework */; };
 		300408331AC372A6009B6A84 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300408321AC372A6009B6A84 /* AVFoundation.framework */; };
 		30184F311ABDEF3900DEA527 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30184F2F1ABDEF3900DEA527 /* FacebookSDK.framework */; };
@@ -79,18 +78,14 @@
 		30880E711AA8023D006746C4 /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E561AA8023D006746C4 /* TSBlurView.m */; };
 		30880E721AA8023D006746C4 /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E581AA8023D006746C4 /* TSMessage.m */; };
 		30880E731AA8023D006746C4 /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E5A1AA8023D006746C4 /* TSMessageView.m */; };
-		30880EEE1AA82F5B006746C4 /* EDStarRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880EED1AA82F5B006746C4 /* EDStarRating.m */; };
-		30880EF81AA83590006746C4 /* star-highlighted-template.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF01AA83590006746C4 /* star-highlighted-template.png */; };
-		30880EF91AA83590006746C4 /* star-highlighted-template@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF11AA83590006746C4 /* star-highlighted-template@2x.png */; };
-		30880EFA1AA83590006746C4 /* star-template.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF21AA83590006746C4 /* star-template.png */; };
-		30880EFB1AA83590006746C4 /* star-template@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF31AA83590006746C4 /* star-template@2x.png */; };
-		30880EFC1AA83590006746C4 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF41AA83590006746C4 /* star.png */; };
-		30880EFD1AA83590006746C4 /* starhighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF51AA83590006746C4 /* starhighlighted.png */; };
-		30880EFE1AA83590006746C4 /* starsbackground iOS.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF61AA83590006746C4 /* starsbackground iOS.png */; };
-		30880EFF1AA83590006746C4 /* starsbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 30880EF71AA83590006746C4 /* starsbackground.png */; };
 		308C09411AAA15DA00754C66 /* CircularProgressTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 308C09401AAA15DA00754C66 /* CircularProgressTimer.m */; };
 		308C09451AAA175700754C66 /* CircularProgressTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308C09441AAA175700754C66 /* CircularProgressTimerView.m */; };
 		3099B2FC1A9BC6CE00DB2B92 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */; };
+		30A32A0D1AC4648600602D4C /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A081AC4648600602D4C /* RECommonFunctions.m */; };
+		30A32A0E1AC4648600602D4C /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A0A1AC4648600602D4C /* RESideMenu.m */; };
+		30A32A0F1AC4648600602D4C /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A0C1AC4648600602D4C /* UIViewController+RESideMenu.m */; };
+		30A32A121AC464C600602D4C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A111AC464C600602D4C /* RootViewController.m */; };
+		30A32A151AC465D100602D4C /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A141AC465D100602D4C /* LeftMenuViewController.m */; };
 		30BFD6561A9D49F3007C187F /* snapchatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 30BFD6551A9D49F3007C187F /* snapchatIcon.png */; };
 		30C2ED251AB77AB30020B738 /* BEMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C2ED1E1AB77AB30020B738 /* BEMCircle.m */; };
 		30C2ED261AB77AB30020B738 /* BEMLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C2ED201AB77AB30020B738 /* BEMLine.m */; };
@@ -126,8 +121,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3000BE9D1AAD538800C6EA5C /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		3000BE9E1AAD538800C6EA5C /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		3001DD371ABA742200ED0F7E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		300408321AC372A6009B6A84 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		30184F2F1ABDEF3900DEA527 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
@@ -231,21 +224,21 @@
 		30880E581AA8023D006746C4 /* TSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessage.m; sourceTree = "<group>"; };
 		30880E591AA8023D006746C4 /* TSMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMessageView.h; sourceTree = "<group>"; };
 		30880E5A1AA8023D006746C4 /* TSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessageView.m; sourceTree = "<group>"; };
-		30880EEC1AA82F5B006746C4 /* EDStarRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDStarRating.h; sourceTree = "<group>"; };
-		30880EED1AA82F5B006746C4 /* EDStarRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDStarRating.m; sourceTree = "<group>"; };
-		30880EF01AA83590006746C4 /* star-highlighted-template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-highlighted-template.png"; sourceTree = "<group>"; };
-		30880EF11AA83590006746C4 /* star-highlighted-template@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-highlighted-template@2x.png"; sourceTree = "<group>"; };
-		30880EF21AA83590006746C4 /* star-template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-template.png"; sourceTree = "<group>"; };
-		30880EF31AA83590006746C4 /* star-template@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-template@2x.png"; sourceTree = "<group>"; };
-		30880EF41AA83590006746C4 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
-		30880EF51AA83590006746C4 /* starhighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starhighlighted.png; sourceTree = "<group>"; };
-		30880EF61AA83590006746C4 /* starsbackground iOS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starsbackground iOS.png"; sourceTree = "<group>"; };
-		30880EF71AA83590006746C4 /* starsbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starsbackground.png; sourceTree = "<group>"; };
 		308C093F1AAA15DA00754C66 /* CircularProgressTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularProgressTimer.h; sourceTree = "<group>"; };
 		308C09401AAA15DA00754C66 /* CircularProgressTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularProgressTimer.m; sourceTree = "<group>"; };
 		308C09431AAA175700754C66 /* CircularProgressTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularProgressTimerView.h; sourceTree = "<group>"; };
 		308C09441AAA175700754C66 /* CircularProgressTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularProgressTimerView.m; sourceTree = "<group>"; };
 		3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		30A32A071AC4648600602D4C /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		30A32A081AC4648600602D4C /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
+		30A32A091AC4648600602D4C /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
+		30A32A0A1AC4648600602D4C /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
+		30A32A0B1AC4648600602D4C /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
+		30A32A0C1AC4648600602D4C /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
+		30A32A101AC464C600602D4C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		30A32A111AC464C600602D4C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		30A32A131AC465D100602D4C /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
+		30A32A141AC465D100602D4C /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
 		30BFD6551A9D49F3007C187F /* snapchatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snapchatIcon.png; sourceTree = "<group>"; };
 		30C2ED1D1AB77AB30020B738 /* BEMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCircle.h; sourceTree = "<group>"; };
 		30C2ED1E1AB77AB30020B738 /* BEMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCircle.m; sourceTree = "<group>"; };
@@ -449,10 +442,12 @@
 				305EBB411AAB9219008C2E17 /* CurrentExerciseViewController.m */,
 				307F83601A9BC12300B1CEFF /* ChooseExerciseViewController.h */,
 				307F83611A9BC12300B1CEFF /* ChooseExerciseViewController.m */,
-				3000BE9D1AAD538800C6EA5C /* MenuViewController.h */,
-				3000BE9E1AAD538800C6EA5C /* MenuViewController.m */,
 				3066D87A1ABFA0E2005218C8 /* StorageManagementViewController.h */,
 				3066D87B1ABFA0E2005218C8 /* StorageManagementViewController.m */,
+				30A32A101AC464C600602D4C /* RootViewController.h */,
+				30A32A111AC464C600602D4C /* RootViewController.m */,
+				30A32A131AC465D100602D4C /* LeftMenuViewController.h */,
+				30A32A141AC465D100602D4C /* LeftMenuViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -483,12 +478,12 @@
 			isa = PBXGroup;
 			children = (
 				307F83641A9BC12300B1CEFF /* Images.xcassets */,
+				30A32A061AC4648600602D4C /* RESideMenu */,
 				30C2ED1C1AB77AB30020B738 /* BEMSimpleLineGraph */,
 				30D935391AB0D7700024B03E /* intro */,
 				30D935301AB0D5F10024B03E /* EARestrictedScrollView */,
 				30D935291AB0D5B70024B03E /* EAIntroView */,
 				308C093E1AAA15DA00754C66 /* CircularProgress */,
-				30880EEB1AA82F5B006746C4 /* EDStarRating */,
 				30880E391AA8023D006746C4 /* HexColors */,
 				30880E3F1AA8023D006746C4 /* TSMessages */,
 				303C063A1A9FE0EB001D9B78 /* MDCSwipeToChoose */,
@@ -607,31 +602,6 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		30880EEB1AA82F5B006746C4 /* EDStarRating */ = {
-			isa = PBXGroup;
-			children = (
-				30880EEF1AA83590006746C4 /* Assets */,
-				30880EEC1AA82F5B006746C4 /* EDStarRating.h */,
-				30880EED1AA82F5B006746C4 /* EDStarRating.m */,
-			);
-			path = EDStarRating;
-			sourceTree = "<group>";
-		};
-		30880EEF1AA83590006746C4 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				30880EF01AA83590006746C4 /* star-highlighted-template.png */,
-				30880EF11AA83590006746C4 /* star-highlighted-template@2x.png */,
-				30880EF21AA83590006746C4 /* star-template.png */,
-				30880EF31AA83590006746C4 /* star-template@2x.png */,
-				30880EF41AA83590006746C4 /* star.png */,
-				30880EF51AA83590006746C4 /* starhighlighted.png */,
-				30880EF61AA83590006746C4 /* starsbackground iOS.png */,
-				30880EF71AA83590006746C4 /* starsbackground.png */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
 		308C093E1AAA15DA00754C66 /* CircularProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -639,6 +609,19 @@
 				308C09401AAA15DA00754C66 /* CircularProgressTimer.m */,
 			);
 			path = CircularProgress;
+			sourceTree = "<group>";
+		};
+		30A32A061AC4648600602D4C /* RESideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				30A32A071AC4648600602D4C /* RECommonFunctions.h */,
+				30A32A081AC4648600602D4C /* RECommonFunctions.m */,
+				30A32A091AC4648600602D4C /* RESideMenu.h */,
+				30A32A0A1AC4648600602D4C /* RESideMenu.m */,
+				30A32A0B1AC4648600602D4C /* UIViewController+RESideMenu.h */,
+				30A32A0C1AC4648600602D4C /* UIViewController+RESideMenu.m */,
+			);
+			path = RESideMenu;
 			sourceTree = "<group>";
 		};
 		30C2ED1C1AB77AB30020B738 /* BEMSimpleLineGraph */ = {
@@ -824,20 +807,15 @@
 			files = (
 				30D935411AB0D7700024B03E /* bg3@2x.jpg in Resources */,
 				30880E5C1AA8023D006746C4 /* LICENCE in Resources */,
-				30880EFD1AA83590006746C4 /* starhighlighted.png in Resources */,
-				30880EF81AA83590006746C4 /* star-highlighted-template.png in Resources */,
 				30880E621AA8023D006746C4 /* NotificationBackgroundErrorIcon@2x.png in Resources */,
-				30880EFE1AA83590006746C4 /* starsbackground iOS.png in Resources */,
 				30D9353F1AB0D7700024B03E /* bg1@2x.jpg in Resources */,
 				30880E6D1AA8023D006746C4 /* NotificationButtonBackground.png in Resources */,
 				30D935371AB0D5F10024B03E /* LICENSE in Resources */,
 				30880E6A1AA8023D006746C4 /* NotificationBackgroundWarning@2x.png in Resources */,
 				30D935431AB0D7700024B03E /* bg5@2x.jpg in Resources */,
-				30880EFC1AA83590006746C4 /* star.png in Resources */,
 				30880E6C1AA8023D006746C4 /* NotificationBackgroundWarningIcon@2x.png in Resources */,
 				30880E651AA8023D006746C4 /* NotificationBackgroundSuccess.png in Resources */,
 				307F837E1A9BC18A00B1CEFF /* InfoPlist.strings in Resources */,
-				30880EF91AA83590006746C4 /* star-highlighted-template@2x.png in Resources */,
 				30C30BE11A9D5257006194BA /* twitterIcon.png in Resources */,
 				307F83721A9BC12400B1CEFF /* InfoPlist.strings in Resources */,
 				30880E601AA8023D006746C4 /* NotificationBackgroundError@2x.png in Resources */,
@@ -846,15 +824,12 @@
 				30880E611AA8023D006746C4 /* NotificationBackgroundErrorIcon.png in Resources */,
 				30880E661AA8023D006746C4 /* NotificationBackgroundSuccess@2x.png in Resources */,
 				30880E6E1AA8023D006746C4 /* NotificationButtonBackground@2x.png in Resources */,
-				30880EFA1AA83590006746C4 /* star-template.png in Resources */,
 				30D935421AB0D7700024B03E /* bg4@2x.jpg in Resources */,
 				30880E6B1AA8023D006746C4 /* NotificationBackgroundWarningIcon.png in Resources */,
 				30880E631AA8023D006746C4 /* NotificationBackgroundMessage.png in Resources */,
 				30880E6F1AA8023D006746C4 /* TSMessagesDefaultDesign.json in Resources */,
 				3099B2FC1A9BC6CE00DB2B92 /* LaunchScreen.xib in Resources */,
 				30BFD6561A9D49F3007C187F /* snapchatIcon.png in Resources */,
-				30880EFF1AA83590006746C4 /* starsbackground.png in Resources */,
-				30880EFB1AA83590006746C4 /* star-template@2x.png in Resources */,
 				30D935401AB0D7700024B03E /* bg2@2x.jpg in Resources */,
 				30880E5F1AA8023D006746C4 /* NotificationBackgroundError.png in Resources */,
 				30880E681AA8023D006746C4 /* NotificationBackgroundSuccessIcon@2x.png in Resources */,
@@ -882,14 +857,17 @@
 			files = (
 				303C06361A9FDFDE001D9B78 /* MDCPanState.m in Sources */,
 				3083120D1A9E65AC00CC2A5C /* UIColor+HexString.m in Sources */,
+				30A32A0D1AC4648600602D4C /* RECommonFunctions.m in Sources */,
 				3066D87C1ABFA0E2005218C8 /* StorageManagementViewController.m in Sources */,
 				30C2ED271AB77AB30020B738 /* BEMPermanentPopupView.m in Sources */,
+				30A32A121AC464C600602D4C /* RootViewController.m in Sources */,
 				307F83711A9BC12400B1CEFF /* ChooseExerciseViewController.m in Sources */,
 				303C06371A9FDFDE001D9B78 /* MDCSwipeResult.m in Sources */,
 				303C06311A9FDFDE001D9B78 /* MDCViewState.m in Sources */,
 				30880E721AA8023D006746C4 /* TSMessage.m in Sources */,
-				3000BE9F1AAD538800C6EA5C /* MenuViewController.m in Sources */,
+				30A32A151AC465D100602D4C /* LeftMenuViewController.m in Sources */,
 				307F83741A9BC12400B1CEFF /* main.m in Sources */,
+				30A32A0F1AC4648600602D4C /* UIViewController+RESideMenu.m in Sources */,
 				303C06391A9FDFDE001D9B78 /* UIView+MDCSwipeToChoose.m in Sources */,
 				303C06341A9FDFDE001D9B78 /* MDCSwipeOptions.m in Sources */,
 				307F83751A9BC12400B1CEFF /* Exercise.m in Sources */,
@@ -911,10 +889,10 @@
 				303C06301A9FDFDE001D9B78 /* MDCGeometry.m in Sources */,
 				30D935361AB0D5F10024B03E /* EARestrictedScrollView.m in Sources */,
 				30D9352E1AB0D5B70024B03E /* EAIntroPage.m in Sources */,
-				30880EEE1AA82F5B006746C4 /* EDStarRating.m in Sources */,
 				307F83701A9BC12400B1CEFF /* AppDelegate.m in Sources */,
 				3083120B1A9E65AC00CC2A5C /* CBZRasterSplashView.m in Sources */,
 				30EEBBA61AB11A7B001BB5AB /* CompletionViewContoller.m in Sources */,
+				30A32A0E1AC4648600602D4C /* RESideMenu.m in Sources */,
 				30C2ED261AB77AB30020B738 /* BEMLine.m in Sources */,
 				307F83781A9BC12400B1CEFF /* ImageLabelView.m in Sources */,
 				30880E711AA8023D006746C4 /* TSBlurView.m in Sources */,

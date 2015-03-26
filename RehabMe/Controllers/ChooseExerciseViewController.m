@@ -63,7 +63,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self initializeRehabMe];
     
     rootView = self.navigationController.view;
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -85,6 +85,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
 }
 
 - (void)initializeRehabMe {
@@ -101,18 +102,18 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     
     
-    // Show welcome badge notification
-    [TSMessage showNotificationInViewController:self
-                                          title:NSLocalizedString(@"Welcome back!", nil)
-                                       subtitle:NSLocalizedString(@"", nil)
-                                          image:[UIImage imageNamed:@"NotificationBackgroundSuccessIcon"]
-                                           type:TSMessageNotificationTypeSuccess
-                                       duration:3.0//TSMessageNotificationDurationAutomatic
-                                       callback:nil
-                                    buttonTitle:nil
-                                 buttonCallback:nil
-                                     atPosition:TSMessageNotificationPositionTop
-                           canBeDismissedByUser:YES];
+//    // Show welcome badge notification
+//    [TSMessage showNotificationInViewController:self
+//                                          title:NSLocalizedString(@"Welcome back!", nil)
+//                                       subtitle:NSLocalizedString(@"", nil)
+//                                          image:[UIImage imageNamed:@"NotificationBackgroundSuccessIcon"]
+//                                           type:TSMessageNotificationTypeSuccess
+//                                       duration:3.0//TSMessageNotificationDurationAutomatic
+//                                       callback:nil
+//                                    buttonTitle:nil
+//                                 buttonCallback:nil
+//                                     atPosition:TSMessageNotificationPositionTop
+//                           canBeDismissedByUser:YES];
     
     
     // Run the PLIST code checking/making
@@ -129,6 +130,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 #pragma mark - Handling PLIST Creation/Existence Check
 
+/* This function is mirrored in EAIntroView.  If this one changes, change that one too. */
 - (NSString *)getPathForPLIST {
     //PLIST Variables
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -683,7 +685,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 - (void)constructCurrentExerciseViewController {
     CurrentExerciseViewController *currentExerciseViewController = [[CurrentExerciseViewController alloc] initWithExercise:self.currentExercise];
-    
+
     [self presentViewController:currentExerciseViewController
                        animated:YES
                      completion:^{}];

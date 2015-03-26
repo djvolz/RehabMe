@@ -90,7 +90,6 @@
 #import "EAIntroView.h"
 #import "CurrentExerciseViewController.h"
 #import "CompletionViewContoller.h"
-#import "MenuViewController.h"
 
 
 #define SECONDS_IN_A_DAY    86400
@@ -108,6 +107,7 @@
 @property (nonatomic, strong) ChooseExerciseView *backCardView;
 
 @property (strong, nonatomic) IBOutlet UIView *view;
+
 
 - (void)loadDeck;
 

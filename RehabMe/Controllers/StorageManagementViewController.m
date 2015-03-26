@@ -16,6 +16,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:REHABME_GREEN]];
+    [self.navigationController.navigationBar setTranslucent:NO];
+    
+    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               [UIColor whiteColor],
+                                               NSForegroundColorAttributeName,
+                                               [UIFont fontWithName:@"Lato" size:20.0],
+                                               NSFontAttributeName,
+                                               nil];
+    [self.navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
+    
     [self reloadData];
 }
 
@@ -24,18 +35,8 @@
 }
 
 
-- (IBAction)didPressDoneButton:(UIBarButtonItem *)sender {
-    // Dismiss this viewcontroller
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (IBAction)didPressTrashButton:(UIBarButtonItem *)sender {
     [self showDeleteWarningAlert];
-}
-
-// Hide the status bar in the menu vie
-- (BOOL)prefersStatusBarHidden {
-    return YES;
 }
 
 

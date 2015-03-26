@@ -640,6 +640,7 @@ CGFloat easeOutValue(CGFloat value) {
 
 #pragma mark - Update PLIST
 
+/* This function is mirrored in CurrentExerciseViewController.  If this one changes, change that one too. */
 - (NSString *)getPathForPLIST {
     //PLIST Variables
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

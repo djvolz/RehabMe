@@ -72,9 +72,6 @@
     [FBAppEvents activateApp];
     
     [PFFacebookUtils initializeFacebook];
-
-
-    
     
     
 
@@ -115,7 +112,7 @@
 //                                                         UIRemoteNotificationTypeAlert |
 //                                                         UIRemoteNotificationTypeSound)];
 //    }
-    
+        
     return YES;
 }
 
