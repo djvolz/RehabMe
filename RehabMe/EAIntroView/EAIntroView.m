@@ -640,16 +640,22 @@ CGFloat easeOutValue(CGFloat value) {
 
 #pragma mark - Update PLIST
 
+- (NSString *)getPathForPLIST {
+    //PLIST Variables
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"RehabMePreferences.plist"];
+    
+    return path;
+}
+
 - (void)updatePLIST {
     //PLIST Variables
-    _paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    _documentsDirectory = [_paths objectAtIndex:0];
-    _path = [_documentsDirectory stringByAppendingPathComponent:@"RehabMePreferences.plist"];
-    _savedInfo = [[NSMutableDictionary alloc] initWithContentsOfFile: _path];
+    NSString *path = [self getPathForPLIST];
     
-    _data = [[NSMutableDictionary alloc] init];
-    [_data setObject: [NSNumber numberWithInt: 1] forKey:@"seenIntro"];
-    [_data writeToFile: _path atomically:YES];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    [data setObject: [NSNumber numberWithInt: 1] forKey:@"seenIntro"];
+    [data writeToFile: path atomically:YES];
 }
 
 - (void)setTitleView:(UIView *)titleView {

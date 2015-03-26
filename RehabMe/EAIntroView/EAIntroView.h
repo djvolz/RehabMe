@@ -42,13 +42,7 @@ typedef NS_ENUM(NSUInteger, EAViewAlignment) {
 @property (nonatomic, assign) BOOL useMotionEffects;
 @property (nonatomic, assign) CGFloat motionEffectsRelativeValue;
 
-// File connections to documents directory
-@property (strong, nonatomic) NSArray *paths;
-@property (strong, nonatomic) NSString *documentsDirectory;
-@property (strong, nonatomic) NSString *path;
-@property (strong, nonatomic) NSFileManager *fileManager;
-@property (strong, nonatomic) NSMutableDictionary *data;
-@property (strong, nonatomic) NSMutableDictionary *savedInfo;
+
 
 // Title View (Y position - from top of the screen)
 @property (nonatomic, strong) UIView *titleView;

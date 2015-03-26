@@ -129,24 +129,31 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 #pragma mark - Handling PLIST Creation/Existence Check
 
+- (NSString *)getPathForPLIST {
+    //PLIST Variables
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"RehabMePreferences.plist"];
+    
+    return path;
+}
+
 - (void)checkOrCreatePLIST {
     //PLIST Variables
-    _paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    _documentsDirectory = [_paths objectAtIndex:0];
-    _path = [_documentsDirectory stringByAppendingPathComponent:@"RehabMePreferences.plist"];
-    _fileManager = [NSFileManager defaultManager];
-    _savedInfo = [[NSMutableDictionary alloc] initWithContentsOfFile: _path];
+    NSString *path = [self getPathForPLIST];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+
     
     // PLIST exists
-    if ([_fileManager fileExistsAtPath: _path])
-    {
-        _data = [[NSMutableDictionary alloc] initWithContentsOfFile: _path];
+    if ([fileManager fileExistsAtPath: path]) {
+        data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
     }
     // PLIST does not exist
     else {
-        _data = [[NSMutableDictionary alloc] init];
-        [_data setObject: [NSNumber numberWithInt: 0] forKey:@"seenIntro"];
-        [_data writeToFile: _path atomically:YES];
+        data = [[NSMutableDictionary alloc] init];
+        [data setObject: [NSNumber numberWithInt: 0] forKey:@"seenIntro"];
+        [data writeToFile: path atomically:YES];
     }
 }
 
@@ -154,15 +161,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 - (BOOL)shouldShowIntro {
     //PLIST Variables
-    _paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    _documentsDirectory = [_paths objectAtIndex: 0];
-    _path = [_documentsDirectory stringByAppendingPathComponent:@"RehabMePreferences.plist"];
-    _savedInfo = [[NSMutableDictionary alloc] initWithContentsOfFile: _path];
+    NSString *path = [self getPathForPLIST];
+    NSMutableDictionary *savedInfo = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
     
-    if ([[_savedInfo objectForKey:@"seenIntro"] intValue] == 0) {
+    if ([[savedInfo objectForKey:@"seenIntro"] intValue] == 0) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
