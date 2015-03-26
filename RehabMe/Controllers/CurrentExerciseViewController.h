@@ -14,6 +14,7 @@
 
 #define RECORD_ALERT   101
 #define SETTINGS_ALERT 201
+#define OTHER_ALERT    301
 
 @import MediaPlayer;
 

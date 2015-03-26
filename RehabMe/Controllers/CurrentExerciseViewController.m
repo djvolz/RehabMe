@@ -177,10 +177,10 @@
             [self showVideoPermissionDeniedAlert];
         } else if(authStatus == AVAuthorizationStatusRestricted){
             NSLog(@"AVAuthorizationStatusRestricted");
-            [self showVideoPermissionDeniedAlert];
+            [self showOtherPermissionsAlert:@"Possibly due to active restrictions such as parental controls being in place."];
         } else if(authStatus == AVAuthorizationStatusNotDetermined){
             NSLog(@"AVAuthorizationStatusNotDetermined");
-            [self showVideoPermissionDeniedAlert];
+            [self showOtherPermissionsAlert:@"Authorization Status Not Determined"];
 
             [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
                 if(granted){
@@ -190,7 +190,7 @@
                 }
             }];
         } else {
-            [self showVideoPermissionDeniedAlert];
+            [self showOtherPermissionsAlert:@"Authorization Status Not Determined"];
         }
 
         
@@ -240,6 +240,16 @@
     
     alertView.tag = SETTINGS_ALERT; //alert tag
 
+    [alertView show];
+    
+    
+}
+
+- (void) showOtherPermissionsAlert:(NSString *)alertMessage {
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Permissions Error" message:alertMessage delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+    
+    alertView.tag = OTHER_ALERT; //alert tag
+    
     [alertView show];
     
     
