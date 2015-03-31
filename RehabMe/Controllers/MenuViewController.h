@@ -1,5 +1,5 @@
 //
-//  LeftMenuViewController.h
+//  MenuViewController.h
 //  RehabMe
 //
 //  Created by Danny Volz on 3/25/15.
@@ -11,10 +11,7 @@
 #import <Parse/Parse.h>
 
 
-//#import "UIViewController+RESideMenu.h"
-
-
-@interface LeftMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RESideMenuDelegate>
+@interface MenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RESideMenuDelegate>
 
 @property (strong, nonatomic)NSString *welcomeString;
 

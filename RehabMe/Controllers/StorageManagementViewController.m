@@ -8,6 +8,9 @@
 
 #import "StorageManagementViewController.h"
 
+#import "ParallaxHeaderView.h"
+#import "StoryCommentCell.h"
+
 @implementation StorageManagementViewController
 {
     NSArray *tableData;

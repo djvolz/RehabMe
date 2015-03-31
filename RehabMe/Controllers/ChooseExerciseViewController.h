@@ -30,9 +30,6 @@
 //
 // Fix double date thing on graph view
 // HUD with number of exercises and number of sets left for day
-// create way to cancel out of timer screen
-// Menu with view for logging in.
-// Make sure tutorial only appears once
 // fix skip button for tutorial
 // daily motivational quotes
 //
@@ -57,6 +54,10 @@
 // Make exercise instructions available while timer is going.
 //
 //
+//
+// DONE: Menu with view for logging in.
+// DONE: Make sure tutorial only appears once
+// DONE: create way to cancel out of timer screen
 // DONE: Ability to delete videos
 // DONE: File management needs to filter by file type (only look for .mov)
 // DONE: Custom video instructions

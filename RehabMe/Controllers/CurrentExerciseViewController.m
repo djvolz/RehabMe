@@ -12,8 +12,6 @@
 @property (strong, nonatomic) IBOutlet UIView *cardView;
 @property (nonatomic) NSInteger test;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
-
 - (IBAction)playbackButton:(UIBarButtonItem *)sender;
 
 @end
@@ -78,12 +76,12 @@
     [self.cardView addSubview:(UIView *)exerciseView];
 }
 
-- (IBAction)didTouchBeginButton:(UIBarButtonItem *)sender {
-    
-    [self setupCircularProgressTimerView:self.currentExercise.timeRequired
-                               withColor:[UIColor colorWithHexString:REHABME_GREEN]];
-    self.cardView.hidden = YES;
-}
+//- (IBAction)didTouchBeginButton:(UIBarButtonItem *)sender {
+//    
+//    [self setupCircularProgressTimerView:self.currentExercise.timeRequired
+//                               withColor:[UIColor colorWithHexString:REHABME_GREEN]];
+//    self.cardView.hidden = YES;
+//}
 
 - (IBAction)didPressDoneButton:(UIBarButtonItem *)sender
 {
@@ -95,25 +93,7 @@
     return YES;
 }
 
-#pragma mark - Circle Timer Progress Bar System
 
-- (void)setupCircularProgressTimerView:(NSInteger)seconds withColor:(UIColor *)color{
-    
-    CircularProgressTimerView *circleProgressTimerView = [[CircularProgressTimerView alloc] init];
-    
-    self.circleProgressTimerView = circleProgressTimerView;
-    
-    
-    [self.view insertSubview:circleProgressTimerView aboveSubview:self.cardView];
-    
-    // Set the circleProgressTimerView with the intial time in seconds.
-    [self.circleProgressTimerView setTimer:seconds];
-    
-    [self.circleProgressTimerView setCircleColor:color];
-    
-    [self.circleProgressTimerView startTimer];
-    
-}
 
 #pragma mark - Delegate Methods
 

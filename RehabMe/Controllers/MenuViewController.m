@@ -1,23 +1,23 @@
 //
-//  LeftMenuViewController.h
+//  MenuViewController.h
 //  RehabMe
 //
 //  Created by Danny Volz on 3/25/15.
 //  Copyright (c) 2015 Dan Volz. All rights reserved.
 //
 
-#import "LeftMenuViewController.h"
+#import "MenuViewController.h"
 
 #define NUMBER_OF_SECTIONS 4
 #define HEIGHT_FOR_ROW     54
 
-@interface LeftMenuViewController ()
+@interface MenuViewController ()
 
 @property (strong, readwrite, nonatomic) UITableView *tableView;
 
 @end
 
-@implementation LeftMenuViewController
+@implementation MenuViewController
 
 - (void)viewDidLoad
 {
@@ -73,6 +73,7 @@
             
             [PFUser logOut];
             break;
+
         default:
             break;
     }

@@ -26,8 +26,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MDCSwipeToChoose.h"
+#import <MobileCoreServices/UTCoreTypes.h>
+#import <AVFoundation/AVFoundation.h>
 
 @class Exercise;
+
+@import MediaPlayer;
+
 
 @interface ChooseExerciseView : MDCSwipeToChooseView
 

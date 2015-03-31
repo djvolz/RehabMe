@@ -166,7 +166,34 @@ static const CGFloat infoHeight = 75.f;
     _cameraImageLabelView = [self buildImageLabelViewLeftOf:CGRectGetMinX(_barbellImageLabelView.frame)
                                                        image:image
                                                         text:[NSString stringWithFormat:@"1"]];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTouchCameraLabel)];
+    [_cameraImageLabelView addGestureRecognizer:tap];
+    _cameraImageLabelView.userInteractionEnabled = YES;
+    
     [_informationView addSubview:_cameraImageLabelView];
+}
+
+- (void)didTouchCameraLabel {
+    // pick a video from the documents directory
+    NSURL *video = [self grabFileURL:[NSString stringWithFormat:@"%@.mov", _exercise.name]];
+    
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:video.path];
+    
+    
+    if (fileExists) {
+        // create a movie player view controller
+        MPMoviePlayerViewController *controller = [[MPMoviePlayerViewController alloc]initWithContentURL:video];
+        [controller.moviePlayer prepareToPlay];
+        [controller.moviePlayer play];
+        
+        
+        // and present it
+        [self addSubview:controller.view];
+    } else {
+        NSLog(@"%@", [NSString stringWithFormat:@"No file found at path: %@", video.path]);
+    }
+
 }
 
 

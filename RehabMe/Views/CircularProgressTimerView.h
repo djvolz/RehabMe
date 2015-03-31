@@ -26,5 +26,7 @@
 - (void)setTimer:(NSInteger)seconds;
 - (void)setCircleColor:(UIColor*)color;
 
+- (void)removeCircleProgressTimerView;
+
 
 @end

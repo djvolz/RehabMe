@@ -552,7 +552,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 
 - (IBAction)didPressBeginButton:(UIButton *)sender {
-    [self constructCurrentExerciseViewController];
+//    [self constructCurrentExerciseViewController];
 }
 
 

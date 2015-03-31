@@ -11,7 +11,6 @@
 @implementation CircularProgressTimerView : UIView
 
 
-
 // Draws the progress circles on top of the already painted backgroud
 - (void)drawCircularProgressBarWithMinutesLeft:(NSInteger)minutes secondsLeft:(NSInteger)seconds
 {
@@ -75,11 +74,6 @@
     
 }
 
-- (void)setupTapGestureRecognizer{
-    UITapGestureRecognizer *timerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeCircleProgressTimerView)];
-    
-    [self addGestureRecognizer:timerTapRecognizer];
-}
 
 - (void)updateCircularProgressBar
 {
@@ -104,6 +98,5 @@
     [timer invalidate];
     [self removeFromSuperview];
 }
-
 
 @end

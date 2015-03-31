@@ -28,7 +28,6 @@
 		303C064E1A9FE13A001D9B78 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303C06491A9FE139001D9B78 /* ParseFacebookUtils.framework */; };
 		303C064F1A9FE13A001D9B78 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303C064A1A9FE139001D9B78 /* ParseUI.framework */; };
 		305EBB421AAB9219008C2E17 /* CurrentExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305EBB411AAB9219008C2E17 /* CurrentExerciseViewController.m */; };
-		305EBB4A1AAB952A008C2E17 /* CurrentExerciseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 305EBB491AAB952A008C2E17 /* CurrentExerciseViewController.xib */; };
 		306093A51A9FD9FF0027BAAF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306093A41A9FD9FF0027BAAF /* AudioToolbox.framework */; };
 		306093A71A9FDA060027BAAF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306093A61A9FDA060027BAAF /* CFNetwork.framework */; };
 		306093A91A9FDA160027BAAF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306093A81A9FDA160027BAAF /* CoreLocation.framework */; };
@@ -81,11 +80,16 @@
 		308C09411AAA15DA00754C66 /* CircularProgressTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 308C09401AAA15DA00754C66 /* CircularProgressTimer.m */; };
 		308C09451AAA175700754C66 /* CircularProgressTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308C09441AAA175700754C66 /* CircularProgressTimerView.m */; };
 		3099B2FC1A9BC6CE00DB2B92 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */; };
+		309BA5251ACB07F400437086 /* StoryCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 309BA5201ACB07F400437086 /* StoryCommentCell.m */; };
+		309BA5261ACB07F400437086 /* ParallaxHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 309BA5221ACB07F400437086 /* ParallaxHeaderView.m */; };
+		309BA5271ACB07F400437086 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 309BA5241ACB07F400437086 /* StoryViewController.m */; };
+		309BA52B1ACB083200437086 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 309BA52A1ACB083200437086 /* UIImage+ImageEffects.m */; };
+		309BA5301ACB27B900437086 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 309BA52F1ACB27B900437086 /* TimerViewController.m */; };
 		30A32A0D1AC4648600602D4C /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A081AC4648600602D4C /* RECommonFunctions.m */; };
 		30A32A0E1AC4648600602D4C /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A0A1AC4648600602D4C /* RESideMenu.m */; };
 		30A32A0F1AC4648600602D4C /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A0C1AC4648600602D4C /* UIViewController+RESideMenu.m */; };
 		30A32A121AC464C600602D4C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A111AC464C600602D4C /* RootViewController.m */; };
-		30A32A151AC465D100602D4C /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A141AC465D100602D4C /* LeftMenuViewController.m */; };
+		30A32A151AC465D100602D4C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A141AC465D100602D4C /* MenuViewController.m */; };
 		30BFD6561A9D49F3007C187F /* snapchatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 30BFD6551A9D49F3007C187F /* snapchatIcon.png */; };
 		30C2ED251AB77AB30020B738 /* BEMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C2ED1E1AB77AB30020B738 /* BEMCircle.m */; };
 		30C2ED261AB77AB30020B738 /* BEMLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C2ED201AB77AB30020B738 /* BEMLine.m */; };
@@ -157,7 +161,6 @@
 		303C064A1A9FE139001D9B78 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		305EBB401AAB9219008C2E17 /* CurrentExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentExerciseViewController.h; sourceTree = "<group>"; };
 		305EBB411AAB9219008C2E17 /* CurrentExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentExerciseViewController.m; sourceTree = "<group>"; };
-		305EBB491AAB952A008C2E17 /* CurrentExerciseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CurrentExerciseViewController.xib; path = Controllers/CurrentExerciseViewController.xib; sourceTree = "<group>"; };
 		306093A41A9FD9FF0027BAAF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		306093A61A9FDA060027BAAF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		306093A81A9FDA160027BAAF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -229,6 +232,16 @@
 		308C09431AAA175700754C66 /* CircularProgressTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularProgressTimerView.h; sourceTree = "<group>"; };
 		308C09441AAA175700754C66 /* CircularProgressTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularProgressTimerView.m; sourceTree = "<group>"; };
 		3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		309BA51F1ACB07F400437086 /* StoryCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryCommentCell.h; sourceTree = "<group>"; };
+		309BA5201ACB07F400437086 /* StoryCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryCommentCell.m; sourceTree = "<group>"; };
+		309BA5211ACB07F400437086 /* ParallaxHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxHeaderView.h; sourceTree = "<group>"; };
+		309BA5221ACB07F400437086 /* ParallaxHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxHeaderView.m; sourceTree = "<group>"; };
+		309BA5231ACB07F400437086 /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryViewController.h; path = ../Views/StoryViewController.h; sourceTree = "<group>"; };
+		309BA5241ACB07F400437086 /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoryViewController.m; path = ../Views/StoryViewController.m; sourceTree = "<group>"; };
+		309BA5291ACB083200437086 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		309BA52A1ACB083200437086 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		309BA52F1ACB27B900437086 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
+		309BA5311ACB27CF00437086 /* TimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
 		30A32A071AC4648600602D4C /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		30A32A081AC4648600602D4C /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		30A32A091AC4648600602D4C /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
@@ -237,8 +250,8 @@
 		30A32A0C1AC4648600602D4C /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
 		30A32A101AC464C600602D4C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		30A32A111AC464C600602D4C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		30A32A131AC465D100602D4C /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
-		30A32A141AC465D100602D4C /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
+		30A32A131AC465D100602D4C /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		30A32A141AC465D100602D4C /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		30BFD6551A9D49F3007C187F /* snapchatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snapchatIcon.png; sourceTree = "<group>"; };
 		30C2ED1D1AB77AB30020B738 /* BEMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCircle.h; sourceTree = "<group>"; };
 		30C2ED1E1AB77AB30020B738 /* BEMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCircle.m; sourceTree = "<group>"; };
@@ -436,6 +449,8 @@
 		307F835F1A9BC12300B1CEFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				309BA5231ACB07F400437086 /* StoryViewController.h */,
+				309BA5241ACB07F400437086 /* StoryViewController.m */,
 				30EEBBA41AB11A7B001BB5AB /* CompletionViewContoller.h */,
 				30EEBBA51AB11A7B001BB5AB /* CompletionViewContoller.m */,
 				305EBB401AAB9219008C2E17 /* CurrentExerciseViewController.h */,
@@ -446,8 +461,10 @@
 				3066D87B1ABFA0E2005218C8 /* StorageManagementViewController.m */,
 				30A32A101AC464C600602D4C /* RootViewController.h */,
 				30A32A111AC464C600602D4C /* RootViewController.m */,
-				30A32A131AC465D100602D4C /* LeftMenuViewController.h */,
-				30A32A141AC465D100602D4C /* LeftMenuViewController.m */,
+				309BA5311ACB27CF00437086 /* TimerViewController.h */,
+				309BA52F1ACB27B900437086 /* TimerViewController.m */,
+				30A32A131AC465D100602D4C /* MenuViewController.h */,
+				30A32A141AC465D100602D4C /* MenuViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -478,6 +495,7 @@
 			isa = PBXGroup;
 			children = (
 				307F83641A9BC12300B1CEFF /* Images.xcassets */,
+				309BA5281ACB080C00437086 /* ParallaxTable */,
 				30A32A061AC4648600602D4C /* RESideMenu */,
 				30C2ED1C1AB77AB30020B738 /* BEMSimpleLineGraph */,
 				30D935391AB0D7700024B03E /* intro */,
@@ -489,7 +507,6 @@
 				303C063A1A9FE0EB001D9B78 /* MDCSwipeToChoose */,
 				3083120F1A9E67AC00CC2A5C /* CBZSplashView */,
 				3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */,
-				305EBB491AAB952A008C2E17 /* CurrentExerciseViewController.xib */,
 				30C30BDE1A9D4FDE006194BA /* MainStoryboard.storyboard */,
 				307F835D1A9BC12300B1CEFF /* AppDelegate.h */,
 				307F835E1A9BC12300B1CEFF /* AppDelegate.m */,
@@ -609,6 +626,29 @@
 				308C09401AAA15DA00754C66 /* CircularProgressTimer.m */,
 			);
 			path = CircularProgress;
+			sourceTree = "<group>";
+		};
+		309BA5281ACB080C00437086 /* ParallaxTable */ = {
+			isa = PBXGroup;
+			children = (
+				309BA52C1ACB083900437086 /* ImageEffects */,
+				309BA51F1ACB07F400437086 /* StoryCommentCell.h */,
+				309BA5201ACB07F400437086 /* StoryCommentCell.m */,
+				309BA5211ACB07F400437086 /* ParallaxHeaderView.h */,
+				309BA5221ACB07F400437086 /* ParallaxHeaderView.m */,
+			);
+			name = ParallaxTable;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		309BA52C1ACB083900437086 /* ImageEffects */ = {
+			isa = PBXGroup;
+			children = (
+				309BA5291ACB083200437086 /* UIImage+ImageEffects.h */,
+				309BA52A1ACB083200437086 /* UIImage+ImageEffects.m */,
+			);
+			name = ImageEffects;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		30A32A061AC4648600602D4C /* RESideMenu */ = {
@@ -819,7 +859,6 @@
 				30C30BE11A9D5257006194BA /* twitterIcon.png in Resources */,
 				307F83721A9BC12400B1CEFF /* InfoPlist.strings in Resources */,
 				30880E601AA8023D006746C4 /* NotificationBackgroundError@2x.png in Resources */,
-				305EBB4A1AAB952A008C2E17 /* CurrentExerciseViewController.xib in Resources */,
 				307F837F1A9BC18A00B1CEFF /* RehabMeTests-Info.plist in Resources */,
 				30880E611AA8023D006746C4 /* NotificationBackgroundErrorIcon.png in Resources */,
 				30880E661AA8023D006746C4 /* NotificationBackgroundSuccess@2x.png in Resources */,
@@ -865,8 +904,9 @@
 				303C06371A9FDFDE001D9B78 /* MDCSwipeResult.m in Sources */,
 				303C06311A9FDFDE001D9B78 /* MDCViewState.m in Sources */,
 				30880E721AA8023D006746C4 /* TSMessage.m in Sources */,
-				30A32A151AC465D100602D4C /* LeftMenuViewController.m in Sources */,
+				30A32A151AC465D100602D4C /* MenuViewController.m in Sources */,
 				307F83741A9BC12400B1CEFF /* main.m in Sources */,
+				309BA5261ACB07F400437086 /* ParallaxHeaderView.m in Sources */,
 				30A32A0F1AC4648600602D4C /* UIViewController+RESideMenu.m in Sources */,
 				303C06391A9FDFDE001D9B78 /* UIView+MDCSwipeToChoose.m in Sources */,
 				303C06341A9FDFDE001D9B78 /* MDCSwipeOptions.m in Sources */,
@@ -874,6 +914,7 @@
 				30880E731AA8023D006746C4 /* TSMessageView.m in Sources */,
 				30880E5B1AA8023D006746C4 /* HexColor.m in Sources */,
 				308C09411AAA15DA00754C66 /* CircularProgressTimer.m in Sources */,
+				309BA5301ACB27B900437086 /* TimerViewController.m in Sources */,
 				303C06321A9FDFDE001D9B78 /* UIColor+MDCRGB8Bit.m in Sources */,
 				30C2ED251AB77AB30020B738 /* BEMCircle.m in Sources */,
 				3083120A1A9E65AC00CC2A5C /* CBZSplashView.m in Sources */,
@@ -881,15 +922,18 @@
 				303C06331A9FDFDE001D9B78 /* UIView+MDCBorderedLabel.m in Sources */,
 				3083120E1A9E65AC00CC2A5C /* UIBezierPath+Shapes.m in Sources */,
 				303C06381A9FDFDE001D9B78 /* MDCSwipeToChooseView.m in Sources */,
+				309BA5251ACB07F400437086 /* StoryCommentCell.m in Sources */,
 				307F83771A9BC12400B1CEFF /* ChooseExerciseView.m in Sources */,
 				305EBB421AAB9219008C2E17 /* CurrentExerciseViewController.m in Sources */,
 				30D9352F1AB0D5B70024B03E /* EAIntroView.m in Sources */,
 				3083120C1A9E65AC00CC2A5C /* CBZVectorSplashView.m in Sources */,
+				309BA5271ACB07F400437086 /* StoryViewController.m in Sources */,
 				308C09451AAA175700754C66 /* CircularProgressTimerView.m in Sources */,
 				303C06301A9FDFDE001D9B78 /* MDCGeometry.m in Sources */,
 				30D935361AB0D5F10024B03E /* EARestrictedScrollView.m in Sources */,
 				30D9352E1AB0D5B70024B03E /* EAIntroPage.m in Sources */,
 				307F83701A9BC12400B1CEFF /* AppDelegate.m in Sources */,
+				309BA52B1ACB083200437086 /* UIImage+ImageEffects.m in Sources */,
 				3083120B1A9E65AC00CC2A5C /* CBZRasterSplashView.m in Sources */,
 				30EEBBA61AB11A7B001BB5AB /* CompletionViewContoller.m in Sources */,
 				30A32A0E1AC4648600602D4C /* RESideMenu.m in Sources */,

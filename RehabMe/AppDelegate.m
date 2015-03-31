@@ -50,10 +50,14 @@
     
 
     
+    
     // Set default ACLs
     PFACL *defaultACL = [PFACL ACL];
-    [defaultACL setPublicReadAccess:YES];
+//    [defaultACL setPublicReadAccess:YES];
+    [defaultACL setPublicReadAccess:NO];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    
+    [PFUser enableAutomaticUser];
     
     // Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
@@ -63,15 +67,6 @@
     
     [PFFacebookUtils initializeFacebook];
     
-    
-
-//
-//    PFACL *defaultACL = [PFACL ACL];
-//    
-//    // If you would like all objects to be private by default, remove this line.
-//    [defaultACL setPublicReadAccess:YES];
-//    
-//    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
     
 
 //    if (application.applicationState != UIApplicationStateBackground) {
