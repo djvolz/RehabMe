@@ -2,6 +2,8 @@
 // REFrostedViewController.m
 // RESideMenu
 //
+// Copyright (c) 2015 , Drew Volz @drewvolz
+//
 // Copyright (c) 2013-2014 Roman Efimov (https://github.com/romaonthego)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -359,7 +361,7 @@
 {
     [viewController willMoveToParentViewController:nil];
     [viewController.view removeFromSuperview];
-    [viewController removeFromParentViewController];
+//    [viewController removeFromParentViewController];
 }
 
 - (void)hideMenuViewControllerAnimated:(BOOL)animated

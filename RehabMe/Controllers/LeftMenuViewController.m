@@ -67,11 +67,11 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 3:
-            [PFUser logOut];
-            
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"chooseExerciseViewController"]]
-                                                         animated:YES];
+                                                         animated:NO];
             [self.sideMenuViewController hideMenuViewController];
+            
+            [PFUser logOut];
             break;
         default:
             break;
@@ -151,8 +151,8 @@
     }
     
     
-    NSArray *titles = @[@"Home", @"Progress", @"Manage Videos", @"Log Out"];
-    NSArray *images = @[@"IconHome", @"IconCalendar", @"IconSettings", @"IconProfile"/*,@"IconEmpty"*/];
+    NSArray *titles = @[@"Home", @"Progress", @"Videos", @"Log Out"];
+    NSArray *images = @[@"IconHome", @"IconCalendar", @"video_camera_white", @"IconProfile"/*,@"IconEmpty"*/];
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     

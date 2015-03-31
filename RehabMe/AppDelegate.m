@@ -24,18 +24,8 @@
 // THE SOFTWARE.
 //
 
-// If you want to use any of the UI components, uncomment this line
-#import <ParseUI/ParseUI.h>
-
-// If you are using Facebook, uncomment this line
- #import <ParseFacebookUtils/PFFacebookUtils.h>
-
-
-// If you want to use Crash Reporting - uncomment this line
-#import <ParseCrashReporting/ParseCrashReporting.h>
 
 #import "AppDelegate.h"
-#import <Parse/Parse.h>
 
 
 #pragma mark -
