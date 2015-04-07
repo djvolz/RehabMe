@@ -8,24 +8,13 @@
 
 @interface CurrentExerciseViewController ()
 
-@property (nonatomic, strong) Exercise *currentExercise;
 @property (strong, nonatomic) IBOutlet UIView *cardView;
-@property (nonatomic) NSInteger test;
 
 - (IBAction)playbackButton:(UIBarButtonItem *)sender;
 
 @end
 
 @implementation CurrentExerciseViewController
-
-- (instancetype)initWithExercise:(Exercise *)exercise{
-    if (self = [super init]) {
-        self.currentExercise = exercise;
-    }
-    
-    return self;
-}
-
 
 
 - (void)viewDidLoad{

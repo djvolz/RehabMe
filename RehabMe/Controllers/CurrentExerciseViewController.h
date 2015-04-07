@@ -7,7 +7,6 @@
 #import <UIKit/UIKit.h>
 #import "Exercise.h"
 #import "ChooseExerciseView.h"
-#import "CircularProgressTimerView.h"
 #import "UIColor+HexString.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <AVFoundation/AVFoundation.h>
@@ -24,9 +23,8 @@
 @interface CurrentExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate, UINavigationControllerDelegate>
 
 
-- (instancetype)initWithExercise:(Exercise *)exercise;
+@property (nonatomic, strong) Exercise *currentExercise;
 
-@property (nonatomic, strong) CircularProgressTimerView *circleProgressTimerView;
 
 
 @end

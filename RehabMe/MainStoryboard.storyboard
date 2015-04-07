@@ -41,7 +41,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daY-7r-LKt">
                                 <rect key="frame" x="16" y="140" width="288" height="288"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="10" continuous="NO" minimumValueImage="nope" maximumValueImage="liked" translatesAutoresizingMaskIntoConstraints="NO" id="rF0-Qz-Ett">
+                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="10" continuous="NO" minimumValueImage="nope" maximumValueImage="liked" translatesAutoresizingMaskIntoConstraints="NO" id="rF0-Qz-Ett">
                                         <rect key="frame" x="-2" y="119" width="292" height="50"/>
                                         <connections>
                                             <action selector="itemSlider:withEvent:" destination="xtG-c4-360" eventType="valueChanged" id="z45-Jm-PDO"/>
@@ -86,8 +86,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                 <state key="normal" title="Begin"/>
                                 <connections>
-                                    <action selector="didPressBeginButton:" destination="dKd-vA-a2t" eventType="touchUpInside" id="NzS-9j-iLP"/>
-                                    <segue destination="xn8-A9-PTp" kind="presentation" id="6WS-eQ-WYs"/>
+                                    <action selector="didPressBeginButton:" destination="dKd-vA-a2t" eventType="touchUpInside" id="ooK-V1-Ou3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -136,20 +135,20 @@
         <!--Current Exercise View Controller-->
         <scene sceneID="pdd-P0-neW">
             <objects>
-                <viewController id="xn8-A9-PTp" customClass="CurrentExerciseViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="currentExerciseViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xn8-A9-PTp" customClass="CurrentExerciseViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4K0-Fh-ejx"/>
                         <viewControllerLayoutGuide type="bottom" id="KPs-3f-Wks"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="biR-mx-X4e">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbG-As-s9e">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0a-6a-DVD">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem title="Timer" id="Gsk-Z4-GfJ" userLabel="Timer">
                                         <connections>
@@ -188,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XDK-dA-EbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1166" y="408"/>
+            <point key="canvasLocation" x="1243" y="408"/>
         </scene>
         <!--Timer View Controller-->
         <scene sceneID="FIt-Ll-szk">
@@ -199,7 +198,7 @@
                         <viewControllerLayoutGuide type="bottom" id="KkQ-uf-LwP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GZn-SD-WXH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -460,6 +459,6 @@
         <image name="nope" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="smV-eo-MuZ"/>
+        <segue reference="1EU-pa-P6c"/>
     </inferredMetricsTieBreakers>
 </document>

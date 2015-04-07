@@ -552,7 +552,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 
 - (IBAction)didPressBeginButton:(UIButton *)sender {
-//    [self constructCurrentExerciseViewController];
+    [self constructCurrentExerciseViewController];
 }
 
 
@@ -684,11 +684,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 #pragma mark - Current Exercise View System
 
 - (void)constructCurrentExerciseViewController {
-    CurrentExerciseViewController *currentExerciseViewController = [[CurrentExerciseViewController alloc] initWithExercise:self.currentExercise];
-
-    [self presentViewController:currentExerciseViewController
-                       animated:YES
-                     completion:^{}];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
+    CurrentExerciseViewController *currentExerciseViewController = [mainStoryboard instantiateViewControllerWithIdentifier: @"currentExerciseViewController"];
+    
+    currentExerciseViewController.currentExercise = self.currentExercise;
+    
+    [self presentViewController:currentExerciseViewController  animated:YES completion:nil];
 }
 
 #pragma mark - EAIntroView

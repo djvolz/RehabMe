@@ -57,7 +57,7 @@
     [defaultACL setPublicReadAccess:NO];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
     
-    [PFUser enableAutomaticUser];
+//    [PFUser enableAutomaticUser];
     
     // Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
