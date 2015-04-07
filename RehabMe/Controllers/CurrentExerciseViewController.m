@@ -65,12 +65,6 @@
     [self.cardView addSubview:(UIView *)exerciseView];
 }
 
-//- (IBAction)didTouchBeginButton:(UIBarButtonItem *)sender {
-//    
-//    [self setupCircularProgressTimerView:self.currentExercise.timeRequired
-//                               withColor:[UIColor colorWithHexString:REHABME_GREEN]];
-//    self.cardView.hidden = YES;
-//}
 
 - (IBAction)didPressDoneButton:(UIBarButtonItem *)sender
 {

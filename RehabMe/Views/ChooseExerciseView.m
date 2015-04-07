@@ -77,11 +77,11 @@ static const CGFloat infoHeight = 75.f;
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         
         
-        // A tap gesture so you can see the instructions if you tap the card.
-        UITapGestureRecognizer *cardTapRecognizer = [[UITapGestureRecognizer alloc]
-                                                     initWithTarget:self
-                                                     action:@selector(showInstuctions:)];
-        [self addGestureRecognizer:cardTapRecognizer];
+//        // A tap gesture so you can see the instructions if you tap the card.
+//        UITapGestureRecognizer *cardTapRecognizer = [[UITapGestureRecognizer alloc]
+//                                                     initWithTarget:self
+//                                                     action:@selector(showInstuctions:)];
+//        [self addGestureRecognizer:cardTapRecognizer];
 
         
     }
@@ -167,9 +167,9 @@ static const CGFloat infoHeight = 75.f;
                                                        image:image
                                                         text:[NSString stringWithFormat:@"1"]];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTouchCameraLabel)];
-    [_cameraImageLabelView addGestureRecognizer:tap];
-    _cameraImageLabelView.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTouchCameraLabel)];
+//    [_cameraImageLabelView addGestureRecognizer:tap];
+//    _cameraImageLabelView.userInteractionEnabled = YES;
     
     [_informationView addSubview:_cameraImageLabelView];
 }
