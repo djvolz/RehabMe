@@ -37,6 +37,8 @@
 
     
     [ParseCrashReporting enable];
+    
+    [PFImageView class];
 
     
 //    Power your app with Local Datastore. For more info, go to

@@ -90,6 +90,7 @@
 		30A32A0F1AC4648600602D4C /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A0C1AC4648600602D4C /* UIViewController+RESideMenu.m */; };
 		30A32A121AC464C600602D4C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A111AC464C600602D4C /* RootViewController.m */; };
 		30A32A151AC465D100602D4C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A32A141AC465D100602D4C /* MenuViewController.m */; };
+		30ABA7F31AD644F6002E0ED1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 30ABA7F21AD644F6002E0ED1 /* MBProgressHUD.m */; };
 		30BFD6561A9D49F3007C187F /* snapchatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 30BFD6551A9D49F3007C187F /* snapchatIcon.png */; };
 		30C2ED251AB77AB30020B738 /* BEMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C2ED1E1AB77AB30020B738 /* BEMCircle.m */; };
 		30C2ED261AB77AB30020B738 /* BEMLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C2ED201AB77AB30020B738 /* BEMLine.m */; };
@@ -252,6 +253,8 @@
 		30A32A111AC464C600602D4C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		30A32A131AC465D100602D4C /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		30A32A141AC465D100602D4C /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		30ABA7F11AD644F6002E0ED1 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		30ABA7F21AD644F6002E0ED1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		30BFD6551A9D49F3007C187F /* snapchatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snapchatIcon.png; sourceTree = "<group>"; };
 		30C2ED1D1AB77AB30020B738 /* BEMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCircle.h; sourceTree = "<group>"; };
 		30C2ED1E1AB77AB30020B738 /* BEMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCircle.m; sourceTree = "<group>"; };
@@ -449,8 +452,10 @@
 		307F835F1A9BC12300B1CEFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				309BA5231ACB07F400437086 /* StoryViewController.h */,
-				309BA5241ACB07F400437086 /* StoryViewController.m */,
+				30A32A101AC464C600602D4C /* RootViewController.h */,
+				30A32A111AC464C600602D4C /* RootViewController.m */,
+				30A32A131AC465D100602D4C /* MenuViewController.h */,
+				30A32A141AC465D100602D4C /* MenuViewController.m */,
 				30EEBBA41AB11A7B001BB5AB /* CompletionViewContoller.h */,
 				30EEBBA51AB11A7B001BB5AB /* CompletionViewContoller.m */,
 				305EBB401AAB9219008C2E17 /* CurrentExerciseViewController.h */,
@@ -459,12 +464,10 @@
 				307F83611A9BC12300B1CEFF /* ChooseExerciseViewController.m */,
 				3066D87A1ABFA0E2005218C8 /* StorageManagementViewController.h */,
 				3066D87B1ABFA0E2005218C8 /* StorageManagementViewController.m */,
-				30A32A101AC464C600602D4C /* RootViewController.h */,
-				30A32A111AC464C600602D4C /* RootViewController.m */,
 				309BA5311ACB27CF00437086 /* TimerViewController.h */,
 				309BA52F1ACB27B900437086 /* TimerViewController.m */,
-				30A32A131AC465D100602D4C /* MenuViewController.h */,
-				30A32A141AC465D100602D4C /* MenuViewController.m */,
+				309BA5231ACB07F400437086 /* StoryViewController.h */,
+				309BA5241ACB07F400437086 /* StoryViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -494,13 +497,12 @@
 		307F83791A9BC13900B1CEFF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				30ABA7F01AD644E9002E0ED1 /* MBProgressHUB */,
 				307F83641A9BC12300B1CEFF /* Images.xcassets */,
 				309BA5281ACB080C00437086 /* ParallaxTable */,
 				30A32A061AC4648600602D4C /* RESideMenu */,
 				30C2ED1C1AB77AB30020B738 /* BEMSimpleLineGraph */,
-				30D935391AB0D7700024B03E /* intro */,
-				30D935301AB0D5F10024B03E /* EARestrictedScrollView */,
-				30D935291AB0D5B70024B03E /* EAIntroView */,
+				3095AEBC1AD4863D00C99238 /* Introduction */,
 				308C093E1AAA15DA00754C66 /* CircularProgress */,
 				30880E391AA8023D006746C4 /* HexColors */,
 				30880E3F1AA8023D006746C4 /* TSMessages */,
@@ -628,6 +630,16 @@
 			path = CircularProgress;
 			sourceTree = "<group>";
 		};
+		3095AEBC1AD4863D00C99238 /* Introduction */ = {
+			isa = PBXGroup;
+			children = (
+				30D935391AB0D7700024B03E /* intro */,
+				30D935301AB0D5F10024B03E /* EARestrictedScrollView */,
+				30D935291AB0D5B70024B03E /* EAIntroView */,
+			);
+			name = Introduction;
+			sourceTree = "<group>";
+		};
 		309BA5281ACB080C00437086 /* ParallaxTable */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,6 +674,15 @@
 				30A32A0C1AC4648600602D4C /* UIViewController+RESideMenu.m */,
 			);
 			path = RESideMenu;
+			sourceTree = "<group>";
+		};
+		30ABA7F01AD644E9002E0ED1 /* MBProgressHUB */ = {
+			isa = PBXGroup;
+			children = (
+				30ABA7F11AD644F6002E0ED1 /* MBProgressHUD.h */,
+				30ABA7F21AD644F6002E0ED1 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUB;
 			sourceTree = "<group>";
 		};
 		30C2ED1C1AB77AB30020B738 /* BEMSimpleLineGraph */ = {
@@ -927,6 +948,7 @@
 				305EBB421AAB9219008C2E17 /* CurrentExerciseViewController.m in Sources */,
 				30D9352F1AB0D5B70024B03E /* EAIntroView.m in Sources */,
 				3083120C1A9E65AC00CC2A5C /* CBZVectorSplashView.m in Sources */,
+				30ABA7F31AD644F6002E0ED1 /* MBProgressHUD.m in Sources */,
 				309BA5271ACB07F400437086 /* StoryViewController.m in Sources */,
 				308C09451AAA175700754C66 /* CircularProgressTimerView.m in Sources */,
 				303C06301A9FDFDE001D9B78 /* MDCGeometry.m in Sources */,
