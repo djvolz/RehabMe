@@ -8,7 +8,7 @@
 
 #import "MenuViewController.h"
 
-#define NUMBER_OF_SECTIONS 4
+#define NUMBER_OF_SECTIONS 5
 #define HEIGHT_FOR_ROW     54
 
 @interface MenuViewController ()
@@ -62,11 +62,17 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 2:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"storageManagementViewController"]]
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"videoTableViewController"]]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
+            
         case 3:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"exerciseTableViewController"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
+        case 4:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"chooseExerciseViewController"]]
                                                          animated:NO];
             [self.sideMenuViewController hideMenuViewController];
@@ -152,8 +158,8 @@
     }
     
     
-    NSArray *titles = @[@"Home", @"Progress", @"Videos", @"Log Out"];
-    NSArray *images = @[@"IconHome", @"IconCalendar", @"video_camera_white", @"IconProfile"/*,@"IconEmpty"*/];
+    NSArray *titles = @[@"Home", @"Progress", @"Videos", @"Exercises", @"Log Out"];
+    NSArray *images = @[@"IconHome", @"IconCalendar", @"video_camera_white", @"IconEmpty", @"IconProfile"/*,@"IconEmpty"*/];
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     

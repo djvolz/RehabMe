@@ -1,5 +1,5 @@
 //
-// Exercise.h
+// Exercise.m
 //
 // Copyright (c) 2015 , Dan Volz @djvolz
 //
@@ -24,30 +24,28 @@
 // THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "Exercise_static.h"
 
-@interface Exercise : NSObject
+@implementation Exercise_static
 
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, strong) UIImage *image;
-@property (nonatomic, assign) NSUInteger count;
-@property (nonatomic, copy) NSString *displayName;
-@property (nonatomic, assign) NSUInteger timeRequired;
-@property (nonatomic, assign) NSString *instructions;
+#pragma mark - Object Lifecycle
 
 - (instancetype)initWithName:(NSString *)name
                        image:(UIImage *)image
                        count:(NSUInteger)count
                  displayName:(NSString *)displayName
                 timeRequired:(NSUInteger)timeRequired
-                instructions:(NSString *)instructions;
-
-//Repititions
-//Number of sets
-//Days per week
-//Main muscles worked
-//Equipment needed
-//directions
-//tip
+                instructions:(NSString *)instructions{
+    self = [super init];
+    if (self) {
+        _name = name;
+        _image = image;
+        _count = count;
+        _displayName  = displayName;
+        _timeRequired = timeRequired;
+        _instructions = instructions;
+    }
+    return self;
+}
 
 @end

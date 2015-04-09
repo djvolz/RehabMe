@@ -5,7 +5,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Exercise.h"
+#import "Exercise_static.h"
 #import "ChooseExerciseView.h"
 #import "UIColor+HexString.h"
 #import <MobileCoreServices/UTCoreTypes.h>
@@ -23,7 +23,7 @@
 @interface CurrentExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate, UINavigationControllerDelegate>
 
 
-@property (nonatomic, strong) Exercise *currentExercise;
+@property (nonatomic, strong) Exercise_static *currentExercise;
 
 
 

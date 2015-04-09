@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Dan Volz. All rights reserved.
 //
 
-#import "StorageManagementViewController.h"
+#import "VideoTableViewController.h"
 
 #import "ParallaxHeaderView.h"
 #import "StoryCommentCell.h"
 
-@implementation StorageManagementViewController
+@implementation VideoTableViewController
 {
     NSArray *tableData;
 }

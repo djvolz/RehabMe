@@ -26,7 +26,7 @@
 
 #import "ChooseExerciseView.h"
 #import "ImageLabelView.h"
-#import "Exercise.h"
+#import "Exercise_static.h"
 
 static const CGFloat ChoosePersonViewImageLabelWidth = 42.f;
 static const CGFloat infoHeight = 75.f;
@@ -47,7 +47,7 @@ static const CGFloat infoHeight = 75.f;
 #pragma mark - Object Lifecycle
 
 - (instancetype)initWithFrame:(CGRect)frame
-                       person:(Exercise *)exercise
+                       person:(Exercise_static *)exercise
                       options:(MDCSwipeToChooseViewOptions *)options {
     self = [super initWithFrame:frame options:options];
     if (self) {

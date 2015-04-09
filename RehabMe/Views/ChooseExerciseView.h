@@ -29,18 +29,18 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <AVFoundation/AVFoundation.h>
 
-@class Exercise;
+@class Exercise_static;
 
 @import MediaPlayer;
 
 
 @interface ChooseExerciseView : MDCSwipeToChooseView
 
-@property (nonatomic, strong, readonly) Exercise *exercise;
+@property (nonatomic, strong, readonly) Exercise_static *exercise;
 
 
 - (instancetype)initWithFrame:(CGRect)frame
-                       person:(Exercise *)exercise
+                       person:(Exercise_static *)exercise
                       options:(MDCSwipeToChooseViewOptions *)options;
 - (void)showInstuctions:(UITapGestureRecognizer*)sender;
 

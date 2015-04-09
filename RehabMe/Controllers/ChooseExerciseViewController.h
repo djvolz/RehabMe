@@ -82,6 +82,7 @@
 #import <ParseUI/ParseUI.h>
 
 #import "Exercise.h"
+#import "Exercise_static.h"
 #import "ChooseExerciseView.h"
 #import "MDCSwipeToChoose.h"
 #import "CBZSplashView.h"
@@ -103,6 +104,7 @@
 @interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol, EAIntroDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 
+@property (nonatomic, strong) Exercise_static *currentExercise_static;
 @property (nonatomic, strong) Exercise *currentExercise;
 @property (nonatomic, strong) ChooseExerciseView *frontCardView;
 @property (nonatomic, strong) ChooseExerciseView *backCardView;

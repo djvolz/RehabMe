@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIColor+HexString.h"
 
-@interface StorageManagementViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+@interface VideoTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
