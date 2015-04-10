@@ -72,12 +72,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
     [self checkIfUserIsLoggedIn];
     
-    if ([PFUser currentUser]) {
-        if ([self shouldShowIntro]) {
-            [self showIntroWithCrossDissolve];
-        }
-    }
-    
     [self cardViewIsBeingShown:YES];
     
 
@@ -178,7 +172,13 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 - (void)checkIfUserIsLoggedIn {
     if (![PFUser currentUser]) { // No user logged in
-                                 // Create the log in view controller
+        
+        // Display the tutorial if we have not seen it
+        if ([self shouldShowIntro]) {
+            [self showIntroWithCrossDissolve];
+        }
+        
+        // Create the log in view controller
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
 
@@ -735,7 +735,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1, page6]];
     [intro setDelegate:self];
     
-    [intro showInView:rootView animateDuration:0.3];
+//    [intro showInView:rootView animateDuration:0.3];
+    [[UIApplication sharedApplication].keyWindow addSubview:intro];
 }
 
 #pragma mark - Rating System
