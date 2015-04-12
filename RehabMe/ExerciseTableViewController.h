@@ -10,6 +10,10 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
+#import "ExerciseDetailViewController.h"
+#import "Exercise.h"
+#import "UIColor+HexString.h"
+
 @interface ExerciseTableViewController : PFQueryTableViewController
 
 @end

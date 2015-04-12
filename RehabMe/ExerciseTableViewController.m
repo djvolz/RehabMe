@@ -7,8 +7,7 @@
 //
 
 #import "ExerciseTableViewController.h"
-#import "ExerciseDetailViewController.h"
-#import "Exercise.h"
+
 
 @interface ExerciseTableViewController ()
 
@@ -47,6 +46,9 @@
 {
     [super viewDidLoad];
     
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:REHABME_GREEN]];
+    [self.navigationController.navigationBar setTranslucent:NO];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(refreshTable:)
                                                  name:@"refreshTable"
@@ -55,7 +57,7 @@
 
 - (void)refreshTable:(NSNotification *) notification
 {
-    // Reload the recipes
+    // Reload the exercises
     [self loadObjects];
 }
 
@@ -138,12 +140,12 @@
         ExerciseDetailViewController *destViewController = segue.destinationViewController;
         
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
-        Exercise *recipe = [[Exercise alloc] init];
-        recipe.name = [object objectForKey:@"name"];
-        recipe.imageFile = [object objectForKey:@"imageFile"];
-        recipe.prepTime = [object objectForKey:@"prepTime"];
-        recipe.ingredients = [object objectForKey:@"ingredients"];
-        destViewController.exercise = recipe;
+        Exercise *exercise = [[Exercise alloc] init];
+        exercise.name = [object objectForKey:@"name"];
+        exercise.imageFile = [object objectForKey:@"imageFile"];
+        exercise.prepTime = [object objectForKey:@"prepTime"];
+        exercise.ingredients = [object objectForKey:@"ingredients"];
+        destViewController.exercise = exercise;
         
     }
 }

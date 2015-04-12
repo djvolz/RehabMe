@@ -20,7 +20,7 @@
                         <segue destination="MWK-Rr-73c" kind="show" identifier="showVideosViewController" id="uu5-Ci-amP"/>
                         <segue destination="xtG-c4-360" kind="show" identifier="showCompletionViewController" id="1EU-pa-P6c"/>
                         <segue destination="mBU-Kg-hXL" kind="show" identifier="showParallaxViewController" id="rwU-Ld-jra"/>
-                        <segue destination="Enn-K8-f4G" kind="show" identifier="showRecipeViewController" id="9Uj-Ya-OA9"/>
+                        <segue destination="Enn-K8-f4G" kind="show" identifier="showExerciseViewController" id="9Uj-Ya-OA9"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xh4-9J-89Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -519,13 +519,21 @@
                             <outlet property="delegate" destination="Enn-K8-f4G" id="6ZL-Fd-geU"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Exercises" id="Ccf-zk-QYM">
+                        <barButtonItem key="leftBarButtonItem" image="menuButton" id="qcL-7T-q6J">
+                            <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <action selector="presentLeftMenuViewController:" destination="xtG-c4-360" id="gHm-1W-P1Y"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="E8S-zh-fR6">
                             <connections>
                                 <segue destination="9tY-qu-E3b" kind="presentation" id="Mta-xy-MW0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xtt-h9-0ey" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -652,10 +660,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="exerciseImageView" destination="xSO-3A-9VL" id="Vsd-iY-4sn"/>
                         <outlet property="ingredientsTextField" destination="kzp-iB-1Hy" id="K1o-I6-8VX"/>
                         <outlet property="nameTextField" destination="JIz-yy-bMZ" id="Z7X-0l-XVh"/>
                         <outlet property="prepTimeTextField" destination="yzG-iW-YQv" id="Wyy-BN-ydm"/>
-                        <outlet property="recipeImageView" destination="xSO-3A-9VL" id="Ny2-gZ-yaI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="syc-bm-nTR" userLabel="First Responder" sceneMemberID="firstResponder"/>

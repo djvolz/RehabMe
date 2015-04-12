@@ -50,10 +50,10 @@
     [self setupGraph];
 }
 
-- (IBAction)didPressDoneButton:(UIBarButtonItem *)sender {
-    // Dismiss this viewcontroller
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-}
+//- (IBAction)didPressDoneButton:(UIBarButtonItem *)sender {
+//    // Dismiss this viewcontroller
+//    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+//}
 
 
 

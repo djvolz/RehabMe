@@ -7,14 +7,12 @@
 //
 
 #import "NewExerciseViewController.h"
-#import <MobileCoreServices/UTCoreTypes.h>
-#import <Parse/Parse.h>
-#import "MBProgressHUD.h"
+
 
 @interface NewExerciseViewController ()
 - (IBAction)save:(id)sender;
 - (IBAction)cancel:(id)sender;
-@property (weak, nonatomic) IBOutlet UIImageView *recipeImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *exerciseImageView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *prepTimeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *instructionsTextField;
@@ -35,6 +33,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:REHABME_GREEN]];
+    [self.navigationController.navigationBar setTranslucent:NO];
 
     _nameTextField.delegate = self;
     _prepTimeTextField.delegate = self;
@@ -80,19 +81,19 @@
 }
 
 - (IBAction)save:(id)sender {
-    // Create PFObject with recipe information
-    PFObject *recipe = [PFObject objectWithClassName:@"Recipe"];
-    [recipe setObject:_nameTextField.text forKey:@"name"];
-    [recipe setObject:_prepTimeTextField.text forKey:@"prepTime"];
+    // Create PFObject with exercise information
+    PFObject *exercise = [PFObject objectWithClassName:@"Exercise"];
+    [exercise setObject:_nameTextField.text forKey:@"name"];
+    [exercise setObject:_prepTimeTextField.text forKey:@"prepTime"];
     
     NSArray *ingredients = [_instructionsTextField.text componentsSeparatedByString: @","];
-    [recipe setObject:ingredients forKey:@"ingredients"];
+    [exercise setObject:ingredients forKey:@"ingredients"];
     
-    // Recipe image
-    NSData *imageData = UIImageJPEGRepresentation(_recipeImageView.image, 0.8);
+    // Exercise image
+    NSData *imageData = UIImageJPEGRepresentation(_exerciseImageView.image, 0.8);
     NSString *filename = [NSString stringWithFormat:@"%@.png", _nameTextField.text];
     PFFile *imageFile = [PFFile fileWithName:filename data:imageData];
-    [recipe setObject:imageFile forKey:@"imageFile"];
+    [exercise setObject:imageFile forKey:@"imageFile"];
     
     // Show progress
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -100,16 +101,16 @@
     hud.labelText = @"Uploading";
     [hud show:YES];
 
-    // Upload recipe to Parse
-    [recipe saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    // Upload exercise to Parse
+    [exercise saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [hud hide:YES];
         
         if (!error) {
             // Show success message
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Complete" message:@"Successfully saved the recipe" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Complete" message:@"Successfully saved the exercise" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
             
-            // Notify table view to reload the recipes from Parse cloud
+            // Notify table view to reload the exercises from Parse cloud
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshTable" object:self];
             
             // Dismiss the controller
@@ -129,7 +130,7 @@
 }
 
 - (void)viewDidUnload {
-    [self setRecipeImageView:nil];
+    [self setExerciseImageView:nil];
     [self setNameTextField:nil];
     [self setPrepTimeTextField:nil];
     [self setInstructionsTextField:nil];
@@ -140,7 +141,7 @@
 - (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
 
     UIImage *originalImage = (UIImage *) [info objectForKey:UIImagePickerControllerOriginalImage];
-    self.recipeImageView.image = originalImage;
+    self.exerciseImageView.image = originalImage;
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     

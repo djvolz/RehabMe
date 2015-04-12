@@ -13,9 +13,9 @@
 
 @interface Exercise : NSObject
 
-@property (nonatomic, strong) NSString *name; // name of recipe
+@property (nonatomic, strong) NSString *name; // name of exercise
 @property (nonatomic, strong) NSString *prepTime; // preparation time
-@property (nonatomic, strong) PFFile *imageFile; // image of recipe
+@property (nonatomic, strong) PFFile *imageFile; // image of exercise
 @property (nonatomic, strong) NSArray *ingredients; // ingredients
 @property (nonatomic, assign) NSUInteger count;
 @property (nonatomic, assign) NSUInteger timeRequired;

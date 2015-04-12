@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MobileCoreServices/UTCoreTypes.h>
+#import <Parse/Parse.h>
+#import "MBProgressHUD.h"
+#import "UIColor+HexString.h"
 
 @interface NewExerciseViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
