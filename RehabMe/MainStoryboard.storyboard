@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Shm-v2-Zgf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Shm-v2-Zgf">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -42,7 +42,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daY-7r-LKt">
                                 <rect key="frame" x="16" y="140" width="288" height="288"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="10" continuous="NO" minimumValueImage="nope" maximumValueImage="liked" translatesAutoresizingMaskIntoConstraints="NO" id="rF0-Qz-Ett">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="1" maxValue="10" continuous="NO" minimumValueImage="nope" maximumValueImage="liked" translatesAutoresizingMaskIntoConstraints="NO" id="rF0-Qz-Ett">
                                         <rect key="frame" x="-2" y="119" width="292" height="50"/>
                                         <connections>
                                             <action selector="itemSlider:withEvent:" destination="xtG-c4-360" eventType="valueChanged" id="z45-Jm-PDO"/>
@@ -682,13 +682,13 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="photo-frame.png" translatesAutoresizingMaskIntoConstraints="NO" id="SMS-3L-6gf">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" image="photo-frame.png" translatesAutoresizingMaskIntoConstraints="NO" id="SMS-3L-6gf">
                                 <rect key="frame" x="12" y="8" width="297" height="248"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83L-r9-TrV" customClass="PFImageView">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83L-r9-TrV" customClass="PFImageView">
                                 <rect key="frame" x="20" y="64" width="280" height="175"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ingredients" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="csl-6b-rvm">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Ingredients" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="csl-6b-rvm">
                                 <rect key="frame" x="21" y="260" width="123" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="123" id="of5-Ug-N18"/>
@@ -697,7 +697,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nes-hK-xp4">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nes-hK-xp4">
                                 <rect key="frame" x="21" y="305" width="281" height="172"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -708,7 +708,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Preptime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="quq-Un-3B7">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Preptime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="quq-Un-3B7">
                                 <rect key="frame" x="239" y="268" width="70" height="21"/>
                                 <color key="backgroundColor" red="0.67823840729999996" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -777,6 +777,6 @@
         <image name="photo-frame.png" width="297" height="199"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1EU-pa-P6c"/>
+        <segue reference="smV-eo-MuZ"/>
     </inferredMetricsTieBreakers>
 </document>
