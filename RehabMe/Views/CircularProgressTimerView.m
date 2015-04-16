@@ -89,7 +89,7 @@
     } else {
         [self drawCircularProgressBarWithMinutesLeft:0 secondsLeft:0];
         [timer invalidate];
-        [self removeCircleProgressTimerView];
+//        [self removeCircleProgressTimerView];
     }
 }
 

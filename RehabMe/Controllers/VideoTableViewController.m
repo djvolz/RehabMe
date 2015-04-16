@@ -107,6 +107,14 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    [self playVideo:cell.textLabel.text];
+}
+
+
 - (void)deleteFileAtFilePath:(NSString *)filePath {
     NSFileManager* fileManager = [[NSFileManager alloc] init];
     NSError* error = nil;
@@ -158,6 +166,32 @@
     
     [self showSuccessfulDeleteAlert];
 }
+
+- (void)playVideo:(NSString *)videoURL {
+    
+    // pick a video from the documents directory
+    NSURL *video = [self grabFileURL:videoURL];
+    
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:video.path];
+    
+    
+    if (fileExists) {
+        // create a movie player view controller
+        MPMoviePlayerViewController *controller = [[MPMoviePlayerViewController alloc]initWithContentURL:video];
+        [controller.moviePlayer prepareToPlay];
+        [controller.moviePlayer play];
+        
+        
+        // and present it
+        [self presentMoviePlayerViewControllerAnimated:controller];
+    } else {
+        NSLog(@"%@", [NSString stringWithFormat:@"No file found at path: %@", video.path]);
+    }
+    
+}
+
+
+
 
 #pragma mark - Alert View
 

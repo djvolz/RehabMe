@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "UIColor+HexString.h"
+#import <AVFoundation/AVFoundation.h>
+
+@import MediaPlayer;
 
 @interface VideoTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
