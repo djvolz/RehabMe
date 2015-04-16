@@ -45,7 +45,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
     
     self.title = exercise.name;
-    self.prepTimeLabel.text = exercise.prepTime;
+    self.prepTimeLabel.text = [@(exercise.timeRequired) stringValue];
     self.exercisePhoto.file = exercise.imageFile;
     
     NSMutableString *instructionsText = [NSMutableString string];

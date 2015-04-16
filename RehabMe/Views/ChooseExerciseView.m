@@ -53,7 +53,7 @@ static const CGFloat infoHeight = 75.f;
     if (self) {
         _exercise = exercise;
         
-        self.imageView.image = [UIImage imageNamed:@"liked"]; // placeholder image
+        self.imageView.image = [UIImage imageNamed:@"placeholder"]; // placeholder image
         self.imageView.file = self.exercise.imageFile; // remote image
         [self.imageView loadInBackground];
         
@@ -211,7 +211,7 @@ static const CGFloat infoHeight = 75.f;
     [self.instructionsView setBackgroundColor: [UIColor colorWithRed:200.0 green:200.0 blue:200.0 alpha:0.95]];
     [self.instructionsView setTextColor: [UIColor blackColor]];
     [self.instructionsView setFont:[UIFont fontWithName:@"Helvetica Neue" size:24.0f]];
-    self.instructionsView.text = [NSString stringWithFormat:@"%@\n\nSets: %i\nTime: %i s\n\n%@",
+    self.instructionsView.text = [NSString stringWithFormat:@"%@\n\nSets: %i\nTime: %i seconds\n\n%@",
                                   _exercise.displayName,
                                   (int)_exercise.count,
                                   (int)_exercise.timeRequired,

@@ -151,7 +151,6 @@
         Exercise *exercise = [[Exercise alloc] init];
         exercise.name = [object objectForKey:@"name"];
         exercise.imageFile = [object objectForKey:@"imageFile"];
-        exercise.prepTime = [object objectForKey:@"prepTime"];
         exercise.instructions = [object objectForKey:@"ingredients"];
         destViewController.exercise = exercise;
         

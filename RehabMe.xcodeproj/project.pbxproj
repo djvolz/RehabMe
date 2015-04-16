@@ -511,6 +511,7 @@
 		307F83791A9BC13900B1CEFF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				30C30BDE1A9D4FDE006194BA /* MainStoryboard.storyboard */,
 				307F83641A9BC12300B1CEFF /* Images.xcassets */,
 				30ABA7F01AD644E9002E0ED1 /* MBProgressHUB */,
 				309BA5281ACB080C00437086 /* ParallaxTable */,
@@ -523,7 +524,6 @@
 				303C063A1A9FE0EB001D9B78 /* MDCSwipeToChoose */,
 				3083120F1A9E67AC00CC2A5C /* CBZSplashView */,
 				3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */,
-				30C30BDE1A9D4FDE006194BA /* MainStoryboard.storyboard */,
 				307F835D1A9BC12300B1CEFF /* AppDelegate.h */,
 				307F835E1A9BC12300B1CEFF /* AppDelegate.m */,
 				307F83621A9BC12300B1CEFF /* InfoPlist.strings */,

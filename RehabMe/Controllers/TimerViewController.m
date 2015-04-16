@@ -17,7 +17,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    [self setupCircularProgressTimerView:30 withColor:[UIColor colorWithHexString:REHABME_GREEN]];
+    [self setupCircularProgressTimerView:self.timeRequired withColor:[UIColor colorWithHexString:REHABME_GREEN]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

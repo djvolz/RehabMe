@@ -11,7 +11,6 @@
 @implementation Exercise
 
 @synthesize name;
-@synthesize prepTime;
 @synthesize imageFile;
 @synthesize instructions;
 @synthesize count;

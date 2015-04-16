@@ -14,6 +14,7 @@
 
 
 @property (nonatomic, strong) CircularProgressTimerView *circleProgressTimerView;
+@property (nonatomic, assign) NSUInteger timeRequired;
 
 
 @end

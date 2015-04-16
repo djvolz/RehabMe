@@ -325,7 +325,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         exercise.displayName = [object objectForKey:@"displayName"];
 
         exercise.imageFile = [object objectForKey:@"imageFile"];
-        exercise.prepTime = [object objectForKey:@"prepTime"];
         exercise.timeRequired = [[object objectForKey:@"timeRequired"] intValue];
         exercise.count = [[object objectForKey:@"count"] intValue];
         exercise.instructions = [object objectForKey:@"instructions"];

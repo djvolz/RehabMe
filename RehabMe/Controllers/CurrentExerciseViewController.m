@@ -22,6 +22,7 @@
     
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -219,6 +220,19 @@
     
 }
 
+- (IBAction)didPressTimerButton:(UIBarButtonItem *)sender {
+    [self constructTimerViewController];
+}
+
+
+- (void)constructTimerViewController {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
+    TimerViewController *timerViewController = [mainStoryboard instantiateViewControllerWithIdentifier: @"timerViewController"];
+    
+    timerViewController.timeRequired = self.currentExercise.timeRequired;
+    
+    [self presentViewController:timerViewController  animated:YES completion:nil];
+}
 
 // Offer to record video if one hasn't already been created
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
