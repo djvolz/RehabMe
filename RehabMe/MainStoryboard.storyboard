@@ -85,7 +85,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmu-2q-QZF">
                                 <rect key="frame" x="127" y="507" width="66" height="41"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
-                                <state key="normal" title="Begin"/>
+                                <state key="normal" title="Begin">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="didPressBeginButton:" destination="dKd-vA-a2t" eventType="touchUpInside" id="ooK-V1-Ou3"/>
                                 </connections>
@@ -169,6 +171,7 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -524,7 +527,7 @@
                         <barButtonItem key="leftBarButtonItem" image="menuButton" id="qcL-7T-q6J">
                             <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                             <connections>
-                                <action selector="presentLeftMenuViewController:" destination="xtG-c4-360" id="gHm-1W-P1Y"/>
+                                <action selector="presentLeftMenuViewController:" destination="Enn-K8-f4G" id="TTv-F4-IQJ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="E8S-zh-fR6">
@@ -779,4 +782,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="smV-eo-MuZ"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
