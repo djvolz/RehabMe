@@ -113,7 +113,7 @@
     // Configure the cell
     PFFile *thumbnail = [object objectForKey:@"imageFile"];
     PFImageView *thumbnailImageView = (PFImageView*)[cell viewWithTag:100];
-    thumbnailImageView.image = [UIImage imageNamed:@"placeholder.jpg"];
+    thumbnailImageView.image = [UIImage imageNamed:@"placeholder"];
     thumbnailImageView.file = thumbnail;
     [thumbnailImageView loadInBackground];
     
@@ -121,7 +121,8 @@
     nameLabel.text = [object objectForKey:@"name"];
     
     UILabel *prepTimeLabel = (UILabel*) [cell viewWithTag:102];
-    prepTimeLabel.text = [object objectForKey:@"prepTime"];
+    NSUInteger timeRequired = [[object objectForKey:@"timeRequired"] intValue];
+    prepTimeLabel.text = [@(timeRequired) stringValue];
         
     return cell;
 }
@@ -151,7 +152,8 @@
         Exercise *exercise = [[Exercise alloc] init];
         exercise.name = [object objectForKey:@"name"];
         exercise.imageFile = [object objectForKey:@"imageFile"];
-        exercise.instructions = [object objectForKey:@"ingredients"];
+        exercise.instructions = [object objectForKey:@"instructions"];
+        exercise.timeRequired = [[object objectForKey:@"timeRequired"] intValue];
         destViewController.exercise = exercise;
         
     }

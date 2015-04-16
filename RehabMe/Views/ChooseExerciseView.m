@@ -211,11 +211,17 @@ static const CGFloat infoHeight = 75.f;
     [self.instructionsView setBackgroundColor: [UIColor colorWithRed:200.0 green:200.0 blue:200.0 alpha:0.95]];
     [self.instructionsView setTextColor: [UIColor blackColor]];
     [self.instructionsView setFont:[UIFont fontWithName:@"Helvetica Neue" size:24.0f]];
+    
+    NSMutableString *instructionsText = [NSMutableString string];
+    for (NSString* instruction in self.exercise.instructions) {
+        [instructionsText appendFormat:@"%@\n\n", instruction];
+    }
+    
     self.instructionsView.text = [NSString stringWithFormat:@"%@\n\nSets: %i\nTime: %i seconds\n\n%@",
                                   _exercise.displayName,
                                   (int)_exercise.count,
                                   (int)_exercise.timeRequired,
-                                  _exercise.instructions];
+                                  instructionsText];
     self.instructionsView.editable = NO;
     self.instructionsView.hidden = YES;
     [self addSubview:self.instructionsView];
