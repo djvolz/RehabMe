@@ -13,11 +13,10 @@
 @synthesize name;
 @synthesize prepTime;
 @synthesize imageFile;
-@synthesize ingredients;
+@synthesize instructions;
 @synthesize count;
 @synthesize displayName;
 @synthesize timeRequired;
-@synthesize instructions;
 @synthesize enabled;
 
 

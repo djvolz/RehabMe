@@ -30,7 +30,6 @@
 //
 // Fix double date thing on graph view
 // HUD with number of exercises and number of sets left for day
-// fix skip button for tutorial
 // daily motivational quotes
 //
 //
@@ -54,7 +53,7 @@
 // Make exercise instructions available while timer is going.
 //
 //
-//
+// DONE: fix skip button for tutorial
 // DONE: Menu with view for logging in.
 // DONE: Make sure tutorial only appears once
 // DONE: create way to cancel out of timer screen
@@ -104,12 +103,10 @@
 @interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol, EAIntroDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 
-@property (nonatomic, strong) Exercise_static *currentExercise_static;
 @property (nonatomic, strong) Exercise *currentExercise;
 @property (nonatomic, strong) ChooseExerciseView *frontCardView;
 @property (nonatomic, strong) ChooseExerciseView *backCardView;
 
-@property (strong, nonatomic) IBOutlet UIView *view;
 
 
 - (void)loadDeck;

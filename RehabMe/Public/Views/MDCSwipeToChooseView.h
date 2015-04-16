@@ -1,6 +1,8 @@
 //
 // MDCSwipeToChooseView.h
 //
+// Copyright (c) 2015 , Dan Volz @djvolz
+//
 // Copyright (c) 2014 to present, Brian Gesiak @modocache
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,6 +25,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ParseUI/ParseUI.h>
 
 @class MDCSwipeToChooseViewOptions;
 
@@ -35,7 +38,9 @@
 /*!
  * The main image to be displayed and then "liked" or "disliked".
  */
-@property (nonatomic, strong) UIImageView *imageView;
+//@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) PFImageView *imageView;
+
 
 /*!
  * The "liked" view, which fades in as the `MDCSwipeToChooseView` is panned to the right.

@@ -21,7 +21,7 @@
 {
     self = [super initWithCoder:aCoder];
     if (self) {
-        // Custom the table
+        // Customize the table
         
         // The className to query on
         self.parseClassName = @"Exercise";
@@ -48,6 +48,14 @@
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:REHABME_GREEN]];
     [self.navigationController.navigationBar setTranslucent:NO];
+    
+    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               [UIColor whiteColor],
+                                               NSForegroundColorAttributeName,
+                                               [UIFont fontWithName:@"Lato" size:20.0],
+                                               NSFontAttributeName,
+                                               nil];
+    [self.navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(refreshTable:)
@@ -144,7 +152,7 @@
         exercise.name = [object objectForKey:@"name"];
         exercise.imageFile = [object objectForKey:@"imageFile"];
         exercise.prepTime = [object objectForKey:@"prepTime"];
-        exercise.ingredients = [object objectForKey:@"ingredients"];
+        exercise.instructions = [object objectForKey:@"ingredients"];
         destViewController.exercise = exercise;
         
     }

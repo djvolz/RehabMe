@@ -150,10 +150,10 @@
         NSTimeInterval timeInterval = [gameScore.createdAt timeIntervalSinceDate:baseDate];
 
         
-        if (abs(timeInterval) < (SECONDS_IN_A_DAY * 4)) {
+        if (fabs(timeInterval) < (SECONDS_IN_A_DAY * 4)) {
             for (int index = 0; index < [self.arrayOfDates count]; index++) {
                 NSTimeInterval withinLastTwelveHours = [gameScore.createdAt timeIntervalSinceDate:self.arrayOfDates[index]];
-                if (abs(withinLastTwelveHours) < SECONDS_IN_A_DAY/2) {
+                if (fabs(withinLastTwelveHours) < SECONDS_IN_A_DAY/2) {
                     [self.arrayOfValues replaceObjectAtIndex:index withObject:gameScore[@"score"]];
                 }
             }

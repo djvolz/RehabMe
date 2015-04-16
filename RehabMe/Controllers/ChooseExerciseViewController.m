@@ -48,6 +48,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 @property (strong, nonatomic) IBOutlet UISlider *ratingSlider;
 @property (weak, nonatomic) IBOutlet UIView *ratingView;
 
+@property (strong, nonatomic) IBOutlet UIView *view;
+
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationBarItem;
 
 @end
@@ -305,13 +307,44 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [_exercises removeAllObjects];
 }
 
+- (void)getExercises {
+    if (!self.exercises) {
+        self.exercises = [[NSMutableArray alloc] init];
+    }
+    
+    [self.exercises removeAllObjects];
+    
+    // Only use this code if you are already running it in a background
+    // thread, or for testing purposes!
+    PFQuery *query = [PFQuery queryWithClassName:@"Exercise"];
+    NSArray* queryArray = [query findObjects];
+    
+    for (PFObject *object in queryArray) {
+        Exercise *exercise = [[Exercise alloc] init];
+        exercise.name = [object objectForKey:@"name"];
+        exercise.displayName = [object objectForKey:@"displayName"];
+
+        exercise.imageFile = [object objectForKey:@"imageFile"];
+        exercise.prepTime = [object objectForKey:@"prepTime"];
+        exercise.timeRequired = [[object objectForKey:@"timeRequired"] intValue];
+        exercise.count = [[object objectForKey:@"count"] intValue];
+        exercise.instructions = [object objectForKey:@"instructions"];
+        
+        [self.exercises addObject:exercise];
+    }
+    
+}
+
 /* Load up the deck from the exercises array */
 - (void)loadDeck {
     [self clearDeck];
     
+    [self getExercises];
+    
     // This view controller maintains a list of ChooseExerciseView
     // instances to display.
-    _exercises = [[self defaultPeople] mutableCopy];
+//    _exercises = [[self defaultPeople] mutableCopy];
+
     
     // Display the first ChooseExerciseView in front. Users can swipe to indicate
     // whether they like or dislike the person displayed.
@@ -389,7 +422,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 // This is called when a user didn't fully swipe left or right.
 - (void)viewDidCancelSwipe:(UIView *)view {
-    NSLog(@"You couldn't decide on %@.", self.currentExercise_static.name);
+    NSLog(@"You couldn't decide on %@.", self.currentExercise.name);
 }
 
 
@@ -429,7 +462,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // Keep track of the person currently being chosen.
     // Quick and dirty.
     _frontCardView = frontCardView;
-    self.currentExercise_static = frontCardView.exercise;
+    self.currentExercise = frontCardView.exercise;
 }
 
 
@@ -559,7 +592,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 - (void)updateParseWithSwipeDecision:(NSString *)decision {
     self.exerciseObject = [PFObject objectWithClassName:@"ExerciseObject"];
-    self.exerciseObject[decision] = self.currentExercise_static.name;
+    self.exerciseObject[decision] = self.currentExercise.name;
     self.exerciseObject.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
 
     //    self.exerciseObject[self.currentExercise.name] = decision;
@@ -569,7 +602,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 
 - (void)viewDidSwipeRight {
-    NSLog(@"You selected %@.", self.currentExercise_static.name);
+    NSLog(@"You selected %@.", self.currentExercise.name);
     
     
     
@@ -582,7 +615,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 }
 
 - (void)viewDidSwipeLeft {
-    NSLog(@"You noped %@.", self.currentExercise_static.name);
+    NSLog(@"You noped %@.", self.currentExercise.name);
     
     [self updateParseWithSwipeDecision:@"skipped"];
     
@@ -616,7 +649,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
             
             /* Create a new score every day. */
-            if (abs(timeSinceCreation) > SECONDS_IN_A_DAY) {
+            if (fabs(timeSinceCreation) > SECONDS_IN_A_DAY) {
                 NSLog(@"Created a new GameScore");
                 PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
                 gameScore[@"score"] = @1;
@@ -639,7 +672,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
             
             /* Scores can only be updated once every 30 seconds. Troll protection */
-            if (abs(timeSinceLastUpdate) > SECONDS_IN_A_MINUTE/2) {
+            if (fabs(timeSinceLastUpdate) > SECONDS_IN_A_MINUTE/2) {
                 NSLog(@"Incrementing GameScore");
                 [gameScore incrementKey:@"score"];
                 [gameScore saveInBackground];
@@ -683,7 +716,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
     CurrentExerciseViewController *currentExerciseViewController = [mainStoryboard instantiateViewControllerWithIdentifier: @"currentExerciseViewController"];
     
-    currentExerciseViewController.currentExercise = self.currentExercise_static;
+    currentExerciseViewController.currentExercise = self.currentExercise;
     
     [self presentViewController:currentExerciseViewController  animated:YES completion:nil];
 }

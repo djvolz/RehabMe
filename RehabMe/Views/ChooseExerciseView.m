@@ -47,12 +47,16 @@ static const CGFloat infoHeight = 75.f;
 #pragma mark - Object Lifecycle
 
 - (instancetype)initWithFrame:(CGRect)frame
-                       person:(Exercise_static *)exercise
+                       person:(Exercise *)exercise
                       options:(MDCSwipeToChooseViewOptions *)options {
     self = [super initWithFrame:frame options:options];
     if (self) {
         _exercise = exercise;
-        self.imageView.image = _exercise.image;
+        
+        self.imageView.image = [UIImage imageNamed:@"liked"]; // placeholder image
+        self.imageView.file = self.exercise.imageFile; // remote image
+        [self.imageView loadInBackground];
+        
 
         self.autoresizingMask = UIViewAutoresizingFlexibleHeight |
                                 UIViewAutoresizingFlexibleWidth |

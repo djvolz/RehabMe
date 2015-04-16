@@ -33,15 +33,29 @@
 {
     [super viewDidLoad];
     
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:REHABME_GREEN]];
+    [self.navigationController.navigationBar setTranslucent:NO];
+    
+    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               [UIColor whiteColor],
+                                               NSForegroundColorAttributeName,
+                                               [UIFont fontWithName:@"Lato" size:20.0],
+                                               NSFontAttributeName,
+                                               nil];
+    [self.navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
+    
     self.title = exercise.name;
     self.prepTimeLabel.text = exercise.prepTime;
     self.exercisePhoto.file = exercise.imageFile;
     
-    NSMutableString *ingredientText = [NSMutableString string];
-    for (NSString* ingredient in exercise.ingredients) {
-        [ingredientText appendFormat:@"%@\n", ingredient];
+    NSMutableString *instructionsText = [NSMutableString string];
+    for (NSString* instruction in exercise.instructions) {
+        [instructionsText appendFormat:@"%@\n", instruction];
     }
-    self.instructionsTextView.text = ingredientText;
+    self.instructionsTextView.text = instructionsText;
+    
+    // Make sure we don't stretch out the image and so it scales correctly.
+    self.exercisePhoto.contentMode = UIViewContentModeScaleAspectFit;
     
 }
 
@@ -54,9 +68,5 @@
     // Release any retained subviews of the main view.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 @end
