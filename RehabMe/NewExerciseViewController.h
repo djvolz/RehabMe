@@ -12,6 +12,6 @@
 #import "MBProgressHUD.h"
 #import "UIColor+HexString.h"
 
-@interface NewExerciseViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
+@interface NewExerciseViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIActionSheetDelegate>
 
 @end

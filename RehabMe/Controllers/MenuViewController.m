@@ -159,7 +159,7 @@
     
     
     NSArray *titles = @[@"Home", @"Progress", @"Videos", @"Exercises", @"Log Out"];
-    NSArray *images = @[@"IconHome", @"IconCalendar", @"video_camera_white", @"barbell", @"IconProfile"/*,@"IconEmpty"*/];
+    NSArray *images = @[@"IconHome", @"IconCalendar", @"video_camera_white", @"barbell_white", @"IconProfile"/*,@"IconEmpty"*/];
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     

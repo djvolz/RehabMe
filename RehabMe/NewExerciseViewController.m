@@ -62,40 +62,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        [self showPhotoLibary];
+        [self photoCaptureButtonAction];
     }
 }
 
-
-- (void)showPhotoLibary
-{
-    if (([UIImagePickerController isSourceTypeAvailable:
-          UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)) {
-        return;
-    }
-    
-    UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
-    mediaUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    // Displays saved pictures from the Camera Roll album.
-    mediaUI.mediaTypes = @[(NSString*)kUTTypeImage];
-    
-    // Hides the controls for moving & scaling pictures
-    mediaUI.allowsEditing = NO;
-    
-    mediaUI.delegate = self;
-    
-    [self.navigationController presentModalViewController: mediaUI animated: YES];
-}
 
 - (IBAction)save:(id)sender {
     // Create PFObject with exercise information
     PFObject *exercise = [PFObject objectWithClassName:@"Exercise"];
     [exercise setObject:_nameTextField.text forKey:@"name"];
-    [exercise setObject:_prepTimeTextField.text forKey:@"prepTime"];
+    [exercise setObject:_nameTextField.text forKey:@"displayName"];
+
+    NSString *timeRequiredString = _prepTimeTextField.text ;
+    int timeRequired = [timeRequiredString intValue];
     
-    NSArray *ingredients = [_instructionsTextField.text componentsSeparatedByString: @","];
-    [exercise setObject:ingredients forKey:@"ingredients"];
+    [exercise setObject:@(timeRequired) forKey:@"timeRequired"];
+    
+    NSArray *instructions = [_instructionsTextField.text componentsSeparatedByString: @","];
+    [exercise setObject:instructions forKey:@"instructions"];
     
     // Exercise image
     NSData *imageData = UIImageJPEGRepresentation(_exerciseImageView.image, 0.8);
@@ -162,5 +146,135 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (buttonIndex == 0) {
+            [self shouldStartCameraController];
+        } else if (buttonIndex == 1) {
+            [self shouldStartPhotoLibraryPickerController];
+        }
+    }];
+}
+
+#pragma mark - Photo Capture
+
+- (BOOL)shouldPresentPhotoCaptureController {
+    BOOL presentedPhotoCaptureController = [self shouldStartCameraController];
+    
+    if (!presentedPhotoCaptureController) {
+        presentedPhotoCaptureController = [self shouldStartPhotoLibraryPickerController];
+    }
+    
+    return presentedPhotoCaptureController;
+}
+
+#pragma mark - ()
+
+- (void)photoCaptureButtonAction{
+    BOOL cameraDeviceAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    BOOL photoLibraryAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+    
+    if (cameraDeviceAvailable && photoLibraryAvailable) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose Photo", nil];
+        [actionSheet showInView:self.exerciseImageView];
+    } else {
+        // if we don't have at least two options, we automatically show whichever is available (camera or roll)
+        [self shouldPresentPhotoCaptureController];
+    }
+}
+
+//- (void)showPhotoLibary
+//{
+//    if (([UIImagePickerController isSourceTypeAvailable:
+//          UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)) {
+//        return;
+//    }
+//
+//    UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
+//    mediaUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//
+//    // Displays saved pictures from the Camera Roll album.
+//    mediaUI.mediaTypes = @[(NSString*)kUTTypeImage];
+//
+//    // Hides the controls for moving & scaling pictures
+//    mediaUI.allowsEditing = NO;
+//
+//    mediaUI.delegate = self;
+//
+//    [self.navigationController presentViewController:mediaUI animated:YES completion:NULL];
+//}
+
+
+- (BOOL)shouldStartCameraController {
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO) {
+        return NO;
+    }
+    
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]
+        && [[UIImagePickerController availableMediaTypesForSourceType:
+             UIImagePickerControllerSourceTypeCamera] containsObject:(NSString *)kUTTypeImage]) {
+        
+        cameraUI.mediaTypes = [NSArray arrayWithObject:(NSString *) kUTTypeImage];
+        cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear]) {
+            cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+        } else if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront]) {
+            cameraUI.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+        }
+        
+    } else {
+        return NO;
+    }
+    
+    cameraUI.allowsEditing = YES;
+    cameraUI.showsCameraControls = YES;
+    cameraUI.delegate = self;
+    
+    [self presentViewController:cameraUI animated:YES completion:nil];
+    
+    return YES;
+}
+
+
+- (BOOL)shouldStartPhotoLibraryPickerController {
+    if (([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] == NO
+         && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)) {
+        return NO;
+    }
+    
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]
+        && [[UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary] containsObject:(NSString *)kUTTypeImage]) {
+        
+        cameraUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        cameraUI.mediaTypes = [NSArray arrayWithObject:(NSString *) kUTTypeImage];
+        
+    } else if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]
+               && [[UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum] containsObject:(NSString *)kUTTypeImage]) {
+        
+        cameraUI.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        cameraUI.mediaTypes = [NSArray arrayWithObject:(NSString *) kUTTypeImage];
+        
+    } else {
+        return NO;
+    }
+    
+    cameraUI.allowsEditing = YES;
+    cameraUI.delegate = self;
+    
+    [self presentViewController:cameraUI animated:YES completion:nil];
+    
+    return YES;
+}
+
+
 
 @end

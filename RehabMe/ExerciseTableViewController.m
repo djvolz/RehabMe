@@ -117,6 +117,9 @@
     thumbnailImageView.file = thumbnail;
     [thumbnailImageView loadInBackground];
     
+    // Make sure we don't stretch out the image and so it scales correctly.
+    thumbnailImageView.contentMode = UIViewContentModeScaleAspectFit;
+    
     UILabel *nameLabel = (UILabel*) [cell viewWithTag:101];
     nameLabel.text = [object objectForKey:@"name"];
     
@@ -132,6 +135,10 @@
     // Remove the row from data model
     PFObject *object = [self.objects objectAtIndex:indexPath.row];
     [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", [error userInfo][@"error"]);
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Only exercises you've created may be deleted.", nil) message:NSLocalizedString(@"", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+        }
         [self refreshTable:nil];
     }];
 }

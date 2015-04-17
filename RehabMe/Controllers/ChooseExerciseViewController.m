@@ -56,6 +56,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 @implementation ChooseExerciseViewController
 
+@dynamic view;
+
 
 #pragma mark - UIViewController Overrides
 
@@ -73,6 +75,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [super viewWillAppear:animated];
 
     [self checkIfUserIsLoggedIn];
+    
+//    PFUser *currentUser = [PFUser currentUser];
+//    [self checkIfUserHasVerifiedEmail:currentUser];
     
     [self cardViewIsBeingShown:YES];
     
@@ -172,10 +177,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 #pragma mark - Log In
 
 
+
 - (void)checkIfUserIsLoggedIn {
     if (![PFUser currentUser]) { // No user logged in
-        
-        // Display the tutorial if we have not seen it
         if ([self shouldShowIntro]) {
             [self showIntroWithCrossDissolve];
         }
@@ -213,6 +217,24 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         }];
     }
 }
+
+// I haven't decided yet if I'm going to require users to verify their email addresses.
+//- (void)checkIfUserHasVerifiedEmail:(PFUser *)user
+//{
+//    if (![[user objectForKey:@"emailVerified"] boolValue]) {
+//        // Refresh to make sure the user did not recently verify
+//        [user fetch];
+//        if (![[user objectForKey:@"emailVerified"] boolValue]) {
+//            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"You must verify your email address for cake", nil) message:NSLocalizedString(@"", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+//            return;
+//        }
+//    }
+//    // This is a triumph.
+//    //    [self warnUserAboutCakeAvailability];
+//}
+
+
+
 
 #pragma mark - PFLogInViewControllerDelegate
 
@@ -307,6 +329,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [_exercises removeAllObjects];
 }
 
+
 - (void)getExercises {
     if (!self.exercises) {
         self.exercises = [[NSMutableArray alloc] init];
@@ -318,6 +341,15 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // thread, or for testing purposes!
     PFQuery *query = [PFQuery queryWithClassName:@"Exercise"];
     NSArray* queryArray = [query findObjects];
+    
+    // If no objects are loaded in memory, we look to the cache first to fill the table
+    // and then subsequently do a query against the network.
+    if ([self.exercises count] == 0) {
+        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    }
+    
+    [query orderByAscending:@"name"];
+    
     
     for (PFObject *object in queryArray) {
         Exercise *exercise = [[Exercise alloc] init];
@@ -790,51 +822,50 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 }
 
 
-
-
-
-- (NSArray *)defaultPeople {
-    // It would be trivial to download these from a web service
-    // as needed, but for the purposes of this sample app we'll
-    // simply store them in memory.
-    return @[
-             [[Exercise_static alloc] initWithName:@"Calf_Raises"
-                                      image:[UIImage imageNamed:@"calf_raises"]
-                                      count:4
-                                displayName:@"Calf Raises"
-                               timeRequired:30
-                               instructions:@"Main muscles worked:\nGastrocnemius-soleus complex\n\nYou should feel this stretch in your calf and into your heel\n\n• Stand facing a wall with your unaffected leg forward with a slight bend at the knee. Your affected leg is straight and behind you, with the heel flat and the toes pointed in slightly.\n\n• Keep both heels flat on the floor and press your hips forward toward the wall.\n\n• Hold this stretch for 30 seconds and then relax for 30 seconds. Repeat."],
-             
-             [[Exercise_static alloc] initWithName:@"Standing_Quadriceps_Stretch"
-                                      image:[UIImage imageNamed:@"standing_quadriceps_stretch"]
-                                      count:2
-                                displayName:@"Standing Quadriceps Stretch"
-                               timeRequired:30
-                               instructions:@"Main muscles worked:\nQuadriceps\n\nYou should feel this stretch in the front of your thigh\n\n• Hold on to the back of a chair or a wall for balance.\n\n• Bend your knee and bring your heel up toward your buttock.\n\n• Grasp your ankle with your hand and gently pull your heel closer to your body.\n\n• Hold this position for 30 to 60 seconds.\n\n• Repeat with the opposite leg."],
-             
-             [[Exercise_static alloc] initWithName:@"Supine_Hamstring_Stretch"
-                                      image:[UIImage imageNamed:@"supine_hamstring_stretch"]
-                                      count:2
-                                displayName:@"Supine Hamstring Stretch"
-                               timeRequired:30
-                               instructions:@"Main muscles worked:\nHamstrings\n\nYou should feel this stretch at the back of your thigh and behind your knee\n\n• Lie on the floor with both legs bent.\n\n• Lift one leg off of the floor and bring the knee toward your chest. Clasp your hands behind your thigh below your knee.\n\n• Straighten your leg and then pull it gently toward your head, until you feel a stretch. (If you have difficulty clasping your hands behind your leg, loop a towel around your thigh. Grasp the ends of the towel and pull your leg toward you.)\n\n• Hold this position for 30 to 60 seconds.\n\n• Repeat with the opposite leg."],
-             
-             [[Exercise_static alloc] initWithName:@"Half_Squats"
-                                      image:[UIImage imageNamed:@"half_squats"]
-                                      count:10
-                                displayName:@"Half Squats"
-                               timeRequired:5
-                               instructions:@"Main muscles worked:\nQuadriceps, gluteus, hamstrings\n\nYou should feel this exercise at the front and back of your thighs, and your buttocks\n\n• Stand with your feet shoulder distance apart. Your hands can rest on the front of your thighs or reach in front of you. If needed, hold on to the back of a chair or wall for balance.\n\n• Keep your chest lifted and slowly lower your hips about 10 inches, as if you are sitting down into a chair.\n\n• Plant your weight in your heels and hold the squat for 5 seconds.\n\n• Push through your heels and bring your body back up to standing."],
-             
-             [[Exercise_static alloc] initWithName:@"Hamstring_Curls"
-                                      image:[UIImage imageNamed:@"hamstring_curls"]
-                                      count:10
-                                displayName:@"Hamstring Curls"
-                               timeRequired:5
-                               instructions:@"Main muscles worked:\nHamstrings\n\nYou should feel this exercise at the back of your thigh\n\n• Hold onto the back of a chair or a wall for balance.\n\n• Bend your affected knee and raise your heel toward the ceiling as far as possible without pain.\n\n• Hold this position for 5 seconds and then relax. Repeat."],
-             ];
-}
-
-
-
 @end
+
+
+
+
+
+//- (NSArray *)defaultPeople {
+//    // It would be trivial to download these from a web service
+//    // as needed, but for the purposes of this sample app we'll
+//    // simply store them in memory.
+//    return @[
+//             [[Exercise_static alloc] initWithName:@"Calf_Raises"
+//                                      image:[UIImage imageNamed:@"calf_raises"]
+//                                      count:4
+//                                displayName:@"Calf Raises"
+//                               timeRequired:30
+//                               instructions:@"Main muscles worked:\nGastrocnemius-soleus complex\n\nYou should feel this stretch in your calf and into your heel\n\n• Stand facing a wall with your unaffected leg forward with a slight bend at the knee. Your affected leg is straight and behind you, with the heel flat and the toes pointed in slightly.\n\n• Keep both heels flat on the floor and press your hips forward toward the wall.\n\n• Hold this stretch for 30 seconds and then relax for 30 seconds. Repeat."],
+//
+//             [[Exercise_static alloc] initWithName:@"Standing_Quadriceps_Stretch"
+//                                      image:[UIImage imageNamed:@"standing_quadriceps_stretch"]
+//                                      count:2
+//                                displayName:@"Standing Quadriceps Stretch"
+//                               timeRequired:30
+//                               instructions:@"Main muscles worked:\nQuadriceps\n\nYou should feel this stretch in the front of your thigh\n\n• Hold on to the back of a chair or a wall for balance.\n\n• Bend your knee and bring your heel up toward your buttock.\n\n• Grasp your ankle with your hand and gently pull your heel closer to your body.\n\n• Hold this position for 30 to 60 seconds.\n\n• Repeat with the opposite leg."],
+//
+//             [[Exercise_static alloc] initWithName:@"Supine_Hamstring_Stretch"
+//                                      image:[UIImage imageNamed:@"supine_hamstring_stretch"]
+//                                      count:2
+//                                displayName:@"Supine Hamstring Stretch"
+//                               timeRequired:30
+//                               instructions:@"Main muscles worked:\nHamstrings\n\nYou should feel this stretch at the back of your thigh and behind your knee\n\n• Lie on the floor with both legs bent.\n\n• Lift one leg off of the floor and bring the knee toward your chest. Clasp your hands behind your thigh below your knee.\n\n• Straighten your leg and then pull it gently toward your head, until you feel a stretch. (If you have difficulty clasping your hands behind your leg, loop a towel around your thigh. Grasp the ends of the towel and pull your leg toward you.)\n\n• Hold this position for 30 to 60 seconds.\n\n• Repeat with the opposite leg."],
+//
+//             [[Exercise_static alloc] initWithName:@"Half_Squats"
+//                                      image:[UIImage imageNamed:@"half_squats"]
+//                                      count:10
+//                                displayName:@"Half Squats"
+//                               timeRequired:5
+//                               instructions:@"Main muscles worked:\nQuadriceps, gluteus, hamstrings\n\nYou should feel this exercise at the front and back of your thighs, and your buttocks\n\n• Stand with your feet shoulder distance apart. Your hands can rest on the front of your thighs or reach in front of you. If needed, hold on to the back of a chair or wall for balance.\n\n• Keep your chest lifted and slowly lower your hips about 10 inches, as if you are sitting down into a chair.\n\n• Plant your weight in your heels and hold the squat for 5 seconds.\n\n• Push through your heels and bring your body back up to standing."],
+//
+//             [[Exercise_static alloc] initWithName:@"Hamstring_Curls"
+//                                      image:[UIImage imageNamed:@"hamstring_curls"]
+//                                      count:10
+//                                displayName:@"Hamstring Curls"
+//                               timeRequired:5
+//                               instructions:@"Main muscles worked:\nHamstrings\n\nYou should feel this exercise at the back of your thigh\n\n• Hold onto the back of a chair or a wall for balance.\n\n• Bend your affected knee and raise your heel toward the ceiling as far as possible without pain.\n\n• Hold this position for 5 seconds and then relax. Repeat."],
+//             ];
+//}
