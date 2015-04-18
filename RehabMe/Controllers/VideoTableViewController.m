@@ -48,11 +48,50 @@
     UIBarButtonItem *trashItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
                                                             target:self
                                                             action:@selector(didPressTrashButton:)];
+    
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    CGRect frame = CGRectMake(0, 0, bounds.size.width, bounds.size.height);
+    CGRect frame2 = CGRectMake(0, 0, bounds.size.width, 220);
+    UIView *overlayView = [[UIView alloc] initWithFrame:frame];
+    overlayView.backgroundColor = [UIColor whiteColor];
+    
+    // No videos found image
+    UIImageView *imageView = [[UIImageView alloc] init];
+    UIImage *logo = [UIImage imageNamed:@"rehabme.png"];
+    imageView.frame = frame2;
+    imageView.image = [logo imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    imageView.center = self.view.center;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.clipsToBounds = YES;
+    [imageView setTintColor:[UIColor colorWithHexString:REHABME_GREEN]];
+    
+    // No videos found text
+    UILabel *noVideosText = [[UILabel alloc] initWithFrame:frame2];
+    noVideosText.text = @"No Videos";
+    noVideosText.numberOfLines = 0;
+    noVideosText.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:35];
+    noVideosText.textAlignment = NSTextAlignmentCenter;
+    noVideosText.textColor = [UIColor colorWithHexString:REHABME_GREEN];
+    
     if ([videos count] == 0) {
         [self.navigationController.navigationBar.topItem setRightBarButtonItem:nil];
+        
+        [self.view addSubview:overlayView];
+        
+        [self.view addSubview:noVideosText];
+        
+        [self.view addSubview: imageView];
+        
+        [self.view bringSubviewToFront:imageView];
     }
     else {
         [self.navigationController.navigationBar.topItem setRightBarButtonItem:trashItem];
+        
+        [overlayView removeFromSuperview];
+        
+        [noVideosText removeFromSuperview];
+
+        [imageView removeFromSuperview];
     }
 }
 
