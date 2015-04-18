@@ -123,7 +123,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // Load the deck when the VC loads.
     /* wait a beat before animating in */
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self loadDeck];
+        [self getExercises];
         
     });
     
@@ -326,7 +326,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     self.frontCardView = nil;
     self.backCardView = nil;
     [self.exercises removeAllObjects];
-    [_exercises removeAllObjects];
 }
 
 
@@ -335,48 +334,40 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         self.exercises = [[NSMutableArray alloc] init];
     }
     
-    [self.exercises removeAllObjects];
     
     // Only use this code if you are already running it in a background
     // thread, or for testing purposes!
     PFQuery *query = [PFQuery queryWithClassName:@"Exercise"];
-    NSArray* queryArray = [query findObjects];
-    
-    // If no objects are loaded in memory, we look to the cache first to fill the table
-    // and then subsequently do a query against the network.
-    if ([self.exercises count] == 0) {
-        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    }
-    
-    [query orderByAscending:@"name"];
+    [query orderByAscending:@"Order"];
     
     
-    for (PFObject *object in queryArray) {
-        Exercise *exercise = [[Exercise alloc] init];
-        exercise.name = [object objectForKey:@"name"];
-        exercise.displayName = [object objectForKey:@"displayName"];
+    /* Attempt to connect to network, before loading from cache. */
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
 
-        exercise.imageFile = [object objectForKey:@"imageFile"];
-        exercise.timeRequired = [[object objectForKey:@"timeRequired"] intValue];
-        exercise.count = [[object objectForKey:@"count"] intValue];
-        exercise.instructions = [object objectForKey:@"instructions"];
-        
-        [self.exercises addObject:exercise];
-    }
     
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *queryArray, NSError *error) {
+        [self clearDeck];
+        
+        for (PFObject *object in queryArray) {
+            Exercise *exercise = [[Exercise alloc] init];
+            exercise.name = [object objectForKey:@"name"];
+            exercise.displayName = [object objectForKey:@"displayName"];
+            
+            exercise.imageFile = [object objectForKey:@"imageFile"];
+            exercise.timeRequired = [[object objectForKey:@"timeRequired"] intValue];
+            exercise.count = [[object objectForKey:@"count"] intValue];
+            exercise.instructions = [object objectForKey:@"instructions"];
+            
+            [self.exercises addObject:exercise];
+        }
+        
+        [self loadDeck];
+    }];
 }
 
 /* Load up the deck from the exercises array */
 - (void)loadDeck {
-    [self clearDeck];
-    
-    [self getExercises];
-    
-    // This view controller maintains a list of ChooseExerciseView
-    // instances to display.
-//    _exercises = [[self defaultPeople] mutableCopy];
-
-    
     // Display the first ChooseExerciseView in front. Users can swipe to indicate
     // whether they like or dislike the person displayed.
     self.frontCardView = [self popPersonViewWithFrame:[self frontCardViewFrame]];
@@ -387,20 +378,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // back views after each user swipe.
     self.backCardView = [self popPersonViewWithFrame:[self backCardViewFrame]];
     [self.view insertSubview:self.backCardView belowSubview:self.frontCardView];
-    
-    
-    
-    
-    
-    
-//    PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
-//    
-//    
-//    gameScore[@"score"] = 0;
-////    gameScore[@"playerName"] = @"Sean Plott";
-////    gameScore[@"cheatMode"] = @NO;
-//    [gameScore pinInBackground];
-    
     
 }
 
@@ -431,22 +408,12 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
           [self performSegueWithIdentifier: @"showCompletionViewController" sender: self];
          
          //    [self updateParseWithRatingDecision:self.rating];
-
-
-          /* wait a beat before animating in */
-          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-              [self loadDeck];
-              self.view.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.91];
-          });
          
      }];
 
     
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
-}
 
 
 #pragma mark - MDCSwipeToChooseDelegate Protocol Methods
