@@ -35,6 +35,8 @@
 
 - (void)reloadData {
     tableData = [self getMovFiles];
+    
+    [self checkIfWeHaveVideos:tableData];
 }
 
 
@@ -42,6 +44,17 @@
     [self showDeleteWarningAlert];
 }
 
+- (void) checkIfWeHaveVideos:(NSArray *)videos {
+    UIBarButtonItem *trashItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                                                            target:self
+                                                            action:@selector(didPressTrashButton:)];
+    if ([videos count] == 0) {
+        [self.navigationController.navigationBar.topItem setRightBarButtonItem:nil];
+    }
+    else {
+        [self.navigationController.navigationBar.topItem setRightBarButtonItem:trashItem];
+    }
+}
 
 - (NSArray *)getMovFiles {
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
