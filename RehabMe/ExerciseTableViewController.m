@@ -77,10 +77,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshTable" object:nil];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
+
 
 - (PFQuery *)queryForTable
 {
@@ -123,10 +120,15 @@
     UILabel *nameLabel = (UILabel*) [cell viewWithTag:101];
     nameLabel.text = [object objectForKey:@"name"];
     
-    UILabel *prepTimeLabel = (UILabel*) [cell viewWithTag:102];
-    NSUInteger timeRequired = [[object objectForKey:@"timeRequired"] intValue];
-    prepTimeLabel.text = [@(timeRequired) stringValue];
-        
+//    UILabel *prepTimeLabel = (UILabel*) [cell viewWithTag:102];
+//    NSUInteger timeRequired = [[object objectForKey:@"timeRequired"] intValue];
+//    prepTimeLabel.text = [@(timeRequired) stringValue];
+    
+    UISwitch *newsSwitch = (UISwitch *) [cell viewWithTag:102];
+    newsSwitch.tag = indexPath.row; // This only works if you can't insert or delete rows without a call to reloadData
+//    BOOL switchState = [switchConditions[indexPath.row] boolValue];
+//    newsSwitch.on = switchState; // this shouldn't be animated
+    
     return cell;
 }
 
@@ -141,6 +143,16 @@
         }
         [self refreshTable:nil];
     }];
+}
+
+- (IBAction)didSwitchExerciseDisplaySwitch:(UISwitch *)sender {
+    NSInteger  indexRow = sender.tag;
+    
+    PFObject *object = [self.objects objectAtIndex:indexRow];
+    NSLog(@"Switch for %@", [object objectForKey:@"name"]);
+
+    object[@"hidden"] = [NSNumber numberWithBool:sender.on];
+    [object saveInBackground];
 }
 
 - (void) objectsDidLoad:(NSError *)error

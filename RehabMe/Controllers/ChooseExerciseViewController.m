@@ -87,6 +87,14 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    // Create our Installation query
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+    
+    // Send push notification to query
+    [PFPush sendPushMessageToQueryInBackground:pushQuery
+                                   withMessage:@"Hello World!"];
+    
 }
 
 - (void)initializeRehabMe {
@@ -359,7 +367,11 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
             exercise.count = [[object objectForKey:@"count"] intValue];
             exercise.instructions = [object objectForKey:@"instructions"];
             
-            [self.exercises addObject:exercise];
+            exercise.hidden = [object objectForKey:@"hidden"];
+            
+            if (!exercise.hidden) {
+                [self.exercises addObject:exercise];
+            }
         }
         
         [self loadDeck];
@@ -585,8 +597,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 
 #pragma mark - Swipe Actions
-
-
 
 - (void)updateParseWithSwipeDecision:(NSString *)decision {
     self.exerciseObject = [PFObject objectWithClassName:@"ExerciseObject"];

@@ -467,12 +467,12 @@
         <scene sceneID="q9Q-RE-WLr">
             <objects>
                 <tableViewController storyboardIdentifier="exerciseTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Enn-K8-f4G" customClass="ExerciseTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="oKl-fl-VUh">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="oKl-fl-VUh">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ExerciseCell" id="knR-5W-rKR">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ExerciseCell" rowHeight="70" id="knR-5W-rKR">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="knR-5W-rKR" id="CcS-ff-vjg">
@@ -480,40 +480,34 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tt4-bw-UDf" customClass="PFImageView">
-                                            <rect key="frame" x="0.0" y="2" width="53" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="53" id="iS4-Js-Cjd"/>
+                                                <constraint firstAttribute="width" constant="70" id="Ag8-qD-iCF"/>
                                             </constraints>
                                         </imageView>
-                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcD-Jy-3Eg">
-                                            <rect key="frame" x="477" y="2" width="90" height="42"/>
-                                            <color key="backgroundColor" red="0.67823840729999996" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="90" id="Exm-UN-9HM"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNf-BE-L4M">
-                                            <rect key="frame" x="61" y="8" width="206" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="206" id="yBR-3h-9fL"/>
-                                            </constraints>
+                                            <rect key="frame" x="78" y="8" width="424" height="53"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <switch opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k6v-gf-ENc">
+                                            <rect key="frame" x="510" y="19" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="didSwitchExerciseDisplaySwitch:" destination="Enn-K8-f4G" eventType="valueChanged" id="GnR-NO-R29"/>
+                                            </connections>
+                                        </switch>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="tt4-bw-UDf" firstAttribute="top" secondItem="bcD-Jy-3Eg" secondAttribute="top" id="3wN-f0-ndi"/>
-                                        <constraint firstAttribute="trailing" secondItem="bcD-Jy-3Eg" secondAttribute="trailing" id="8I8-2P-EsA"/>
-                                        <constraint firstItem="kNf-BE-L4M" firstAttribute="top" secondItem="CcS-ff-vjg" secondAttribute="topMargin" id="8gl-QS-Ay1"/>
-                                        <constraint firstItem="bcD-Jy-3Eg" firstAttribute="centerY" secondItem="tt4-bw-UDf" secondAttribute="centerY" id="9eP-b2-VLM"/>
-                                        <constraint firstItem="tt4-bw-UDf" firstAttribute="leading" secondItem="CcS-ff-vjg" secondAttribute="leading" id="Nig-dm-c7s"/>
-                                        <constraint firstItem="tt4-bw-UDf" firstAttribute="top" secondItem="CcS-ff-vjg" secondAttribute="topMargin" constant="-6" id="hGF-Az-Kh3"/>
-                                        <constraint firstItem="kNf-BE-L4M" firstAttribute="leading" secondItem="tt4-bw-UDf" secondAttribute="trailing" constant="8" symbolic="YES" id="hGV-9g-l5s"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="bcD-Jy-3Eg" secondAttribute="bottom" constant="-9" id="uOX-pN-aAb"/>
+                                        <constraint firstItem="kNf-BE-L4M" firstAttribute="leading" secondItem="tt4-bw-UDf" secondAttribute="trailing" constant="8" symbolic="YES" id="40s-pL-cYa"/>
+                                        <constraint firstItem="k6v-gf-ENc" firstAttribute="trailing" secondItem="CcS-ff-vjg" secondAttribute="trailingMargin" id="ChP-q1-5Jc"/>
+                                        <constraint firstItem="k6v-gf-ENc" firstAttribute="leading" secondItem="kNf-BE-L4M" secondAttribute="trailing" constant="8" symbolic="YES" id="HC7-Tp-ckd"/>
+                                        <constraint firstItem="kNf-BE-L4M" firstAttribute="top" secondItem="CcS-ff-vjg" secondAttribute="topMargin" id="HtK-Zi-UXK"/>
+                                        <constraint firstItem="tt4-bw-UDf" firstAttribute="leading" secondItem="CcS-ff-vjg" secondAttribute="leading" id="RuL-bB-ouX"/>
+                                        <constraint firstItem="tt4-bw-UDf" firstAttribute="top" secondItem="CcS-ff-vjg" secondAttribute="top" id="Xpj-TJ-3tP"/>
+                                        <constraint firstItem="kNf-BE-L4M" firstAttribute="bottom" secondItem="CcS-ff-vjg" secondAttribute="bottomMargin" id="kQn-dK-zSB"/>
+                                        <constraint firstItem="k6v-gf-ENc" firstAttribute="centerY" secondItem="kNf-BE-L4M" secondAttribute="centerY" id="oG1-n0-JBX"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="tt4-bw-UDf" secondAttribute="bottom" constant="-9" id="yEe-xi-s8g"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -541,6 +535,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="oKl-fl-VUh" id="RYb-wp-E3b"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xtt-h9-0ey" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

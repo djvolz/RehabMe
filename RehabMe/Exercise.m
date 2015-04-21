@@ -16,7 +16,7 @@
 @synthesize count;
 @synthesize displayName;
 @synthesize timeRequired;
-@synthesize enabled;
+@synthesize hidden;
 
 
 @end
