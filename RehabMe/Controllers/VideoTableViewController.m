@@ -127,6 +127,10 @@
     
     cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
     
+    cell.imageView.image = [self loadVideoPreview:cell.textLabel.text];
+    
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
     return cell;
 }
 
@@ -242,7 +246,24 @@
     
 }
 
+- (UIImage*)loadVideoPreview:(NSString *)videoName {
 
+    // pick a video from the documents directory
+    NSURL *videoURL = [self grabFileURL:videoName];
+
+    // assets and generator
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+    AVAssetImageGenerator *generate = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    
+    // grab a thumbnail screenshot
+    CMTime time = CMTimeMake(1, 60);
+    CGImageRef imgRef = [generate copyCGImageAtTime:time actualTime:NULL error:nil];
+    
+    // construct the thumbnail image and rotate
+    UIImage *thumbnail = [[UIImage alloc] initWithCGImage:imgRef scale: 1.0 orientation: UIImageOrientationRight];
+
+    return thumbnail;
+}
 
 
 #pragma mark - Alert View
