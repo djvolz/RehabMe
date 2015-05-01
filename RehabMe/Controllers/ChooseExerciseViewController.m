@@ -336,6 +336,20 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self.exercises removeAllObjects];
 }
 
+- (Exercise *)getExerciseForObject:(PFObject *)object {
+    Exercise *exercise = [[Exercise alloc] init];
+    exercise.name = [object objectForKey:@"name"];
+    exercise.displayName = [object objectForKey:@"displayName"];
+    
+    exercise.imageFile = [object objectForKey:@"imageFile"];
+    exercise.timeRequired = [[object objectForKey:@"timeRequired"] intValue];
+    exercise.count = [[object objectForKey:@"count"] intValue];
+    exercise.instructions = [object objectForKey:@"instructions"];
+    
+    exercise.enabled = [[object objectForKey:@"enabled"] boolValue];
+    
+    return exercise;
+}
 
 - (void)getExercises {
     if (!self.exercises) {
@@ -358,18 +372,9 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
         [self clearDeck];
         
         for (PFObject *object in queryArray) {
-            Exercise *exercise = [[Exercise alloc] init];
-            exercise.name = [object objectForKey:@"name"];
-            exercise.displayName = [object objectForKey:@"displayName"];
+            Exercise *exercise = [self getExerciseForObject:object];
             
-            exercise.imageFile = [object objectForKey:@"imageFile"];
-            exercise.timeRequired = [[object objectForKey:@"timeRequired"] intValue];
-            exercise.count = [[object objectForKey:@"count"] intValue];
-            exercise.instructions = [object objectForKey:@"instructions"];
-            
-            exercise.hidden = [object objectForKey:@"hidden"];
-            
-            if (!exercise.hidden) {
+            if (exercise.enabled) {
                 [self.exercises addObject:exercise];
             }
         }

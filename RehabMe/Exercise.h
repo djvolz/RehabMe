@@ -19,6 +19,6 @@
 @property (nonatomic, assign) NSUInteger count;
 @property (nonatomic, assign) NSUInteger timeRequired;
 @property (nonatomic, copy)   NSString *displayName;
-@property (nonatomic)         BOOL hidden;
+@property (nonatomic)         BOOL enabled;
 
 @end
