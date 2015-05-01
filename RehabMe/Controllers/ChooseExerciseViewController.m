@@ -92,8 +92,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
     
     // Send push notification to query
-    [PFPush sendPushMessageToQueryInBackground:pushQuery
-                                   withMessage:@"Hello World!"];
+//    [PFPush sendPushMessageToQueryInBackground:pushQuery
+//                                   withMessage:@"Hello World!"];
     
 }
 

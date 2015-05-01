@@ -114,6 +114,9 @@
 
 - (void)hydrateDatasets {
     PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
+    
+    /* Attempt to connect to network, before loading from cache. */
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
 //    [query orderByDescending:@"createdAt"];
 //    query.limit = 9;
     NSArray* scoreArray = [query findObjects];
