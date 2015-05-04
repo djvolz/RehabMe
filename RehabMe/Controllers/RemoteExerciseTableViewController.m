@@ -1,19 +1,19 @@
 //
-//  ExerciseTableViewController.m
+//  RemoteExerciseTableViewController
 //  RehabMe
 //
-//  Created by Dan Volz on 4/9/15 (at the Istanbul airport).
+//  Created by Dan Volz on 5/2/15.
 //  Copyright (c) 2015 Dan Volz. All rights reserved.
 //
 
-#import "ExerciseTableViewController.h"
+#import "RemoteExerciseTableViewController.h"
 
 
-@interface ExerciseTableViewController ()
+@interface RemoteExerciseTableViewController ()
 
 @end
 
-@implementation ExerciseTableViewController {
+@implementation RemoteExerciseTableViewController {
     
 }
 
@@ -24,7 +24,8 @@
         // Customize the table
         
         // The className to query on
-        self.parseClassName = @"Exercise";
+        self.parseClassName = @"DefaultExercises";
+        
         
         // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"name";
@@ -123,48 +124,88 @@
     nameLabel.text = [object objectForKey:@"name"];
 
     // Create the enable/disable switch
-    UISwitch *newsSwitch = (UISwitch *) [cell viewWithTag:102];
-    newsSwitch.tag = indexPath.row; // This only works if you can't insert or delete rows without a call to reloadData
-    NSNumber *switchStateNumber = [object objectForKey:@"enabled"];
-    BOOL switchState = [switchStateNumber boolValue];
-    newsSwitch.on = switchState; // this shouldn't be animated
+    UIButton *downloadButton = (UIButton *) [cell viewWithTag:102];
+    downloadButton.tag = indexPath.row; // This only works if you can't insert or delete rows without a call to reloadData
+
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Remove the row from data model
-    PFObject *object = [self.objects objectAtIndex:indexPath.row];
-    [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", [error userInfo][@"error"]);
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Only exercises you've created may be deleted.", nil) message:NSLocalizedString(@"", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+/* Users don't have the ability to delete template exercises. */
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // Remove the row from data model
+//    PFObject *object = [self.objects objectAtIndex:indexPath.row];
+//    [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (error) {
+//            NSLog(@"Error: %@", [error userInfo][@"error"]);
+//            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Only exercises you've created may be deleted.", nil) message:NSLocalizedString(@"", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+//        }
+//        [self refreshTable:nil];
+//    }];
+//}
+
+
+- (IBAction)didTouchDownloadButton:(UIButton *)sender {
+    NSInteger  indexRow = sender.tag;
+
+    PFObject *object = [self.objects objectAtIndex:indexRow];
+    NSLog(@"Button for %@", [object objectForKey:@"name"]);
+
+
+    object[@"enabled"] = [NSNumber numberWithBool:@(YES)];
+    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        NSInteger errCode = [error code];
+        if (kPFErrorObjectNotFound == errCode) {
+            [self createReferenceObjectForObject:object];
         }
-        [self refreshTable:nil];
     }];
 }
 
-- (IBAction)didSwitchExerciseDisplaySwitch:(UISwitch *)sender {
-    NSInteger  indexRow = sender.tag;
+
+- (PFObject *)copyShallowToCloneFromObject:(PFObject *)object {
+    PFObject *referenceObject = [PFObject objectWithClassName:@"Exercise"];
+
+    NSArray *keys = [object allKeys];
+    for (NSString *key in keys) {
+        [referenceObject setObject:[object objectForKey:key] forKey:key];
+    }
     
-    PFObject *object = [self.objects objectAtIndex:indexRow];
-    NSLog(@"Switch for %@", [object objectForKey:@"name"]);
+    [referenceObject setACL:[PFACL ACLWithUser:[PFUser currentUser]]];
     
+    return referenceObject;
+}
 
-//    NSLog(@"username: %@",[object objectForKey:@"createdBy"]); // not null
+- (void)createReferenceObjectForObject:(PFObject *)object {
+    PFQuery *query = [PFQuery queryWithClassName:@"Exercise"];
+    [query whereKey:@"createdBy" equalTo:[PFUser currentUser]];
+    [query whereKey:@"referencingObject" equalTo:object.objectId];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu objects.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                NSLog(@"%@", object.objectId);
+            }
+            
+            if(objects.count == 0) {
+                PFObject *referenceObject = [self copyShallowToCloneFromObject:object];
 
-
-    object[@"enabled"] = [NSNumber numberWithBool:sender.on];
-    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSInteger errCode = [error code];
-        if (errCode) {
-            /* TODO: Maybe pop up a user alertview? */
+                [referenceObject setObject:object.objectId forKey:@"referencingObject"];
+                [referenceObject setObject:[PFUser currentUser] forKey:@"createdBy"];
+                
+                [referenceObject saveInBackground];
+            }
+        } else {
+            // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-}
 
+    
+}
 
 - (void) objectsDidLoad:(NSError *)error
 {

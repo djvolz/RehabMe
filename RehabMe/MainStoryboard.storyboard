@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Shm-v2-Zgf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Shm-v2-Zgf">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
@@ -22,6 +22,7 @@
                         <segue destination="xtG-c4-360" kind="show" identifier="showCompletionViewController" id="1EU-pa-P6c"/>
                         <segue destination="mBU-Kg-hXL" kind="show" identifier="showParallaxViewController" id="rwU-Ld-jra"/>
                         <segue destination="Enn-K8-f4G" kind="show" identifier="showExerciseViewController" id="9Uj-Ya-OA9"/>
+                        <segue destination="V5Q-1r-qub" kind="show" id="4Tn-6U-gVe"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xh4-9J-89Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -771,6 +772,89 @@
             </objects>
             <point key="canvasLocation" x="1007" y="-1782"/>
         </scene>
+        <!--Download Exercises-->
+        <scene sceneID="mQC-GL-zEa">
+            <objects>
+                <tableViewController storyboardIdentifier="remoteExerciseTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="V5Q-1r-qub" customClass="RemoteExerciseTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="4ai-d2-yM1">
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ExerciseCell" rowHeight="70" id="23p-VW-oqt">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="23p-VW-oqt" id="rUO-fm-81q">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tN-4d-BCn" customClass="PFImageView">
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="70" id="Joj-OF-n6f"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFO-43-k0P">
+                                            <rect key="frame" x="78" y="8" width="402" height="53"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xki-95-sM4">
+                                            <rect key="frame" x="488" y="20" width="71" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="71" id="DcL-kL-0Yq"/>
+                                            </constraints>
+                                            <state key="normal" title="Download">
+                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="didTouchDownloadButton:" destination="V5Q-1r-qub" eventType="touchUpInside" id="uNq-QH-Mu4"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="7tN-4d-BCn" firstAttribute="leading" secondItem="rUO-fm-81q" secondAttribute="leading" id="314-6T-InY"/>
+                                        <constraint firstItem="Xki-95-sM4" firstAttribute="leading" secondItem="GFO-43-k0P" secondAttribute="trailing" constant="8" id="H7x-ZL-uat"/>
+                                        <constraint firstItem="GFO-43-k0P" firstAttribute="top" secondItem="rUO-fm-81q" secondAttribute="topMargin" id="Hz3-nF-G1z"/>
+                                        <constraint firstItem="Xki-95-sM4" firstAttribute="trailing" secondItem="rUO-fm-81q" secondAttribute="trailingMargin" id="O9b-gI-QbY"/>
+                                        <constraint firstItem="7tN-4d-BCn" firstAttribute="top" secondItem="rUO-fm-81q" secondAttribute="top" id="Vwd-AW-yjP"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="7tN-4d-BCn" secondAttribute="bottom" constant="-9" id="bo7-9q-ceZ"/>
+                                        <constraint firstItem="Xki-95-sM4" firstAttribute="centerY" secondItem="7tN-4d-BCn" secondAttribute="centerY" id="k8q-r4-NjR"/>
+                                        <constraint firstItem="GFO-43-k0P" firstAttribute="leading" secondItem="7tN-4d-BCn" secondAttribute="trailing" constant="8" symbolic="YES" id="lK9-2y-vfh"/>
+                                        <constraint firstItem="GFO-43-k0P" firstAttribute="bottom" secondItem="rUO-fm-81q" secondAttribute="bottomMargin" id="oZG-RS-YT4"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="XU1-Pu-XFS" kind="show" identifier="showExerciseDetail" id="CJK-Nm-VAb"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="V5Q-1r-qub" id="aK1-9N-fw6"/>
+                            <outlet property="delegate" destination="V5Q-1r-qub" id="R6r-P7-gjl"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Download Exercises" id="7c3-xC-hfR">
+                        <barButtonItem key="leftBarButtonItem" image="menuButton" id="cup-RE-i0c">
+                            <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <action selector="presentLeftMenuViewController:" destination="V5Q-1r-qub" id="Z4Y-38-QP4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="C5H-xH-Sp6"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="4ai-d2-yM1" id="tcG-sb-Eqq"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DMi-Gg-ort" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="219" y="-2178"/>
+        </scene>
     </scenes>
     <resources>
         <image name="liked" width="50" height="50"/>
@@ -779,7 +863,8 @@
         <image name="placeholder.png" width="280" height="280"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="smV-eo-MuZ"/>
+        <segue reference="1EU-pa-P6c"/>
+        <segue reference="CJK-Nm-VAb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

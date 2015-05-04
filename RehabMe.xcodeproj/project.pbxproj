@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -111,6 +111,7 @@
 		30D935411AB0D7700024B03E /* bg3@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30D9353C1AB0D7700024B03E /* bg3@2x.jpg */; };
 		30D935421AB0D7700024B03E /* bg4@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30D9353D1AB0D7700024B03E /* bg4@2x.jpg */; };
 		30D935431AB0D7700024B03E /* bg5@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30D9353E1AB0D7700024B03E /* bg5@2x.jpg */; };
+		30DB40D51AF5A748003FD790 /* RemoteExerciseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB40D41AF5A748003FD790 /* RemoteExerciseTableViewController.m */; };
 		30DF3FEC1AE19E6500950785 /* AvatarPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F9C1AE19E6500950785 /* AvatarPlaceholder.png */; };
 		30DF3FED1AE19E6500950785 /* AvatarPlaceholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F9D1AE19E6500950785 /* AvatarPlaceholder@2x.png */; };
 		30DF3FEE1AE19E6500950785 /* AvatarPlaceholderBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F9E1AE19E6500950785 /* AvatarPlaceholderBig.png */; };
@@ -348,6 +349,8 @@
 		30D9353C1AB0D7700024B03E /* bg3@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg3@2x.jpg"; sourceTree = "<group>"; };
 		30D9353D1AB0D7700024B03E /* bg4@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg4@2x.jpg"; sourceTree = "<group>"; };
 		30D9353E1AB0D7700024B03E /* bg5@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg5@2x.jpg"; sourceTree = "<group>"; };
+		30DB40D41AF5A748003FD790 /* RemoteExerciseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RemoteExerciseTableViewController.m; path = Controllers/RemoteExerciseTableViewController.m; sourceTree = "<group>"; };
+		30DB40D61AF5A755003FD790 /* RemoteExerciseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteExerciseTableViewController.h; sourceTree = "<group>"; };
 		30DF3F9C1AE19E6500950785 /* AvatarPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AvatarPlaceholder.png; sourceTree = "<group>"; };
 		30DF3F9D1AE19E6500950785 /* AvatarPlaceholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AvatarPlaceholder@2x.png"; sourceTree = "<group>"; };
 		30DF3F9E1AE19E6500950785 /* AvatarPlaceholderBig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AvatarPlaceholderBig.png; sourceTree = "<group>"; };
@@ -809,6 +812,8 @@
 		30ABA7F41AD65364002E0ED1 /* Exercise Management */ = {
 			isa = PBXGroup;
 			children = (
+				30DB40D61AF5A755003FD790 /* RemoteExerciseTableViewController.h */,
+				30DB40D41AF5A748003FD790 /* RemoteExerciseTableViewController.m */,
 				30ABA7F81AD65387002E0ED1 /* ExerciseTableViewController.h */,
 				30ABA7F91AD65387002E0ED1 /* ExerciseTableViewController.m */,
 				30ABA7FE1AD654F1002E0ED1 /* ExerciseDetailViewController.h */,
@@ -1077,7 +1082,7 @@
 				};
 			};
 			buildConfigurationList = DA5B73E018F233EF00BB5F8E /* Build configuration list for PBXProject "RehabMe" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1208,6 +1213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30DB40D51AF5A748003FD790 /* RemoteExerciseTableViewController.m in Sources */,
 				303C06361A9FDFDE001D9B78 /* MDCPanState.m in Sources */,
 				30ABA8031AD65537002E0ED1 /* NewExerciseViewController.m in Sources */,
 				30ABA7FA1AD65387002E0ED1 /* ExerciseTableViewController.m in Sources */,
