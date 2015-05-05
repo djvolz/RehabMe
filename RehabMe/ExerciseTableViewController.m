@@ -12,7 +12,7 @@
 @interface ExerciseTableViewController ()
 
 /* Local datasource to keep track of object ordering.
- * Trying to update server rapidly leads to deterministic
+ * Trying to update server rapidly leads to non-deterministic
  * results. Performs much better simply updating all of the orders
  * at once, after the re-order has completed.
  */

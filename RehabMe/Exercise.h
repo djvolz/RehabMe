@@ -13,6 +13,7 @@
 
 @interface Exercise : NSObject
 
+@property (nonatomic, strong) NSString *objectId; // objectId
 @property (nonatomic, strong) NSString *name; // name of exercise
 @property (nonatomic, strong) PFFile *imageFile; // image of exercise
 @property (nonatomic, strong) NSArray *instructions; // ingredients

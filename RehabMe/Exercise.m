@@ -10,6 +10,7 @@
 
 @implementation Exercise
 
+@synthesize objectId;
 @synthesize name;
 @synthesize imageFile;
 @synthesize instructions;
