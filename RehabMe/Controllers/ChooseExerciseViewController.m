@@ -360,7 +360,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     // Only use this code if you are already running it in a background
     // thread, or for testing purposes!
     PFQuery *query = [PFQuery queryWithClassName:@"Exercise"];
-    [query orderByAscending:@"Order"];
+    [query orderByAscending:@"order"];
     
     
     /* Attempt to connect to network, before loading from cache. */

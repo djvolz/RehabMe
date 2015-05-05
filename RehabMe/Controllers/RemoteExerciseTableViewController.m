@@ -125,7 +125,8 @@
 
     // Create the enable/disable switch
     UIButton *downloadButton = (UIButton *) [cell viewWithTag:102];
-    downloadButton.tag = indexPath.row; // This only works if you can't insert or delete rows without a call to reloadData
+//    downloadButton.tag = indexPath.row; // This only works if you can't insert or delete rows without a call to reloadData
+    [downloadButton addTarget:self action:@selector(checkButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
     
     return cell;
@@ -146,20 +147,28 @@
 //}
 
 
-- (IBAction)didTouchDownloadButton:(UIButton *)sender {
-    NSInteger  indexRow = sender.tag;
 
-    PFObject *object = [self.objects objectAtIndex:indexRow];
-    NSLog(@"Button for %@", [object objectForKey:@"name"]);
+- (void)checkButtonTapped:(id)sender
+{
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
 
+    if (indexPath != nil)
+    {
+        NSInteger  indexRow = indexPath.row;
 
-    object[@"enabled"] = [NSNumber numberWithBool:@(YES)];
-    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSInteger errCode = [error code];
-        if (kPFErrorObjectNotFound == errCode) {
-            [self createReferenceObjectForObject:object];
-        }
-    }];
+        PFObject *object = [self.objects objectAtIndex:indexRow];
+        NSLog(@"Button for %@", [object objectForKey:@"name"]);
+        
+        
+        object[@"enabled"] = [NSNumber numberWithBool:@(YES)];
+        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            NSInteger errCode = [error code];
+            if (kPFErrorObjectNotFound == errCode) {
+                [self createReferenceObjectForObject:object];
+            }
+        }];
+    }
 }
 
 

@@ -11,6 +11,15 @@
 
 @interface ExerciseTableViewController ()
 
+/* Local datasource to keep track of object ordering.
+ * Trying to update server rapidly leads to deterministic
+ * results. Performs much better simply updating all of the orders
+ * at once, after the re-order has completed.
+ */
+@property (strong, nonatomic) NSMutableArray *objectsOrder;
+
+@property (strong, nonatomic) UILongPressGestureRecognizer *longPress;
+
 @end
 
 @implementation ExerciseTableViewController {
@@ -61,6 +70,11 @@
                                              selector:@selector(refreshTable:)
                                                  name:@"refreshTable"
                                                object:nil];
+    
+    /* Add a longpress gesture for re-ordering the table. */
+    self.longPress = [[UILongPressGestureRecognizer alloc]
+                                               initWithTarget:self action:@selector(longPressGestureRecognized:)];
+    [self.tableView addGestureRecognizer:self.longPress];
 }
 
 - (void)refreshTable:(NSNotification *) notification
@@ -86,10 +100,10 @@
     // If no objects are loaded in memory, we look to the cache first to fill the table
     // and then subsequently do a query against the network.
     if ([self.objects count] == 0) {
-        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+        query.cachePolicy = kPFCachePolicyNetworkElseCache;
     }
     
-    [query orderByAscending:@"name"];
+    [query orderByAscending:@"order"];
     
     return query;
 }
@@ -121,10 +135,11 @@
     //TODO: make sure it fits if device screen isn't wide enough
     UILabel *nameLabel = (UILabel*) [cell viewWithTag:101];
     nameLabel.text = [object objectForKey:@"name"];
+//    nameLabel.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"order"]];
 
     // Create the enable/disable switch
     UISwitch *newsSwitch = (UISwitch *) [cell viewWithTag:102];
-    newsSwitch.tag = indexPath.row; // This only works if you can't insert or delete rows without a call to reloadData
+    [newsSwitch addTarget:self action:@selector(checkSwitchChanged:) forControlEvents:UIControlEventValueChanged];
     NSNumber *switchStateNumber = [object objectForKey:@"enabled"];
     BOOL switchState = [switchStateNumber boolValue];
     newsSwitch.on = switchState; // this shouldn't be animated
@@ -145,33 +160,206 @@
     }];
 }
 
-- (IBAction)didSwitchExerciseDisplaySwitch:(UISwitch *)sender {
-    NSInteger  indexRow = sender.tag;
-    
-    PFObject *object = [self.objects objectAtIndex:indexRow];
-    NSLog(@"Switch for %@", [object objectForKey:@"name"]);
-    
-
-//    NSLog(@"username: %@",[object objectForKey:@"createdBy"]); // not null
-
-
-    object[@"enabled"] = [NSNumber numberWithBool:sender.on];
-    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSInteger errCode = [error code];
-        if (errCode) {
-            /* TODO: Maybe pop up a user alertview? */
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-}
-
-
 - (void) objectsDidLoad:(NSError *)error
 {
     [super objectsDidLoad:error];
     
+    /* Update the local objects order with the new objects. */
+    self.objectsOrder = [(NSArray*)self.objects mutableCopy];
+    
     NSLog(@"error: %@", [error localizedDescription]);
 }
+
+
+#pragma mark - IBActions
+
+- (void)checkSwitchChanged:(UISwitch *)sender {
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    
+    if (indexPath != nil)
+    {
+        NSInteger  indexRow = indexPath.row;
+    
+        PFObject *object = [self.objects objectAtIndex:indexRow];
+        NSLog(@"Switch for %@", [object objectForKey:@"name"]);
+        
+        
+        object[@"enabled"] = [NSNumber numberWithBool:sender.on];
+        
+        /* TODO: Maybe pop up a user alertview if something goes wrong like no network? */
+        [object save];
+        //    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        //        NSInteger errCode = [error code];
+        //        if (errCode) {
+        //            /* TODO: Maybe pop up a user alertview? */
+        //            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        //        }
+        //    }];
+    }
+}
+
+
+
+
+- (IBAction)longPressGestureRecognized:(id)sender {
+    
+    UILongPressGestureRecognizer *longPress = (UILongPressGestureRecognizer *)sender;
+    UIGestureRecognizerState state = longPress.state;
+    
+    CGPoint location = [longPress locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
+    
+    static UIView       *snapshot = nil;        ///< A snapshot of the row user is moving.
+    static NSIndexPath  *sourceIndexPath = nil; ///< Initial index path, where gesture begins.
+    
+    switch (state) {
+        case UIGestureRecognizerStateBegan: {
+            if (indexPath) {
+                sourceIndexPath = indexPath;
+                
+                UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+                
+                // Take a snapshot of the selected row using helper method.
+                snapshot = [self customSnapshoFromView:cell];
+                
+                // Add the snapshot as subview, centered at cell's center...
+                __block CGPoint center = cell.center;
+                snapshot.center = center;
+                snapshot.alpha = 0.0;
+                [self.tableView addSubview:snapshot];
+                [UIView animateWithDuration:0.25 animations:^{
+                    
+                    // Offset for gesture location.
+                    center.y = location.y;
+                    snapshot.center = center;
+                    snapshot.transform = CGAffineTransformMakeScale(1.05, 1.05);
+                    snapshot.alpha = 0.98;
+                    cell.alpha = 0.0;
+                    
+                } completion:^(BOOL finished) {
+                    
+                    cell.hidden = YES;
+                    
+                }];
+            }
+            break;
+        }
+            
+        case UIGestureRecognizerStateChanged: {
+            CGPoint center = snapshot.center;
+            center.y = location.y;
+            snapshot.center = center;
+            
+            // Is destination valid and is it different from source?
+            if (indexPath && ![indexPath isEqual:sourceIndexPath]) {
+                
+                // ... update local data source.
+                [self.objectsOrder exchangeObjectAtIndex:indexPath.row withObjectAtIndex:sourceIndexPath.row];
+
+                // ... move the rows.
+                [self.tableView moveRowAtIndexPath:sourceIndexPath toIndexPath:indexPath];
+                
+                // ... and update source so it is in sync with UI changes.
+                sourceIndexPath = indexPath;
+            }
+            break;
+        }
+            
+        default: {
+            // Clean up.
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:sourceIndexPath];
+            cell.hidden = NO;
+            cell.alpha = 0.0;
+            
+            [UIView animateWithDuration:0.25 animations:^{
+                
+                snapshot.center = cell.center;
+                snapshot.transform = CGAffineTransformIdentity;
+                snapshot.alpha = 0.0;
+                cell.alpha = 1.0;
+                
+            } completion:^(BOOL finished) {
+                
+                sourceIndexPath = nil;
+                [snapshot removeFromSuperview];
+                snapshot = nil;
+                
+            }];
+            
+            /* Update the remote data source. */
+            [self updateServerWithNewDataOrder];
+            
+            break;
+        }
+    }
+}
+
+#pragma mark - Helper methods
+
+- (void)updateServerWithNewDataOrder {
+
+    /* I know this next section gets a little nested, but it offers the smoothest
+     * UI while also ensuring a non-deterministic outcome.
+     * If network connection is lost post-move there will be an error with
+     * ordering where indexpaths won't be updated.
+     *
+     * You could say I like to live life on the edge, I guess.
+     */
+    
+    /* Disable the gesture while the server is updating. */
+    self.longPress.enabled = NO;
+
+
+    for (NSUInteger i = 0; i < [self.objectsOrder count]; i++) {
+        PFObject *object = [self.objectsOrder objectAtIndex:i];
+        object[@"order"] = @(i);
+        [object saveEventually:^(BOOL succeeded, NSError *error) {
+            NSInteger errCode = [error code];
+            if (errCode) {
+                /* TODO: Maybe pop up a user alertview? */
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+               
+                /* Server update failed :(, give back the gesture. */
+                self.longPress.enabled = YES;
+                
+            /* Only refresh the table after the very last object has been updated. */
+            } else if (i == [self.objectsOrder count] -1){
+                /* Update the PFQueryTableView so the view will be correct when scrolling around. */
+                [self refreshTable:nil];
+                
+                /* Server update succeeded, give back the gesture! */
+                self.longPress.enabled = YES;
+            }
+        }];
+    }
+}
+
+/** @brief Returns a customized snapshot of a given view. */
+- (UIView *)customSnapshoFromView:(UIView *)inputView {
+    
+    // Make an image from the input view.
+    UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, NO, 0);
+    [inputView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    // Create an image view.
+    UIView *snapshot = [[UIImageView alloc] initWithImage:image];
+    snapshot.layer.masksToBounds = NO;
+    snapshot.layer.cornerRadius = 0.0;
+    snapshot.layer.shadowOffset = CGSizeMake(-5.0, 0.0);
+    snapshot.layer.shadowRadius = 5.0;
+    snapshot.layer.shadowOpacity = 0.4;
+    
+    return snapshot;
+}
+
+
+
+
+#pragma mark - Segue
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showExerciseDetail"]) {
