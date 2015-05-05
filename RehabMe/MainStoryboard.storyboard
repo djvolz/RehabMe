@@ -337,7 +337,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView userInteractionEnabled="NO" alpha="0.89999999999999991" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeaderImage" translatesAutoresizingMaskIntoConstraints="NO" id="6Lf-dH-BaW">
+                            <imageView userInteractionEnabled="NO" alpha="0.89999999999999991" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeaderImage" translatesAutoresizingMaskIntoConstraints="NO" id="6Lf-dH-BaW" customClass="PFImageView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="152"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kR4-6e-6D0">
@@ -385,6 +385,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="graphView" destination="lVv-5q-a1r" id="iC9-YD-rFi"/>
+                        <outlet property="inspirationalImage" destination="6Lf-dH-BaW" id="TQW-Ym-3D4"/>
+                        <outlet property="inspirationalText" destination="kR4-6e-6D0" id="isG-ZA-Ky7"/>
                         <outlet property="labelDates" destination="NqO-N9-idl" id="Hha-ns-v8y"/>
                         <outlet property="labelValues" destination="lDX-OV-HQ6" id="pZH-mC-hbi"/>
                         <outlet property="view" destination="tVB-I1-bvL" id="4NT-ku-om6"/>

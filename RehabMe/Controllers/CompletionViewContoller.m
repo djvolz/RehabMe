@@ -13,6 +13,9 @@
     int totalNumber;
 }
 
+@property (strong, nonatomic) IBOutlet PFImageView *inspirationalImage;
+@property (strong, nonatomic) IBOutlet UILabel *inspirationalText;
+
 @property (strong, nonatomic) NSMutableArray *arrayOfValues;
 @property (strong, nonatomic) NSMutableArray *arrayOfDates;
 
@@ -39,6 +42,26 @@
                                                NSFontAttributeName,
                                                nil];
     [self.navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
+    
+    /* Inspirational quote can be changed remotely. */
+    [PFConfig getConfigInBackgroundWithBlock:^(PFConfig *config, NSError *error) {
+        NSString *inspirationalString = config[@"quote"];
+        PFFile *image = config[@"progressViewHeaderImage"];
+        if (!inspirationalString) {
+            // No config for distance options - fallback to the default ones
+        } else {
+            self.inspirationalText.text = inspirationalString;
+        }
+        
+        if(!image) {
+            // No config for distance options - fallback to the default ones
+        } else {
+            self.inspirationalImage.file = image;
+            [self.inspirationalImage loadInBackground];
+            // Make sure we don't stretch out the image and so it scales correctly.
+            self.inspirationalImage.contentMode = UIViewContentModeScaleAspectFill;
+        }
+    }];
     
 }
 
