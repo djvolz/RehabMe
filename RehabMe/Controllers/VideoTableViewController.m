@@ -125,6 +125,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
+    
     cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
     
     cell.imageView.image = [self loadVideoPreview:cell.textLabel.text];
@@ -133,6 +134,13 @@
     
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //Default is 44. I want it to be about twice that height for each cell.
+    return 90;
+}
+
 
 // Override to support conditional editing of the table view.
 // This only needs to be implemented if you are going to be returning NO

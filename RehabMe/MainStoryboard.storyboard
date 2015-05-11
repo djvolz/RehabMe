@@ -164,7 +164,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="31q-bF-G3J"/>
-                                    <barButtonItem systemItem="camera" id="U5v-FJ-P3Y">
+                                    <barButtonItem image="video_camera" id="U5v-FJ-P3Y">
                                         <connections>
                                             <action selector="playbackButton:" destination="xn8-A9-PTp" id="tgd-a0-XZZ"/>
                                         </connections>
@@ -210,8 +210,27 @@
                     <view key="view" contentMode="scaleToFill" id="GZn-SD-WXH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7M-Tn-yAg">
+                                <rect key="frame" x="266" y="263" width="69" height="73"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="69" id="Rzd-s6-HAN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="44"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="F7M-Tn-yAg" firstAttribute="centerX" secondItem="GZn-SD-WXH" secondAttribute="centerX" id="6sz-qQ-hBa"/>
+                            <constraint firstItem="KkQ-uf-LwP" firstAttribute="top" secondItem="F7M-Tn-yAg" secondAttribute="bottom" constant="264" id="RNY-l4-xHJ"/>
+                            <constraint firstItem="F7M-Tn-yAg" firstAttribute="top" secondItem="Sxu-9G-6OD" secondAttribute="bottom" constant="243" id="ryG-hY-6cX"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="timerLabel" destination="F7M-Tn-yAg" id="DXH-PO-DxC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k4g-W2-G34" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -867,6 +886,7 @@
         <image name="menuButton" width="46" height="29"/>
         <image name="nope" width="50" height="50"/>
         <image name="placeholder.png" width="280" height="280"/>
+        <image name="video_camera" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1EU-pa-P6c"/>

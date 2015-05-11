@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CircularProgressTimerView.h"
+#import "CircularTimer.h"
 #import "UIColor+HexString.h"
+
+#define kRadius 150
+#define kInternalRadius 75
+
 
 @interface TimerViewController : UIViewController <UIAlertViewDelegate, UINavigationControllerDelegate>
 
 
-@property (nonatomic, strong) CircularProgressTimerView *circleProgressTimerView;
+@property (nonatomic, strong) CircularTimer *circularTimer;
+
 @property (nonatomic, assign) NSUInteger timeRequired;
 
 

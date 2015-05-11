@@ -8,7 +8,13 @@
 
 #import "TimerViewController.h"
 
-@interface TimerViewController()
+@interface TimerViewController() {
+    NSTimer *timer;
+    NSInteger secondsLeft;
+}
+@property (strong, nonatomic) IBOutlet UILabel *timerLabel;
+
+
 
 @end
 
@@ -29,22 +35,36 @@
 
 - (void)setupCircularProgressTimerView:(NSInteger)seconds withColor:(UIColor *)color{
     
-    CircularProgressTimerView *circleProgressTimerView = [[CircularProgressTimerView alloc] init];
+    secondsLeft = seconds;
+    [self.timerLabel setText:[NSString stringWithFormat:@"%ld",(long)secondsLeft]];
+
     
-    self.circleProgressTimerView = circleProgressTimerView;
+    // Set the circleTimer with the intial time in seconds.
+    NSDate *initialDate = [NSDate date];
+    NSDate *finalDate   = [initialDate dateByAddingTimeInterval:seconds];
+    
+    self.circularTimer =
+    [[CircularTimer alloc] initWithPosition:CGPointMake(0.0f, 0.0f)
+                                     radius:kRadius
+                             internalRadius:kInternalRadius
+                          circleStrokeColor:[UIColor lightGrayColor]
+                    activeCircleStrokeColor:color
+                                initialDate:initialDate
+                                  finalDate:finalDate
+                              startCallback:^{
+                                  [self startPressed];
+                              }
+                                endCallback:^{
+                                    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                                }];
     
     [self setupTapGestureRecognizer];
     
+    // Center the timer
+    self.circularTimer.center = CGPointMake(self.view.frame.size.width  / 2,
+                                     self.view.frame.size.height / 2);
     
-    [self.view addSubview:circleProgressTimerView];
-    
-    // Set the circleProgressTimerView with the intial time in seconds.
-    [self.circleProgressTimerView setTimer:seconds];
-    
-    [self.circleProgressTimerView setCircleColor:color];
-    
-    [self.circleProgressTimerView startTimer];
-    
+    [self.view addSubview:self.circularTimer];
 }
 
 - (void)setupTapGestureRecognizer{
@@ -59,9 +79,36 @@
 - (void)didReceiveTapGestureRecognizer:(UITapGestureRecognizer*)sender {
     NSLog(@"Tap");
     
-    [self.circleProgressTimerView removeCircleProgressTimerView];
+    [self.circularTimer stop];
+    
+    [timer invalidate];
     
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - Timer Label
+-(void)startPressed{
+    if (timer == nil) {
+        timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                     target:self
+                                                   selector:@selector(updateTimer)
+                                                   userInfo:nil
+                                                    repeats:YES];
+    }
+}
+-(void)stopPressed{
+    [timer invalidate];
+    timer = nil;
+}
+-(void)updateTimer{
+    if(secondsLeft > -1) {
+        secondsLeft -= 1;
+        [self.timerLabel setText:[NSString stringWithFormat:@"%ld",(long)secondsLeft]];
+    }
+    else
+        [timer invalidate];
+    
+}
+
 
 @end
