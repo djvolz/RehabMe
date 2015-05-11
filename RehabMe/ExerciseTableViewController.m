@@ -77,6 +77,7 @@
     [self.tableView addGestureRecognizer:self.longPress];
 }
 
+
 - (void)refreshTable:(NSNotification *) notification
 {
     // Reload the exercises
@@ -154,7 +155,7 @@
     [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", [error userInfo][@"error"]);
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Only exercises you've created may be deleted.", nil) message:NSLocalizedString(@"", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to delete exercise.", nil) message:NSLocalizedString(@"", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
         }
         [self refreshTable:nil];
     }];
@@ -163,6 +164,8 @@
 - (void) objectsDidLoad:(NSError *)error
 {
     [super objectsDidLoad:error];
+    
+    [self checkIfWeHaveExercises:self.objects];
     
     /* Update the local objects order with the new objects. */
     self.objectsOrder = [(NSArray*)self.objects mutableCopy];
@@ -374,6 +377,60 @@
         exercise.timeRequired = [[object objectForKey:@"timeRequired"] intValue];
         destViewController.exercise = exercise;
         
+    }
+}
+
+#pragma mark - Overlay
+
+- (void) checkIfWeHaveExercises:(NSArray *)exercises {
+    
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    CGRect frame = CGRectMake(0, 0, bounds.size.width, bounds.size.height);
+    CGRect frame2 = CGRectMake(0, 0, bounds.size.width, 220);
+
+    UIView *overlayView = [[UIView alloc] initWithFrame:frame];
+    overlayView.backgroundColor = [UIColor whiteColor];
+    overlayView.tag = 17; //you can use any number you like
+
+    
+    // No videos found image
+    UIImageView *imageView = [[UIImageView alloc] init];
+    UIImage *logo = [UIImage imageNamed:@"rehabme.png"];
+    imageView.frame = frame2;
+    imageView.image = [logo imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    imageView.center = self.view.center;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.clipsToBounds = YES;
+    [imageView setTintColor:[UIColor colorWithHexString:REHABME_GREEN]];
+    [overlayView addSubview:imageView];
+    
+    // No videos found text
+    UILabel *notAvailableText = [[UILabel alloc] initWithFrame:frame2];
+    notAvailableText.text = @"No Exercises";
+    notAvailableText.numberOfLines = 1;
+    notAvailableText.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:35];
+    notAvailableText.textAlignment = NSTextAlignmentCenter;
+    notAvailableText.textColor = [UIColor colorWithHexString:REHABME_GREEN];
+    [overlayView addSubview:notAvailableText];
+    
+    //TODO: this really shouldn't be so hardcoded
+    CGRect frame3 = CGRectMake(0, notAvailableText.frame.size.height - 140, bounds.size.width, 220);
+
+    UILabel *pullText = [[UILabel alloc] initWithFrame:frame3];
+    pullText.text = @"Pull to Refresh";
+    pullText.numberOfLines = 1;
+    pullText.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:24];
+    pullText.textAlignment = NSTextAlignmentCenter;
+    pullText.textColor = [UIColor colorWithHexString:REHABME_GREEN];
+    [overlayView addSubview:pullText];
+    [overlayView bringSubviewToFront:imageView];
+
+    
+    if ([exercises count] == 0) {
+        [self.view addSubview:overlayView];
+    } else {
+        UIView *viewToRemove = [self.view viewWithTag:17];
+        [viewToRemove removeFromSuperview];
     }
 }
 

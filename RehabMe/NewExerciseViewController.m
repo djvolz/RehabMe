@@ -87,6 +87,9 @@
     PFFile *imageFile = [PFFile fileWithName:filename data:imageData];
     [exercise setObject:imageFile forKey:@"imageFile"];
     
+    /* Enable the exercise by default. */
+    [exercise setObject:@YES forKey:@"enabled"];
+    
     // Show progress
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;

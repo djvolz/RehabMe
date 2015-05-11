@@ -100,7 +100,7 @@
 
 
 
-@interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol, EAIntroDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface ChooseExerciseViewController : UIViewController <MDCSwipeToChooseDelegate, TSMessageViewProtocol, EAIntroDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate, UIAlertViewDelegate>
 
 
 @property (nonatomic, strong) Exercise *currentExercise;

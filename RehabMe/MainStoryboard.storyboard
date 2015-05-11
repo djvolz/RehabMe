@@ -22,7 +22,7 @@
                         <segue destination="xtG-c4-360" kind="show" identifier="showCompletionViewController" id="1EU-pa-P6c"/>
                         <segue destination="mBU-Kg-hXL" kind="show" identifier="showParallaxViewController" id="rwU-Ld-jra"/>
                         <segue destination="Enn-K8-f4G" kind="show" identifier="showExerciseViewController" id="9Uj-Ya-OA9"/>
-                        <segue destination="V5Q-1r-qub" kind="show" id="4Tn-6U-gVe"/>
+                        <segue destination="V5Q-1r-qub" kind="show" identifier="showRemoteExerciseTableViewController" id="4Tn-6U-gVe"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xh4-9J-89Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -138,7 +138,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="647" y="397"/>
+            <point key="canvasLocation" x="656" y="390"/>
         </scene>
         <!--Current Exercise View Controller-->
         <scene sceneID="pdd-P0-neW">
@@ -889,7 +889,7 @@
         <image name="video_camera" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1EU-pa-P6c"/>
+        <segue reference="smV-eo-MuZ"/>
         <segue reference="qwX-LC-QlZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

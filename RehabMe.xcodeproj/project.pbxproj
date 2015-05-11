@@ -78,7 +78,6 @@
 		30880E711AA8023D006746C4 /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E561AA8023D006746C4 /* TSBlurView.m */; };
 		30880E721AA8023D006746C4 /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E581AA8023D006746C4 /* TSMessage.m */; };
 		30880E731AA8023D006746C4 /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E5A1AA8023D006746C4 /* TSMessageView.m */; };
-		308C09451AAA175700754C66 /* CircularProgressTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308C09441AAA175700754C66 /* CircularProgressTimerView.m */; };
 		3099B2FC1A9BC6CE00DB2B92 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */; };
 		309BA5251ACB07F400437086 /* StoryCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 309BA5201ACB07F400437086 /* StoryCommentCell.m */; };
 		309BA5261ACB07F400437086 /* ParallaxHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 309BA5221ACB07F400437086 /* ParallaxHeaderView.m */; };
@@ -293,8 +292,6 @@
 		30880E581AA8023D006746C4 /* TSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessage.m; sourceTree = "<group>"; };
 		30880E591AA8023D006746C4 /* TSMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMessageView.h; sourceTree = "<group>"; };
 		30880E5A1AA8023D006746C4 /* TSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessageView.m; sourceTree = "<group>"; };
-		308C09431AAA175700754C66 /* CircularProgressTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularProgressTimerView.h; sourceTree = "<group>"; };
-		308C09441AAA175700754C66 /* CircularProgressTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularProgressTimerView.m; sourceTree = "<group>"; };
 		3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		309BA51F1ACB07F400437086 /* StoryCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryCommentCell.h; sourceTree = "<group>"; };
 		309BA5201ACB07F400437086 /* StoryCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryCommentCell.m; sourceTree = "<group>"; };
@@ -616,8 +613,6 @@
 		307F836B1A9BC12400B1CEFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				308C09431AAA175700754C66 /* CircularProgressTimerView.h */,
-				308C09441AAA175700754C66 /* CircularProgressTimerView.m */,
 				307F836C1A9BC12400B1CEFF /* ChooseExerciseView.h */,
 				307F836D1A9BC12400B1CEFF /* ChooseExerciseView.m */,
 				307F836E1A9BC12400B1CEFF /* ImageLabelView.h */,
@@ -1253,7 +1248,6 @@
 				3083120C1A9E65AC00CC2A5C /* CBZVectorSplashView.m in Sources */,
 				30ABA7F31AD644F6002E0ED1 /* MBProgressHUD.m in Sources */,
 				309BA5271ACB07F400437086 /* StoryViewController.m in Sources */,
-				308C09451AAA175700754C66 /* CircularProgressTimerView.m in Sources */,
 				303C06301A9FDFDE001D9B78 /* MDCGeometry.m in Sources */,
 				30D935361AB0D5F10024B03E /* EARestrictedScrollView.m in Sources */,
 				30D9352E1AB0D5B70024B03E /* EAIntroPage.m in Sources */,

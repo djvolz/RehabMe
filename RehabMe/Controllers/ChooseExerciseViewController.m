@@ -110,17 +110,17 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     
 //    // Show welcome badge notification
-//    [TSMessage showNotificationInViewController:self
-//                                          title:NSLocalizedString(@"Welcome back!", nil)
-//                                       subtitle:NSLocalizedString(@"", nil)
-//                                          image:[UIImage imageNamed:@"NotificationBackgroundSuccessIcon"]
-//                                           type:TSMessageNotificationTypeSuccess
-//                                       duration:3.0//TSMessageNotificationDurationAutomatic
-//                                       callback:nil
-//                                    buttonTitle:nil
-//                                 buttonCallback:nil
-//                                     atPosition:TSMessageNotificationPositionTop
-//                           canBeDismissedByUser:YES];
+    [TSMessage showNotificationInViewController:self
+                                          title:NSLocalizedString(@"Welcome back!", nil)
+                                       subtitle:NSLocalizedString(@"", nil)
+                                          image:[UIImage imageNamed:@"NotificationBackgroundSuccessIcon"]
+                                           type:TSMessageNotificationTypeSuccess
+                                       duration:3.0//TSMessageNotificationDurationAutomatic
+                                       callback:nil
+                                    buttonTitle:nil
+                                 buttonCallback:nil
+                                     atPosition:TSMessageNotificationPositionTop
+                           canBeDismissedByUser:YES];
     
     
     // Run the PLIST code checking/making
@@ -376,6 +376,10 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
             if (exercise.enabled) {
                 [self.exercises addObject:exercise];
             }
+        }
+        
+        if ([self.exercises count] == 0) {
+            [self showEmptyDeckAlert];
         }
         
         [self loadDeck];
@@ -823,6 +827,28 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [self.exerciseRatingObject saveInBackground];
 }
 
+
+#pragma mark - Alerts
+
+- (void) showEmptyDeckAlert {
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"No Exercises Available" message:@"Get Exercises?" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Download", nil];
+    
+    [alertView show];
+}
+
+
+// Offer to record video if one hasn't already been created
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == [alertView cancelButtonIndex]){
+        //cancel clicked ...do your action
+    } else {
+        /* Show the download exercises table view */
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        UIViewController *downloadsViewController = (UIViewController *)[storyboard instantiateViewControllerWithIdentifier:@"remoteExerciseTableViewController"];
+
+        [self.navigationController pushViewController:downloadsViewController animated:YES];
+    }
+}
 
 @end
 
