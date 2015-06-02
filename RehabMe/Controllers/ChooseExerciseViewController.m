@@ -27,22 +27,16 @@
 #import "ChooseExerciseViewController.h"
 
 
-static const CGFloat ChoosePersonButtonHorizontalPadding = 80.f;
-static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
-
 @interface ChooseExerciseViewController () {
     UIView *rootView;
     EAIntroView *_intro;
 }
 @property (nonatomic, strong) NSMutableArray *exercises;
-@property (nonatomic, strong) UIButton *likeButton;
-@property (nonatomic, strong) UIButton *nopeButton;
 @property (nonatomic, strong) CBZSplashView *splashView;
 
 @property (strong, nonatomic) IBOutlet UIButton *beginButton;
 
-@property (nonatomic, strong) PFObject *exerciseRatingObject;
-@property (strong, nonatomic) NSString *rating;
+@property (nonatomic) float rating;
 @property (strong, nonatomic) IBOutlet UISlider *ratingSlider;
 @property (weak, nonatomic) IBOutlet UIView *ratingView;
 
@@ -74,9 +68,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
     [self checkIfUserIsLoggedIn];
     
-//    PFUser *currentUser = [PFUser currentUser];
-//    [self checkIfUserHasVerifiedEmail:currentUser];
-    
     [self cardViewIsBeingShown:YES];
     
 
@@ -86,8 +77,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [super viewDidAppear:animated];
     
     // Create our Installation query
-    PFQuery *pushQuery = [PFInstallation query];
-    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+//    PFQuery *pushQuery = [PFInstallation query];
+//    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
     
     // Send push notification to query
 //    [PFPush sendPushMessageToQueryInBackground:pushQuery
@@ -135,54 +126,13 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
 }
 
-#pragma mark - Handling PLIST Creation/Existence Check
 
-/* This function is mirrored in EAIntroView.  If this one changes, change that one too. */
-- (NSString *)getPathForPLIST {
-    //PLIST Variables
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"RehabMePreferences.plist"];
-    
-    return path;
-}
-
-- (void)checkOrCreatePLIST {
-    //PLIST Variables
-    NSString *path = [self getPathForPLIST];
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-
-    
-    // PLIST exists
-    if ([fileManager fileExistsAtPath: path]) {
-        data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-    }
-    // PLIST does not exist
-    else {
-        data = [[NSMutableDictionary alloc] init];
-        [data setObject: [NSNumber numberWithInt: 0] forKey:@"seenIntro"];
-        [data writeToFile: path atomically:YES];
-    }
-}
-
-#pragma mark - Checking If Intro Seen
-
-- (BOOL)shouldShowIntro {
-    //PLIST Variables
-    NSString *path = [self getPathForPLIST];
-    NSMutableDictionary *savedInfo = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-    
-    if ([[savedInfo objectForKey:@"seenIntro"] intValue] == 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
+/*****************************************************************************/
+/*
+                            BEGIN LOGIN SECTION
+*/
+/*****************************************************************************/
 #pragma mark - Log In
-
-
 
 - (void)checkIfUserIsLoggedIn {
     if (![PFUser currentUser]) { // No user logged in
@@ -224,7 +174,8 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     }
 }
 
-// I haven't decided yet if I'm going to require users to verify their email addresses.
+/* I haven't decided yet if I'm going to require users to verify their email addresses. */
+
 //- (void)checkIfUserHasVerifiedEmail:(PFUser *)user
 //{
 //    if (![[user objectForKey:@"emailVerified"] boolValue]) {
@@ -309,30 +260,19 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     NSLog(@"User dismissed the signUpViewController");
 }
 
+/*****************************************************************************/
+/*
+                            END LOGIN SECTION
+*/
+/*****************************************************************************/
 
 
-/* Constructs splash that splashes green check button that grows across screen */
-- (void) constructSplashScreen {
-    UIImage *icon = [UIImage imageNamed:@"checkButton"];
-    
-    UIColor *color = [UIColor colorWithHexString:REHABME_GREEN]; //[UIColor greenColor];
-    CBZSplashView *splashView = [CBZSplashView splashViewWithIcon:icon backgroundColor:color];
-    
-    splashView.animationDuration = 1.4;
-    
-    [self.view addSubview:splashView];
-    
-    self.splashView = splashView;
-    
-}
+/*****************************************************************************/
+/*
+                            BEGIN EXERCISE DECK SECTION
+ */
+/*****************************************************************************/
 
-
-
-- (void)clearDeck {
-    self.frontCardView = nil;
-    self.backCardView = nil;
-    [self.exercises removeAllObjects];
-}
 
 - (Exercise *)getExerciseForObject:(PFObject *)object {
     Exercise *exercise = [[Exercise alloc] init];
@@ -386,6 +326,20 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     }];
 }
 
+
+- (void) checkforEndOfDeck {
+    // No more last card so after completing this swipe is the end of the deck
+    if (self.backCardView == nil) {
+        [self cardViewIsBeingShown:NO];
+    }
+}
+
+- (void)clearDeck {
+    self.frontCardView = nil;
+    self.backCardView = nil;
+    [self.exercises removeAllObjects];
+}
+
 /* Load up the deck from the exercises array */
 - (void)loadDeck {
     // Display the first ChooseExerciseView in front. Users can swipe to indicate
@@ -401,42 +355,17 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
 }
 
-/* Perform the events that occur when you've swiped away all cards in the deck. */
-- (void) cardViewIsBeingShown:(BOOL)hideView {
-    
-    self.ratingView.hidden = hideView;
-    self.beginButton.hidden = !hideView;
-}
 
-- (IBAction)didPressSubmitButton:(UIButton *)sender {
-    [self cardViewIsBeingShown:YES];
-    self.beginButton.hidden = YES;
-
-    
-    // Make the reward splash screen
-    [self constructSplashScreen];
-    
-    self.view.backgroundColor = [UIColor colorWithHexString:REHABME_GREEN];
-    
-    
-    
-    // Execute the reward splash screen
-    [self.splashView startAnimationWithCompletionHandler:
-    
-     ^{
-          // Present congrats screen
-          [self performSegueWithIdentifier: @"showCompletionViewController" sender: self];
-         
-         //    [self updateParseWithRatingDecision:self.rating];
-         
-     }];
-
-    
-}
+/*****************************************************************************/
+/*
+                END EXERCISE DECK SECTION
+ */
+/*****************************************************************************/
 
 
 
-#pragma mark - MDCSwipeToChooseDelegate Protocol Methods
+
+#pragma mark - MDCSwipeToChooseDelegate Methods
 
 // This is called when a user didn't fully swipe left or right.
 - (void)viewDidCancelSwipe:(UIView *)view {
@@ -473,16 +402,6 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                          } completion:nil];
     }
 }
-
-#pragma mark - Internal Methods
-
-- (void)setFrontCardView:(ChooseExerciseView *)frontCardView {
-    // Keep track of the person currently being chosen.
-    // Quick and dirty.
-    _frontCardView = frontCardView;
-    self.currentExercise = frontCardView.exercise;
-}
-
 
 - (ChooseExerciseView *)popPersonViewWithFrame:(CGRect)frame {
     if ([self.exercises count] == 0) {
@@ -536,136 +455,18 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
                       CGRectGetHeight(frontFrame));
 }
 
-// Create and add the "nope" button.
-- (void)constructNopeButton {
-    UIButton *nopeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    UIImage *image = [UIImage imageNamed:@"xButton"];
-    nopeButton.frame = CGRectMake(ChoosePersonButtonHorizontalPadding,
-                                  CGRectGetMaxY(self.backCardView.frame) + ChoosePersonButtonVerticalPadding,
-                                  image.size.width,
-                                  image.size.height);
-    [nopeButton setImage:image forState:UIControlStateNormal];
-    [nopeButton setTintColor:[UIColor colorWithRed:247.f/255.f
-                                             green:91.f/255.f
-                                              blue:37.f/255.f
-                                             alpha:1.f]];
-    [nopeButton addTarget:self
-                   action:@selector(nopeFrontCardView)
-         forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:nopeButton];
-}
 
-// Create and add the "OK" button.
-- (void)constructLikedButton {
-    UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    UIImage *image = [UIImage imageNamed:@"checkButton"];
-    likeButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - image.size.width - ChoosePersonButtonHorizontalPadding,
-                                  CGRectGetMaxY(self.backCardView.frame) + ChoosePersonButtonVerticalPadding,
-                                  image.size.width,
-                                  image.size.height);
-    [likeButton setImage:image forState:UIControlStateNormal];
-    [likeButton setTintColor:[UIColor colorWithRed:29.f/255.f
-                                             green:245.f/255.f
-                                              blue:106.f/255.f
-                                             alpha:1.f]];
-    [likeButton addTarget:self
-                   action:@selector(likeFrontCardView)
-         forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:likeButton];
-}
-
-#pragma mark Control Events
-
-// Programmatically "nopes" the front card view.
-- (void)nopeFrontCardView {
-    if(self.exercises.count != 0)
-        [self.frontCardView mdc_swipe:MDCSwipeDirectionLeft];
-    else {
-        NSLog(@"All done!");
-    }
+/* Perform the events that occur when you've swiped away all cards in the deck. */
+- (void) cardViewIsBeingShown:(BOOL)hideView {
     
-}
-
-// Programmatically "likes" the front card view.
-- (void)likeFrontCardView {
-    if(self.exercises.count != 0)
-        [self.frontCardView mdc_swipe:MDCSwipeDirectionRight];
-    else {
-        NSLog(@"All done!");
-    }
+    self.ratingView.hidden = hideView;
+    self.beginButton.hidden = !hideView;
 }
 
 
 
 
-- (IBAction)didPressBeginButton:(UIButton *)sender {
-    [self constructCurrentExerciseViewController];
-}
-
-
-
-#pragma mark - Swipe Actions
-
-- (void)updateParseWithSwipeDecision:(NSString *)decision {
-    PFQuery *query = [PFQuery queryWithClassName:@"Exercise"];
-    
-    /* Attempt to connect to network, before loading from cache. */
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
-    
-    PFObject *object = [query getObjectWithId:self.currentExercise.objectId];
-
-    /* Maybe convert this to JSON format later...we'll see how it goes on website end */
-    NSDate *date = [NSDate date];
-    [object addObject:date forKey:decision];
-    [object saveEventually];
-}
-
-
-- (void)viewDidSwipeRight {
-    NSLog(@"You selected %@.", self.currentExercise.name);
-    
-    
-    
-    [self updateParseWithSwipeDecision:@"performed"];
-    
-    [self updateGameScore];
-    
-    [self checkforEndOfDeck];
-    
-}
-
-- (void)viewDidSwipeLeft {
-    NSLog(@"You noped %@.", self.currentExercise.name);
-    
-    [self updateParseWithSwipeDecision:@"skipped"];
-    
-    // The animation should trigger after backCardView is nil if the last frontcard was noped.
-    [self checkforEndOfDeck];
-    
-}
-
-
-- (void) checkforEndOfDeck {
-    // No more last card so after completing this swipe is the end of the deck
-    if (self.backCardView == nil) {
-        [self cardViewIsBeingShown:NO];
-    }
-}
-
-- (BOOL) checkIfSameDayForDate:(NSDate *)date1 andDate:(NSDate *)date2 {
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *comps1 = [cal components:(NSMonthCalendarUnit| NSYearCalendarUnit | NSDayCalendarUnit)
-                                      fromDate:date1];
-    NSDateComponents *comps2 = [cal components:(NSMonthCalendarUnit| NSYearCalendarUnit | NSDayCalendarUnit)
-                                      fromDate:date2];
-    
-    
-    BOOL sameDay = ([comps1 day] == [comps2 day]
-                    && [comps1 month] == [comps2 month]
-                    && [comps1 year] == [comps2 year]);
-    
-    return sameDay;
-}
+#pragma mark - Game Scoring
 
 - (void) updateGameScore{
     
@@ -682,6 +483,7 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 //            NSTimeInterval timeSinceCreation   = [gameScore.createdAt timeIntervalSinceDate:[NSDate date]];
             NSTimeInterval timeSinceLastUpdate = [gameScore.updatedAt timeIntervalSinceDate:[NSDate date]];
 
+            /* Check if the game score was created today, if not, create a new one. */
             BOOL sameDay = [self checkIfSameDayForDate:gameScore.createdAt andDate:gameScore.updatedAt];
             
             /* Create a new score every day. */
@@ -740,9 +542,75 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 }
 
+- (BOOL) checkIfSameDayForDate:(NSDate *)date1 andDate:(NSDate *)date2 {
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *comps1 = [cal components:(NSMonthCalendarUnit| NSYearCalendarUnit | NSDayCalendarUnit)
+                                      fromDate:date1];
+    NSDateComponents *comps2 = [cal components:(NSMonthCalendarUnit| NSYearCalendarUnit | NSDayCalendarUnit)
+                                      fromDate:date2];
+    
+    
+    BOOL sameDay = ([comps1 day] == [comps2 day]
+                    && [comps1 month] == [comps2 month]
+                    && [comps1 year] == [comps2 year]);
+    
+    return sameDay;
+}
+
+
+#pragma mark - Swipe Actions
+
+- (void)updateParseWithSwipeDecision:(NSString *)decision {
+    PFQuery *query = [PFQuery queryWithClassName:@"Exercise"];
+    
+    /* Attempt to connect to network, before loading from cache. */
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    
+    PFObject *object = [query getObjectWithId:self.currentExercise.objectId];
+    
+    /* Maybe convert this to JSON format later...we'll see how it goes on website end */
+    NSDate *date = [NSDate date];
+    [object addObject:date forKey:decision];
+    [object saveEventually];
+}
+
+
+- (void)viewDidSwipeRight {
+    NSLog(@"You selected %@.", self.currentExercise.name);
+    
+    
+    
+    [self updateParseWithSwipeDecision:@"performed"];
+    
+    [self updateGameScore];
+    
+    [self checkforEndOfDeck];
+    
+}
+
+- (void)viewDidSwipeLeft {
+    NSLog(@"You noped %@.", self.currentExercise.name);
+    
+    [self updateParseWithSwipeDecision:@"skipped"];
+    
+    // The animation should trigger after backCardView is nil if the last frontcard was noped.
+    [self checkforEndOfDeck];
+    
+}
 
 
 #pragma mark - Current Exercise View System
+
+- (void)setFrontCardView:(ChooseExerciseView *)frontCardView {
+    // Keep track of the person currently being chosen.
+    // Quick and dirty.
+    _frontCardView = frontCardView;
+    self.currentExercise = frontCardView.exercise;
+}
+
+- (IBAction)didPressBeginButton:(UIButton *)sender {
+    [self constructCurrentExerciseViewController];
+}
 
 - (void)constructCurrentExerciseViewController {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
@@ -756,7 +624,73 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 }
 
 
+#pragma mark - Animations
 
+/* Constructs splash that splashes green check button that grows across screen */
+- (void) constructSplashScreen {
+    UIImage *icon = [UIImage imageNamed:@"checkButton"];
+    
+    UIColor *color = [UIColor colorWithHexString:REHABME_GREEN]; //[UIColor greenColor];
+    CBZSplashView *splashView = [CBZSplashView splashViewWithIcon:icon backgroundColor:color];
+    
+    splashView.animationDuration = 1.4;
+    
+    [self.view addSubview:splashView];
+    
+    self.splashView = splashView;
+    
+}
+
+/*****************************************************************************/
+/*
+                            BEGIN TUTORIAL SECTION
+*/
+/*****************************************************************************/
+
+#pragma mark - Handling PLIST Creation/Existence Check
+
+/* This function is mirrored in EAIntroView.  If this one changes, change that one too. */
+- (NSString *)getPathForPLIST {
+    //PLIST Variables
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"RehabMePreferences.plist"];
+    
+    return path;
+}
+
+- (void)checkOrCreatePLIST {
+    //PLIST Variables
+    NSString *path = [self getPathForPLIST];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    
+    // PLIST exists
+    if ([fileManager fileExistsAtPath: path]) {
+        data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+    }
+    // PLIST does not exist
+    else {
+        data = [[NSMutableDictionary alloc] init];
+        [data setObject: [NSNumber numberWithInt: 0] forKey:@"seenIntro"];
+        [data writeToFile: path atomically:YES];
+    }
+}
+
+#pragma mark - Checking If Intro Seen
+
+- (BOOL)shouldShowIntro {
+    //PLIST Variables
+    NSString *path = [self getPathForPLIST];
+    NSMutableDictionary *savedInfo = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+    
+    if ([[savedInfo objectForKey:@"seenIntro"] intValue] == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 #pragma mark - EAIntroView
 
@@ -805,6 +739,15 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     [[UIApplication sharedApplication].keyWindow addSubview:intro];
 }
 
+/*****************************************************************************/
+/*
+                            END TUTORIAL SECTION
+ */
+/*****************************************************************************/
+
+
+
+
 #pragma mark - Rating System
 - (IBAction)itemSlider:(UISlider *)itemSlider withEvent:(UIEvent*)e;
 {
@@ -812,20 +755,72 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
     
     if( touch.phase != UITouchPhaseMoved &&
        touch.phase != UITouchPhaseBegan) {
-        self.rating = [NSString stringWithFormat:@"Rating: %d",
-                       (int)self.ratingSlider.value];
+        self.rating = self.ratingSlider.value;
     }
     
 }
 
-- (void)updateParseWithRatingDecision:(NSString *)rating {
-    NSLog(@"%@", rating);
+- (void)updateParseWithRatingDecision:(float)rating {
+    NSString *objectClassName = @"ExerciseRating";
+    NSString *objectKeyName   = @"Ratings";
     
-    self.exerciseRatingObject = [PFObject objectWithClassName:@"ExerciseRatingObject"];
-    self.exerciseRatingObject[@"Rating"] = rating;
+    PFQuery *query = [PFQuery queryWithClassName:objectClassName];
     
-    [self.exerciseRatingObject saveInBackground];
+    /* Attempt to connect to network, before loading from cache. */
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            /* An array of rating scores. */
+            [object addObject:@(rating) forKey:objectKeyName];
+            
+        } else {
+            /* This is the first time so setup the ratings object object. */
+
+            PFObject *object = [PFObject objectWithClassName:objectClassName];
+            [object addObject:@(rating) forKey:objectKeyName];
+            
+            object.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+        }
+        
+        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"%@",object.objectId);
+            } else {
+                // There was a problem, check error.description
+            }
+        }];
+        
+    }];
+    // The InBackground methods are asynchronous, so any code after this will run
+    // immediately.  Any code that depends on the query result should be moved
+    // inside the completion block above.
 }
+
+- (IBAction)didPressSubmitButton:(UIButton *)sender {
+    [self cardViewIsBeingShown:YES];
+    self.beginButton.hidden = YES;
+    
+    
+    // Make the reward splash screen
+    [self constructSplashScreen];
+    
+    self.view.backgroundColor = [UIColor colorWithHexString:REHABME_GREEN];
+    
+    
+    
+    // Execute the reward splash screen
+    [self.splashView startAnimationWithCompletionHandler:
+     
+     ^{
+         // Present congrats screen
+         [self performSegueWithIdentifier: @"showCompletionViewController" sender: self];
+         
+             [self updateParseWithRatingDecision:self.rating];
+         
+     }];
+}
+
 
 
 #pragma mark - Alerts
@@ -852,3 +847,73 @@ static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
 
 @end
 
+
+
+/*****************************************************************************/
+/*
+            Graveyard of unused but possibly useful code
+ */
+/*****************************************************************************/
+
+//static const CGFloat ChoosePersonButtonHorizontalPadding = 80.f;
+//static const CGFloat ChoosePersonButtonVerticalPadding = 20.f;
+//@property (nonatomic, strong) UIButton *likeButton;
+//@property (nonatomic, strong) UIButton *nopeButton;
+//
+// Create and add the "nope" button.
+//- (void)constructNopeButton {
+//    UIButton *nopeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    UIImage *image = [UIImage imageNamed:@"xButton"];
+//    nopeButton.frame = CGRectMake(ChoosePersonButtonHorizontalPadding,
+//                                  CGRectGetMaxY(self.backCardView.frame) + ChoosePersonButtonVerticalPadding,
+//                                  image.size.width,
+//                                  image.size.height);
+//    [nopeButton setImage:image forState:UIControlStateNormal];
+//    [nopeButton setTintColor:[UIColor colorWithRed:247.f/255.f
+//                                             green:91.f/255.f
+//                                              blue:37.f/255.f
+//                                             alpha:1.f]];
+//    [nopeButton addTarget:self
+//                   action:@selector(nopeFrontCardView)
+//         forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:nopeButton];
+//}
+//
+// Create and add the "OK" button.
+//- (void)constructLikedButton {
+//    UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    UIImage *image = [UIImage imageNamed:@"checkButton"];
+//    likeButton.frame = CGRectMake(CGRectGetMaxX(self.view.frame) - image.size.width - ChoosePersonButtonHorizontalPadding,
+//                                  CGRectGetMaxY(self.backCardView.frame) + ChoosePersonButtonVerticalPadding,
+//                                  image.size.width,
+//                                  image.size.height);
+//    [likeButton setImage:image forState:UIControlStateNormal];
+//    [likeButton setTintColor:[UIColor colorWithRed:29.f/255.f
+//                                             green:245.f/255.f
+//                                              blue:106.f/255.f
+//                                             alpha:1.f]];
+//    [likeButton addTarget:self
+//                   action:@selector(likeFrontCardView)
+//         forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:likeButton];
+//}
+//
+//// Programmatically "nopes" the front card view.
+//- (void)nopeFrontCardView {
+//    if(self.exercises.count != 0)
+//        [self.frontCardView mdc_swipe:MDCSwipeDirectionLeft];
+//    else {
+//        NSLog(@"All done!");
+//    }
+//    
+//}
+//
+//// Programmatically "likes" the front card view.
+//- (void)likeFrontCardView {
+//    if(self.exercises.count != 0)
+//        [self.frontCardView mdc_swipe:MDCSwipeDirectionRight];
+//    else {
+//        NSLog(@"All done!");
+//    }
+//}
+//

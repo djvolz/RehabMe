@@ -161,7 +161,7 @@
         NSLog(@"Button for %@", [object objectForKey:@"name"]);
         
         
-        object[@"enabled"] = [NSNumber numberWithBool:@(YES)];
+        object[@"enabled"] = [NSNumber numberWithBool:YES];
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             NSInteger errCode = [error code];
             if (kPFErrorObjectNotFound == errCode) {
