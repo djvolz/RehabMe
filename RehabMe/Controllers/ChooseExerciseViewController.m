@@ -59,7 +59,6 @@
     [self initializeRehabMe];
     
     rootView = self.navigationController.view;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -69,8 +68,6 @@
     [self checkIfUserIsLoggedIn];
     
     [self cardViewIsBeingShown:YES];
-    
-
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -84,6 +81,18 @@
 //    [PFPush sendPushMessageToQueryInBackground:pushQuery
 //                                   withMessage:@"Hello World!"];
     
+    // Our observer for seeing if the app became active
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationEnteredForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    // Remove observer of application becoming active
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationWillEnterForegroundNotification
+                                                  object:nil];
 }
 
 - (void)initializeRehabMe {
@@ -98,9 +107,20 @@
                                                nil];
     [self.navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
     
+    // Run the PLIST code checking/making
+    [self checkOrCreatePLIST];
     
+    // Load the deck when the VC loads.
+    /* wait a beat before animating in */
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self getExercises];
+        
+    });
     
-//    // Show welcome badge notification
+}
+
+- (void)applicationEnteredForeground:(NSNotification *)notification {
+    // Display the welcome back notification only when the application is resumed
     [TSMessage showNotificationInViewController:self
                                           title:NSLocalizedString(@"Welcome back!", nil)
                                        subtitle:NSLocalizedString(@"", nil)
@@ -112,18 +132,6 @@
                                  buttonCallback:nil
                                      atPosition:TSMessageNotificationPositionTop
                            canBeDismissedByUser:YES];
-    
-    
-    // Run the PLIST code checking/making
-    [self checkOrCreatePLIST];
-    
-    // Load the deck when the VC loads.
-    /* wait a beat before animating in */
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self getExercises];
-        
-    });
-    
 }
 
 
