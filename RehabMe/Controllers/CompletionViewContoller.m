@@ -62,15 +62,12 @@
             self.inspirationalImage.contentMode = UIViewContentModeScaleAspectFill;
         }
     }];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self hydrateDatasets];
-    
-    [self setupGraph];
 }
 
 //- (IBAction)didPressDoneButton:(UIBarButtonItem *)sender {
@@ -121,7 +118,6 @@
     // The labels to report the values of the graph when the user touches it
     self.labelValues.text = [NSString stringWithFormat:@"%i", [[self.graphView calculatePointValueSum] intValue]];
     self.labelDates.text = @"between 2000 and 2010";
-    
 }
 
 
@@ -136,58 +132,69 @@
 
 
 - (void)hydrateDatasets {
+    // Our query to execute
     PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
     
     /* Attempt to connect to network, before loading from cache. */
     query.cachePolicy = kPFCachePolicyNetworkElseCache;
-//    [query orderByDescending:@"createdAt"];
-//    query.limit = 9;
-    NSArray* scoreArray = [query findObjects];
+    //    [query orderByDescending:@"createdAt"];
+    //    query.limit = 9;
     
     totalNumber = 0;
     NSDate *baseDate = [NSDate date];
     BOOL showNullValue = true;
-    
-    
-    if(!self.arrayOfValues) self.arrayOfValues = [[NSMutableArray alloc] init];
-    if(!self.arrayOfDates) self.arrayOfDates = [[NSMutableArray alloc] init];
-    [self.arrayOfValues removeAllObjects];
-    [self.arrayOfDates removeAllObjects];
-    
-    for (int i = 0; i < 9; i++) {
-        [self.arrayOfValues addObject:@(0)]; // Random values for the graph
-        if (i == 0) {
-            [self.arrayOfDates addObject:[self dateForGraphBeforeDate:baseDate byTwelveHourIncrements:9-i]]; // Dates for the X-Axis of the graph
-        } else if (showNullValue && i == 4) {
-            [self.arrayOfDates addObject:[self dateForGraphBeforeDateTwelveHours:self.arrayOfDates[i-1]]]; // Dates for the X-Axis of the graph
-            self.arrayOfValues[i] = @(BEMNullGraphValue);
-        } else {
-            [self.arrayOfDates addObject:[self dateForGraphBeforeDateTwelveHours:self.arrayOfDates[i-1]]]; // Dates for the X-Axis of the graph
-        }
-    }
-    
-    
-    for (int i = 0; i < [scoreArray count]; i++) {
-        PFObject *gameScore = scoreArray[i];
-        
-        totalNumber = totalNumber + [gameScore[@"score"] intValue]; // All of the values added together
+    __block NSArray *scoreArray = [[NSArray alloc] init];
 
-        
-        NSTimeInterval timeInterval = [gameScore.createdAt timeIntervalSinceDate:baseDate];
-
-        
-        if (fabs(timeInterval) < (SECONDS_IN_A_DAY * 4)) {
-            for (int index = 0; index < [self.arrayOfDates count]; index++) {
-                NSTimeInterval withinLastTwelveHours = [gameScore.createdAt timeIntervalSinceDate:self.arrayOfDates[index]];
-                if (fabs(withinLastTwelveHours) < SECONDS_IN_A_DAY/2) {
-                    [self.arrayOfValues replaceObjectAtIndex:index withObject:gameScore[@"score"]];
+    // Execute the query in the background
+    [query findObjectsInBackgroundWithBlock:^(NSArray *searchResults, NSError *error) {
+        if (!error) {
+            scoreArray = searchResults;
+            
+            if(!self.arrayOfValues) self.arrayOfValues = [[NSMutableArray alloc] init];
+            if(!self.arrayOfDates) self.arrayOfDates = [[NSMutableArray alloc] init];
+            [self.arrayOfValues removeAllObjects];
+            [self.arrayOfDates removeAllObjects];
+            
+            for (int i = 0; i < 9; i++) {
+                [self.arrayOfValues addObject:@(0)]; // Random values for the graph
+                if (i == 0) {
+                    [self.arrayOfDates addObject:[self dateForGraphBeforeDate:baseDate byTwelveHourIncrements:9-i]]; // Dates for the X-Axis of the graph
+                } else if (showNullValue && i == 4) {
+                    [self.arrayOfDates addObject:[self dateForGraphBeforeDateTwelveHours:self.arrayOfDates[i-1]]]; // Dates for the X-Axis of the graph
+                    self.arrayOfValues[i] = @(BEMNullGraphValue);
+                } else {
+                    [self.arrayOfDates addObject:[self dateForGraphBeforeDateTwelveHours:self.arrayOfDates[i-1]]]; // Dates for the X-Axis of the graph
                 }
             }
+            
+            
+            for (int i = 0; i < [scoreArray count]; i++) {
+                PFObject *gameScore = scoreArray[i];
+                
+                totalNumber = totalNumber + [gameScore[@"score"] intValue]; // All of the values added together
+                
+                
+                NSTimeInterval timeInterval = [gameScore.createdAt timeIntervalSinceDate:baseDate];
+                
+                if (fabs(timeInterval) < (SECONDS_IN_A_DAY * 4)) {
+                    for (int index = 0; index < [self.arrayOfDates count]; index++) {
+                        NSTimeInterval withinLastTwelveHours = [gameScore.createdAt timeIntervalSinceDate:self.arrayOfDates[index]];
+                        if (fabs(withinLastTwelveHours) < SECONDS_IN_A_DAY/2) {
+                            [self.arrayOfValues replaceObjectAtIndex:index withObject:gameScore[@"score"]];
+                        }
+                    }
+                }
+            }
+            
+            // Set up the graph
+            [self setupGraph];
+            // Update the graph
+            [self updateGraph];
+            
+        } else {
+            NSLog(@"Failed to hydrate datasets");
         }
-    }
-    
-
-
+    }];
 }
 
 - (NSDate *)dateForGraphBeforeDateTwelveHours:(NSDate *)date {
