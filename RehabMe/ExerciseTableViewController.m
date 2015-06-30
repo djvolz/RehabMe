@@ -466,7 +466,7 @@
 - (void)showCreateExerciseViewController {
     /* Show the create exercises table view */
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    UIViewController *createExerciseViewController = (UIViewController *)[storyboard instantiateViewControllerWithIdentifier:@"exerciseDetailViewController"];
+    UIViewController *createExerciseViewController = (UIViewController *)[storyboard instantiateViewControllerWithIdentifier:@"newExerciseViewController"];
     
     [self.navigationController pushViewController:createExerciseViewController animated:YES];
 }

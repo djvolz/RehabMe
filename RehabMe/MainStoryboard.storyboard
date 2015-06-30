@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -576,7 +575,7 @@
         <!--New Exercise-->
         <scene sceneID="9Y9-11-mnT">
             <objects>
-                <tableViewController id="zme-4h-FQq" customClass="NewExerciseViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="newExerciseViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zme-4h-FQq" customClass="NewExerciseViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="eN0-Ko-1V6">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -617,7 +616,7 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JIz-yy-bMZ">
-                                                    <rect key="frame" x="130" y="7" width="170" height="30"/>
+                                                    <rect key="frame" x="81" y="7" width="511" height="30"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -640,8 +639,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yzG-iW-YQv">
-                                                    <rect key="frame" x="131" y="7" width="60" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yzG-iW-YQv">
+                                                    <rect key="frame" x="145" y="7" width="447" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="bzH-wL-wco"/>
                                                     </constraints>
@@ -658,7 +657,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="OBQ-LC-12E">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="248" id="OBQ-LC-12E">
                                         <rect key="frame" x="0.0" y="288" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OBQ-LC-12E" id="MLg-f2-P2l">
@@ -671,11 +670,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kzp-iB-1Hy">
-                                                    <rect key="frame" x="131" y="7" width="169" height="30"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="37n-7U-LOZ">
+                                                    <rect key="frame" x="0.0" y="40" width="605" height="200"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -688,11 +689,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New Exercise" id="HGX-dV-0tz">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EKd-53-I2h">
-                            <connections>
-                                <action selector="cancel:" destination="zme-4h-FQq" id="KCH-mh-dp5"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="kDk-NM-dcJ">
                             <connections>
                                 <action selector="save:" destination="zme-4h-FQq" id="pkn-D6-H4f"/>
@@ -701,7 +697,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="exerciseImageView" destination="xSO-3A-9VL" id="Vsd-iY-4sn"/>
-                        <outlet property="instructionsTextField" destination="kzp-iB-1Hy" id="yXN-sg-mYv"/>
                         <outlet property="nameTextField" destination="JIz-yy-bMZ" id="Z7X-0l-XVh"/>
                         <outlet property="prepTimeTextField" destination="yzG-iW-YQv" id="Wyy-BN-ydm"/>
                     </connections>
@@ -713,7 +708,7 @@
         <!--Exercise Detail View Controller-->
         <scene sceneID="NTF-HJ-hdf">
             <objects>
-                <viewController storyboardIdentifier="exerciseDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XU1-Pu-XFS" customClass="ExerciseDetailViewController" sceneMemberID="viewController">
+                <viewController id="XU1-Pu-XFS" customClass="ExerciseDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SHf-AC-v1k"/>
                         <viewControllerLayoutGuide type="bottom" id="SXH-un-llx"/>
@@ -723,53 +718,51 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83L-r9-TrV" customClass="PFImageView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="267"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Instructions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="csl-6b-rvm">
-                                <rect key="frame" x="16" y="339" width="123" height="37"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="206"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="123" id="JeI-cH-cwV"/>
+                                    <constraint firstAttribute="height" constant="206" id="AfT-DE-R7M"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nes-hK-xp4">
+                                <rect key="frame" x="0.0" y="318" width="600" height="238"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="quq-Un-3B7">
+                                <rect key="frame" x="520" y="289" width="70" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="3jS-dN-d6S"/>
+                                    <constraint firstAttribute="height" constant="21" id="Lfh-mq-yoA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Instructions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="csl-6b-rvm">
+                                <rect key="frame" x="5" y="281" width="123" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="123" id="3EX-Yg-zmr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nes-hK-xp4">
-                                <rect key="frame" x="0.0" y="384" width="600" height="172"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="172" id="nLU-HB-uY6"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Preptime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="quq-Un-3B7">
-                                <rect key="frame" x="514" y="342" width="70" height="21"/>
-                                <color key="backgroundColor" red="0.67823840729999996" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="ciR-Iz-5DV"/>
-                                    <constraint firstAttribute="width" constant="70" id="gQl-35-Qi3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="quq-Un-3B7" firstAttribute="trailing" secondItem="LSU-5y-Ega" secondAttribute="trailingMargin" id="1aA-ez-WRh"/>
-                            <constraint firstItem="nes-hK-xp4" firstAttribute="trailing" secondItem="83L-r9-TrV" secondAttribute="trailing" id="55F-IT-c6b"/>
-                            <constraint firstItem="csl-6b-rvm" firstAttribute="top" secondItem="83L-r9-TrV" secondAttribute="bottom" constant="8" symbolic="YES" id="8U8-WE-8Sg"/>
-                            <constraint firstItem="83L-r9-TrV" firstAttribute="leading" secondItem="LSU-5y-Ega" secondAttribute="leading" id="JyH-eY-dJQ"/>
-                            <constraint firstItem="83L-r9-TrV" firstAttribute="top" secondItem="SHf-AC-v1k" secondAttribute="bottom" id="Mob-r9-Gpb"/>
-                            <constraint firstItem="csl-6b-rvm" firstAttribute="leading" secondItem="LSU-5y-Ega" secondAttribute="leadingMargin" id="T2c-2d-zCx"/>
-                            <constraint firstItem="nes-hK-xp4" firstAttribute="top" secondItem="csl-6b-rvm" secondAttribute="bottom" constant="8" symbolic="YES" id="VUW-KQ-411"/>
-                            <constraint firstItem="csl-6b-rvm" firstAttribute="firstBaseline" secondItem="quq-Un-3B7" secondAttribute="firstBaseline" id="XZd-gJ-PDP"/>
-                            <constraint firstItem="83L-r9-TrV" firstAttribute="leading" secondItem="nes-hK-xp4" secondAttribute="leading" id="aL0-fN-tqz"/>
-                            <constraint firstItem="nes-hK-xp4" firstAttribute="top" secondItem="quq-Un-3B7" secondAttribute="bottom" constant="21" id="pwL-Ai-OcM"/>
-                            <constraint firstAttribute="trailing" secondItem="nes-hK-xp4" secondAttribute="trailing" id="urb-UE-vCF"/>
-                            <constraint firstItem="nes-hK-xp4" firstAttribute="bottom" secondItem="SXH-un-llx" secondAttribute="top" id="y8J-IN-d4O"/>
+                            <constraint firstItem="csl-6b-rvm" firstAttribute="centerY" secondItem="quq-Un-3B7" secondAttribute="centerY" id="8Lc-Zt-MCW"/>
+                            <constraint firstAttribute="trailing" secondItem="83L-r9-TrV" secondAttribute="trailing" id="Evs-9x-i73"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="quq-Un-3B7" secondAttribute="trailing" constant="-6" id="KHg-D4-arb"/>
+                            <constraint firstItem="nes-hK-xp4" firstAttribute="bottom" secondItem="SXH-un-llx" secondAttribute="top" id="MN3-FZ-Afg"/>
+                            <constraint firstItem="csl-6b-rvm" firstAttribute="top" secondItem="83L-r9-TrV" secondAttribute="bottom" constant="11" id="NXb-gg-YUg"/>
+                            <constraint firstItem="83L-r9-TrV" firstAttribute="leading" secondItem="nes-hK-xp4" secondAttribute="leading" id="RhB-OJ-WF3"/>
+                            <constraint firstItem="nes-hK-xp4" firstAttribute="top" secondItem="quq-Un-3B7" secondAttribute="bottom" constant="8" symbolic="YES" id="ZIJ-Qt-O2R"/>
+                            <constraint firstItem="nes-hK-xp4" firstAttribute="leading" secondItem="LSU-5y-Ega" secondAttribute="leading" id="Zcu-QU-C5T"/>
+                            <constraint firstItem="csl-6b-rvm" firstAttribute="leading" secondItem="LSU-5y-Ega" secondAttribute="leadingMargin" constant="-11" id="fCf-6Q-VvI"/>
+                            <constraint firstItem="quq-Un-3B7" firstAttribute="top" secondItem="83L-r9-TrV" secondAttribute="bottom" constant="19" id="h3G-Fz-3ZU"/>
+                            <constraint firstItem="83L-r9-TrV" firstAttribute="top" secondItem="SHf-AC-v1k" secondAttribute="bottom" id="hri-Cn-umq"/>
+                            <constraint firstItem="nes-hK-xp4" firstAttribute="trailing" secondItem="83L-r9-TrV" secondAttribute="trailing" id="zRH-Fm-1Ov"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="n18-WJ-LeW"/>
@@ -884,7 +877,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1EU-pa-P6c"/>
-        <segue reference="CJK-Nm-VAb"/>
+        <segue reference="qwX-LC-QlZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
