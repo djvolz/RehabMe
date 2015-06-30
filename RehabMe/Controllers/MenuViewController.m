@@ -8,7 +8,7 @@
 
 #import "MenuViewController.h"
 
-#define NUMBER_OF_SECTIONS 6
+#define NUMBER_OF_SECTIONS 5
 #define HEIGHT_FOR_ROW     54
 
 @interface MenuViewController ()
@@ -72,12 +72,12 @@
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
+//        case 4:
+//            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"remoteExerciseTableViewController"]]
+//                                                         animated:YES];
+//            [self.sideMenuViewController hideMenuViewController];
+//            break;
         case 4:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"remoteExerciseTableViewController"]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
-            break;
-        case 5:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"chooseExerciseViewController"]]
                                                          animated:NO];
             [self.sideMenuViewController hideMenuViewController];
@@ -163,8 +163,8 @@
     }
     
     
-    NSArray *titles = @[@"Home", @"Progress", @"Videos", @"Exercises", @"Download", @"Log Out"];
-    NSArray *images = @[@"IconHome", @"IconCalendar", @"video_camera_white", @"barbell_white", @"download", @"IconProfile"/*,@"IconEmpty"*/];
+    NSArray *titles = @[@"Home", @"Progress", @"Videos", @"Exercises", @"Log Out"];
+    NSArray *images = @[@"IconHome", @"IconCalendar", @"video_camera_white", @"barbell_white", @"IconProfile"/*,@"IconEmpty"*/];
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     
