@@ -14,6 +14,6 @@
 #import "Exercise.h"
 #import "UIColor+HexString.h"
 
-@interface ExerciseTableViewController : PFQueryTableViewController
+@interface ExerciseTableViewController : PFQueryTableViewController <UIActionSheetDelegate>
 
 @end

@@ -132,7 +132,9 @@
     return cell;
 }
 
-/* Users don't have the ability to delete template exercises. */
+/* 
+ ******* Users don't have the ability to delete template exercises.
+ */
 //- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 //{
 //    // Remove the row from data model
@@ -148,6 +150,11 @@
 
 
 
+/* How "downloading" an exercise works:
+ *  When the user taps the download button, the object is copied on the server
+ *  with a reference to the original object. That way the user can edit the
+ *  exercise if they want and still have that sync across their devices.
+ */
 - (void)checkButtonTapped:(id)sender
 {
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
@@ -160,12 +167,14 @@
         PFObject *object = [self.objects objectAtIndex:indexRow];
         NSLog(@"Button for %@", [object objectForKey:@"name"]);
         
-        
+        /* Download the object */
         object[@"enabled"] = [NSNumber numberWithBool:YES];
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             NSInteger errCode = [error code];
             if (kPFErrorObjectNotFound == errCode) {
                 [self createReferenceObjectForObject:object];
+            } else {
+                /* Object already exists. */
             }
         }];
     }
@@ -209,6 +218,7 @@
             }
         } else {
             // Log details of the failure
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error Downloading", nil) message:NSLocalizedString(@"Make sure you are connected to the Internet!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];

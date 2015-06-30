@@ -139,11 +139,11 @@
 //    nameLabel.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"order"]];
 
     // Create the enable/disable switch
-    UISwitch *newsSwitch = (UISwitch *) [cell viewWithTag:102];
-    [newsSwitch addTarget:self action:@selector(checkSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+    UISwitch *showExerciseSwitch = (UISwitch *) [cell viewWithTag:102];
+    [showExerciseSwitch addTarget:self action:@selector(checkSwitchChanged:) forControlEvents:UIControlEventValueChanged];
     NSNumber *switchStateNumber = [object objectForKey:@"enabled"];
     BOOL switchState = [switchStateNumber boolValue];
-    newsSwitch.on = switchState; // this shouldn't be animated
+    showExerciseSwitch.on = switchState; // this shouldn't be animated
     
     return cell;
 }
@@ -434,7 +434,42 @@
     }
 }
 
+#pragma mark - UIActionSheetDelegate
 
+- (IBAction)didPressAddButton:(UIBarButtonItem *)sender {
+    [self createExerciseAdditionActionSheet];
+}
+
+- (void)createExerciseAdditionActionSheet {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Download", @"Create", nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (buttonIndex == 0) {
+            [self showDownloadExerciseViewController];
+        } else if (buttonIndex == 1) {
+            [self showCreateExerciseViewController];
+        }
+    }];
+}
+
+- (void)showDownloadExerciseViewController {
+    /* Show the download exercises table view */
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UIViewController *downloadsViewController = (UIViewController *)[storyboard instantiateViewControllerWithIdentifier:@"remoteExerciseTableViewController"];
+    
+    [self.navigationController pushViewController:downloadsViewController animated:YES];
+}
+
+- (void)showCreateExerciseViewController {
+    /* Show the create exercises table view */
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UIViewController *createExerciseViewController = (UIViewController *)[storyboard instantiateViewControllerWithIdentifier:@"exerciseDetailViewController"];
+    
+    [self.navigationController pushViewController:createExerciseViewController animated:YES];
+}
 
 @end
 

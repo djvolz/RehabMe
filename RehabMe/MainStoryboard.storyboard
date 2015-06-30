@@ -557,7 +557,6 @@
                         </barButtonItem>
                         <connections>
                             <outletCollection property="rightBarButtonItemsCollection" destination="zvO-wW-TwK" id="oZP-DA-L4J"/>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="wx5-gC-qBH" id="jCA-u2-PMy"/>
                         </connections>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -568,10 +567,9 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xtt-h9-0ey" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <barButtonItem systemItem="add" id="zvO-wW-TwK">
                     <connections>
-                        <segue destination="9tY-qu-E3b" kind="showDetail" id="TBC-o7-Hel"/>
+                        <action selector="didPressAddButton:" destination="Enn-K8-f4G" id="UfS-WJ-HNd"/>
                     </connections>
                 </barButtonItem>
-                <barButtonItem tag="1" systemItem="trash" id="wx5-gC-qBH"/>
             </objects>
             <point key="canvasLocation" x="219" y="-1478"/>
         </scene>
@@ -715,7 +713,7 @@
         <!--Exercise Detail View Controller-->
         <scene sceneID="NTF-HJ-hdf">
             <objects>
-                <viewController id="XU1-Pu-XFS" customClass="ExerciseDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="exerciseDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XU1-Pu-XFS" customClass="ExerciseDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SHf-AC-v1k"/>
                         <viewControllerLayoutGuide type="bottom" id="SXH-un-llx"/>
@@ -825,20 +823,19 @@
                                                 <constraint firstAttribute="width" constant="70" id="Joj-OF-n6f"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFO-43-k0P">
-                                            <rect key="frame" x="78" y="8" width="402" height="53"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFO-43-k0P">
+                                            <rect key="frame" x="78" y="8" width="349" height="53"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xki-95-sM4">
-                                            <rect key="frame" x="488" y="20" width="71" height="30"/>
+                                        <button opaque="NO" tag="102" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xki-95-sM4">
+                                            <rect key="frame" x="435" y="19" width="124" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="71" id="DcL-kL-0Yq"/>
                                             </constraints>
-                                            <state key="normal" title="Download">
+                                            <state key="normal" image="download">
                                                 <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                     </subviews>
@@ -865,14 +862,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Download Exercises" id="7c3-xC-hfR">
-                        <barButtonItem key="leftBarButtonItem" image="menuButton" id="cup-RE-i0c">
-                            <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
-                            <connections>
-                                <action selector="presentLeftMenuViewController:" destination="V5Q-1r-qub" id="Z4Y-38-QP4"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Download Exercises" id="7c3-xC-hfR"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="4ai-d2-yM1" id="tcG-sb-Eqq"/>
@@ -885,6 +875,7 @@
     </scenes>
     <resources>
         <image name="HeaderImage" width="730" height="486"/>
+        <image name="download" width="42" height="32"/>
         <image name="liked" width="50" height="50"/>
         <image name="menuButton" width="46" height="29"/>
         <image name="nope" width="50" height="50"/>
@@ -892,8 +883,8 @@
         <image name="video_camera" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="smV-eo-MuZ"/>
-        <segue reference="qwX-LC-QlZ"/>
+        <segue reference="1EU-pa-P6c"/>
+        <segue reference="CJK-Nm-VAb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
