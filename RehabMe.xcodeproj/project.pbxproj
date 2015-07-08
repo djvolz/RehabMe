@@ -241,8 +241,8 @@
 		306093B41A9FDA480027BAAF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		306093B61A9FDA520027BAAF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		3066D8781ABF7835005218C8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		3066D87A1ABFA0E2005218C8 /* VideoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoTableViewController.h; path = Controllers/VideoTableViewController.h; sourceTree = "<group>"; };
-		3066D87B1ABFA0E2005218C8 /* VideoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoTableViewController.m; path = Controllers/VideoTableViewController.m; sourceTree = "<group>"; };
+		3066D87A1ABFA0E2005218C8 /* VideoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTableViewController.h; sourceTree = "<group>"; };
+		3066D87B1ABFA0E2005218C8 /* VideoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoTableViewController.m; sourceTree = "<group>"; };
 		3068ACEA1B4C61720052773E /* SocialTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialTableViewController.m; sourceTree = "<group>"; };
 		3068ACEC1B4C61820052773E /* SocialTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialTableViewController.h; sourceTree = "<group>"; };
 		307F835D1A9BC12300B1CEFF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -578,6 +578,16 @@
 			path = Parse;
 			sourceTree = "<group>";
 		};
+		30473D1C1B4DE45A005762D6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3066D87A1ABFA0E2005218C8 /* VideoTableViewController.h */,
+				3066D87B1ABFA0E2005218C8 /* VideoTableViewController.m */,
+				308968BE1B4C932D00F825ED /* Social Management */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		3049F5291B013BD900ED95EF /* CircularTimer */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,7 +611,7 @@
 		307F835F1A9BC12300B1CEFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				308968BE1B4C932D00F825ED /* Social Management */,
+				30473D1C1B4DE45A005762D6 /* Settings */,
 				30ABA7F41AD65364002E0ED1 /* Exercise Management */,
 				30ABA8051AD65655002E0ED1 /* Current Exercise */,
 				30ABA8041AD65636002E0ED1 /* Menu and Navigation */,
@@ -843,8 +853,6 @@
 				30ABA7FF1AD654F1002E0ED1 /* ExerciseDetailViewController.m */,
 				30ABA8011AD65537002E0ED1 /* NewExerciseViewController.h */,
 				30ABA8021AD65537002E0ED1 /* NewExerciseViewController.m */,
-				3066D87A1ABFA0E2005218C8 /* VideoTableViewController.h */,
-				3066D87B1ABFA0E2005218C8 /* VideoTableViewController.m */,
 			);
 			name = "Exercise Management";
 			path = ..;

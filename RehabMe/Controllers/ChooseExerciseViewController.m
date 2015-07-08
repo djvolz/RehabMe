@@ -56,7 +56,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initializeRehabMe];
+//    [self initializeRehabMe];
     
     rootView = self.navigationController.view;
 }
@@ -179,6 +179,10 @@
         // Present the log in view controller
         [self presentViewController:logInViewController animated:NO completion:^{
         }];
+        
+    /* Great! Looks like we're logged in. Let's get things started. */
+    } else {
+        [self initializeRehabMe];
     }
 }
 
