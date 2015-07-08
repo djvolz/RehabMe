@@ -41,6 +41,7 @@
 		306093B71A9FDA520027BAAF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 306093B61A9FDA520027BAAF /* libsqlite3.dylib */; };
 		3066D8791ABF7835005218C8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3066D8781ABF7835005218C8 /* MediaPlayer.framework */; };
 		3066D87C1ABFA0E2005218C8 /* VideoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3066D87B1ABFA0E2005218C8 /* VideoTableViewController.m */; };
+		3068ACEB1B4C61720052773E /* SocialTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3068ACEA1B4C61720052773E /* SocialTableViewController.m */; };
 		307F83701A9BC12400B1CEFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 307F835E1A9BC12300B1CEFF /* AppDelegate.m */; };
 		307F83711A9BC12400B1CEFF /* ChooseExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 307F83611A9BC12300B1CEFF /* ChooseExerciseViewController.m */; };
 		307F83721A9BC12400B1CEFF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 307F83621A9BC12300B1CEFF /* InfoPlist.strings */; };
@@ -78,6 +79,9 @@
 		30880E711AA8023D006746C4 /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E561AA8023D006746C4 /* TSBlurView.m */; };
 		30880E721AA8023D006746C4 /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E581AA8023D006746C4 /* TSMessage.m */; };
 		30880E731AA8023D006746C4 /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30880E5A1AA8023D006746C4 /* TSMessageView.m */; };
+		308968C01B4C98C200F825ED /* AddedMeTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 308968BF1B4C98C200F825ED /* AddedMeTVC.m */; };
+		308968C41B4C990D00F825ED /* AddFriendsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 308968C31B4C990D00F825ED /* AddFriendsTVC.m */; };
+		308968C71B4C997300F825ED /* SettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 308968C61B4C997300F825ED /* SettingsTVC.m */; };
 		3099B2FC1A9BC6CE00DB2B92 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */; };
 		309BA5251ACB07F400437086 /* StoryCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 309BA5201ACB07F400437086 /* StoryCommentCell.m */; };
 		309BA5261ACB07F400437086 /* ParallaxHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 309BA5221ACB07F400437086 /* ParallaxHeaderView.m */; };
@@ -239,6 +243,8 @@
 		3066D8781ABF7835005218C8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3066D87A1ABFA0E2005218C8 /* VideoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoTableViewController.h; path = Controllers/VideoTableViewController.h; sourceTree = "<group>"; };
 		3066D87B1ABFA0E2005218C8 /* VideoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoTableViewController.m; path = Controllers/VideoTableViewController.m; sourceTree = "<group>"; };
+		3068ACEA1B4C61720052773E /* SocialTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialTableViewController.m; sourceTree = "<group>"; };
+		3068ACEC1B4C61820052773E /* SocialTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialTableViewController.h; sourceTree = "<group>"; };
 		307F835D1A9BC12300B1CEFF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		307F835E1A9BC12300B1CEFF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		307F83601A9BC12300B1CEFF /* ChooseExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseExerciseViewController.h; sourceTree = "<group>"; };
@@ -292,6 +298,12 @@
 		30880E581AA8023D006746C4 /* TSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessage.m; sourceTree = "<group>"; };
 		30880E591AA8023D006746C4 /* TSMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMessageView.h; sourceTree = "<group>"; };
 		30880E5A1AA8023D006746C4 /* TSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessageView.m; sourceTree = "<group>"; };
+		308968BF1B4C98C200F825ED /* AddedMeTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddedMeTVC.m; sourceTree = "<group>"; };
+		308968C11B4C98CD00F825ED /* AddedMeTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddedMeTVC.h; sourceTree = "<group>"; };
+		308968C21B4C990000F825ED /* AddFriendsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsTVC.h; sourceTree = "<group>"; };
+		308968C31B4C990D00F825ED /* AddFriendsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsTVC.m; sourceTree = "<group>"; };
+		308968C51B4C996C00F825ED /* SettingsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTVC.h; sourceTree = "<group>"; };
+		308968C61B4C997300F825ED /* SettingsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTVC.m; sourceTree = "<group>"; };
 		3099B2FB1A9BC6CE00DB2B92 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		309BA51F1ACB07F400437086 /* StoryCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryCommentCell.h; sourceTree = "<group>"; };
 		309BA5201ACB07F400437086 /* StoryCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryCommentCell.m; sourceTree = "<group>"; };
@@ -589,6 +601,7 @@
 		307F835F1A9BC12300B1CEFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				308968BE1B4C932D00F825ED /* Social Management */,
 				30ABA7F41AD65364002E0ED1 /* Exercise Management */,
 				30ABA8051AD65655002E0ED1 /* Current Exercise */,
 				30ABA8041AD65636002E0ED1 /* Menu and Navigation */,
@@ -747,6 +760,21 @@
 				30880E5A1AA8023D006746C4 /* TSMessageView.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		308968BE1B4C932D00F825ED /* Social Management */ = {
+			isa = PBXGroup;
+			children = (
+				3068ACEC1B4C61820052773E /* SocialTableViewController.h */,
+				3068ACEA1B4C61720052773E /* SocialTableViewController.m */,
+				308968C11B4C98CD00F825ED /* AddedMeTVC.h */,
+				308968BF1B4C98C200F825ED /* AddedMeTVC.m */,
+				308968C21B4C990000F825ED /* AddFriendsTVC.h */,
+				308968C31B4C990D00F825ED /* AddFriendsTVC.m */,
+				308968C51B4C996C00F825ED /* SettingsTVC.h */,
+				308968C61B4C997300F825ED /* SettingsTVC.m */,
+			);
+			name = "Social Management";
 			sourceTree = "<group>";
 		};
 		3095AEBC1AD4863D00C99238 /* Introduction */ = {
@@ -1220,7 +1248,9 @@
 				30A32A121AC464C600602D4C /* RootViewController.m in Sources */,
 				307F83711A9BC12400B1CEFF /* ChooseExerciseViewController.m in Sources */,
 				303C06371A9FDFDE001D9B78 /* MDCSwipeResult.m in Sources */,
+				308968C01B4C98C200F825ED /* AddedMeTVC.m in Sources */,
 				30ABA7F71AD65374002E0ED1 /* Exercise.m in Sources */,
+				3068ACEB1B4C61720052773E /* SocialTableViewController.m in Sources */,
 				303C06311A9FDFDE001D9B78 /* MDCViewState.m in Sources */,
 				30880E721AA8023D006746C4 /* TSMessage.m in Sources */,
 				30A32A151AC465D100602D4C /* MenuViewController.m in Sources */,
@@ -1236,6 +1266,7 @@
 				309BA5301ACB27B900437086 /* TimerViewController.m in Sources */,
 				303C06321A9FDFDE001D9B78 /* UIColor+MDCRGB8Bit.m in Sources */,
 				30C2ED251AB77AB30020B738 /* BEMCircle.m in Sources */,
+				308968C71B4C997300F825ED /* SettingsTVC.m in Sources */,
 				3083120A1A9E65AC00CC2A5C /* CBZSplashView.m in Sources */,
 				30C2ED281AB77AB30020B738 /* BEMSimpleLineGraphView.m in Sources */,
 				303C06331A9FDFDE001D9B78 /* UIView+MDCBorderedLabel.m in Sources */,
@@ -1244,6 +1275,7 @@
 				309BA5251ACB07F400437086 /* StoryCommentCell.m in Sources */,
 				307F83771A9BC12400B1CEFF /* ChooseExerciseView.m in Sources */,
 				305EBB421AAB9219008C2E17 /* CurrentExerciseViewController.m in Sources */,
+				308968C41B4C990D00F825ED /* AddFriendsTVC.m in Sources */,
 				30D9352F1AB0D5B70024B03E /* EAIntroView.m in Sources */,
 				3083120C1A9E65AC00CC2A5C /* CBZVectorSplashView.m in Sources */,
 				30ABA7F31AD644F6002E0ED1 /* MBProgressHUD.m in Sources */,

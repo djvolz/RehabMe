@@ -62,21 +62,15 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 2:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"videoTableViewController"]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
-            break;
-            
-        case 3:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"exerciseTableViewController"]]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
-//        case 4:
-//            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"remoteExerciseTableViewController"]]
-//                                                         animated:YES];
-//            [self.sideMenuViewController hideMenuViewController];
-//            break;
+        case 3:
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"settingsTVC"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
         case 4:
             [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"chooseExerciseViewController"]]
                                                          animated:NO];
@@ -163,8 +157,8 @@
     }
     
     
-    NSArray *titles = @[@"Home", @"Progress", @"Videos", @"Exercises", @"Log Out"];
-    NSArray *images = @[@"IconHome", @"IconCalendar", @"video_camera_white", @"barbell_white", @"IconProfile"/*,@"IconEmpty"*/];
+    NSArray *titles = @[@"Home", @"Progress", @"Exercises", @"Settings", @"Log Out"];
+    NSArray *images = @[@"IconHome", @"IconCalendar", @"barbell_white", @"IconSettings", @"IconProfile"/*,@"IconEmpty"*/];
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     
