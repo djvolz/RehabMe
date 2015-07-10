@@ -413,8 +413,7 @@
     notAvailableText.textColor = [UIColor colorWithHexString:REHABME_GREEN];
     [overlayView addSubview:notAvailableText];
     
-    //TODO: FIXME this really shouldn't be so hardcoded
-    CGRect frame3 = CGRectMake(0, notAvailableText.frame.size.height - 140, bounds.size.width, 220);
+    CGRect frame3 = CGRectMake(0, notAvailableText.frame.size.height - notAvailableText.frame.size.height/1.3, bounds.size.width, 220);
 
     UILabel *pullText = [[UILabel alloc] initWithFrame:frame3];
     pullText.text = @"Pull to Refresh";
