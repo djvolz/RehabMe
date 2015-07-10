@@ -120,7 +120,12 @@
 }
 
 - (void)applicationEnteredForeground:(NSNotification *)notification {
-    // Display the welcome back notification only when the application is resumed
+    // Display the welcome back notification when the application is resumed
+    [self showWelcomeBackNotification];
+}
+
+- (void)showWelcomeBackNotification {
+    // Display the welcome back notification when the application is resumed
     [TSMessage showNotificationInViewController:self
                                           title:NSLocalizedString(@"Welcome back!", nil)
                                        subtitle:NSLocalizedString(@"", nil)
