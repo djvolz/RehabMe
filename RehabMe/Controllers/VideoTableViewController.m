@@ -74,8 +74,8 @@
     noVideosText.textColor = [UIColor colorWithHexString:REHABME_GREEN];
     
     if ([videos count] == 0) {
-        [self.navigationController.navigationBar.topItem setRightBarButtonItem:nil];
-        
+        [self.navigationItem setRightBarButtonItem: nil];
+
         [self.view addSubview:overlayView];
         
         [self.view addSubview:noVideosText];
@@ -85,7 +85,7 @@
         [self.view bringSubviewToFront:imageView];
     }
     else {
-        [self.navigationController.navigationBar.topItem setRightBarButtonItem:trashItem];
+        [self.navigationItem setRightBarButtonItem: trashItem];
         
         [overlayView removeFromSuperview];
         
