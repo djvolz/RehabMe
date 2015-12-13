@@ -51,7 +51,7 @@ Therapists assign desired exercises through our cloud application. Assigned exer
 
 Our cloud application receives all of the exercise data from the mobile application and visualizes it in a color coded scheme. The therapists then receive a weekly report on the performance of their patients, and can therefore make better decisions for the next step of rehabilitation.
 
-![flowchart](img_readme/flowchart.pdf)
+![flowchart](img_readme/flowchart.png)
 
 
 
