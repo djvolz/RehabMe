@@ -1,5 +1,5 @@
 #RehabMe
-![Logo](img_readme/Logo_Dark_Green-16.jpg)
+![Logo](img_readme/Logo.jpg)
 
 Rehabilitation therapists estimate that 75% of the patients are not performing rehab exercises at home. Because most patients only go to rehab institutions once a week, or less frequently, in-home rehab exercises are critical for their recovery. Unfortunately from therapists’ estimation tells us a lot more could be done to improve in-home rehab activities, and to help patients better recover.
 
@@ -26,9 +26,9 @@ Each block represents one interface, or view controller, that users will see and
 	- Swiping left is to “discard” the current card, which means that this exercise is not performed. 
 	- On the other hand, swiping right means that the exercise is completed. 
 4. When all exercises are completed, i.e. all the cards are swiped, the app enters the rate performance view, which provides the user with the opportunity to rate the difficulty level of that session's exercises.
-![1](img_readme/1.png)
-![2](img_readme/2.png)
-![3](img_readme/3.png)
-![4](img_readme/4.png)
-![5](img_readme/5.png)
+![1](img_readme/1.PNG)
+![2](img_readme/2.PNG)
+![3](img_readme/3.PNG)
+![4](img_readme/4.PNG)
+![5](img_readme/5.PNG)
 
