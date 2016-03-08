@@ -8,7 +8,7 @@ RehabMe is designed to motivate patients to do their in-home rehab exercises by 
 
 ###Licensing
 
-I am providing all of this code and all of this work unconditionally and free of charge. I am a firm believer in open-source software and hope that this code can help someone in the future.  If you want to use any of my code (although I've moved on from programming in Objective-C) or any of the graphics I've designed, you are free to do so.  All I ask is that you drop me a note and let me know how you are using it. Feel free to email me with any questions you may have at <volz.danny@gmail.com>. Enjoy!
+I am providing all of this code and all of this work unconditionally and free of charge. I am a firm believer in open-source software and hope that this code can help someone in the future.  If you want to use any of my code (although I've moved on from programming in Objective-C) or any of the graphics I've designed, you are free to do so.  All I ask is that you drop me a note and let me know how you are using it. Feel free to contact me with any questions you may have through my GitHub account. Enjoy!
 
 
 ###Current State of Physical Rehabilitation
@@ -59,8 +59,12 @@ Our cloud application receives all of the exercise data from the mobile applicat
 
 #RehabMe Mobile
 
-Each block represents one interface, or view controller, that users will see and perform operations on. Details of the diagram are explained below, with additional figures.![Control flowchart](img_readme/control_flow.png)
-###User Flow
+Each block represents one interface, or view controller, that users will see and perform operations on. Details of the diagram are explained below, with additional figures.
+
+![Control flowchart](img_readme/control_flow.png)
+
+
+###User Flow
 The mobile application itself is self-contained, meaning that the smartphone is the only requirement to operate our app. Selected usage data is sent to Parse, our cloud platform, and  queries data from the cloud platform and visualize the data.
 
 ![User flowchart](img_readme/data_flow.png)
@@ -71,17 +75,30 @@ The mobile application itself is self-contained, meaning that the smartphone is 
 ##Usage
 
 1. The first time entrance to the app requires the user to either register or log in to use the app. We also provide a Facebook login so that users can create an account using their Facebook login information.
-2. The app begins with the exercise card deck. Here, all of the exercises are represented by cards. Each card contains the name of the exercise, how many times and how long it should be performed, along with a picture illustration of the exercise.3. There is a button “Begin” under each card. When pressed, the app enters the card detail view controller that displays the detailed instructions of the exercises. There are three buttons on the bottom: a “timer” button, a camera icon button, and a “done” button.
-	- When the user is ready for a particular exercise, the user hits the “timer” button, which brings the app to the timer view controller that shows a countdown clock The time duration of the countdown clock depends on the time required for a particular exercise, typically 30 seconds. The user is expected to perform the exercise until the timer hits zero. Tapping the screen brings the user back to the exercise detail view controller.
-	- When the user needs to take a video of himself or herself doing the exercise so they will not forget how to perform the exercise, the user can press the camera icon. If there is no video recorded for this exercise, the app will ask for permission to use the phone camera. Afterwards, the user can record the video when he or she is ready. The recorded video will be associated with the exercise. When a video already exists associated with the exercise, the video will start playing immediately.
-4. After completing an exercise, the user has two options to proceed to the next card (exercise) by swiping left or right the current card. 
-	- Swiping left is to “discard” the current card, which means that this exercise is not performed. 
-	- On the other hand, swiping right means that the exercise is completed. 
-5. When all exercises are completed, i.e. all the cards are swiped, the app enters the rate performance view, which provides the user with the opportunity to rate the difficulty level of that session's exercises.
-6. Finally a progress graph is presented. 
-	- The visualization makes use of the number of exercises performed per day to make a chart for the performance for the past 5 days. The score is calculated by the number of exercises performed in total for the past 5 days.
-	- A motivational quote is shown on the top of the screen. 
-	- It can be clearly seen how the user is performing for the past few days by making use of simple usage data.
+2. The app begins with the exercise card deck. Here, all of the exercises are represented by cards. Each card contains the name of the exercise, how many times and how long it should be performed, along with a picture illustration of the exercise.
+3. There is a button “Begin” under each card. When pressed, the app enters the card detail view controller that displays the detailed instructions of the exercises. There are three buttons on the bottom: a “timer” button, a camera icon button, and a “done” button.
+
+	- When the user is ready for a particular exercise, the user hits the “timer” button, which brings the app to the timer view controller that shows a countdown clock The time duration of the countdown clock depends on the time required for a particular exercise, typically 30 seconds. The user is expected to perform the exercise until the timer hits zero. Tapping the screen brings the user back to the exercise detail view controller.
+
+	- When the user needs to take a video of himself or herself doing the exercise so they will not forget how to perform the exercise, the user can press the camera icon. If there is no video recorded for this exercise, the app will ask for permission to use the phone camera. Afterwards, the user can record the video when he or she is ready. The recorded video will be associated with the exercise. When a video already exists associated with the exercise, the video will start playing immediately.
+
+
+4. After completing an exercise, the user has two options to proceed to the next card (exercise) by swiping left or right the current card. 
+
+	- Swiping left is to “discard” the current card, which means that this exercise is not performed. 
+
+	- On the other hand, swiping right means that the exercise is completed. 
+
+5. When all exercises are completed, i.e. all the cards are swiped, the app enters the rate performance view, which provides the user with the opportunity to rate the difficulty level of that session's exercises.
+
+
+6. Finally a progress graph is presented. 
+
+	- The visualization makes use of the number of exercises performed per day to make a chart for the performance for the past 5 days. The score is calculated by the number of exercises performed in total for the past 5 days.
+
+	- A motivational quote is shown on the top of the screen. 
+
+	- It can be clearly seen how the user is performing for the past few days by making use of simple usage data.
 
 ---
 #RehabMe Cloud
@@ -146,7 +163,9 @@ The advantage of building the application on iOS device is the possibility to in
 
 
 
-![Login](img_readme/login.tif)![1](img_readme/1.PNG)
+
+![Login](img_readme/login.tif)
+![1](img_readme/1.PNG)
 ![2](img_readme/2.PNG)
 ![3](img_readme/3.PNG)
 ![5](img_readme/5.PNG)
@@ -156,4 +175,4 @@ The advantage of building the application on iOS device is the possibility to in
 ![9](img_readme/9.PNG)
 ![10](img_readme/10.PNG)
 
-
+
